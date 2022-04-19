@@ -1,0 +1,1275 @@
+# Validator List Method
+
+The validator list method is a special API endpoint that fetches a current, trusted validator list a `rippled` server is using. This often represents the exact list of validators a server trusts. [New in: rippled 1.5.0][]
+
+Like the [Peer Crawler](peer-crawler.html), the validator list method is available by default on a non-privileged basis through the [Peer Protocol](peer-protocol.html) port, which is also used for `rippled` servers' peer-to-peer communications.
+
+## Request Format
+
+To request the Validator List information, make the following HTTP
+request:
+
+- **Protocol:** https
+- **HTTP Method:** GET
+- **Host:** (any `rippled` server, by hostname or IP address)
+- **Port:** (the port number where the `rippled` server uses the Peer Protocol, typically 51235)
+- **Path:** `/vl/{public_key}`
+
+    The `{public_key}` is the list publisher's public key, in hexadecimal. This key identifies the publisher and is also used to verify that the contents of the list are authentic and complete.
+
+- **Security:** Most `rippled` servers use a self-signed TLS certificate to respond to the request. By default, most tools (including web browsers) flag or block such responses for being untrusted. You must ignore the certificate checking (for example, if using cURL, add the `--insecure` flag) to display a response from those servers.
+
+    The validator list contents are signed with a separate cryptographic key, so you can verify their integrity regardless of the TLS certificate used.
+
+
+## Response Format
+
+The response has the status code **200 OK** and a JSON object in the message body. The response body is very similar to the format used for validator list sites such as <https://vl.ripple.com/>.
+
+The JSON object has the following fields:
+
+| `Field`          | Value  | Description                                      |
+|:-----------------|:-------|:-------------------------------------------------|
+| `manifest`       | String | The list publisher's [manifest data](#manifest-data), in either base64 or hexadecimal. |
+| `blob`           | String | Base64-encoded JSON data representing the validator list. |
+| `signature`      | String | The signature of the `blob` data, in hexadecimal. |
+| `version`        | Number | The version of the validator list protocol this object uses. The current version is **1**. A higher version number indicates backwards-incompatible changes with a previous version of the validator list protocol. |
+| `public_key`     | String | The public key used to verify this validator list data, in hexadecimal. This is a 32-byte Ed25519 public key prefixed with the byte `0xED`. [New in: rippled 1.7.0][] |
+
+### Manifest Data
+[[Source]](https://github.com/ripple/rippled/blob/97712107b71a8e2089d2e3fcef9ebf5362951110/src/ripple/app/misc/impl/Manifest.cpp#L43-L66 "Source")
+
+A "manifest" contains information uniquely identifying a person or organization involved in the consensus process, either a **validator** or a **list publisher**. A validator's manifest contains the _public_ information from that [validator's token](run-rippled-as-a-validator.html#3-enable-validation-on-your-rippled-server). A list publisher's manifest provides information about the list publisher. Both are typically encoded to binary in the XRP Ledger's standard [binary serialization format](serialization.html). (There is no standard JSON representation of a manifest.)
+
+One of the main purposes of manifests relates to rotating validator keys. When a validator changes its ephemeral key pair, the validator publishes a new manifest to share its new ephemeral public key, using the validator's master key pair to sign the manifest to prove its authenticity. A validator uses its ephemeral key pair to sign validations as part of the [consensus process](consensus.html) and uses its master key pair only to sign new manifests. (The manifest is incorporated into a validator token, alongside private data, that [the validator administrator adds to the `rippled.cfg` config file](run-rippled-as-a-validator.html#3-enable-validation-on-your-rippled-server).)
+
+The data encoded in a manifest is as follows:
+
+| Field               | Internal Type | Description                              |
+|:--------------------|:--------------|:-----------------------------------------|
+| `sfPublicKey`       | Blob          | The master public key that uniquely identifies this person or organization. This can be a 33-byte secp256k1 public key, or a 32-byte Ed25519 public key prefixed with the byte `0xED`. |
+| `sfMasterSignature` | Blob          | A signature of this manifest data from the master key pair. This proves the authenticity of the manifest. |
+| `sfSequence`        | UInt32        | A sequence number for this manifest. A higher number indicates a newer manifest that invalidates all older manifests from the same master public key. |
+| `sfVersion`         | UInt16        | A version number indicating the manifest format used. A higher number indicates a newer manifest format, including breaking changes compared to the previous manifest format. |
+| `sfDomain`          | Blob          | _(Optional)_ A domain name owned by this person or organization, ASCII-encoded. |
+| `sfSigningPubKey`   | Blob          | _(Optional)_ The ephemeral public key of the key pair that this person or organization is currently using. This must be a 33-byte secp256k1 public key. |
+| `sfSignature`       | Blob          | _(Optional)_ A signature of this manifest data from the ephemeral key pair. |
+
+The `sfMasterSignature` and `sfSignature` signatures are created from signing the [serialized](serialization.html) binary data of the manifest, excluding the signature fields (`sfMasterSignature` and `sfSignature`) themselves.
+
+
+### Blob Data
+
+If you decode the `blob` from base64, the result is a JSON object with the following fields:
+
+| `Field`      | Value  | Description                                          |
+|:-------------|:-------|:-----------------------------------------------------|
+| `sequence`   | Number | Unique sequence number for this list. A larger sequence number indicates a newer list; only the newest list is valid at a time. |
+| `expiration` | Number | The time this list expires, in [seconds since the Ripple Epoch][]. |
+| `validators` | Array  | A list of recommended validators.                    |
+
+Each member of the `validators` array has the following fields:
+
+| `Field`                 | Value  | Description                               |
+|:------------------------|:-------|:------------------------------------------|
+| `validation_public_key` | String | The master public key that uniquely identifies this validator. |
+| `manifest`              | String | This validator's [manifest data](#manifest-data), in either base64 or hexadecimal. |
+
+
+#### Example Decoded Blob
+
+```json
+{
+    "sequence": 60,
+    "expiration": 644371200,
+    "validators": [
+        {
+            "validation_public_key": "ED45E80A04D79CB9DF00AEBD86DCDC1686D6419EA9E5E0E71F1A817E08B5076A55",
+            "manifest": "JAAAAAFxIe1F6AoE15y53wCuvYbc3BaG1kGeqeXg5x8agX4ItQdqVXMhAxZo157pcB9de6Smk7hoK3wNCAr4aFZtfAPi7CE4mNJldkcwRQIhALlVjXCfiy/mtXBWsNt77t4jKcNEBpRV8zv+SpU5lCh0AiBa8vo8xxpviYlf4zdG+nQhB2OgfkQZZPMHOt7CaXzXgXASQL8O5p083mg4KKL8uZfMaUqdgzuJ0Gta1lyUWPctTPCxY135XwK+nJAdFsIUFNJ9MPjnpCmSjYVzVa6M5/nAcAI="
+        },
+        {
+            "validation_public_key": "EDD8C88642795CE69C5B780E01702C370F9507D0B64433F17EFE70F2637A40ADB7",
+            "manifest": "JAAAAAFxIe3YyIZCeVzmnFt4DgFwLDcPlQfQtkQz8X7+cPJjekCtt3MhAnFfr+r9BXdsXE/cBlJMyd/XsO1A5XEYCctrsvLEX+DmdkcwRQIhANRcRMg9SAXoaOvHDZ2av9RzEaZaVENfQiVgsi+Ox3F0AiB2snSIOm6c4/inbtU0UmWLQTzuwkOdUFPIB8Ax8dmGuHASQMUIfXMj96kcFTSJnMFC/mW/AQ8bKXkFrrk0CUTFFKweEjTq+STrFi6qLL2MT7nveGxsXBCgztjc0qGas9KFWgM="
+        },
+        {
+            "validation_public_key": "EDBDEB901F7C75D0E20C6C42AF03BE0DA40377AF1939A18B3CB3679661DD5F9F74",
+            "manifest": "JAAAAAFxIe2965AffHXQ4gxsQq8Dvg2kA3evGTmhizyzZ5Zh3V+fdHMhAg3cyKNPMPqKgR7kIi7c/8GL/YgdBtg4mSAWvwmaevVGdkYwRAIgWzG8GqYg3YpwDs8xXa9XqLHss76KT2uAHRhUXFVUqCQCIG2EvbFKnxezRd9cpPHSt32HXK+P4+aL3p2+vqlCxRR9cBJAboXTmYTayocA3zf9dWEXtyaeOGC1k5WdYURzPleevvalR4xVoXzs38iGPxFr/pA9nL+M4duu0GKCHlVir+fBAg=="
+        },
+        {
+            "validation_public_key": "EDA17871E72B0C570AC4345C60CF02AFBBB740A631B7AD0E1E573216574D9AEA02",
+            "manifest": "JAAAAAFxIe2heHHnKwxXCsQ0XGDPAq+7t0CmMbetDh5XMhZXTZrqAnMhAojyuzgtreQkxQj8prHxOsbDcF5fu4XXb0KxEL/Pq5HhdkcwRQIhANfPDLZP47aCWwt5kBnp75BuuCgp9c4BfJPd66SFCw61AiAJvegBvvPIrec+XOSzKRfi5uuXWxtl9Eyr2aPBYXvbRHASQMULYEo7beRfoUCnjk1sTYyY91tLIGLgnnaWXhUm80+zs5IGegk8qijKAtBOMuBC71lAB4KhJc+dB2rpMOFc5gw="
+        },
+        {
+            "validation_public_key": "EDF46EE27AD0E1A714AFECDA816EAB7114614FCB92D0CB4D97B6A88ED43434AFC9",
+            "manifest": "JAAAAAFxIe30buJ60OGnFK/s2oFuq3EUYU/LktDLTZe2qI7UNDSvyXMhAw0ATWjVTt4FfeKO7kv6fFgd/go2+d5BSyUcURmRWnTtdkcwRQIhAMwOgDec7QYYNngspg90wEvVbsoh2ux14RPTw+GHaXNlAiALgfEsz+AF4eyX/Y5i44VrFjFFIMWUfOZaQJtsxteM1XASQLOaF0t2ZpqVKd8JESQVY+zU567iAAG2amTPZx95875S9A6Pl+kH5TGHMAeWjgWSqfh3m2HBJX7NIcXb98vy9AA="
+        },
+        {
+            "validation_public_key": "ED6E4C41E59FFBEB51726E54468502FE6437238FA78EA51634E7BF0D09171AEE8F",
+            "manifest": "JAAAAAFxIe1uTEHln/vrUXJuVEaFAv5kNyOPp46lFjTnvw0JFxruj3MhAuztGWb/Oi1/V5m5dujWr9HmbKRyK4XYk+kmuFPSgAFrdkYwRAIgfQ+BgXX6QblZy4H05o7GPSIwqS7QQRUW7dqF54IAiiMCIH4XfLw956iEaoxZOk7Kctin2X9hMfaLN7wys9yAUFoZcBJAueEi84XR3Ll1GLJWanW1g1MdUj/0PAxJbw6EEQRuG3zdnuRHNXld6UZAbIkVcP0ztfqulBzjbcsLDOKFEicSBg=="
+        },
+        {
+            "validation_public_key": "EDB6FC8E803EE8EDC2793F1EC917B2EE41D35255618DEB91D3F9B1FC89B75D4539",
+            "manifest": "JAAAAAFxIe22/I6APujtwnk/HskXsu5B01JVYY3rkdP5sfyJt11FOXMhA8VdvHFyScByQGTYNGeOvB0+67gWaqefcfvRk5+KwgV1dkYwRAIgZFulO/AiMoczng6i/4BkfzT7j9lxF4PP1ufgrOQaJ8sCIBX/E8Zbpn7tWqgAyNyWpVPkhFmaUMqEry8WoUT1fdGQcBJAv51RqJxgg/VrnrZwiLK2Dc0CKbiLPO5HJ4ZMsjdPT2gRc97rWkAXuV2L6PNFO59xyuoaZmSMlZYvqSGPpfF7Bw=="
+        },
+        {
+            "validation_public_key": "ED691303992FEC64E6BC4BACD36AE6E5AEDC23F2861B6D8EFB9FD77EE3EADE3435",
+            "manifest": "JAAAAAFxIe1pEwOZL+xk5rxLrNNq5uWu3CPyhhttjvuf137j6t40NXMhAi2AXJQgo/JuW3r7f/6CcVsGN1YmIj11GiIESHBnQSk8dkcwRQIhANCDEQymrd6veT3ouacF6fhBr5wLw3GmXg1rMCLVvBzZAiA8uWQ+tqd46WmfBexjSBQ2Jd6UAGdrHvjcCQ2ZgSooCnASQFkHl+D7/U3WByYP384+pcFDf2Gi4WIRHVTo58cqdk5CDiwc1T0rDoLhmo41a3f+dsftfwR4aMmwFcPXLnrjrAI="
+        },
+        {
+            "validation_public_key": "EDAD16667F0185DDBB7FA65B22F4B7D310BF5C3E2D9B823FB06A3A41AF8AC83BC1",
+            "manifest": "JAAAAAFxIe2tFmZ/AYXdu3+mWyL0t9MQv1w+LZuCP7BqOkGvisg7wXMhAqweE3PIS3E44KhMqKjKtbkBe8H8GbiuoAXAYDRoVRHodkYwRAIgagGkXtowUybdltKojv0lvvflrlQ9IRnPOjekF60iHzgCICg6ZocIMzkUuvO91BEormIWmX4G/MGT2zro6I/PvB8XcBJAcJLXkt/w/kcwEvNiZmi2i2nMn1wiP3LS9NJjBPju8KFLAMg0O9ydQT67U/ALYOeTPTO2/i2Yw9OSlibtqhgzDA=="
+        },
+        {
+            "validation_public_key": "EDC245027A52EE5318095598EC3AB65FF4A3B9F9428E10B2F3C6F39DE15A15C90A",
+            "manifest": "JAAAAAFxIe3CRQJ6Uu5TGAlVmOw6tl/0o7n5Qo4QsvPG853hWhXJCnMhA/8/9rKUdA61j/fIEP/cqLpxBlmIhP2rg1d7NaEPyKV+dkcwRQIhAIxE0M/FJ50vfZW6fPpy4yCZumY9n0obrOojUkjm55a0AiBj56O0MpopGoY9HxC/+4wNO36Ho7E9CQeHsnKreDdsAXASQIYUd81jbiVUlET4dGoG2p+cf+2GqEXX5fJMSSyX/qe0XfR4cO+4qlgmjMQdCRDBWABHVvdN/yZyi/rL2c+WrQc="
+        },
+        {
+            "validation_public_key": "ED4246AA3AE9D29863944800CCA91829E4447498A20CD9C3973A6B59346C75AB95",
+            "manifest": "JAAAAAFxIe1CRqo66dKYY5RIAMypGCnkRHSYogzZw5c6a1k0bHWrlXMhAkm1lz0c8QXWfJ9b1vB72dLabw8wYId8MtnpsHHBEC8pdkYwRAIgQlb6HJ53hsTAfVid+AOdBVvMF7rahIKNLBHUgn52zBECIGLUqFu8a1AAHRJcVonKYEnmhJwbCXLn+je7na1WD1/ocBJAE4vfvrGSmZC2uAUGmM5dIBtoSgEUey+2VleDYEsce94txYcjR8Z7QLNaliD8w/bD5/hvYQ8meV1Wg1jJFNe0CA=="
+        },
+        {
+            "validation_public_key": "ED2C1468B4A11D281F93EF337C95E4A08DF0000FDEFB6D0EA9BC05FBD5D61A1F5A",
+            "manifest": "JAAAAAFxIe0sFGi0oR0oH5PvM3yV5KCN8AAP3vttDqm8BfvV1hofWnMhAkMUmCD2aPmgFDDRmimvSicSIScw6YNr42Dw4RAdwrOAdkcwRQIhAJFOHMg6qTG8v60dhrenYYk6cwOaRXq0RNmLjyyCiz5lAiAdU0YkDUJQhnN8Ry8s+6zTJLiNLbtM8oO/cLnurVpRM3ASQGALarHAsJkSZQtGdM2AaR/joFK/jhDU57+l+RSYjri/ydE20DaKanwkMEoVlBTg7lX4hYjEnmkqo73wIthLOAQ="
+        },
+        {
+            "validation_public_key": "EDA54C85F91219FD259134B6B126AD64AE7204B81DD4052510657E1A5697246AD2",
+            "manifest": "JAAAAHlxIe2lTIX5Ehn9JZE0trEmrWSucgS4HdQFJRBlfhpWlyRq0nMhAuAm/kLuTHmcOaDruJBjKjWOp1UtGuO8CICtRp4vo4HGdkcwRQIhAP1SPcKuMlGGDe5rcQAf1x/BmnVtBIG4Hv9US5b/GyZCAiA+03cZu9+EBqSZueF5lAUSPY/HRfL7pqxwn89fS4AFA3ASQJq+QRUP+aXB2iMxZrEajySxGs7CNpucyptWV0bnaq7ilnfUCvMlfszq5mV0rahB89C2zAnf7FjH0Cx0BML29QA="
+        },
+        {
+            "validation_public_key": "ED9AE4F5887BA029EB7C0884486D23CF281975F773F44BD213054219882C411CC7",
+            "manifest": "JAAAAAFxIe2a5PWIe6Ap63wIhEhtI88oGXX3c/RL0hMFQhmILEEcx3MhAmG2zgv8FBZsZJU8aPapwo9cIqQv4/MSS1oVA5eVMiwLdkYwRAIgF+LOe4eY0gp9ttqh2gnv+z75OqLyOQMpGPALgm+NtOsCICDXBZVPtprmBDkBJkPFSnE55D9eKYRH8z/iY1EtpNplcBJAADEWGVT80Owhd1lh2JsU/oZlmeNF5WN7YvlB8llExaRKEVC+GW9Wg+iNIQ3rmV7P8aNaVuaabG00fOgkgzNhDw=="
+        },
+        {
+            "validation_public_key": "EDA8D29F40CEB28995617641A3BC42692E1DE883214F612FBB62087A148E5F6F9A",
+            "manifest": "JAAAAAFxIe2o0p9AzrKJlWF2QaO8QmkuHeiDIU9hL7tiCHoUjl9vmnMhAnYnP7Eg6VgNnEUTRE29d64jQT/iBcWTQtNrUzyD6MJ+dkcwRQIhAOEsV5anTkloSmTZRbimMyBKqHoJYXcBBe8lLiPYC7mUAiAz2aNOpfQ/1LycWloIMvdhxzinq5X7Uas/uOSb9wh8d3ASQLVkfpW/GO6wdT6AuuSJ56TtM343pDNH+iSzxltIfdrPiUxT5rf4k21lQQuPClXm9+SfKrCiUXZK7dj0/GWTYQg="
+        },
+        {
+            "validation_public_key": "ED38B0288EA240B4CDEC18A1A6289EB49007E4EBC0DE944803EB7EF141C5664073",
+            "manifest": "JAAAAAFxIe04sCiOokC0zewYoaYonrSQB+TrwN6USAPrfvFBxWZAc3MhAgOKcvIuchalrZw/glTuOxV3IOCcporxMB7JqAVupk1edkcwRQIhAOvRzpe+IYZK1MyInIQZ87JvP2J8SIXCXZMPBCdITBamAiASavJXi9pws8rDDJSxhGMlmE7zI5bSA8ivtRC9Lgq+UXASQDl3eoqLID+ETJNM+zbMuvwvcHEIxeBZkZ9fp5jJv6OCTPwlj4TJSuy1avEWqUYS2riv5Dvl2haFUoCHf4yawAA="
+        },
+        {
+            "validation_public_key": "EDEE10DC36ACD995C8E0E86E3CD2FBF8301A4AC2B8847B61A1935DE4973B407C0E",
+            "manifest": "JAAAAAFxIe3uENw2rNmVyODobjzS+/gwGkrCuIR7YaGTXeSXO0B8DnMhAmX0vb7j+lgBjFjbN9RlA86J7AO2Vn6HLquO3aisK4mwdkYwRAIgfxBLn7i4jg/di0U25q6kIbVfTzqbA0SCpQ0I57TOFkcCIFMtJQpENjB2K2EmvBHPvNcwuSPc3vsEeqE2rNJ/cT5DcBJAf68XPFu5RjCeLgpFJM7PKFLgoV8e1nxO5ewjq9Q+TAEGnFyS0IOwf6pOOtIVMdVeXu1v6p4fhXQkdihHt1x6Ag=="
+        },
+        {
+            "validation_public_key": "ED583ECD06C3B7369980E65C78C440A529300F557ED81256283F7DD5AA3513A334",
+            "manifest": "JAAAAAFxIe1YPs0Gw7c2mYDmXHjEQKUpMA9VftgSVig/fdWqNROjNHMhAyuUnzZZ1n2/GaTmE1m7H/v9YlZyDEwHY3gSHUA3ICL9dkYwRAIgHx2PHvidoN+5yG9WeAS2k7nwIM8ajxQW6wjvt8kBenACIDNxQPQkDyDJH9seS5C62mAarQmgiN89YS3jhNtnvEIqcBJAj7Jh0Kac+aJdpoepu/+eJKnnFQ7YByZB8eMZ+SS1zLhE+lip/49qqVNcpAxEqfaGtxJzoDDD1/QbuU7NOSPkCg=="
+        },
+        {
+            "validation_public_key": "ED95C5172B2AD7D39434EEBC436B65B3BB7E58D5C1CEFC820B6972ACAD776E286A",
+            "manifest": "JAAAAAFxIe2VxRcrKtfTlDTuvENrZbO7fljVwc78ggtpcqytd24oanMhAiqcRde3MQZ075fa4ZNNyRaYJGMdBNkBnn3bQrKseBDQdkYwRAIgU+LfcE71DPVrO+KtUBjQ9D2u0k/Pr7lukO1nPRj6hSACIDNLYC/JFgobCsIa0BGw+6bUnOw9meU3FdXgR7Q7SoqJcBJAXQakOoQnPp3pcLL7zdKCPUX4b+/FC9Unhqp+O9xQFnRaCWVGmk5MJOIMs4WOQdpM1j3OgSsABmRuCXYvwo/nDw=="
+        },
+        {
+            "validation_public_key": "ED91EA1E0845DCA1F2E1963BA0D45F30C943DF28F3BFB0A10174365137C7F6E9C4",
+            "manifest": "JAAAAAFxIe2R6h4IRdyh8uGWO6DUXzDJQ98o87+woQF0NlE3x/bpxHMhAy0y9dGPsh3zyCOznqVlLDQ38u4K2G/6wgvJDMUuQg+sdkYwRAIgNEZc1LDaxyIUxrJDP0euBtNjIQnrZjRPOtlVgGymcD0CIAXHIkub5DVkmoKdOPGYPZPNs7qjCTVG/NgL4IhZCcdpcBJAqnAtvvQcyaUf9aW6AsE2szW6hlqDiJ5SBri9i0BAlUVGQCFugQpp1kZJ8MrReR5lU4N0Wfu3W8whCIJ4zYSpCw=="
+        },
+        {
+            "validation_public_key": "ED30604DA11EBAB73C4A2830F014D6F84BD4B1C260BB1A4E2F9063C1A7B4384A96",
+            "manifest": "JAAAAAFxIe0wYE2hHrq3PEooMPAU1vhL1LHCYLsaTi+QY8GntDhKlnMhA7mC0y8JZUmLThVLWXk1G3yoBhvC2DWpkPQ7nSeZZIaVdkcwRQIhAO8aT3z7GFPNyfICuVKO0axMdm63itv9x04DEA9LIBe7AiA61aG/rh/7V9SriNqqTVnJg7jQ/ZoXSfUZNr4XHcGtIHASQOX/AIJXEeeO0zI+ysNcpMIdX7iFuse+ox09SrfFy8KsYb6e3TA+TVUXNu/OZKRv+VZlwO79+d/RH0pzWZBqegM="
+        },
+        {
+            "validation_public_key": "ED8252C2F91523126EEF9A21964C7E487A10D6D63D459139700DBC70D9F7BAD542",
+            "manifest": "JAAAAAFxIe2CUsL5FSMSbu+aIZZMfkh6ENbWPUWROXANvHDZ97rVQnMhA41LoGG44d9TZqT0bakr9dpFCqL+fgXCINmAYCeXf4acdkYwRAIgdMgcVlVPIffb1ITBaWjSJ+Asy7P98GO9WDmiBm42epsCIADSZmxluN/NPn7nwKZ6G3xfeF8lH5ecItPWNrWWOuW4cBJAtstv8IUUMnTZdUzjm8YQDAGqooWCik5ttjYmk46qq2TsWRTIL73Kp9VLHbGrEvNdkn5YLBmdwfTwhWmBriQvAw=="
+        },
+        {
+            "validation_public_key": "ED63CF929BE85B266A66584B3FE2EB97FC248203F0271DC9C833563E60418E7818",
+            "manifest": "JAAAAANxIe1jz5Kb6FsmamZYSz/i65f8JIID8CcdycgzVj5gQY54GHMhA46ynkiiAAEUGZgMrCHUD6h1zWEbxiA91M16I54uxnO/dkYwRAIgEUJiZ2yqot1XrVU6M/claeRAK5Tx0BGTtykon8JIJCkCIF70vgQpeXpV0v2eqPT8DOqcp1N2CxgBkDn/ylsqOBilcBJAFQJx4jfZaD11nw02L74IYzVtyaRNKVCr4kdHNoyLdmWL9xWCCTwVhUf8nh2YfIpJcFnFp0jaSPUQr6Gwltq9AA=="
+        },
+        {
+            "validation_public_key": "ED0AD0609BCC0226962BE6A1F1E3976D4984CEAAD3B928A03DCA28EB7BB7A12377",
+            "manifest": "JAAAAAFxIe0K0GCbzAImlivmofHjl21JhM6q07kooD3KKOt7t6Ejd3MhA13G4BaLsQc0ZuqMWdl2mIVLSVORKg8EPU338wIDtKpJdkYwRAIgEO5sVMxiiZ02E5PRPhTOXRpDSJdU4WhwWZ1LcAIhDNECICnhUtqDwvlWDN2G1a9CxBWsXDyz/tHdpl++CpmR4bOFcBJA8cKga06ByHoATejVsVEUF7LK1PyOS0DRXoLr5YsNPbF+nq+uxi7yBMbDQU+2PbCERxYncpeZPD2V2m6xD8uCAg=="
+        },
+        {
+            "validation_public_key": "EDC090980ECAAB37CBE52E880236EC57F732B7DBB7C7BB9A3768D3A6E7184A795E",
+            "manifest": "JAAAAAFxIe3AkJgOyqs3y+UuiAI27Ff3Mrfbt8e7mjdo06bnGEp5XnMhAhRmvCZmWZXlwShVE9qXs2AVCvhVuA/WGYkTX/vVGBGwdkYwRAIgGnYpIGufURojN2cTXakAM7Vwa0GR7o3osdVlZShroXQCIH9R/Lx1v9rdb4YY2n5nrxdnhSSof3U6V/wIHJmeao5ucBJA9D1iAMo7YFCpb245N3Czc0L1R2Xac0YwQ6XdGT+cZ7yw2n8JbdC3hH8Xu9OUqc867Ee6JmlXtyDHzBdY/hdJCQ=="
+        },
+        {
+            "validation_public_key": "EDC1897CE83B6DCF58858574EC9FE027D4B1538A0F20823800A5529E121E87A93B",
+            "manifest": "JAAAAAFxIe3BiXzoO23PWIWFdOyf4CfUsVOKDyCCOAClUp4SHoepO3MhAyzghN7DPPb6DQk+C8jD6VxnAtvrMP3wb4dUWvikOyb6dkcwRQIhANmpvnJnNABmsVVTgZGG9/gJ2gO10+reIvj1RmCN27kuAiBqG5TMjHKdSHDo2kRX/yIc6ZbzMxCeQNg0p/VQYHB70HASQEEWeQ3EJKifr/rFQRGYTATKtK/KmSyR246DAYGDkMwmqZ9MUhjAalWPdSks+q8E8lmxnkElmJ9IRL80efslCAQ="
+        },
+        {
+            "validation_public_key": "ED5E82276BCC278499E4285399789F5A93196166B552957997A61599D4F8613959",
+            "manifest": "JAAAAAFxIe1egidrzCeEmeQoU5l4n1qTGWFmtVKVeZemFZnU+GE5WXMhAw2OjN7E3AfWx4sAN7k+8SdHypV6PKv/LdnCt1OiCf+RdkYwRAIgf5hIqlhCsDXUmJqdrU6CaM+tl34yqRo7QzOYB2JEyo8CIFfMBva7js/PM9yyJo95jxE+VTpWCxXd9o7c7qjyituTcBJA+biCZchkbricoQKMSbtUFRih10Khob4lva+SMz6ldA8c5wXWUnOlqZ7WWyG1y+FaM7CzDAx4iEg3KMQm44nUCQ=="
+        },
+        {
+            "validation_public_key": "EDF10074F5FBBB975A8EA8E9C42306854E6A49C71B7D33B0293AB1830FECF2C400",
+            "manifest": "JAAAAAFxIe3xAHT1+7uXWo6o6cQjBoVOaknHG30zsCk6sYMP7PLEAHMhA/50gU8eWLqwVPKzk0Nj5bAc+xJ1mFevzP4eN7GIFs53dkcwRQIhANeYigL33Z1iQ4yq++CaiSy3AHLwE9yuSJ+2z84s9ypJAiBZPg/KKOXZpusZwXhrHvwOzWDSeDJ0W/V1iEQnMhw+vHASQLW0r5r+nG+x+F5b3Y8aAJQhkX1CBOhgFFeuAmCvUO2f6vlEx455hDtJqI8N84a0Kg5Y+gmzpsESNFXEJBH1xwE="
+        },
+        {
+            "validation_public_key": "EDFE65FB385B6BB16951153D2A0F32BD6D8CC4532C87BB3E1900913A7BE34F5EF7",
+            "manifest": "JAAAAAFxIe3+Zfs4W2uxaVEVPSoPMr1tjMRTLIe7PhkAkTp7409e93MhA31gXDB4wVF06XPQM3fScxfWHkoRE5kggC/SEwXCYSHDdkcwRQIhAMSEv7ka1d70zTe3ctwBb9d+hx+wZjveZbcVuphfzRg/AiBOjyeTN0fvbjmur+lV/ovG1A9Zfkn7HmO7nbrFiorLwXASQLAHLgKpleHyaSQv0O4dCI0rSuvPR4Svw9FkMCorVZKG7ywAmKN2hRW8UraUfqm2HpQCq4AASgRoR2/YhBQCEgo="
+        },
+        {
+            "validation_public_key": "ED58F6770DB5DD77E59D28CB650EC3816E2FC95021BB56E720C9A12DA79C58A3AB",
+            "manifest": "JAAAAAFxIe1Y9ncNtd135Z0oy2UOw4FuL8lQIbtW5yDJoS2nnFijq3MhA+QZVFEvfIH4IlclPsVfTcaKgR3XNrXNk97GxtKYBR3jdkcwRQIhAOgnllsWVvhWHfvVOsdXGsQjrRZp2buWISeq6GSYiz7FAiAcCO8OmHivZjwAl+dN1J/9FJ+cElxcpr/M+CaHkUBt6HASQDTO+yf+h1naBQgQmY32ajTvpPLsp4gQUxaYlTl0vdkeXHyAntECezgoxWBlo9IrEzBFzWOfXFTx4bwTrEMuBAk="
+        },
+        {
+            "validation_public_key": "ED5784A43AA84B5BDAFD0AFEF64ADA5583A3129182C6A7464950FD6BF2D9FAE5B0",
+            "manifest": "JAAAAAFxIe1XhKQ6qEtb2v0K/vZK2lWDoxKRgsanRklQ/Wvy2frlsHMhArdbSEl/Oha4I5VI0qVxmc1zBWoRb5YnutciOC0l+OYddkcwRQIhAIqluIgtzGJZJG9s7t2558ipnGfgXOZxOBN+VXey4iSmAiAWJzzanXjXImMB/VtHHrqs1V4xnlg8uF+y7Ms+1vMGZnASQCZYnNR3aSlwdYpRkP5v1V9a5BesJUZD6UJ1nMr5b5VoOml+DjVtDUZysrCIx00a+gLz+th86gTey7UnCrqgQgk="
+        },
+        {
+            "validation_public_key": "ED75940EC09130F9C553D8AF0FE354A112CC27251472AF1A90917597489192135F",
+            "manifest": "JAAAAAFxIe11lA7AkTD5xVPYrw/jVKESzCclFHKvGpCRdZdIkZITX3MhAozHf//RpGgNExPNP8S2HDLH5NQErqjPSZy99Kn8G31mdkcwRQIhAKJW0DjI1xeTYBlDE9qY9t32suLV3hsQo0SW4cvGm0DcAiA7AKg7SSHAVnJnG7HkJU6jxTj9qPRg6/o6lAxyWFRsenASQPP5nJBFTluxZ1CJ+MlHAQXOn4HjReHkNfD0JF2EFkKXRcd/1HrnE9uGPt31EWWhPU1+s6tsbIx7wy9mq5XcHQ0="
+        },
+        {
+            "validation_public_key": "EDF4CC5AB784DC569D9BBD46982B1CF80A79BB4C0AD1CA1270F1D8B5EA4A5B950B",
+            "manifest": "JAAAAAFxIe30zFq3hNxWnZu9RpgrHPgKebtMCtHKEnDx2LXqSluVC3MhAoH3kciMcuyYxaV7xox0PG/DKuzF1T7u/RmUtGkBf0UNdkcwRQIhALnQ0rBlGS/PrNNVKjkhyJnQqzelRztgA4kC0xewQhXoAiBYvLfFq14UNYVy8ffGec0VRcTm7ZZR1qx+jDo4CFPyyHASQDW7A9Nulxybe/IK5QhXBp71uGi7FQ2RCww/WvK4kVidmxlTh+MjHIOid8VxNmATmDfpgXMi8R8ZC6TSVEA3ygI="
+        },
+        {
+            "validation_public_key": "EDCFE65121E39A2955F04D6D784E3B021791E88D1393DA4AFAB89F99A929A72924",
+            "manifest": "JAAAAAFxIe3P5lEh45opVfBNbXhOOwIXkeiNE5PaSvq4n5mpKacpJHMhAltq4c6NJj0hvl47bShHCNZCda5jKSb5Q8UKoHagJKVndkYwRAIgKNsTb54BtOL/nKTuLqFJ2RQTLV1QuVJpBCjmCgiW0csCIC/49bK6J420PF3lLRULAiJctYGAIavqxLSsHDki+KvfcBJAkcOaWwuQ0DpyV/zjBfcdjLYC5YbMy0NKGn+8Iy1gLcXUkYtU40hW78wcJzYPZPSfSP+JBVTVsCXRs8wrdqsWAw=="
+        },
+        {
+            "validation_public_key": "EDA5AAE0DB134B809F8D664888F7EC4FCE98DC4D00B33301032424941C16C2F0F7",
+            "manifest": "JAAAAANxIe2lquDbE0uAn41mSIj37E/OmNxNALMzAQMkJJQcFsLw93MhAgbEaxgObrbcqWdV+e73GPAXIShqbsqfKHM9Yzvke3DUdkcwRQIhANcZkOl7HGXO1vp9Zbu0AecBgsfTjVEMn0ADiIxGrsisAiAsyvbeMaiUoaflFDJPVZQjZ0eV3eVGlzjQHhg9vJv4MXASQD+zcPFXd+7umjy/G6BNRDHEUmC5Cq2ypAYbMxTszDB948dj93OoLSNXBUAov2lndDzuyJCXXtXAF0Q8Fj/6sQI="
+        },
+        {
+            "validation_public_key": "ED760E58A14E57C91F74C6864E279C0000F3ED2D868BA6812197DF1348D3F7A4D7",
+            "manifest": "JAAAAAJxIe12DlihTlfJH3TGhk4nnAAA8+0thoumgSGX3xNI0/ek13MhApXxQyFRip+9NdEt7qedWZfLF6vOmBoYR/Xar232RP3rdkcwRQIhAMBhxraztWb7erMijAarunSRk/pJqr/d0Cumg+OYuT3+AiAUxqvumErWO0n+KSY6PA6o9n5nBk5z33E1AQdBlpd7FXASQDK4ooXG4fhGxLB7i9h43dnzUid29+3kD/vTUir3T0cjC2+FLLzZj8A085gC1EBicfLjduvjxhCV1RpM3eJVGQE="
+        }
+    ]
+}
+```
+
+## Example
+
+Request:
+
+<!-- MULTICODE_BLOCK_START -->
+
+*HTTP*
+
+```
+GET https://localhost:51235/vl
+```
+
+*cURL*
+
+```
+curl --insecure https://localhost:51235/vl/ED2677ABFFD1B33AC6FBC3062B71F1E8397C1505E1C42C64D11AD1B28FF73F4734
+```
+
+<!-- MULTICODE_BLOCK_END -->
+
+Response:
+
+```json
+200 OK
+
+{
+  "manifest": "JAAAAAFxIe0md6v/0bM6xvvDBitx8eg5fBUF4cQsZNEa0bKP9z9HNHMh7V0AnEi5D4odY9X2sx+cY8B3OHNjJvMhARRPtTHmWnAhdkDFcg53dAQS1WDMQDLIs2wwwHpScrUnjp1iZwwTXVXXsaRxLztycioto3JgImGdukXubbrjeqCNU02f7Y/+6w0BcBJA3M0EOU+39hmB8vwfgernXZIDQ1+o0dnuXjX73oDLgsacwXzLBVOdBpSAsJwYD+nW8YaSacOHEsWaPlof05EsAg==",
+  "blob" : "eyJzZXF1ZW5jZSI6NjAsImV4cGlyYXRpb24iOjY0NDM3MTIwMCwidmFsaWRhdG9ycyI6W3sidmFsaWRhdGlvbl9wdWJsaWNfa2V5IjoiRUQ0NUU4MEEwNEQ3OUNCOURGMDBBRUJEODZEQ0RDMTY4NkQ2NDE5RUE5RTVFMEU3MUYxQTgxN0UwOEI1MDc2QTU1IiwibWFuaWZlc3QiOiJKQUFBQUFGeEllMUY2QW9FMTV5NTN3Q3V2WWJjM0JhRzFrR2VxZVhnNXg4YWdYNEl0UWRxVlhNaEF4Wm8xNTdwY0I5ZGU2U21rN2hvSzN3TkNBcjRhRlp0ZkFQaTdDRTRtTkpsZGtjd1JRSWhBTGxWalhDZml5L210WEJXc050Nzd0NGpLY05FQnBSVjh6ditTcFU1bENoMEFpQmE4dm84eHhwdmlZbGY0emRHK25RaEIyT2dma1FaWlBNSE90N0NhWHpYZ1hBU1FMOE81cDA4M21nNEtLTDh1WmZNYVVxZGd6dUowR3RhMWx5VVdQY3RUUEN4WTEzNVh3SytuSkFkRnNJVUZOSjlNUGpucENtU2pZVnpWYTZNNS9uQWNBST0ifSx7InZhbGlkYXRpb25fcHVibGljX2tleSI6IkVERDhDODg2NDI3OTVDRTY5QzVCNzgwRTAxNzAyQzM3MEY5NTA3RDBCNjQ0MzNGMTdFRkU3MEYyNjM3QTQwQURCNyIsIm1hbmlmZXN0IjoiSkFBQUFBRnhJZTNZeUlaQ2VWem1uRnQ0RGdGd0xEY1BsUWZRdGtRejhYNytjUEpqZWtDdHQzTWhBbkZmcityOUJYZHNYRS9jQmxKTXlkL1hzTzFBNVhFWUNjdHJzdkxFWCtEbWRrY3dSUUloQU5SY1JNZzlTQVhvYU92SERaMmF2OVJ6RWFaYVZFTmZRaVZnc2krT3gzRjBBaUIyc25TSU9tNmM0L2luYnRVMFVtV0xRVHp1d2tPZFVGUElCOEF4OGRtR3VIQVNRTVVJZlhNajk2a2NGVFNKbk1GQy9tVy9BUThiS1hrRnJyazBDVVRGRkt3ZUVqVHErU1RyRmk2cUxMMk1UN252ZUd4c1hCQ2d6dGpjMHFHYXM5S0ZXZ009In0seyJ2YWxpZGF0aW9uX3B1YmxpY19rZXkiOiJFREJERUI5MDFGN0M3NUQwRTIwQzZDNDJBRjAzQkUwREE0MDM3N0FGMTkzOUExOEIzQ0IzNjc5NjYxREQ1RjlGNzQiLCJtYW5pZmVzdCI6IkpBQUFBQUZ4SWUyOTY1QWZmSFhRNGd4c1FxOER2ZzJrQTNldkdUbWhpenl6WjVaaDNWK2ZkSE1oQWczY3lLTlBNUHFLZ1I3a0lpN2MvOEdML1lnZEJ0ZzRtU0FXdndtYWV2Vkdka1l3UkFJZ1d6RzhHcVlnM1lwd0RzOHhYYTlYcUxIc3M3NktUMnVBSFJoVVhGVlVxQ1FDSUcyRXZiRktueGV6UmQ5Y3BQSFN0MzJIWEsrUDQrYUwzcDIrdnFsQ3hSUjljQkpBYm9YVG1ZVGF5b2NBM3pmOWRXRVh0eWFlT0dDMWs1V2RZVVJ6UGxlZXZ2YWxSNHhWb1h6czM4aUdQeEZyL3BBOW5MK000ZHV1MEdLQ0hsVmlyK2ZCQWc9PSJ9LHsidmFsaWRhdGlvbl9wdWJsaWNfa2V5IjoiRURBMTc4NzFFNzJCMEM1NzBBQzQzNDVDNjBDRjAyQUZCQkI3NDBBNjMxQjdBRDBFMUU1NzMyMTY1NzREOUFFQTAyIiwibWFuaWZlc3QiOiJKQUFBQUFGeEllMmhlSEhuS3d4WENzUTBYR0RQQXErN3QwQ21NYmV0RGg1WE1oWlhUWnJxQW5NaEFvanl1emd0cmVRa3hRajhwckh4T3NiRGNGNWZ1NFhYYjBLeEVML1BxNUhoZGtjd1JRSWhBTmZQRExaUDQ3YUNXd3Q1a0JucDc1QnV1Q2dwOWM0QmZKUGQ2NlNGQ3c2MUFpQUp2ZWdCdnZQSXJlYytYT1N6S1JmaTV1dVhXeHRsOUV5cjJhUEJZWHZiUkhBU1FNVUxZRW83YmVSZm9VQ25qazFzVFl5WTkxdExJR0xnbm5hV1hoVW04MCt6czVJR2VnazhxaWpLQXRCT011QkM3MWxBQjRLaEpjK2RCMnJwTU9GYzVndz0ifSx7InZhbGlkYXRpb25fcHVibGljX2tleSI6IkVERjQ2RUUyN0FEMEUxQTcxNEFGRUNEQTgxNkVBQjcxMTQ2MTRGQ0I5MkQwQ0I0RDk3QjZBODhFRDQzNDM0QUZDOSIsIm1hbmlmZXN0IjoiSkFBQUFBRnhJZTMwYnVKNjBPR25GSy9zMm9GdXEzRVVZVS9Ma3RETFRaZTJxSTdVTkRTdnlYTWhBdzBBVFdqVlR0NEZmZUtPN2t2NmZGZ2QvZ28yK2Q1QlN5VWNVUm1SV25UdGRrY3dSUUloQU13T2dEZWM3UVlZTm5nc3BnOTB3RXZWYnNvaDJ1eDE0UlBUdytHSGFYTmxBaUFMZ2ZFc3orQUY0ZXlYL1k1aTQ0VnJGakZGSU1XVWZPWmFRSnRzeHRlTTFYQVNRTE9hRjB0MlpwcVZLZDhKRVNRVlkrelU1NjdpQUFHMmFtVFBaeDk1ODc1UzlBNlBsK2tINVRHSE1BZVdqZ1dTcWZoM20ySEJKWDdOSWNYYjk4dnk5QUE9In0seyJ2YWxpZGF0aW9uX3B1YmxpY19rZXkiOiJFRDZFNEM0MUU1OUZGQkVCNTE3MjZFNTQ0Njg1MDJGRTY0MzcyMzhGQTc4RUE1MTYzNEU3QkYwRDA5MTcxQUVFOEYiLCJtYW5pZmVzdCI6IkpBQUFBQUZ4SWUxdVRFSGxuL3ZyVVhKdVZFYUZBdjVrTnlPUHA0NmxGalRudncwSkZ4cnVqM01oQXV6dEdXYi9PaTEvVjVtNWR1aldyOUhtYktSeUs0WFlrK2ttdUZQU2dBRnJka1l3UkFJZ2ZRK0JnWFg2UWJsWnk0SDA1bzdHUFNJd3FTN1FRUlVXN2RxRjU0SUFpaU1DSUg0WGZMdzk1NmlFYW94Wk9rN0tjdGluMlg5aE1mYUxON3d5czl5QVVGb1pjQkpBdWVFaTg0WFIzTGwxR0xKV2FuVzFnMU1kVWovMFBBeEpidzZFRVFSdUczemRudVJITlhsZDZVWkFiSWtWY1AwenRmcXVsQnpqYmNzTERPS0ZFaWNTQmc9PSJ9LHsidmFsaWRhdGlvbl9wdWJsaWNfa2V5IjoiRURCNkZDOEU4MDNFRThFREMyNzkzRjFFQzkxN0IyRUU0MUQzNTI1NTYxOERFQjkxRDNGOUIxRkM4OUI3NUQ0NTM5IiwibWFuaWZlc3QiOiJKQUFBQUFGeEllMjIvSTZBUHVqdHduay9Ic2tYc3U1QjAxSlZZWTNya2RQNXNmeUp0MTFGT1hNaEE4VmR2SEZ5U2NCeVFHVFlOR2VPdkIwKzY3Z1dhcWVmY2Z2Ums1K0t3Z1YxZGtZd1JBSWdaRnVsTy9BaU1vY3puZzZpLzRCa2Z6VDdqOWx4RjRQUDF1ZmdyT1FhSjhzQ0lCWC9FOFpicG43dFdxZ0F5TnlXcFZQa2hGbWFVTXFFcnk4V29VVDFmZEdRY0JKQXY1MVJxSnhnZy9Wcm5yWndpTEsyRGMwQ0tiaUxQTzVISjRaTXNqZFBUMmdSYzk3cldrQVh1VjJMNlBORk81OXh5dW9hWm1TTWxaWXZxU0dQcGZGN0J3PT0ifSx7InZhbGlkYXRpb25fcHVibGljX2tleSI6IkVENjkxMzAzOTkyRkVDNjRFNkJDNEJBQ0QzNkFFNkU1QUVEQzIzRjI4NjFCNkQ4RUZCOUZENzdFRTNFQURFMzQzNSIsIm1hbmlmZXN0IjoiSkFBQUFBRnhJZTFwRXdPWkwreGs1cnhMck5OcTV1V3UzQ1B5aGh0dGp2dWYxMzdqNnQ0ME5YTWhBaTJBWEpRZ28vSnVXM3I3Zi82Q2NWc0dOMVltSWoxMUdpSUVTSEJuUVNrOGRrY3dSUUloQU5DREVReW1yZDZ2ZVQzb3VhY0Y2ZmhCcjV3THczR21YZzFyTUNMVnZCelpBaUE4dVdRK3RxZDQ2V21mQmV4alNCUTJKZDZVQUdkckh2amNDUTJaZ1Nvb0NuQVNRRmtIbCtENy9VM1dCeVlQMzg0K3BjRkRmMkdpNFdJUkhWVG81OGNxZGs1Q0Rpd2MxVDByRG9MaG1vNDFhM2YrZHNmdGZ3UjRhTW13RmNQWExucmpyQUk9In0seyJ2YWxpZGF0aW9uX3B1YmxpY19rZXkiOiJFREFEMTY2NjdGMDE4NUREQkI3RkE2NUIyMkY0QjdEMzEwQkY1QzNFMkQ5QjgyM0ZCMDZBM0E0MUFGOEFDODNCQzEiLCJtYW5pZmVzdCI6IkpBQUFBQUZ4SWUydEZtWi9BWVhkdTMrbVd5TDB0OU1RdjF3K0xadUNQN0JxT2tHdmlzZzd3WE1oQXF3ZUUzUElTM0U0NEtoTXFLakt0YmtCZThIOEdiaXVvQVhBWURSb1ZSSG9ka1l3UkFJZ2FnR2tYdG93VXliZGx0S29qdjBsdnZmbHJsUTlJUm5QT2pla0Y2MGlIemdDSUNnNlpvY0lNemtVdXZPOTFCRW9ybUlXbVg0Ry9NR1QyenJvNkkvUHZCOFhjQkpBY0pMWGt0L3cva2N3RXZOaVptaTJpMm5NbjF3aVAzTFM5TkpqQlBqdThLRkxBTWcwTzl5ZFFUNjdVL0FMWU9lVFBUTzIvaTJZdzlPU2xpYnRxaGd6REE9PSJ9LHsidmFsaWRhdGlvbl9wdWJsaWNfa2V5IjoiRURDMjQ1MDI3QTUyRUU1MzE4MDk1NTk4RUMzQUI2NUZGNEEzQjlGOTQyOEUxMEIyRjNDNkYzOURFMTVBMTVDOTBBIiwibWFuaWZlc3QiOiJKQUFBQUFGeEllM0NSUUo2VXU1VEdBbFZtT3c2dGwvMG83bjVRbzRRc3ZQRzg1M2hXaFhKQ25NaEEvOC85cktVZEE2MWovZklFUC9jcUxweEJsbUloUDJyZzFkN05hRVB5S1YrZGtjd1JRSWhBSXhFME0vRko1MHZmWlc2ZlBweTR5Q1p1bVk5bjBvYnJPb2pVa2ptNTVhMEFpQmo1Nk8wTXBvcEdvWTlIeEMvKzR3Tk8zNkhvN0U5Q1FlSHNuS3JlRGRzQVhBU1FJWVVkODFqYmlWVWxFVDRkR29HMnArY2YrMkdxRVhYNWZKTVNTeVgvcWUwWGZSNGNPKzRxbGdtak1RZENSREJXQUJIVnZkTi95WnlpL3JMMmMrV3JRYz0ifSx7InZhbGlkYXRpb25fcHVibGljX2tleSI6IkVENDI0NkFBM0FFOUQyOTg2Mzk0NDgwMENDQTkxODI5RTQ0NDc0OThBMjBDRDlDMzk3M0E2QjU5MzQ2Qzc1QUI5NSIsIm1hbmlmZXN0IjoiSkFBQUFBRnhJZTFDUnFvNjZkS1lZNVJJQU15cEdDbmtSSFNZb2d6Wnc1YzZhMWswYkhXcmxYTWhBa20xbHowYzhRWFdmSjliMXZCNzJkTGFidzh3WUlkOE10bnBzSEhCRUM4cGRrWXdSQUlnUWxiNkhKNTNoc1RBZlZpZCtBT2RCVnZNRjdyYWhJS05MQkhVZ241MnpCRUNJR0xVcUZ1OGExQUFIUkpjVm9uS1lFbm1oSndiQ1hMbitqZTduYTFXRDEvb2NCSkFFNHZmdnJHU21aQzJ1QVVHbU01ZElCdG9TZ0VVZXkrMlZsZURZRXNjZTk0dHhZY2pSOFo3UUxOYWxpRDh3L2JENS9odllROG1lVjFXZzFqSkZOZTBDQT09In0seyJ2YWxpZGF0aW9uX3B1YmxpY19rZXkiOiJFRDJDMTQ2OEI0QTExRDI4MUY5M0VGMzM3Qzk1RTRBMDhERjAwMDBGREVGQjZEMEVBOUJDMDVGQkQ1RDYxQTFGNUEiLCJtYW5pZmVzdCI6IkpBQUFBQUZ4SWUwc0ZHaTBvUjBvSDVQdk0zeVY1S0NOOEFBUDN2dHREcW04QmZ2VjFob2ZXbk1oQWtNVW1DRDJhUG1nRkREUm1pbXZTaWNTSVNjdzZZTnI0MkR3NFJBZHdyT0Fka2N3UlFJaEFKRk9ITWc2cVRHOHY2MGRocmVuWVlrNmN3T2FSWHEwUk5tTGp5eUNpejVsQWlBZFUwWWtEVUpRaG5OOFJ5OHMrNnpUSkxpTkxidE04b08vY0xudXJWcFJNM0FTUUdBTGFySEFzSmtTWlF0R2RNMkFhUi9qb0ZLL2poRFU1NytsK1JTWWpyaS95ZEUyMERhS2Fud2tNRW9WbEJUZzdsWDRoWWpFbm1rcW83M3dJdGhMT0FRPSJ9LHsidmFsaWRhdGlvbl9wdWJsaWNfa2V5IjoiRURBNTRDODVGOTEyMTlGRDI1OTEzNEI2QjEyNkFENjRBRTcyMDRCODFERDQwNTI1MTA2NTdFMUE1Njk3MjQ2QUQyIiwibWFuaWZlc3QiOiJKQUFBQUhseEllMmxUSVg1RWhuOUpaRTB0ckVtcldTdWNnUzRIZFFGSlJCbGZocFdseVJxMG5NaEF1QW0va0x1VEhtY09hRHJ1SkJqS2pXT3AxVXRHdU84Q0lDdFJwNHZvNEhHZGtjd1JRSWhBUDFTUGNLdU1sR0dEZTVyY1FBZjF4L0JtblZ0QklHNEh2OVVTNWIvR3laQ0FpQSswM2NadTkrRUJxU1p1ZUY1bEFVU1BZL0hSZkw3cHF4d244OWZTNEFGQTNBU1FKcStRUlVQK2FYQjJpTXhackVhanlTeEdzN0NOcHVjeXB0V1YwYm5hcTdpbG5mVUN2TWxmc3pxNW1WMHJhaEI4OUMyekFuZjdGakgwQ3gwQk1MMjlRQT0ifSx7InZhbGlkYXRpb25fcHVibGljX2tleSI6IkVEOUFFNEY1ODg3QkEwMjlFQjdDMDg4NDQ4NkQyM0NGMjgxOTc1Rjc3M0Y0NEJEMjEzMDU0MjE5ODgyQzQxMUNDNyIsIm1hbmlmZXN0IjoiSkFBQUFBRnhJZTJhNVBXSWU2QXA2M3dJaEVodEk4OG9HWFgzYy9STDBoTUZRaG1JTEVFY3gzTWhBbUcyemd2OEZCWnNaSlU4YVBhcHdvOWNJcVF2NC9NU1Mxb1ZBNWVWTWl3TGRrWXdSQUlnRitMT2U0ZVkwZ3A5dHRxaDJnbnYrejc1T3FMeU9RTXBHUEFMZ20rTnRPc0NJQ0RYQlpWUHRwcm1CRGtCSmtQRlNuRTU1RDllS1lSSDh6L2lZMUV0cE5wbGNCSkFBREVXR1ZUODBPd2hkMWxoMkpzVS9vWmxtZU5GNVdON1l2bEI4bGxFeGFSS0VWQytHVzlXZytpTklRM3JtVjdQOGFOYVZ1YWFiRzAwZk9na2d6TmhEdz09In0seyJ2YWxpZGF0aW9uX3B1YmxpY19rZXkiOiJFREE4RDI5RjQwQ0VCMjg5OTU2MTc2NDFBM0JDNDI2OTJFMURFODgzMjE0RjYxMkZCQjYyMDg3QTE0OEU1RjZGOUEiLCJtYW5pZmVzdCI6IkpBQUFBQUZ4SWUybzBwOUF6cktKbFdGMlFhTzhRbWt1SGVpRElVOWhMN3RpQ0hvVWpsOXZtbk1oQW5ZblA3RWc2VmdObkVVVFJFMjlkNjRqUVQvaUJjV1RRdE5yVXp5RDZNSitka2N3UlFJaEFPRXNWNWFuVGtsb1NtVFpSYmltTXlCS3FIb0pZWGNCQmU4bExpUFlDN21VQWlBejJhTk9wZlEvMUx5Y1dsb0lNdmRoeHppbnE1WDdVYXMvdU9TYjl3aDhkM0FTUUxWa2ZwVy9HTzZ3ZFQ2QXV1U0o1NlR0TTM0M3BETkgraVN6eGx0SWZkclBpVXhUNXJmNGsyMWxRUXVQQ2xYbTkrU2ZLckNpVVhaSzdkajAvR1dUWVFnPSJ9LHsidmFsaWRhdGlvbl9wdWJsaWNfa2V5IjoiRUQzOEIwMjg4RUEyNDBCNENERUMxOEExQTYyODlFQjQ5MDA3RTRFQkMwREU5NDQ4MDNFQjdFRjE0MUM1NjY0MDczIiwibWFuaWZlc3QiOiJKQUFBQUFGeEllMDRzQ2lPb2tDMHpld1lvYVlvbnJTUUIrVHJ3TjZVU0FQcmZ2RkJ4V1pBYzNNaEFnT0tjdkl1Y2hhbHJady9nbFR1T3hWM0lPQ2Nwb3J4TUI3SnFBVnVwazFlZGtjd1JRSWhBT3ZSenBlK0lZWksxTXlJbklRWjg3SnZQMko4U0lYQ1haTVBCQ2RJVEJhbUFpQVNhdkpYaTlwd3M4ckRESlN4aEdNbG1FN3pJNWJTQThpdnRSQzlMZ3ErVVhBU1FEbDNlb3FMSUQrRVRKTk0remJNdXZ3dmNIRUl4ZUJaa1o5ZnA1akp2Nk9DVFB3bGo0VEpTdXkxYXZFV3FVWVMycml2NUR2bDJoYUZVb0NIZjR5YXdBQT0ifSx7InZhbGlkYXRpb25fcHVibGljX2tleSI6IkVERUUxMERDMzZBQ0Q5OTVDOEUwRTg2RTNDRDJGQkY4MzAxQTRBQzJCODg0N0I2MUExOTM1REU0OTczQjQwN0MwRSIsIm1hbmlmZXN0IjoiSkFBQUFBRnhJZTN1RU53MnJObVZ5T0RvYmp6UysvZ3dHa3JDdUlSN1lhR1RYZVNYTzBCOERuTWhBbVgwdmI3aitsZ0JqRmpiTjlSbEE4Nko3QU8yVm42SExxdU8zYWlzSzRtd2RrWXdSQUlnZnhCTG43aTRqZy9kaTBVMjVxNmtJYlZmVHpxYkEwU0NwUTBJNTdUT0ZrY0NJRk10SlFwRU5qQjJLMkVtdkJIUHZOY3d1U1BjM3ZzRWVxRTJyTkovY1Q1RGNCSkFmNjhYUEZ1NVJqQ2VMZ3BGSk03UEtGTGdvVjhlMW54TzVld2pxOVErVEFFR25GeVMwSU93ZjZwT090SVZNZFZlWHUxdjZwNGZoWFFrZGloSHQxeDZBZz09In0seyJ2YWxpZGF0aW9uX3B1YmxpY19rZXkiOiJFRDU4M0VDRDA2QzNCNzM2OTk4MEU2NUM3OEM0NDBBNTI5MzAwRjU1N0VEODEyNTYyODNGN0RENUFBMzUxM0EzMzQiLCJtYW5pZmVzdCI6IkpBQUFBQUZ4SWUxWVBzMEd3N2MybVlEbVhIakVRS1VwTUE5VmZ0Z1NWaWcvZmRXcU5ST2pOSE1oQXl1VW56WloxbjIvR2FUbUUxbTdIL3Y5WWxaeURFd0hZM2dTSFVBM0lDTDlka1l3UkFJZ0h4MlBIdmlkb04rNXlHOVdlQVMyazdud0lNOGFqeFFXNndqdnQ4a0JlbkFDSUROeFFQUWtEeURKSDlzZVM1QzYybUFhclFtZ2lOODlZUzNqaE50bnZFSXFjQkpBajdKaDBLYWMrYUpkcG9lcHUvK2VKS25uRlE3WUJ5WkI4ZU1aK1NTMXpMaEUrbGlwLzQ5cXFWTmNwQXhFcWZhR3R4SnpvREREMS9RYnVVN05PU1BrQ2c9PSJ9LHsidmFsaWRhdGlvbl9wdWJsaWNfa2V5IjoiRUQ5NUM1MTcyQjJBRDdEMzk0MzRFRUJDNDM2QjY1QjNCQjdFNThENUMxQ0VGQzgyMEI2OTcyQUNBRDc3NkUyODZBIiwibWFuaWZlc3QiOiJKQUFBQUFGeEllMlZ4UmNyS3RmVGxEVHV2RU5yWmJPN2ZsalZ3Yzc4Z2d0cGNxeXRkMjRvYW5NaEFpcWNSZGUzTVFaMDc1ZmE0Wk5OeVJhWUpHTWRCTmtCbm4zYlFyS3NlQkRRZGtZd1JBSWdVK0xmY0U3MURQVnJPK0t0VUJqUTlEMnUway9QcjdsdWtPMW5QUmo2aFNBQ0lETkxZQy9KRmdvYkNzSWEwQkd3KzZiVW5PdzltZVUzRmRYZ1I3UTdTb3FKY0JKQVhRYWtPb1FuUHAzcGNMTDd6ZEtDUFVYNGIrL0ZDOVVuaHFwK085eFFGblJhQ1dWR21rNU1KT0lNczRXT1FkcE0xajNPZ1NzQUJtUnVDWFl2d28vbkR3PT0ifSx7InZhbGlkYXRpb25fcHVibGljX2tleSI6IkVEOTFFQTFFMDg0NURDQTFGMkUxOTYzQkEwRDQ1RjMwQzk0M0RGMjhGM0JGQjBBMTAxNzQzNjUxMzdDN0Y2RTlDNCIsIm1hbmlmZXN0IjoiSkFBQUFBRnhJZTJSNmg0SVJkeWg4dUdXTzZEVVh6REpROThvODcrd29RRjBObEUzeC9icHhITWhBeTB5OWRHUHNoM3p5Q096bnFWbExEUTM4dTRLMkcvNndndkpETVV1UWcrc2RrWXdSQUlnTkVaYzFMRGF4eUlVeHJKRFAwZXVCdE5qSVFuclpqUlBPdGxWZ0d5bWNEMENJQVhISWt1YjVEVmttb0tkT1BHWVBaUE5zN3FqQ1RWRy9OZ0w0SWhaQ2NkcGNCSkFxbkF0dnZRY3lhVWY5YVc2QXNFMnN6VzZobHFEaUo1U0JyaTlpMEJBbFVWR1FDRnVnUXBwMWtaSjhNclJlUjVsVTROMFdmdTNXOHdoQ0lKNHpZU3BDdz09In0seyJ2YWxpZGF0aW9uX3B1YmxpY19rZXkiOiJFRDMwNjA0REExMUVCQUI3M0M0QTI4MzBGMDE0RDZGODRCRDRCMUMyNjBCQjFBNEUyRjkwNjNDMUE3QjQzODRBOTYiLCJtYW5pZmVzdCI6IkpBQUFBQUZ4SWUwd1lFMmhIcnEzUEVvb01QQVUxdmhMMUxIQ1lMc2FUaStRWThHbnREaEtsbk1oQTdtQzB5OEpaVW1MVGhWTFdYazFHM3lvQmh2QzJEV3BrUFE3blNlWlpJYVZka2N3UlFJaEFPOGFUM3o3R0ZQTnlmSUN1VktPMGF4TWRtNjNpdHY5eDA0REVBOUxJQmU3QWlBNjFhRy9yaC83VjlTcmlOcXFUVm5KZzdqUS9ab1hTZlVaTnI0WEhjR3RJSEFTUU9YL0FJSlhFZWVPMHpJK3lzTmNwTUlkWDdpRnVzZStveDA5U3JmRnk4S3NZYjZlM1RBK1RWVVhOdS9PWktSditWWmx3Tzc5K2QvUkgwcHpXWkJxZWdNPSJ9LHsidmFsaWRhdGlvbl9wdWJsaWNfa2V5IjoiRUQ4MjUyQzJGOTE1MjMxMjZFRUY5QTIxOTY0QzdFNDg3QTEwRDZENjNENDU5MTM5NzAwREJDNzBEOUY3QkFENTQyIiwibWFuaWZlc3QiOiJKQUFBQUFGeEllMkNVc0w1RlNNU2J1K2FJWlpNZmtoNkVOYldQVVdST1hBTnZIRFo5N3JWUW5NaEE0MUxvR0c0NGQ5VFpxVDBiYWtyOWRwRkNxTCtmZ1hDSU5tQVlDZVhmNGFjZGtZd1JBSWdkTWdjVmxWUElmZmIxSVRCYVdqU0orQXN5N1A5OEdPOVdEbWlCbTQyZXBzQ0lBRFNabXhsdU4vTlBuN253S1o2RzN4ZmVGOGxINWVjSXRQV05yV1dPdVc0Y0JKQXRzdHY4SVVVTW5UWmRVemptOFlRREFHcW9vV0NpazV0dGpZbWs0NnFxMlRzV1JUSUw3M0twOVZMSGJHckV2TmRrbjVZTEJtZHdmVHdoV21CcmlRdkF3PT0ifSx7InZhbGlkYXRpb25fcHVibGljX2tleSI6IkVENjNDRjkyOUJFODVCMjY2QTY2NTg0QjNGRTJFQjk3RkMyNDgyMDNGMDI3MURDOUM4MzM1NjNFNjA0MThFNzgxOCIsIm1hbmlmZXN0IjoiSkFBQUFBTnhJZTFqejVLYjZGc21hbVpZU3ovaTY1ZjhKSUlEOENjZHljZ3pWajVnUVk1NEdITWhBNDZ5bmtpaUFBRVVHWmdNckNIVUQ2aDF6V0VieGlBOTFNMTZJNTR1eG5PL2RrWXdSQUlnRVVKaVoyeXFvdDFYclZVNk0vY2xhZVJBSzVUeDBCR1R0eWtvbjhKSUpDa0NJRjcwdmdRcGVYcFYwdjJlcVBUOERPcWNwMU4yQ3hnQmtEbi95bHNxT0JpbGNCSkFGUUp4NGpmWmFEMTFudzAyTDc0SVl6VnR5YVJOS1ZDcjRrZEhOb3lMZG1XTDl4V0NDVHdWaFVmOG5oMllmSXBKY0ZuRnAwamFTUFVRcjZHd2x0cTlBQT09In0seyJ2YWxpZGF0aW9uX3B1YmxpY19rZXkiOiJFRDBBRDA2MDlCQ0MwMjI2OTYyQkU2QTFGMUUzOTc2RDQ5ODRDRUFBRDNCOTI4QTAzRENBMjhFQjdCQjdBMTIzNzciLCJtYW5pZmVzdCI6IkpBQUFBQUZ4SWUwSzBHQ2J6QUltbGl2bW9mSGpsMjFKaE02cTA3a29vRDNLS090N3Q2RWpkM01oQTEzRzRCYUxzUWMwWnVxTVdkbDJtSVZMU1ZPUktnOEVQVTMzOHdJRHRLcEpka1l3UkFJZ0VPNXNWTXhpaVowMkU1UFJQaFRPWFJwRFNKZFU0V2h3V1oxTGNBSWhETkVDSUNuaFV0cUR3dmxXRE4yRzFhOUN4QldzWER5ei90SGRwbCsrQ3BtUjRiT0ZjQkpBOGNLZ2EwNkJ5SG9BVGVqVnNWRVVGN0xLMVB5T1MwRFJYb0xyNVlzTlBiRitucSt1eGk3eUJNYkRRVSsyUGJDRVJ4WW5jcGVaUEQyVjJtNnhEOHVDQWc9PSJ9LHsidmFsaWRhdGlvbl9wdWJsaWNfa2V5IjoiRURDMDkwOTgwRUNBQUIzN0NCRTUyRTg4MDIzNkVDNTdGNzMyQjdEQkI3QzdCQjlBMzc2OEQzQTZFNzE4NEE3OTVFIiwibWFuaWZlc3QiOiJKQUFBQUFGeEllM0FrSmdPeXFzM3krVXVpQUkyN0ZmM01yZmJ0OGU3bWpkbzA2Ym5HRXA1WG5NaEFoUm12Q1ptV1pYbHdTaFZFOXFYczJBVkN2aFZ1QS9XR1lrVFgvdlZHQkd3ZGtZd1JBSWdHbllwSUd1ZlVSb2pOMmNUWGFrQU03VndhMEdSN28zb3NkVmxaU2hyb1hRQ0lIOVIvTHgxdjlyZGI0WVkybjVucnhkbmhTU29mM1U2Vi93SUhKbWVhbzV1Y0JKQTlEMWlBTW83WUZDcGIyNDVOM0N6YzBMMVIyWGFjMFl3UTZYZEdUK2NaN3l3Mm44SmJkQzNoSDhYdTlPVXFjODY3RWU2Sm1sWHR5REh6QmRZL2hkSkNRPT0ifSx7InZhbGlkYXRpb25fcHVibGljX2tleSI6IkVEQzE4OTdDRTgzQjZEQ0Y1ODg1ODU3NEVDOUZFMDI3RDRCMTUzOEEwRjIwODIzODAwQTU1MjlFMTIxRTg3QTkzQiIsIm1hbmlmZXN0IjoiSkFBQUFBRnhJZTNCaVh6b08yM1BXSVdGZE95ZjRDZlVzVk9LRHlDQ09BQ2xVcDRTSG9lcE8zTWhBeXpnaE43RFBQYjZEUWsrQzhqRDZWeG5BdHZyTVAzd2I0ZFVXdmlrT3liNmRrY3dSUUloQU5tcHZuSm5OQUJtc1ZWVGdaR0c5L2dKMmdPMTArcmVJdmoxUm1DTjI3a3VBaUJxRzVUTWpIS2RTSERvMmtSWC95SWM2WmJ6TXhDZVFOZzBwL1ZRWUhCNzBIQVNRRUVXZVEzRUpLaWZyL3JGUVJHWVRBVEt0Sy9LbVN5UjI0NkRBWUdEa013bXFaOU1VaGpBYWxXUGRTa3MrcThFOGxteG5rRWxtSjlJUkw4MGVmc2xDQVE9In0seyJ2YWxpZGF0aW9uX3B1YmxpY19rZXkiOiJFRDVFODIyNzZCQ0MyNzg0OTlFNDI4NTM5OTc4OUY1QTkzMTk2MTY2QjU1Mjk1Nzk5N0E2MTU5OUQ0Rjg2MTM5NTkiLCJtYW5pZmVzdCI6IkpBQUFBQUZ4SWUxZWdpZHJ6Q2VFbWVRb1U1bDRuMXFUR1dGbXRWS1ZlWmVtRlpuVStHRTVXWE1oQXcyT2pON0UzQWZXeDRzQU43ays4U2RIeXBWNlBLdi9MZG5DdDFPaUNmK1Jka1l3UkFJZ2Y1aElxbGhDc0RYVW1KcWRyVTZDYU0rdGwzNHlxUm83UXpPWUIySkV5bzhDSUZmTUJ2YTdqcy9QTTl5eUpvOTVqeEUrVlRwV0N4WGQ5bzdjN3FqeWl0dVRjQkpBK2JpQ1pjaGticmljb1FLTVNidFVGUmloMTBLaG9iNGx2YStTTXo2bGRBOGM1d1hXVW5PbHFaN1dXeUcxeStGYU03Q3pEQXg0aUVnM0tNUW00NG5VQ1E9PSJ9LHsidmFsaWRhdGlvbl9wdWJsaWNfa2V5IjoiRURGMTAwNzRGNUZCQkI5NzVBOEVBOEU5QzQyMzA2ODU0RTZBNDlDNzFCN0QzM0IwMjkzQUIxODMwRkVDRjJDNDAwIiwibWFuaWZlc3QiOiJKQUFBQUFGeEllM3hBSFQxKzd1WFdvNm82Y1FqQm9WT2FrbkhHMzB6c0NrNnNZTVA3UExFQUhNaEEvNTBnVThlV0xxd1ZQS3prME5qNWJBYyt4SjFtRmV2elA0ZU43R0lGczUzZGtjd1JRSWhBTmVZaWdMMzNaMWlRNHlxKytDYWlTeTNBSEx3RTl5dVNKKzJ6ODRzOXlwSkFpQlpQZy9LS09YWnB1c1p3WGhySHZ3T3pXRFNlREowVy9WMWlFUW5NaHcrdkhBU1FMVzByNXIrbkcreCtGNWIzWThhQUpRaGtYMUNCT2hnRkZldUFtQ3ZVTzJmNnZsRXg0NTVoRHRKcUk4Tjg0YTBLZzVZK2dtenBzRVNORlhFSkJIMXh3RT0ifSx7InZhbGlkYXRpb25fcHVibGljX2tleSI6IkVERkU2NUZCMzg1QjZCQjE2OTUxMTUzRDJBMEYzMkJENkQ4Q0M0NTMyQzg3QkIzRTE5MDA5MTNBN0JFMzRGNUVGNyIsIm1hbmlmZXN0IjoiSkFBQUFBRnhJZTMrWmZzNFcydXhhVkVWUFNvUE1yMXRqTVJUTEllN1Boa0FrVHA3NDA5ZTkzTWhBMzFnWERCNHdWRjA2WFBRTTNmU2N4ZldIa29SRTVrZ2dDL1NFd1hDWVNIRGRrY3dSUUloQU1TRXY3a2ExZDcwelRlM2N0d0JiOWQraHgrd1pqdmVaYmNWdXBoZnpSZy9BaUJPanllVE4wZnZiam11citsVi9vdkcxQTlaZmtuN0htTzduYnJGaW9yTHdYQVNRTEFITGdLcGxlSHlhU1F2ME80ZENJMHJTdXZQUjRTdnc5RmtNQ29yVlpLRzd5d0FtS04yaFJXOFVyYVVmcW0ySHBRQ3E0QUFTZ1JvUjIvWWhCUUNFZ289In0seyJ2YWxpZGF0aW9uX3B1YmxpY19rZXkiOiJFRDU4RjY3NzBEQjVERDc3RTU5RDI4Q0I2NTBFQzM4MTZFMkZDOTUwMjFCQjU2RTcyMEM5QTEyREE3OUM1OEEzQUIiLCJtYW5pZmVzdCI6IkpBQUFBQUZ4SWUxWTluY050ZDEzNVowb3kyVU93NEZ1TDhsUUlidFc1eURKb1Mybm5GaWpxM01oQStRWlZGRXZmSUg0SWxjbFBzVmZUY2FLZ1IzWE5yWE5rOTdHeHRLWUJSM2pka2N3UlFJaEFPZ25sbHNXVnZoV0hmdlZPc2RYR3NRanJSWnAyYnVXSVNlcTZHU1lpejdGQWlBY0NPOE9tSGl2Wmp3QWwrZE4xSi85RkorY0VseGNwci9NK0NhSGtVQnQ2SEFTUURUTyt5ZitoMW5hQlFnUW1ZMzJhalR2cFBMc3A0Z1FVeGFZbFRsMHZka2VYSHlBbnRFQ2V6Z294V0JsbzlJckV6QkZ6V09mWEZUeDRid1RyRU11QkFrPSJ9LHsidmFsaWRhdGlvbl9wdWJsaWNfa2V5IjoiRUQ1Nzg0QTQzQUE4NEI1QkRBRkQwQUZFRjY0QURBNTU4M0EzMTI5MTgyQzZBNzQ2NDk1MEZENkJGMkQ5RkFFNUIwIiwibWFuaWZlc3QiOiJKQUFBQUFGeEllMVhoS1E2cUV0YjJ2MEsvdlpLMmxXRG94S1Jnc2FuUmtsUS9XdnkyZnJsc0hNaEFyZGJTRWwvT2hhNEk1VkkwcVZ4bWMxekJXb1JiNVludXRjaU9DMGwrT1lkZGtjd1JRSWhBSXFsdUlndHpHSlpKRzlzN3QyNTU4aXBuR2ZnWE9aeE9CTitWWGV5NGlTbUFpQVdKenphblhqWEltTUIvVnRISHJxczFWNHhubGc4dUYreTdNcysxdk1HWm5BU1FDWlluTlIzYVNsd2RZcFJrUDV2MVY5YTVCZXNKVVpENlVKMW5NcjViNVZvT21sK0RqVnREVVp5c3JDSXgwMGErZ0x6K3RoODZnVGV5N1VuQ3JxZ1Fnaz0ifSx7InZhbGlkYXRpb25fcHVibGljX2tleSI6IkVENzU5NDBFQzA5MTMwRjlDNTUzRDhBRjBGRTM1NEExMTJDQzI3MjUxNDcyQUYxQTkwOTE3NTk3NDg5MTkyMTM1RiIsIm1hbmlmZXN0IjoiSkFBQUFBRnhJZTExbEE3QWtURDV4VlBZcncvalZLRVN6Q2NsRkhLdkdwQ1JkWmRJa1pJVFgzTWhBb3pIZi8vUnBHZ05FeFBOUDhTMkhETEg1TlFFcnFqUFNaeTk5S244RzMxbWRrY3dSUUloQUtKVzBEakkxeGVUWUJsREU5cVk5dDMyc3VMVjNoc1FvMFNXNGN2R20wRGNBaUE3QUtnN1NTSEFWbkpuRzdIa0pVNmp4VGo5cVBSZzYvbzZsQXh5V0ZSc2VuQVNRUFA1bkpCRlRsdXhaMUNKK01sSEFRWE9uNEhqUmVIa05mRDBKRjJFRmtLWFJjZC8xSHJuRTl1R1B0MzFFV1doUFUxK3M2dHNiSXg3d3k5bXE1WGNIUTA9In0seyJ2YWxpZGF0aW9uX3B1YmxpY19rZXkiOiJFREY0Q0M1QUI3ODREQzU2OUQ5QkJENDY5ODJCMUNGODBBNzlCQjRDMEFEMUNBMTI3MEYxRDhCNUVBNEE1Qjk1MEIiLCJtYW5pZmVzdCI6IkpBQUFBQUZ4SWUzMHpGcTNoTnhXblp1OVJwZ3JIUGdLZWJ0TUN0SEtFbkR4MkxYcVNsdVZDM01oQW9IM2tjaU1jdXlZeGFWN3hveDBQRy9ES3V6RjFUN3UvUm1VdEdrQmYwVU5ka2N3UlFJaEFMblEwckJsR1MvUHJOTlZLamtoeUpuUXF6ZWxSenRnQTRrQzB4ZXdRaFhvQWlCWXZMZkZxMTRVTllWeThmZkdlYzBWUmNUbTdaWlIxcXgrakRvNENGUHl5SEFTUURXN0E5TnVseHliZS9JSzVRaFhCcDcxdUdpN0ZRMlJDd3cvV3ZLNGtWaWRteGxUaCtNakhJT2lkOFZ4Tm1BVG1EZnBnWE1pOFI4WkM2VFNWRUEzeWdJPSJ9LHsidmFsaWRhdGlvbl9wdWJsaWNfa2V5IjoiRURDRkU2NTEyMUUzOUEyOTU1RjA0RDZENzg0RTNCMDIxNzkxRTg4RDEzOTNEQTRBRkFCODlGOTlBOTI5QTcyOTI0IiwibWFuaWZlc3QiOiJKQUFBQUFGeEllM1A1bEVoNDVvcFZmQk5iWGhPT3dJWGtlaU5FNVBhU3ZxNG41bXBLYWNwSkhNaEFsdHE0YzZOSmowaHZsNDdiU2hIQ05aQ2RhNWpLU2I1UThVS29IYWdKS1ZuZGtZd1JBSWdLTnNUYjU0QnRPTC9uS1R1THFGSjJSUVRMVjFRdVZKcEJDam1DZ2lXMGNzQ0lDLzQ5Yks2SjQyMFBGM2xMUlVMQWlKY3RZR0FJYXZxeExTc0hEa2krS3ZmY0JKQWtjT2FXd3VRMERweVYvempCZmNkakxZQzVZYk15ME5LR24rOEl5MWdMY1hVa1l0VTQwaFc3OHdjSnpZUFpQU2ZTUCtKQlZUVnNDWFJzOHdyZHFzV0F3PT0ifSx7InZhbGlkYXRpb25fcHVibGljX2tleSI6IkVEQTVBQUUwREIxMzRCODA5RjhENjY0ODg4RjdFQzRGQ0U5OERDNEQwMEIzMzMwMTAzMjQyNDk0MUMxNkMyRjBGNyIsIm1hbmlmZXN0IjoiSkFBQUFBTnhJZTJscXVEYkUwdUFuNDFtU0lqMzdFL09tTnhOQUxNekFRTWtKSlFjRnNMdzkzTWhBZ2JFYXhnT2JyYmNxV2RWK2U3M0dQQVhJU2hxYnNxZktITTlZenZrZTNEVWRrY3dSUUloQU5jWmtPbDdIR1hPMXZwOVpidTBBZWNCZ3NmVGpWRU1uMEFEaUl4R3JzaXNBaUFzeXZiZU1haVVvYWZsRkRKUFZaUWpaMGVWM2VWR2x6alFIaGc5dkp2NE1YQVNRRCt6Y1BGWGQrN3VtankvRzZCTlJESEVVbUM1Q3EyeXBBWWJNeFRzekRCOTQ4ZGo5M09vTFNOWEJVQW92MmxuZER6dXlKQ1hYdFhBRjBROEZqLzZzUUk9In0seyJ2YWxpZGF0aW9uX3B1YmxpY19rZXkiOiJFRDc2MEU1OEExNEU1N0M5MUY3NEM2ODY0RTI3OUMwMDAwRjNFRDJEODY4QkE2ODEyMTk3REYxMzQ4RDNGN0E0RDciLCJtYW5pZmVzdCI6IkpBQUFBQUp4SWUxMkRsaWhUbGZKSDNUR2hrNG5uQUFBOCswdGhvdW1nU0dYM3hOSTAvZWsxM01oQXBYeFF5RlJpcCs5TmRFdDdxZWRXWmZMRjZ2T21Cb1lSL1hhcjIzMlJQM3Jka2N3UlFJaEFNQmh4cmF6dFdiN2VyTWlqQWFydW5TUmsvcEpxci9kMEN1bWcrT1l1VDMrQWlBVXhxdnVtRXJXTzBuK0tTWTZQQTZvOW41bkJrNXozM0UxQVFkQmxwZDdGWEFTUURLNG9vWEc0ZmhHeExCN2k5aDQzZG56VWlkMjkrM2tEL3ZUVWlyM1QwY2pDMitGTEx6Wmo4QTA4NWdDMUVCaWNmTGpkdXZqeGhDVjFScE0zZUpWR1FFPSJ9XX0=",
+  "signature" : "6D4F8D020DC79A7866DF39B536AD5E85E2D6458BA7D002B8EAB7D2F492063993580E73F5A252E88C92DE26923573DA5707BA6A5693FA6D6082371FE03F96D304",
+  "version": 1
+}
+```
+
+
+## See Also
+
+- [Peer Protocol](peer-protocol.html)
+- [Consensus](consensus.html)
+
+<!---->
+<!---->
+[Address]: basic-data-types.html#addresses
+[アドレス]: basic-data-types.html#アドレス
+[admin command]: admin-rippled-methods.html
+[base58]: base58-encodings.html
+[common fields]: transaction-common-fields.html
+[共通フィールド]: transaction-common-fields.html
+[Currency Amount]: basic-data-types.html#specifying-currency-amounts
+[通貨額]: basic-data-types.html#通貨額の指定
+[通貨額の指定]: basic-data-types.html#通貨額の指定
+[Currency Code]: currency-formats.html#currency-codes
+[通貨コード]: currency-formats.html#通貨コード
+[drops of XRP]: basic-data-types.html#specifying-currency-amounts
+[fee levels]: transaction-cost.html#fee-levels
+[XRPのdrop数]: basic-data-types.html#通貨額の指定
+[Hash]: basic-data-types.html#hashes
+[ハッシュ]: basic-data-types.html#ハッシュ
+[identifying hash]: transaction-basics.html#identifying-transactions
+[識別用ハッシュ]: transaction-basics.html#トランザクションの識別
+[Internal Type]: serialization.html
+[内部の型]: serialization.html
+[Ledger Index]: basic-data-types.html#ledger-index
+[ledger index]: basic-data-types.html#ledger-index
+[レジャーインデックス]: basic-data-types.html#レジャーインデックス
+[ledger format]: ledger-object-types.html
+[レジャーフォーマット]: ledger-data-formats.html
+[Marker]: markers-and-pagination.html
+[マーカー]: markers-and-pagination.html
+[node public key]: peer-protocol.html#node-key-pair
+[ノード公開鍵]: peer-protocol.html#ノードキーペア
+[node key pair]: peer-protocol.html#node-key-pair
+[ノードキーペア]: peer-protocol.html#ノードキーペア
+[peer reservation]: peer-protocol.html#fixed-peers-and-peer-reservations
+[peer reservations]: peer-protocol.html#fixed-peers-and-peer-reservations
+[ピアリザベーション]: peer-protocol.html#固定ピアとピアリザベーション
+[public servers]: public-servers.html
+[公開サーバー]: public-servers.html
+[result code]: transaction-results.html
+[seconds since the Ripple Epoch]: basic-data-types.html#specifying-time
+[Reporting Mode]: rippled-server-modes.html#reporting-mode
+[Rippleエポック以降の経過秒数]: basic-data-types.html#時間の指定
+[Sequence Number]: basic-data-types.html#account-sequence
+[シーケンス番号]: basic-data-types.html#アカウントシーケンス
+[SHA-512Half]: basic-data-types.html#hashes
+[SHA-512ハーフ]: basic-data-types.html#ハッシュ
+[Specifying Currency Amounts]: basic-data-types.html#specifying-currency-amounts
+[Specifying Ledgers]: basic-data-types.html#specifying-ledgers
+[レジャーの指定]: basic-data-types.html#レジャーの指定
+[Specifying Time]: basic-data-types.html#specifying-time
+[時間の指定]: basic-data-types.html#時間の指定
+[stand-alone mode]: rippled-server-modes.html#stand-alone-mode
+[standard format]: response-formatting.html
+[標準フォーマット]: response-formatting.html
+[Transaction Cost]: transaction-cost.html
+[transaction cost]: transaction-cost.html
+[トランザクションコスト]: transaction-cost.html
+[universal error types]: error-formatting.html#universal-errors
+[汎用エラータイプ]: error-formatting.html#汎用エラー
+[XRP, in drops]: basic-data-types.html#specifying-currency-amounts
+[XRP、drop単位]: basic-data-types.html#通貨額の指定
+[NFToken]: nftoken.html
+
+<!-- API object types -->
+
+
+
+
+[AccountRoot object]: accountroot.html
+  
+
+
+
+[Amendments object]: amendments.html
+  
+
+
+
+[Check object]: check.html
+  
+
+
+
+[DepositPreauth object]: depositpreauth.html
+  
+
+
+
+[DirectoryNode object]: directorynode.html
+  
+
+
+
+[Escrow object]: escrow.html
+  
+
+
+
+[FeeSettings object]: feesettings.html
+  
+
+
+
+[LedgerHashes object]: ledgerhashes.html
+  
+
+
+
+[NegativeUNL object]: negativeunl.html
+  
+
+
+
+[NFTokenOffer object]: nftokenoffer.html
+  
+
+
+
+[NFTokenPage object]: nftokenpage.html
+  
+
+
+
+[Offer object]: offer.html
+  
+
+
+
+[PayChannel object]: paychannel.html
+  
+
+
+
+[RippleState object]: ripplestate.html
+  
+
+
+
+[SignerList object]: signerlist.html
+  
+
+
+
+[Ticket object]: ticket.html
+  
+
+
+
+
+<!---->
+[crypto-condition]: https://tools.ietf.org/html/draft-thomas-crypto-conditions-04
+[crypto-conditions]: https://tools.ietf.org/html/draft-thomas-crypto-conditions-04
+[Crypto-Conditions Specification]: https://tools.ietf.org/html/draft-thomas-crypto-conditions-04
+[hexadecimal]: https://en.wikipedia.org/wiki/Hexadecimal
+[Interledger Protocol]: https://interledger.org/
+[RFC-1751]: https://tools.ietf.org/html/rfc1751
+[ripple-lib]: https://github.com/XRPLF/xrpl.js
+
+<!---->
+
+
+
+[account_channels method]: account_channels.html
+[account_channels command]: account_channels.html
+
+
+[account_currencies method]: account_currencies.html
+[account_currencies command]: account_currencies.html
+
+
+[account_info method]: account_info.html
+[account_info command]: account_info.html
+
+
+[account_lines method]: account_lines.html
+[account_lines command]: account_lines.html
+
+
+[account_objects method]: account_objects.html
+[account_objects command]: account_objects.html
+
+
+[account_offers method]: account_offers.html
+[account_offers command]: account_offers.html
+
+
+[account_tx method]: account_tx.html
+[account_tx command]: account_tx.html
+
+
+[book_offers method]: book_offers.html
+[book_offers command]: book_offers.html
+
+
+[can_delete method]: can_delete.html
+[can_delete command]: can_delete.html
+
+
+[channel_authorize method]: channel_authorize.html
+[channel_authorize command]: channel_authorize.html
+
+
+[channel_verify method]: channel_verify.html
+[channel_verify command]: channel_verify.html
+
+
+[connect method]: connect.html
+[connect command]: connect.html
+
+
+[consensus_info method]: consensus_info.html
+[consensus_info command]: consensus_info.html
+
+
+[crawl_shards method]: crawl_shards.html
+[crawl_shards command]: crawl_shards.html
+
+
+[deposit_authorized method]: deposit_authorized.html
+[deposit_authorized command]: deposit_authorized.html
+
+
+[download_shard method]: download_shard.html
+[download_shard command]: download_shard.html
+
+
+[feature method]: feature.html
+[feature command]: feature.html
+
+
+[fee method]: fee.html
+[fee command]: fee.html
+
+
+[fetch_info method]: fetch_info.html
+[fetch_info command]: fetch_info.html
+
+
+[gateway_balances method]: gateway_balances.html
+[gateway_balances command]: gateway_balances.html
+
+
+[get_counts method]: get_counts.html
+[get_counts command]: get_counts.html
+
+
+[json method]: json.html
+[json command]: json.html
+
+
+[ledger method]: ledger.html
+[ledger command]: ledger.html
+
+
+[ledger_accept method]: ledger_accept.html
+[ledger_accept command]: ledger_accept.html
+
+
+[ledger_cleaner method]: ledger_cleaner.html
+[ledger_cleaner command]: ledger_cleaner.html
+
+
+[ledger_closed method]: ledger_closed.html
+[ledger_closed command]: ledger_closed.html
+
+
+[ledger_current method]: ledger_current.html
+[ledger_current command]: ledger_current.html
+
+
+[ledger_data method]: ledger_data.html
+[ledger_data command]: ledger_data.html
+
+
+[ledger_entry method]: ledger_entry.html
+[ledger_entry command]: ledger_entry.html
+
+
+[ledger_request method]: ledger_request.html
+[ledger_request command]: ledger_request.html
+
+
+[log_level method]: log_level.html
+[log_level command]: log_level.html
+
+
+[logrotate method]: logrotate.html
+[logrotate command]: logrotate.html
+
+
+[manifest method]: manifest.html
+[manifest command]: manifest.html
+
+
+[noripple_check method]: noripple_check.html
+[noripple_check command]: noripple_check.html
+
+
+[path_find method]: path_find.html
+[path_find command]: path_find.html
+
+
+[peer_reservations_add method]: peer_reservations_add.html
+[peer_reservations_add command]: peer_reservations_add.html
+
+
+[peer_reservations_del method]: peer_reservations_del.html
+[peer_reservations_del command]: peer_reservations_del.html
+
+
+[peer_reservations_list method]: peer_reservations_list.html
+[peer_reservations_list command]: peer_reservations_list.html
+
+
+[peers method]: peers.html
+[peers command]: peers.html
+
+
+[ping method]: ping.html
+[ping command]: ping.html
+
+
+[print method]: print.html
+[print command]: print.html
+
+
+[random method]: random.html
+[random command]: random.html
+
+
+[ripple_path_find method]: ripple_path_find.html
+[ripple_path_find command]: ripple_path_find.html
+
+
+[server_info method]: server_info.html
+[server_info command]: server_info.html
+
+
+[server_state method]: server_state.html
+[server_state command]: server_state.html
+
+
+[sign method]: sign.html
+[sign command]: sign.html
+
+
+[sign_for method]: sign_for.html
+[sign_for command]: sign_for.html
+
+
+[stop method]: stop.html
+[stop command]: stop.html
+
+
+[submit method]: submit.html
+[submit command]: submit.html
+
+
+[submit_multisigned method]: submit_multisigned.html
+[submit_multisigned command]: submit_multisigned.html
+
+
+[subscribe method]: subscribe.html
+[subscribe command]: subscribe.html
+
+
+[transaction_entry method]: transaction_entry.html
+[transaction_entry command]: transaction_entry.html
+
+
+[tx method]: tx.html
+[tx command]: tx.html
+
+
+[tx_history method]: tx_history.html
+[tx_history command]: tx_history.html
+
+
+[unsubscribe method]: unsubscribe.html
+[unsubscribe command]: unsubscribe.html
+
+
+[validation_create method]: validation_create.html
+[validation_create command]: validation_create.html
+
+
+[validation_seed method]: validation_seed.html
+[validation_seed command]: validation_seed.html
+
+
+[validator_info method]: validator_info.html
+[validator_info command]: validator_info.html
+
+
+[validator_list_sites method]: validator_list_sites.html
+[validator_list_sites command]: validator_list_sites.html
+
+
+[validators method]: validators.html
+[validators command]: validators.html
+
+
+[wallet_propose method]: wallet_propose.html
+[wallet_propose command]: wallet_propose.html
+
+
+
+<!---->
+
+
+
+[Checks amendment]: known-amendments.html#checks
+
+[CheckCashMakesTrustLine amendment]: known-amendments.html#checkcashmakestrustline
+
+[CryptoConditions amendment]: known-amendments.html#cryptoconditions
+
+[CryptoConditionsSuite amendment]: known-amendments.html#cryptoconditionssuite
+
+[DeletableAccounts amendment]: known-amendments.html#deletableaccounts
+
+[DepositAuth amendment]: known-amendments.html#depositauth
+
+[DepositPreauth amendment]: known-amendments.html#depositpreauth
+
+[EnforceInvariants amendment]: known-amendments.html#enforceinvariants
+
+[Escrow amendment]: known-amendments.html#escrow
+
+[FeeEscalation amendment]: known-amendments.html#feeescalation
+
+[fix1201 amendment]: known-amendments.html#fix1201
+
+[fix1368 amendment]: known-amendments.html#fix1368
+
+[fix1373 amendment]: known-amendments.html#fix1373
+
+[fix1512 amendment]: known-amendments.html#fix1512
+
+[fix1513 amendment]: known-amendments.html#fix1513
+
+[fix1515 amendment]: known-amendments.html#fix1515
+
+[fix1523 amendment]: known-amendments.html#fix1523
+
+[fix1528 amendment]: known-amendments.html#fix1528
+
+[fix1543 amendment]: known-amendments.html#fix1543
+
+[fix1571 amendment]: known-amendments.html#fix1571
+
+[fix1578 amendment]: known-amendments.html#fix1578
+
+[fix1623 amendment]: known-amendments.html#fix1623
+
+[fixCheckThreading amendment]: known-amendments.html#fixcheckthreading
+
+[fixMasterKeyAsRegularKey amendment]: known-amendments.html#fixmasterkeyasregularkey
+
+[fixPayChanRecipientOwnerDir amendment]: known-amendments.html#fixpaychanrecipientownerdir
+
+[fixQualityUpperBound amendment]: known-amendments.html#fixqualityupperbound
+
+[fixTakerDryOfferRemoval amendment]: known-amendments.html#fixtakerdryofferremoval
+
+[Flow amendment]: known-amendments.html#flow
+
+[FlowCross amendment]: known-amendments.html#flowcross
+
+[FlowV2 amendment]: known-amendments.html#flowv2
+
+[MultiSign amendment]: known-amendments.html#multisign
+
+[MultiSignReserve amendment]: known-amendments.html#multisignreserve
+
+[NegativeUNL amendment]: known-amendments.html#negativeunl
+
+[OwnerPaysFee amendment]: known-amendments.html#ownerpaysfee
+
+[PayChan amendment]: known-amendments.html#paychan
+
+[RequireFullyCanonicalSig amendment]: known-amendments.html#requirefullycanonicalsig
+
+[SHAMapV2 amendment]: known-amendments.html#shamapv2
+
+[SortedDirectories amendment]: known-amendments.html#sorteddirectories
+
+[SusPay amendment]: known-amendments.html#suspay
+
+[TicketBatch amendment]: known-amendments.html#ticketbatch
+
+[Tickets amendment]: known-amendments.html#tickets
+
+[TickSize amendment]: known-amendments.html#ticksize
+
+[TrustSetAuth amendment]: known-amendments.html#trustsetauth
+
+
+
+
+
+
+[AccountDelete]: accountdelete.html
+[AccountDelete transaction]: accountdelete.html
+[AccountDelete transactions]: accountdelete.html
+
+
+[AccountSet]: accountset.html
+[AccountSet transaction]: accountset.html
+[AccountSet transactions]: accountset.html
+
+
+[CheckCancel]: checkcancel.html
+[CheckCancel transaction]: checkcancel.html
+[CheckCancel transactions]: checkcancel.html
+
+
+[CheckCash]: checkcash.html
+[CheckCash transaction]: checkcash.html
+[CheckCash transactions]: checkcash.html
+
+
+[CheckCreate]: checkcreate.html
+[CheckCreate transaction]: checkcreate.html
+[CheckCreate transactions]: checkcreate.html
+
+
+[DepositPreauth]: depositpreauth.html
+[DepositPreauth transaction]: depositpreauth.html
+[DepositPreauth transactions]: depositpreauth.html
+
+
+[EscrowCancel]: escrowcancel.html
+[EscrowCancel transaction]: escrowcancel.html
+[EscrowCancel transactions]: escrowcancel.html
+
+
+[EscrowCreate]: escrowcreate.html
+[EscrowCreate transaction]: escrowcreate.html
+[EscrowCreate transactions]: escrowcreate.html
+
+
+[EscrowFinish]: escrowfinish.html
+[EscrowFinish transaction]: escrowfinish.html
+[EscrowFinish transactions]: escrowfinish.html
+
+
+[NFTokenAcceptOffer]: nftokenacceptoffer.html
+[NFTokenAcceptOffer transaction]: nftokenacceptoffer.html
+[NFTokenAcceptOffer transactions]: nftokenacceptoffer.html
+
+
+[NFTokenBurn]: nftokenburn.html
+[NFTokenBurn transaction]: nftokenburn.html
+[NFTokenBurn transactions]: nftokenburn.html
+
+
+[NFTokenCancelOffer]: nftokencanceloffer.html
+[NFTokenCancelOffer transaction]: nftokencanceloffer.html
+[NFTokenCancelOffer transactions]: nftokencanceloffer.html
+
+
+[NFTokenCreateOffer]: nftokencreateoffer.html
+[NFTokenCreateOffer transaction]: nftokencreateoffer.html
+[NFTokenCreateOffer transactions]: nftokencreateoffer.html
+
+
+[NFTokenMint]: nftokenmint.html
+[NFTokenMint transaction]: nftokenmint.html
+[NFTokenMint transactions]: nftokenmint.html
+
+
+[OfferCancel]: offercancel.html
+[OfferCancel transaction]: offercancel.html
+[OfferCancel transactions]: offercancel.html
+
+
+[OfferCreate]: offercreate.html
+[OfferCreate transaction]: offercreate.html
+[OfferCreate transactions]: offercreate.html
+
+
+[Payment]: payment.html
+[Payment transaction]: payment.html
+[Payment transactions]: payment.html
+
+
+[PaymentChannelClaim]: paymentchannelclaim.html
+[PaymentChannelClaim transaction]: paymentchannelclaim.html
+[PaymentChannelClaim transactions]: paymentchannelclaim.html
+
+
+[PaymentChannelCreate]: paymentchannelcreate.html
+[PaymentChannelCreate transaction]: paymentchannelcreate.html
+[PaymentChannelCreate transactions]: paymentchannelcreate.html
+
+
+[PaymentChannelFund]: paymentchannelfund.html
+[PaymentChannelFund transaction]: paymentchannelfund.html
+[PaymentChannelFund transactions]: paymentchannelfund.html
+
+
+[SetRegularKey]: setregularkey.html
+[SetRegularKey transaction]: setregularkey.html
+[SetRegularKey transactions]: setregularkey.html
+
+
+[SignerListSet]: signerlistset.html
+[SignerListSet transaction]: signerlistset.html
+[SignerListSet transactions]: signerlistset.html
+
+
+[TicketCreate]: ticketcreate.html
+[TicketCreate transaction]: ticketcreate.html
+[TicketCreate transactions]: ticketcreate.html
+
+
+[TrustSet]: trustset.html
+[TrustSet transaction]: trustset.html
+[TrustSet transactions]: trustset.html
+
+
+
+
+[EnableAmendment]: enableamendment.html
+[EnableAmendment pseudo-transaction]: enableamendment.html
+[EnableAmendment pseudo-transactions]: enableamendment.html
+[EnableAmendment疑似トランザクション]: enableamendment.html
+
+[SetFee]: setfee.html
+[SetFee pseudo-transaction]: setfee.html
+[SetFee pseudo-transactions]: setfee.html
+[SetFee疑似トランザクション]: setfee.html
+
+[UNLModify]: unlmodify.html
+[UNLModify pseudo-transaction]: unlmodify.html
+[UNLModify pseudo-transactions]: unlmodify.html
+[UNLModify疑似トランザクション]: unlmodify.html
+
+<!-- rippled release notes links -->
+
+
+
+
+[New in: rippled 0.26.0]: https://github.com/ripple/rippled/releases/tag/0.26.0 "BADGE_BLUE"
+[Introduced in: rippled 0.26.0]: https://github.com/ripple/rippled/releases/tag/0.26.0 "BADGE_BLUE"
+[Updated in: rippled 0.26.0]: https://github.com/ripple/rippled/releases/tag/0.26.0 "BADGE_BLUE"
+[Removed in: rippled 0.26.0]: https://github.com/ripple/rippled/releases/tag/0.26.0 "BADGE_RED"
+[導入: rippled 0.26.0]: https://github.com/ripple/rippled/releases/tag/0.26.0 "BADGE_BLUE"
+[新規: rippled 0.26.0]: https://github.com/ripple/rippled/releases/tag/0.26.0 "BADGE_BLUE"
+[更新: rippled 0.26.0]: https://github.com/ripple/rippled/releases/tag/0.26.0 "BADGE_BLUE"
+[削除: rippled 0.26.0]: https://github.com/ripple/rippled/releases/tag/0.26.0 "BADGE_RED"
+
+[New in: rippled 0.26.1]: https://github.com/ripple/rippled/releases/tag/0.26.1 "BADGE_BLUE"
+[Introduced in: rippled 0.26.1]: https://github.com/ripple/rippled/releases/tag/0.26.1 "BADGE_BLUE"
+[Updated in: rippled 0.26.1]: https://github.com/ripple/rippled/releases/tag/0.26.1 "BADGE_BLUE"
+[Removed in: rippled 0.26.1]: https://github.com/ripple/rippled/releases/tag/0.26.1 "BADGE_RED"
+[導入: rippled 0.26.1]: https://github.com/ripple/rippled/releases/tag/0.26.1 "BADGE_BLUE"
+[新規: rippled 0.26.1]: https://github.com/ripple/rippled/releases/tag/0.26.1 "BADGE_BLUE"
+[更新: rippled 0.26.1]: https://github.com/ripple/rippled/releases/tag/0.26.1 "BADGE_BLUE"
+[削除: rippled 0.26.1]: https://github.com/ripple/rippled/releases/tag/0.26.1 "BADGE_RED"
+
+[New in: rippled 0.26.2]: https://github.com/ripple/rippled/releases/tag/0.26.2 "BADGE_BLUE"
+[Introduced in: rippled 0.26.2]: https://github.com/ripple/rippled/releases/tag/0.26.2 "BADGE_BLUE"
+[Updated in: rippled 0.26.2]: https://github.com/ripple/rippled/releases/tag/0.26.2 "BADGE_BLUE"
+[Removed in: rippled 0.26.2]: https://github.com/ripple/rippled/releases/tag/0.26.2 "BADGE_RED"
+[導入: rippled 0.26.2]: https://github.com/ripple/rippled/releases/tag/0.26.2 "BADGE_BLUE"
+[新規: rippled 0.26.2]: https://github.com/ripple/rippled/releases/tag/0.26.2 "BADGE_BLUE"
+[更新: rippled 0.26.2]: https://github.com/ripple/rippled/releases/tag/0.26.2 "BADGE_BLUE"
+[削除: rippled 0.26.2]: https://github.com/ripple/rippled/releases/tag/0.26.2 "BADGE_RED"
+
+[New in: rippled 0.26.3-sp1]: https://github.com/ripple/rippled/releases/tag/0.26.3-sp1 "BADGE_BLUE"
+[Introduced in: rippled 0.26.3-sp1]: https://github.com/ripple/rippled/releases/tag/0.26.3-sp1 "BADGE_BLUE"
+[Updated in: rippled 0.26.3-sp1]: https://github.com/ripple/rippled/releases/tag/0.26.3-sp1 "BADGE_BLUE"
+[Removed in: rippled 0.26.3-sp1]: https://github.com/ripple/rippled/releases/tag/0.26.3-sp1 "BADGE_RED"
+[導入: rippled 0.26.3-sp1]: https://github.com/ripple/rippled/releases/tag/0.26.3-sp1 "BADGE_BLUE"
+[新規: rippled 0.26.3-sp1]: https://github.com/ripple/rippled/releases/tag/0.26.3-sp1 "BADGE_BLUE"
+[更新: rippled 0.26.3-sp1]: https://github.com/ripple/rippled/releases/tag/0.26.3-sp1 "BADGE_BLUE"
+[削除: rippled 0.26.3-sp1]: https://github.com/ripple/rippled/releases/tag/0.26.3-sp1 "BADGE_RED"
+
+[New in: rippled 0.26.4]: https://github.com/ripple/rippled/releases/tag/0.26.4 "BADGE_BLUE"
+[Introduced in: rippled 0.26.4]: https://github.com/ripple/rippled/releases/tag/0.26.4 "BADGE_BLUE"
+[Updated in: rippled 0.26.4]: https://github.com/ripple/rippled/releases/tag/0.26.4 "BADGE_BLUE"
+[Removed in: rippled 0.26.4]: https://github.com/ripple/rippled/releases/tag/0.26.4 "BADGE_RED"
+[導入: rippled 0.26.4]: https://github.com/ripple/rippled/releases/tag/0.26.4 "BADGE_BLUE"
+[新規: rippled 0.26.4]: https://github.com/ripple/rippled/releases/tag/0.26.4 "BADGE_BLUE"
+[更新: rippled 0.26.4]: https://github.com/ripple/rippled/releases/tag/0.26.4 "BADGE_BLUE"
+[削除: rippled 0.26.4]: https://github.com/ripple/rippled/releases/tag/0.26.4 "BADGE_RED"
+
+[New in: rippled 0.26.4-sp1]: https://github.com/ripple/rippled/releases/tag/0.26.4-sp1 "BADGE_BLUE"
+[Introduced in: rippled 0.26.4-sp1]: https://github.com/ripple/rippled/releases/tag/0.26.4-sp1 "BADGE_BLUE"
+[Updated in: rippled 0.26.4-sp1]: https://github.com/ripple/rippled/releases/tag/0.26.4-sp1 "BADGE_BLUE"
+[Removed in: rippled 0.26.4-sp1]: https://github.com/ripple/rippled/releases/tag/0.26.4-sp1 "BADGE_RED"
+[導入: rippled 0.26.4-sp1]: https://github.com/ripple/rippled/releases/tag/0.26.4-sp1 "BADGE_BLUE"
+[新規: rippled 0.26.4-sp1]: https://github.com/ripple/rippled/releases/tag/0.26.4-sp1 "BADGE_BLUE"
+[更新: rippled 0.26.4-sp1]: https://github.com/ripple/rippled/releases/tag/0.26.4-sp1 "BADGE_BLUE"
+[削除: rippled 0.26.4-sp1]: https://github.com/ripple/rippled/releases/tag/0.26.4-sp1 "BADGE_RED"
+
+[New in: rippled 0.27.0]: https://github.com/ripple/rippled/releases/tag/0.27.0 "BADGE_BLUE"
+[Introduced in: rippled 0.27.0]: https://github.com/ripple/rippled/releases/tag/0.27.0 "BADGE_BLUE"
+[Updated in: rippled 0.27.0]: https://github.com/ripple/rippled/releases/tag/0.27.0 "BADGE_BLUE"
+[Removed in: rippled 0.27.0]: https://github.com/ripple/rippled/releases/tag/0.27.0 "BADGE_RED"
+[導入: rippled 0.27.0]: https://github.com/ripple/rippled/releases/tag/0.27.0 "BADGE_BLUE"
+[新規: rippled 0.27.0]: https://github.com/ripple/rippled/releases/tag/0.27.0 "BADGE_BLUE"
+[更新: rippled 0.27.0]: https://github.com/ripple/rippled/releases/tag/0.27.0 "BADGE_BLUE"
+[削除: rippled 0.27.0]: https://github.com/ripple/rippled/releases/tag/0.27.0 "BADGE_RED"
+
+[New in: rippled 0.27.1]: https://github.com/ripple/rippled/releases/tag/0.27.1 "BADGE_BLUE"
+[Introduced in: rippled 0.27.1]: https://github.com/ripple/rippled/releases/tag/0.27.1 "BADGE_BLUE"
+[Updated in: rippled 0.27.1]: https://github.com/ripple/rippled/releases/tag/0.27.1 "BADGE_BLUE"
+[Removed in: rippled 0.27.1]: https://github.com/ripple/rippled/releases/tag/0.27.1 "BADGE_RED"
+[導入: rippled 0.27.1]: https://github.com/ripple/rippled/releases/tag/0.27.1 "BADGE_BLUE"
+[新規: rippled 0.27.1]: https://github.com/ripple/rippled/releases/tag/0.27.1 "BADGE_BLUE"
+[更新: rippled 0.27.1]: https://github.com/ripple/rippled/releases/tag/0.27.1 "BADGE_BLUE"
+[削除: rippled 0.27.1]: https://github.com/ripple/rippled/releases/tag/0.27.1 "BADGE_RED"
+
+[New in: rippled 0.27.2]: https://github.com/ripple/rippled/releases/tag/0.27.2 "BADGE_BLUE"
+[Introduced in: rippled 0.27.2]: https://github.com/ripple/rippled/releases/tag/0.27.2 "BADGE_BLUE"
+[Updated in: rippled 0.27.2]: https://github.com/ripple/rippled/releases/tag/0.27.2 "BADGE_BLUE"
+[Removed in: rippled 0.27.2]: https://github.com/ripple/rippled/releases/tag/0.27.2 "BADGE_RED"
+[導入: rippled 0.27.2]: https://github.com/ripple/rippled/releases/tag/0.27.2 "BADGE_BLUE"
+[新規: rippled 0.27.2]: https://github.com/ripple/rippled/releases/tag/0.27.2 "BADGE_BLUE"
+[更新: rippled 0.27.2]: https://github.com/ripple/rippled/releases/tag/0.27.2 "BADGE_BLUE"
+[削除: rippled 0.27.2]: https://github.com/ripple/rippled/releases/tag/0.27.2 "BADGE_RED"
+
+[New in: rippled 0.27.3]: https://github.com/ripple/rippled/releases/tag/0.27.3 "BADGE_BLUE"
+[Introduced in: rippled 0.27.3]: https://github.com/ripple/rippled/releases/tag/0.27.3 "BADGE_BLUE"
+[Updated in: rippled 0.27.3]: https://github.com/ripple/rippled/releases/tag/0.27.3 "BADGE_BLUE"
+[Removed in: rippled 0.27.3]: https://github.com/ripple/rippled/releases/tag/0.27.3 "BADGE_RED"
+[導入: rippled 0.27.3]: https://github.com/ripple/rippled/releases/tag/0.27.3 "BADGE_BLUE"
+[新規: rippled 0.27.3]: https://github.com/ripple/rippled/releases/tag/0.27.3 "BADGE_BLUE"
+[更新: rippled 0.27.3]: https://github.com/ripple/rippled/releases/tag/0.27.3 "BADGE_BLUE"
+[削除: rippled 0.27.3]: https://github.com/ripple/rippled/releases/tag/0.27.3 "BADGE_RED"
+
+[New in: rippled 0.27.3-sp1]: https://github.com/ripple/rippled/releases/tag/0.27.3-sp1 "BADGE_BLUE"
+[Introduced in: rippled 0.27.3-sp1]: https://github.com/ripple/rippled/releases/tag/0.27.3-sp1 "BADGE_BLUE"
+[Updated in: rippled 0.27.3-sp1]: https://github.com/ripple/rippled/releases/tag/0.27.3-sp1 "BADGE_BLUE"
+[Removed in: rippled 0.27.3-sp1]: https://github.com/ripple/rippled/releases/tag/0.27.3-sp1 "BADGE_RED"
+[導入: rippled 0.27.3-sp1]: https://github.com/ripple/rippled/releases/tag/0.27.3-sp1 "BADGE_BLUE"
+[新規: rippled 0.27.3-sp1]: https://github.com/ripple/rippled/releases/tag/0.27.3-sp1 "BADGE_BLUE"
+[更新: rippled 0.27.3-sp1]: https://github.com/ripple/rippled/releases/tag/0.27.3-sp1 "BADGE_BLUE"
+[削除: rippled 0.27.3-sp1]: https://github.com/ripple/rippled/releases/tag/0.27.3-sp1 "BADGE_RED"
+
+[New in: rippled 0.27.3-sp2]: https://github.com/ripple/rippled/releases/tag/0.27.3-sp2 "BADGE_BLUE"
+[Introduced in: rippled 0.27.3-sp2]: https://github.com/ripple/rippled/releases/tag/0.27.3-sp2 "BADGE_BLUE"
+[Updated in: rippled 0.27.3-sp2]: https://github.com/ripple/rippled/releases/tag/0.27.3-sp2 "BADGE_BLUE"
+[Removed in: rippled 0.27.3-sp2]: https://github.com/ripple/rippled/releases/tag/0.27.3-sp2 "BADGE_RED"
+[導入: rippled 0.27.3-sp2]: https://github.com/ripple/rippled/releases/tag/0.27.3-sp2 "BADGE_BLUE"
+[新規: rippled 0.27.3-sp2]: https://github.com/ripple/rippled/releases/tag/0.27.3-sp2 "BADGE_BLUE"
+[更新: rippled 0.27.3-sp2]: https://github.com/ripple/rippled/releases/tag/0.27.3-sp2 "BADGE_BLUE"
+[削除: rippled 0.27.3-sp2]: https://github.com/ripple/rippled/releases/tag/0.27.3-sp2 "BADGE_RED"
+
+[New in: rippled 0.27.4]: https://github.com/ripple/rippled/releases/tag/0.27.4 "BADGE_BLUE"
+[Introduced in: rippled 0.27.4]: https://github.com/ripple/rippled/releases/tag/0.27.4 "BADGE_BLUE"
+[Updated in: rippled 0.27.4]: https://github.com/ripple/rippled/releases/tag/0.27.4 "BADGE_BLUE"
+[Removed in: rippled 0.27.4]: https://github.com/ripple/rippled/releases/tag/0.27.4 "BADGE_RED"
+[導入: rippled 0.27.4]: https://github.com/ripple/rippled/releases/tag/0.27.4 "BADGE_BLUE"
+[新規: rippled 0.27.4]: https://github.com/ripple/rippled/releases/tag/0.27.4 "BADGE_BLUE"
+[更新: rippled 0.27.4]: https://github.com/ripple/rippled/releases/tag/0.27.4 "BADGE_BLUE"
+[削除: rippled 0.27.4]: https://github.com/ripple/rippled/releases/tag/0.27.4 "BADGE_RED"
+
+[New in: rippled 0.28.0]: https://github.com/ripple/rippled/releases/tag/0.28.0 "BADGE_BLUE"
+[Introduced in: rippled 0.28.0]: https://github.com/ripple/rippled/releases/tag/0.28.0 "BADGE_BLUE"
+[Updated in: rippled 0.28.0]: https://github.com/ripple/rippled/releases/tag/0.28.0 "BADGE_BLUE"
+[Removed in: rippled 0.28.0]: https://github.com/ripple/rippled/releases/tag/0.28.0 "BADGE_RED"
+[導入: rippled 0.28.0]: https://github.com/ripple/rippled/releases/tag/0.28.0 "BADGE_BLUE"
+[新規: rippled 0.28.0]: https://github.com/ripple/rippled/releases/tag/0.28.0 "BADGE_BLUE"
+[更新: rippled 0.28.0]: https://github.com/ripple/rippled/releases/tag/0.28.0 "BADGE_BLUE"
+[削除: rippled 0.28.0]: https://github.com/ripple/rippled/releases/tag/0.28.0 "BADGE_RED"
+
+[New in: rippled 0.28.2]: https://github.com/ripple/rippled/releases/tag/0.28.2 "BADGE_BLUE"
+[Introduced in: rippled 0.28.2]: https://github.com/ripple/rippled/releases/tag/0.28.2 "BADGE_BLUE"
+[Updated in: rippled 0.28.2]: https://github.com/ripple/rippled/releases/tag/0.28.2 "BADGE_BLUE"
+[Removed in: rippled 0.28.2]: https://github.com/ripple/rippled/releases/tag/0.28.2 "BADGE_RED"
+[導入: rippled 0.28.2]: https://github.com/ripple/rippled/releases/tag/0.28.2 "BADGE_BLUE"
+[新規: rippled 0.28.2]: https://github.com/ripple/rippled/releases/tag/0.28.2 "BADGE_BLUE"
+[更新: rippled 0.28.2]: https://github.com/ripple/rippled/releases/tag/0.28.2 "BADGE_BLUE"
+[削除: rippled 0.28.2]: https://github.com/ripple/rippled/releases/tag/0.28.2 "BADGE_RED"
+
+[New in: rippled 0.29.0]: https://github.com/ripple/rippled/releases/tag/0.29.0 "BADGE_BLUE"
+[Introduced in: rippled 0.29.0]: https://github.com/ripple/rippled/releases/tag/0.29.0 "BADGE_BLUE"
+[Updated in: rippled 0.29.0]: https://github.com/ripple/rippled/releases/tag/0.29.0 "BADGE_BLUE"
+[Removed in: rippled 0.29.0]: https://github.com/ripple/rippled/releases/tag/0.29.0 "BADGE_RED"
+[導入: rippled 0.29.0]: https://github.com/ripple/rippled/releases/tag/0.29.0 "BADGE_BLUE"
+[新規: rippled 0.29.0]: https://github.com/ripple/rippled/releases/tag/0.29.0 "BADGE_BLUE"
+[更新: rippled 0.29.0]: https://github.com/ripple/rippled/releases/tag/0.29.0 "BADGE_BLUE"
+[削除: rippled 0.29.0]: https://github.com/ripple/rippled/releases/tag/0.29.0 "BADGE_RED"
+
+[New in: rippled 0.29.0-hf1]: https://github.com/ripple/rippled/releases/tag/0.29.0-hf1 "BADGE_BLUE"
+[Introduced in: rippled 0.29.0-hf1]: https://github.com/ripple/rippled/releases/tag/0.29.0-hf1 "BADGE_BLUE"
+[Updated in: rippled 0.29.0-hf1]: https://github.com/ripple/rippled/releases/tag/0.29.0-hf1 "BADGE_BLUE"
+[Removed in: rippled 0.29.0-hf1]: https://github.com/ripple/rippled/releases/tag/0.29.0-hf1 "BADGE_RED"
+[導入: rippled 0.29.0-hf1]: https://github.com/ripple/rippled/releases/tag/0.29.0-hf1 "BADGE_BLUE"
+[新規: rippled 0.29.0-hf1]: https://github.com/ripple/rippled/releases/tag/0.29.0-hf1 "BADGE_BLUE"
+[更新: rippled 0.29.0-hf1]: https://github.com/ripple/rippled/releases/tag/0.29.0-hf1 "BADGE_BLUE"
+[削除: rippled 0.29.0-hf1]: https://github.com/ripple/rippled/releases/tag/0.29.0-hf1 "BADGE_RED"
+
+[New in: rippled 0.30.0]: https://github.com/ripple/rippled/releases/tag/0.30.0 "BADGE_BLUE"
+[Introduced in: rippled 0.30.0]: https://github.com/ripple/rippled/releases/tag/0.30.0 "BADGE_BLUE"
+[Updated in: rippled 0.30.0]: https://github.com/ripple/rippled/releases/tag/0.30.0 "BADGE_BLUE"
+[Removed in: rippled 0.30.0]: https://github.com/ripple/rippled/releases/tag/0.30.0 "BADGE_RED"
+[導入: rippled 0.30.0]: https://github.com/ripple/rippled/releases/tag/0.30.0 "BADGE_BLUE"
+[新規: rippled 0.30.0]: https://github.com/ripple/rippled/releases/tag/0.30.0 "BADGE_BLUE"
+[更新: rippled 0.30.0]: https://github.com/ripple/rippled/releases/tag/0.30.0 "BADGE_BLUE"
+[削除: rippled 0.30.0]: https://github.com/ripple/rippled/releases/tag/0.30.0 "BADGE_RED"
+
+[New in: rippled 0.30.1]: https://github.com/ripple/rippled/releases/tag/0.30.1 "BADGE_BLUE"
+[Introduced in: rippled 0.30.1]: https://github.com/ripple/rippled/releases/tag/0.30.1 "BADGE_BLUE"
+[Updated in: rippled 0.30.1]: https://github.com/ripple/rippled/releases/tag/0.30.1 "BADGE_BLUE"
+[Removed in: rippled 0.30.1]: https://github.com/ripple/rippled/releases/tag/0.30.1 "BADGE_RED"
+[導入: rippled 0.30.1]: https://github.com/ripple/rippled/releases/tag/0.30.1 "BADGE_BLUE"
+[新規: rippled 0.30.1]: https://github.com/ripple/rippled/releases/tag/0.30.1 "BADGE_BLUE"
+[更新: rippled 0.30.1]: https://github.com/ripple/rippled/releases/tag/0.30.1 "BADGE_BLUE"
+[削除: rippled 0.30.1]: https://github.com/ripple/rippled/releases/tag/0.30.1 "BADGE_RED"
+
+[New in: rippled 0.31.0]: https://github.com/ripple/rippled/releases/tag/0.31.0 "BADGE_BLUE"
+[Introduced in: rippled 0.31.0]: https://github.com/ripple/rippled/releases/tag/0.31.0 "BADGE_BLUE"
+[Updated in: rippled 0.31.0]: https://github.com/ripple/rippled/releases/tag/0.31.0 "BADGE_BLUE"
+[Removed in: rippled 0.31.0]: https://github.com/ripple/rippled/releases/tag/0.31.0 "BADGE_RED"
+[導入: rippled 0.31.0]: https://github.com/ripple/rippled/releases/tag/0.31.0 "BADGE_BLUE"
+[新規: rippled 0.31.0]: https://github.com/ripple/rippled/releases/tag/0.31.0 "BADGE_BLUE"
+[更新: rippled 0.31.0]: https://github.com/ripple/rippled/releases/tag/0.31.0 "BADGE_BLUE"
+[削除: rippled 0.31.0]: https://github.com/ripple/rippled/releases/tag/0.31.0 "BADGE_RED"
+
+[New in: rippled 0.32.0]: https://github.com/ripple/rippled/releases/tag/0.32.0 "BADGE_BLUE"
+[Introduced in: rippled 0.32.0]: https://github.com/ripple/rippled/releases/tag/0.32.0 "BADGE_BLUE"
+[Updated in: rippled 0.32.0]: https://github.com/ripple/rippled/releases/tag/0.32.0 "BADGE_BLUE"
+[Removed in: rippled 0.32.0]: https://github.com/ripple/rippled/releases/tag/0.32.0 "BADGE_RED"
+[導入: rippled 0.32.0]: https://github.com/ripple/rippled/releases/tag/0.32.0 "BADGE_BLUE"
+[新規: rippled 0.32.0]: https://github.com/ripple/rippled/releases/tag/0.32.0 "BADGE_BLUE"
+[更新: rippled 0.32.0]: https://github.com/ripple/rippled/releases/tag/0.32.0 "BADGE_BLUE"
+[削除: rippled 0.32.0]: https://github.com/ripple/rippled/releases/tag/0.32.0 "BADGE_RED"
+
+[New in: rippled 0.32.1]: https://github.com/ripple/rippled/releases/tag/0.32.1 "BADGE_BLUE"
+[Introduced in: rippled 0.32.1]: https://github.com/ripple/rippled/releases/tag/0.32.1 "BADGE_BLUE"
+[Updated in: rippled 0.32.1]: https://github.com/ripple/rippled/releases/tag/0.32.1 "BADGE_BLUE"
+[Removed in: rippled 0.32.1]: https://github.com/ripple/rippled/releases/tag/0.32.1 "BADGE_RED"
+[導入: rippled 0.32.1]: https://github.com/ripple/rippled/releases/tag/0.32.1 "BADGE_BLUE"
+[新規: rippled 0.32.1]: https://github.com/ripple/rippled/releases/tag/0.32.1 "BADGE_BLUE"
+[更新: rippled 0.32.1]: https://github.com/ripple/rippled/releases/tag/0.32.1 "BADGE_BLUE"
+[削除: rippled 0.32.1]: https://github.com/ripple/rippled/releases/tag/0.32.1 "BADGE_RED"
+
+[New in: rippled 0.33.0]: https://github.com/ripple/rippled/releases/tag/0.33.0 "BADGE_BLUE"
+[Introduced in: rippled 0.33.0]: https://github.com/ripple/rippled/releases/tag/0.33.0 "BADGE_BLUE"
+[Updated in: rippled 0.33.0]: https://github.com/ripple/rippled/releases/tag/0.33.0 "BADGE_BLUE"
+[Removed in: rippled 0.33.0]: https://github.com/ripple/rippled/releases/tag/0.33.0 "BADGE_RED"
+[導入: rippled 0.33.0]: https://github.com/ripple/rippled/releases/tag/0.33.0 "BADGE_BLUE"
+[新規: rippled 0.33.0]: https://github.com/ripple/rippled/releases/tag/0.33.0 "BADGE_BLUE"
+[更新: rippled 0.33.0]: https://github.com/ripple/rippled/releases/tag/0.33.0 "BADGE_BLUE"
+[削除: rippled 0.33.0]: https://github.com/ripple/rippled/releases/tag/0.33.0 "BADGE_RED"
+
+[New in: rippled 0.50.0]: https://github.com/ripple/rippled/releases/tag/0.50.0 "BADGE_BLUE"
+[Introduced in: rippled 0.50.0]: https://github.com/ripple/rippled/releases/tag/0.50.0 "BADGE_BLUE"
+[Updated in: rippled 0.50.0]: https://github.com/ripple/rippled/releases/tag/0.50.0 "BADGE_BLUE"
+[Removed in: rippled 0.50.0]: https://github.com/ripple/rippled/releases/tag/0.50.0 "BADGE_RED"
+[導入: rippled 0.50.0]: https://github.com/ripple/rippled/releases/tag/0.50.0 "BADGE_BLUE"
+[新規: rippled 0.50.0]: https://github.com/ripple/rippled/releases/tag/0.50.0 "BADGE_BLUE"
+[更新: rippled 0.50.0]: https://github.com/ripple/rippled/releases/tag/0.50.0 "BADGE_BLUE"
+[削除: rippled 0.50.0]: https://github.com/ripple/rippled/releases/tag/0.50.0 "BADGE_RED"
+
+[New in: rippled 0.70.0]: https://github.com/ripple/rippled/releases/tag/0.70.0 "BADGE_BLUE"
+[Introduced in: rippled 0.70.0]: https://github.com/ripple/rippled/releases/tag/0.70.0 "BADGE_BLUE"
+[Updated in: rippled 0.70.0]: https://github.com/ripple/rippled/releases/tag/0.70.0 "BADGE_BLUE"
+[Removed in: rippled 0.70.0]: https://github.com/ripple/rippled/releases/tag/0.70.0 "BADGE_RED"
+[導入: rippled 0.70.0]: https://github.com/ripple/rippled/releases/tag/0.70.0 "BADGE_BLUE"
+[新規: rippled 0.70.0]: https://github.com/ripple/rippled/releases/tag/0.70.0 "BADGE_BLUE"
+[更新: rippled 0.70.0]: https://github.com/ripple/rippled/releases/tag/0.70.0 "BADGE_BLUE"
+[削除: rippled 0.70.0]: https://github.com/ripple/rippled/releases/tag/0.70.0 "BADGE_RED"
+
+[New in: rippled 0.70.2]: https://github.com/ripple/rippled/releases/tag/0.70.2 "BADGE_BLUE"
+[Introduced in: rippled 0.70.2]: https://github.com/ripple/rippled/releases/tag/0.70.2 "BADGE_BLUE"
+[Updated in: rippled 0.70.2]: https://github.com/ripple/rippled/releases/tag/0.70.2 "BADGE_BLUE"
+[Removed in: rippled 0.70.2]: https://github.com/ripple/rippled/releases/tag/0.70.2 "BADGE_RED"
+[導入: rippled 0.70.2]: https://github.com/ripple/rippled/releases/tag/0.70.2 "BADGE_BLUE"
+[新規: rippled 0.70.2]: https://github.com/ripple/rippled/releases/tag/0.70.2 "BADGE_BLUE"
+[更新: rippled 0.70.2]: https://github.com/ripple/rippled/releases/tag/0.70.2 "BADGE_BLUE"
+[削除: rippled 0.70.2]: https://github.com/ripple/rippled/releases/tag/0.70.2 "BADGE_RED"
+
+[New in: rippled 0.80.0]: https://github.com/ripple/rippled/releases/tag/0.80.0 "BADGE_BLUE"
+[Introduced in: rippled 0.80.0]: https://github.com/ripple/rippled/releases/tag/0.80.0 "BADGE_BLUE"
+[Updated in: rippled 0.80.0]: https://github.com/ripple/rippled/releases/tag/0.80.0 "BADGE_BLUE"
+[Removed in: rippled 0.80.0]: https://github.com/ripple/rippled/releases/tag/0.80.0 "BADGE_RED"
+[導入: rippled 0.80.0]: https://github.com/ripple/rippled/releases/tag/0.80.0 "BADGE_BLUE"
+[新規: rippled 0.80.0]: https://github.com/ripple/rippled/releases/tag/0.80.0 "BADGE_BLUE"
+[更新: rippled 0.80.0]: https://github.com/ripple/rippled/releases/tag/0.80.0 "BADGE_BLUE"
+[削除: rippled 0.80.0]: https://github.com/ripple/rippled/releases/tag/0.80.0 "BADGE_RED"
+
+[New in: rippled 0.80.1]: https://github.com/ripple/rippled/releases/tag/0.80.1 "BADGE_BLUE"
+[Introduced in: rippled 0.80.1]: https://github.com/ripple/rippled/releases/tag/0.80.1 "BADGE_BLUE"
+[Updated in: rippled 0.80.1]: https://github.com/ripple/rippled/releases/tag/0.80.1 "BADGE_BLUE"
+[Removed in: rippled 0.80.1]: https://github.com/ripple/rippled/releases/tag/0.80.1 "BADGE_RED"
+[導入: rippled 0.80.1]: https://github.com/ripple/rippled/releases/tag/0.80.1 "BADGE_BLUE"
+[新規: rippled 0.80.1]: https://github.com/ripple/rippled/releases/tag/0.80.1 "BADGE_BLUE"
+[更新: rippled 0.80.1]: https://github.com/ripple/rippled/releases/tag/0.80.1 "BADGE_BLUE"
+[削除: rippled 0.80.1]: https://github.com/ripple/rippled/releases/tag/0.80.1 "BADGE_RED"
+
+[New in: rippled 0.90.0]: https://github.com/ripple/rippled/releases/tag/0.90.0 "BADGE_BLUE"
+[Introduced in: rippled 0.90.0]: https://github.com/ripple/rippled/releases/tag/0.90.0 "BADGE_BLUE"
+[Updated in: rippled 0.90.0]: https://github.com/ripple/rippled/releases/tag/0.90.0 "BADGE_BLUE"
+[Removed in: rippled 0.90.0]: https://github.com/ripple/rippled/releases/tag/0.90.0 "BADGE_RED"
+[導入: rippled 0.90.0]: https://github.com/ripple/rippled/releases/tag/0.90.0 "BADGE_BLUE"
+[新規: rippled 0.90.0]: https://github.com/ripple/rippled/releases/tag/0.90.0 "BADGE_BLUE"
+[更新: rippled 0.90.0]: https://github.com/ripple/rippled/releases/tag/0.90.0 "BADGE_BLUE"
+[削除: rippled 0.90.0]: https://github.com/ripple/rippled/releases/tag/0.90.0 "BADGE_RED"
+
+[New in: rippled 1.0.0]: https://github.com/ripple/rippled/releases/tag/1.0.0 "BADGE_BLUE"
+[Introduced in: rippled 1.0.0]: https://github.com/ripple/rippled/releases/tag/1.0.0 "BADGE_BLUE"
+[Updated in: rippled 1.0.0]: https://github.com/ripple/rippled/releases/tag/1.0.0 "BADGE_BLUE"
+[Removed in: rippled 1.0.0]: https://github.com/ripple/rippled/releases/tag/1.0.0 "BADGE_RED"
+[導入: rippled 1.0.0]: https://github.com/ripple/rippled/releases/tag/1.0.0 "BADGE_BLUE"
+[新規: rippled 1.0.0]: https://github.com/ripple/rippled/releases/tag/1.0.0 "BADGE_BLUE"
+[更新: rippled 1.0.0]: https://github.com/ripple/rippled/releases/tag/1.0.0 "BADGE_BLUE"
+[削除: rippled 1.0.0]: https://github.com/ripple/rippled/releases/tag/1.0.0 "BADGE_RED"
+
+[New in: rippled 1.1.0]: https://github.com/ripple/rippled/releases/tag/1.1.0 "BADGE_BLUE"
+[Introduced in: rippled 1.1.0]: https://github.com/ripple/rippled/releases/tag/1.1.0 "BADGE_BLUE"
+[Updated in: rippled 1.1.0]: https://github.com/ripple/rippled/releases/tag/1.1.0 "BADGE_BLUE"
+[Removed in: rippled 1.1.0]: https://github.com/ripple/rippled/releases/tag/1.1.0 "BADGE_RED"
+[導入: rippled 1.1.0]: https://github.com/ripple/rippled/releases/tag/1.1.0 "BADGE_BLUE"
+[新規: rippled 1.1.0]: https://github.com/ripple/rippled/releases/tag/1.1.0 "BADGE_BLUE"
+[更新: rippled 1.1.0]: https://github.com/ripple/rippled/releases/tag/1.1.0 "BADGE_BLUE"
+[削除: rippled 1.1.0]: https://github.com/ripple/rippled/releases/tag/1.1.0 "BADGE_RED"
+
+[New in: rippled 1.2.0]: https://github.com/ripple/rippled/releases/tag/1.2.0 "BADGE_BLUE"
+[Introduced in: rippled 1.2.0]: https://github.com/ripple/rippled/releases/tag/1.2.0 "BADGE_BLUE"
+[Updated in: rippled 1.2.0]: https://github.com/ripple/rippled/releases/tag/1.2.0 "BADGE_BLUE"
+[Removed in: rippled 1.2.0]: https://github.com/ripple/rippled/releases/tag/1.2.0 "BADGE_RED"
+[導入: rippled 1.2.0]: https://github.com/ripple/rippled/releases/tag/1.2.0 "BADGE_BLUE"
+[新規: rippled 1.2.0]: https://github.com/ripple/rippled/releases/tag/1.2.0 "BADGE_BLUE"
+[更新: rippled 1.2.0]: https://github.com/ripple/rippled/releases/tag/1.2.0 "BADGE_BLUE"
+[削除: rippled 1.2.0]: https://github.com/ripple/rippled/releases/tag/1.2.0 "BADGE_RED"
+
+[New in: rippled 1.2.1]: https://github.com/ripple/rippled/releases/tag/1.2.1 "BADGE_BLUE"
+[Introduced in: rippled 1.2.1]: https://github.com/ripple/rippled/releases/tag/1.2.1 "BADGE_BLUE"
+[Updated in: rippled 1.2.1]: https://github.com/ripple/rippled/releases/tag/1.2.1 "BADGE_BLUE"
+[Removed in: rippled 1.2.1]: https://github.com/ripple/rippled/releases/tag/1.2.1 "BADGE_RED"
+[導入: rippled 1.2.1]: https://github.com/ripple/rippled/releases/tag/1.2.1 "BADGE_BLUE"
+[新規: rippled 1.2.1]: https://github.com/ripple/rippled/releases/tag/1.2.1 "BADGE_BLUE"
+[更新: rippled 1.2.1]: https://github.com/ripple/rippled/releases/tag/1.2.1 "BADGE_BLUE"
+[削除: rippled 1.2.1]: https://github.com/ripple/rippled/releases/tag/1.2.1 "BADGE_RED"
+
+[New in: rippled 1.3.1]: https://github.com/ripple/rippled/releases/tag/1.3.1 "BADGE_BLUE"
+[Introduced in: rippled 1.3.1]: https://github.com/ripple/rippled/releases/tag/1.3.1 "BADGE_BLUE"
+[Updated in: rippled 1.3.1]: https://github.com/ripple/rippled/releases/tag/1.3.1 "BADGE_BLUE"
+[Removed in: rippled 1.3.1]: https://github.com/ripple/rippled/releases/tag/1.3.1 "BADGE_RED"
+[導入: rippled 1.3.1]: https://github.com/ripple/rippled/releases/tag/1.3.1 "BADGE_BLUE"
+[新規: rippled 1.3.1]: https://github.com/ripple/rippled/releases/tag/1.3.1 "BADGE_BLUE"
+[更新: rippled 1.3.1]: https://github.com/ripple/rippled/releases/tag/1.3.1 "BADGE_BLUE"
+[削除: rippled 1.3.1]: https://github.com/ripple/rippled/releases/tag/1.3.1 "BADGE_RED"
+
+[New in: rippled 1.4.0]: https://github.com/ripple/rippled/releases/tag/1.4.0 "BADGE_BLUE"
+[Introduced in: rippled 1.4.0]: https://github.com/ripple/rippled/releases/tag/1.4.0 "BADGE_BLUE"
+[Updated in: rippled 1.4.0]: https://github.com/ripple/rippled/releases/tag/1.4.0 "BADGE_BLUE"
+[Removed in: rippled 1.4.0]: https://github.com/ripple/rippled/releases/tag/1.4.0 "BADGE_RED"
+[導入: rippled 1.4.0]: https://github.com/ripple/rippled/releases/tag/1.4.0 "BADGE_BLUE"
+[新規: rippled 1.4.0]: https://github.com/ripple/rippled/releases/tag/1.4.0 "BADGE_BLUE"
+[更新: rippled 1.4.0]: https://github.com/ripple/rippled/releases/tag/1.4.0 "BADGE_BLUE"
+[削除: rippled 1.4.0]: https://github.com/ripple/rippled/releases/tag/1.4.0 "BADGE_RED"
+
+[New in: rippled 1.5.0]: https://github.com/ripple/rippled/releases/tag/1.5.0 "BADGE_BLUE"
+[Introduced in: rippled 1.5.0]: https://github.com/ripple/rippled/releases/tag/1.5.0 "BADGE_BLUE"
+[Updated in: rippled 1.5.0]: https://github.com/ripple/rippled/releases/tag/1.5.0 "BADGE_BLUE"
+[Removed in: rippled 1.5.0]: https://github.com/ripple/rippled/releases/tag/1.5.0 "BADGE_RED"
+[導入: rippled 1.5.0]: https://github.com/ripple/rippled/releases/tag/1.5.0 "BADGE_BLUE"
+[新規: rippled 1.5.0]: https://github.com/ripple/rippled/releases/tag/1.5.0 "BADGE_BLUE"
+[更新: rippled 1.5.0]: https://github.com/ripple/rippled/releases/tag/1.5.0 "BADGE_BLUE"
+[削除: rippled 1.5.0]: https://github.com/ripple/rippled/releases/tag/1.5.0 "BADGE_RED"
+
+[New in: rippled 1.6.0]: https://github.com/ripple/rippled/releases/tag/1.6.0 "BADGE_BLUE"
+[Introduced in: rippled 1.6.0]: https://github.com/ripple/rippled/releases/tag/1.6.0 "BADGE_BLUE"
+[Updated in: rippled 1.6.0]: https://github.com/ripple/rippled/releases/tag/1.6.0 "BADGE_BLUE"
+[Removed in: rippled 1.6.0]: https://github.com/ripple/rippled/releases/tag/1.6.0 "BADGE_RED"
+[導入: rippled 1.6.0]: https://github.com/ripple/rippled/releases/tag/1.6.0 "BADGE_BLUE"
+[新規: rippled 1.6.0]: https://github.com/ripple/rippled/releases/tag/1.6.0 "BADGE_BLUE"
+[更新: rippled 1.6.0]: https://github.com/ripple/rippled/releases/tag/1.6.0 "BADGE_BLUE"
+[削除: rippled 1.6.0]: https://github.com/ripple/rippled/releases/tag/1.6.0 "BADGE_RED"
+
+[New in: rippled 1.7.0]: https://github.com/ripple/rippled/releases/tag/1.7.0 "BADGE_BLUE"
+[Introduced in: rippled 1.7.0]: https://github.com/ripple/rippled/releases/tag/1.7.0 "BADGE_BLUE"
+[Updated in: rippled 1.7.0]: https://github.com/ripple/rippled/releases/tag/1.7.0 "BADGE_BLUE"
+[Removed in: rippled 1.7.0]: https://github.com/ripple/rippled/releases/tag/1.7.0 "BADGE_RED"
+[導入: rippled 1.7.0]: https://github.com/ripple/rippled/releases/tag/1.7.0 "BADGE_BLUE"
+[新規: rippled 1.7.0]: https://github.com/ripple/rippled/releases/tag/1.7.0 "BADGE_BLUE"
+[更新: rippled 1.7.0]: https://github.com/ripple/rippled/releases/tag/1.7.0 "BADGE_BLUE"
+[削除: rippled 1.7.0]: https://github.com/ripple/rippled/releases/tag/1.7.0 "BADGE_RED"
+
+[New in: rippled 1.7.2]: https://github.com/ripple/rippled/releases/tag/1.7.2 "BADGE_BLUE"
+[Introduced in: rippled 1.7.2]: https://github.com/ripple/rippled/releases/tag/1.7.2 "BADGE_BLUE"
+[Updated in: rippled 1.7.2]: https://github.com/ripple/rippled/releases/tag/1.7.2 "BADGE_BLUE"
+[Removed in: rippled 1.7.2]: https://github.com/ripple/rippled/releases/tag/1.7.2 "BADGE_RED"
+[導入: rippled 1.7.2]: https://github.com/ripple/rippled/releases/tag/1.7.2 "BADGE_BLUE"
+[新規: rippled 1.7.2]: https://github.com/ripple/rippled/releases/tag/1.7.2 "BADGE_BLUE"
+[更新: rippled 1.7.2]: https://github.com/ripple/rippled/releases/tag/1.7.2 "BADGE_BLUE"
+[削除: rippled 1.7.2]: https://github.com/ripple/rippled/releases/tag/1.7.2 "BADGE_RED"
+
+[New in: rippled 1.8.1]: https://github.com/ripple/rippled/releases/tag/1.8.1 "BADGE_BLUE"
+[Introduced in: rippled 1.8.1]: https://github.com/ripple/rippled/releases/tag/1.8.1 "BADGE_BLUE"
+[Updated in: rippled 1.8.1]: https://github.com/ripple/rippled/releases/tag/1.8.1 "BADGE_BLUE"
+[Removed in: rippled 1.8.1]: https://github.com/ripple/rippled/releases/tag/1.8.1 "BADGE_RED"
+[導入: rippled 1.8.1]: https://github.com/ripple/rippled/releases/tag/1.8.1 "BADGE_BLUE"
+[新規: rippled 1.8.1]: https://github.com/ripple/rippled/releases/tag/1.8.1 "BADGE_BLUE"
+[更新: rippled 1.8.1]: https://github.com/ripple/rippled/releases/tag/1.8.1 "BADGE_BLUE"
+[削除: rippled 1.8.1]: https://github.com/ripple/rippled/releases/tag/1.8.1 "BADGE_RED"
