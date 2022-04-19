@@ -81,7 +81,6 @@ training:
     expanded: false
     pages:
       - page: openapi/reference.page.yaml/*
-
   - group: Admin
     expanded: true
     pages:
@@ -105,6 +104,3 @@ training:
                             pages:
                               - label: Upgrading
                                 # page: developer-portal/upgrade.md
-alternative:
-  - page: developer-portal/sidebar-alternative.md
-    label: Alternative sidebar example
