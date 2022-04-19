@@ -13,6 +13,15 @@ logo:
   altText: Redocly Training
 toc:
   enable: true
+editPage:
+  baseUrl: https://github.com/amarantha-k/xrpl-org-dev-portal/tree/master/
+  icon: ./images/pencil.svg
+copyCodeSnippet:
+  enable: true
+  buttonText: Copy
+  tooltipText: Copy the code snippet
+  toasterText: Copied!
+  toasterDuration: 1500      
 # oasDefinitions:
   # petstore: ./openapi/petstore.yaml
   # add links to definitions in our API registry by using a fully qualified URL.
@@ -27,12 +36,14 @@ stylesheets:
 #  - ./static/intercom.js
 nav:
 
-  - label: Training exercises
+  - label: Docs
     page: developer-portal/index.md
 
-  - label: External docs
-    icon: ./images/redocly-icon-white.png
-    href: https://redoc.ly/docs/developer-portal/introduction/
+  - label: Blog
+    page: developer-portal/blog/index.md 
+
+  - label: Tutorials
+    page: developer-portal/docs/tutorials/index.md 
 
   - search: true
 

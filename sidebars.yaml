@@ -1,18 +1,5 @@
 training:
   - page: developer-portal/index.md
-  - group: Blog
-    expanded: false
-    pages:
-      - label: Introducing XRPL 1.9.0
-        page: developer-portal/blog/2022/rippled-1.9.0.md
-      - label: Introducing Clio Beta
-        page: developer-portal/blog/2022/introducing-clio.md
-      - label: Announcing NFT-Devnet Reset
-        page: developer-portal/blog/2022/nft-devnet-reset.md
-      - label: Introducing XRPL 1.8.5
-        page: developer-portal/blog/2022/rippled-1.8.5.md
-      - label: Introducing XRPL 1.8.4
-        page: developer-portal/blog/2022/rippled-1.8.4.md
   - group: Docs
     expanded: true
     pages:
@@ -78,5 +65,17 @@ training:
       - label: Creating React components
         page: developer-portal/custom-component.mdx
 alternative:
-  - page: developer-portal/sidebar-alternative.md
-    label: Alternative sidebar example
+  - page: developer-portal/blog/index.md
+  - group: 2022
+    expanded: false
+    pages:
+      - label: Introducing XRPL 1.9.0
+        page: developer-portal/blog/2022/rippled-1.9.0.md
+      - label: Introducing Clio Beta
+        page: developer-portal/blog/2022/introducing-clio.md
+      - label: Announcing NFT-Devnet Reset
+        page: developer-portal/blog/2022/nft-devnet-reset.md
+      - label: Introducing XRPL 1.8.5
+        page: developer-portal/blog/2022/rippled-1.8.5.md
+      - label: Introducing XRPL 1.8.4
+        page: developer-portal/blog/2022/rippled-1.8.4.md
