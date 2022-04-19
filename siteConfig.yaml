@@ -27,18 +27,6 @@ stylesheets:
 #  - ./static/intercom.js
 nav:
 
-  - label: Tutorials
-    page: developer-portal/tutorials.md 
-
-  - label: Docs
-    page: developer-portal/docs/index.md
-
-  - label: Dev Tools
-    page: developer-portal/dev-tools.md 
-
-  - label: Blogs
-    page: developer-portal/blogs/index.md  
-
   - label: Training exercises
     page: developer-portal/index.md
 
