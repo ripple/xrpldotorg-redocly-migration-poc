@@ -1,3 +1,8 @@
+---
+seo:
+  title: Excluding from search
+excludeFromSearch: true
+---
 # Validator List Method
 
 The validator list method is a special API endpoint that fetches a current, trusted validator list a `rippled` server is using. This often represents the exact list of validators a server trusts. [New in: rippled 1.5.0][]
