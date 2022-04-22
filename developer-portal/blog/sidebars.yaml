@@ -1,0 +1,15 @@
+blog:
+  - page: index.md
+  - group: 2022
+    expanded: true
+    pages:
+      - label: Introducing XRPL 1.9.0
+        page: developer-portal/blog/2022/rippled-1.9.0.md
+      - label: Introducing Clio Beta
+        page: developer-portal/blog/2022/introducing-clio.md
+      - label: Announcing NFT-Devnet Reset
+        page: developer-portal/blog/2022/nft-devnet-reset.md
+      - label: Introducing XRPL 1.8.5
+        page: developer-portal/blog/2022/rippled-1.8.5.md
+      - label: Introducing XRPL 1.8.4
+        page: developer-portal/blog/2022/rippled-1.8.4.md

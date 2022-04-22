@@ -22,6 +22,7 @@ copyCodeSnippet:
   tooltipText: Copy the code snippet
   toasterText: Copied!
   toasterDuration: 1500
+showPrevButton: true  
 stylesheets:
   - https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap
   - https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,600,700&display=swap
