@@ -34,7 +34,7 @@ stylesheets:
 nav:
 
   - label: Docs
-    page: developer-portal/index.md
+    page: developer-portal/docs/index.md
 
   - label: Blog
     page: developer-portal/blog/index.md 
