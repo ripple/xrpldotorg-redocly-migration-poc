@@ -9,7 +9,7 @@ linkChecker:
   options:
     CheckExternal: false
 logo:
-  image: ./images/xrpl-white.png
+  image: ./images/test-logo.png
   altText: XRP Ledger Developer Portal
 toc:
   enable: true
@@ -21,8 +21,7 @@ copyCodeSnippet:
   buttonText: Copy
   tooltipText: Copy the code snippet
   toasterText: Copied!
-  toasterDuration: 1500
-showPrevButton: true  
+  toasterDuration: 1500 
 stylesheets:
   - https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap
   - https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,600,700&display=swap
