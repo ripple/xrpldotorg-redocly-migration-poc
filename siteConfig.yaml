@@ -1,16 +1,16 @@
 seo:
-  title: Redocly Training
+  title: XRP Ledger Developer Portal
   description: The best API documentation generator ever.
-  siteUrl: https://developer-portal-starter.redoc.ly
-  keywords: redocly developer portal, api portal starter, api reference docs
+  siteUrl: https://xrpl-docs.redoc.ly/developer-portal/
+  keywords: XRP Ledger developer portal, api reference docs
   lang: en-US
 linkChecker:
   severity: warning
   options:
     CheckExternal: false
 logo:
-  image: ./images/logo.png
-  altText: Redocly Training
+  image: ./images/xrpl-white.png
+  altText: XRP Ledger Developer Portal
 toc:
   enable: true
 editPage:

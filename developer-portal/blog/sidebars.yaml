@@ -3,7 +3,7 @@ blog:
   - group: 2022
     expanded: true
     pages:
-      - label: Introducing XRPL 1.9.0
+      - label: Introducing XRP Ledger 1.9.0
         page: developer-portal/blog/2022/rippled-1.9.0.md
       - label: Introducing Clio Beta
         page: developer-portal/blog/2022/introducing-clio.md
@@ -13,3 +13,54 @@ blog:
         page: developer-portal/blog/2022/rippled-1.8.5.md
       - label: Introducing XRPL 1.8.4
         page: developer-portal/blog/2022/rippled-1.8.4.md
+  - group: 2021
+    expanded: false
+    pages:
+      - label: Introducing XRP Ledger 1.8.2
+        page:
+      - label: Introducing XRP Ledger 1.8.1
+        page:
+      - label: Five Amendments Expected Soon
+        page:
+      - label: Introducing xrpl.js
+        page:
+      - label: RippleX Releases Engineering Preview of Proposed Federated Sidechains System
+        page:
+      - label: Lower Reserves Are Now In Effect
+        page:
+
+  - group: 2020
+    expanded: false
+    pages:
+      - label: 
+        page:
+  - group: 2019
+    expanded: false
+    pages:
+      - label: 
+        page:
+  - group: 2018
+    expanded: false
+    pages:
+      - label: 
+        page:
+  - group: 2017
+    expanded: false
+    pages:
+      - label: 
+        page:
+  - group: 2016
+    expanded: false
+    pages:
+      - label: 
+        page:
+  - group: 2015
+    expanded: false
+    pages:
+      - label: 
+        page:
+  - group: 2014
+    expanded: false
+    pages:
+      - label: 
+        page:
