@@ -22,25 +22,19 @@ An example of the request format:
 
 <!-- MULTICODE_BLOCK_START -->
 
-*WebSocket*
-
-```json
+```WebSocket
 {
   "command": "wallet_propose"
 }
 ```
 
-*JSON-RPC*
-
-```json
+```JSON-RPC
 {
   "method": "wallet_propose"
 }
 ```
 
-*Commandline*
-
-```sh
+```Commandline
 #Syntax: wallet_propose
 rippled wallet_propose
 ```
