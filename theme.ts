@@ -15,10 +15,14 @@ export const theme = {
   colors: {
     // tonalOffset: 0.2,
     primary: {
-      main: '#227a88',
+      main: '#ffffff'
+      // main: '#227a88',
       // light: ({ colors }) => lighten(colors.tonalOffset, colors.primary.main),
       // dark: ({ colors }) => darken(colors.tonalOffset, colors.primary.main),
       // contrastText: ({ colors }) => readableColor(colors.primary.main),
+    },
+    headings: {
+      main: '#0F72E5'
     },
     // success: {
     //   main: '#00aa13',
@@ -26,6 +30,9 @@ export const theme = {
     //   dark: ({ colors }) => darken(colors.tonalOffset, colors.success.main),
     //   contrastText: ({ colors }) => readableColor(colors.success.main),
     // },
+    links: {
+      main: '#0F72E5'
+    },
     // error: {
     //   main: '#e53935',
     //   light: ({ colors }) => lighten(colors.tonalOffset * 2, colors.error.main),
@@ -81,15 +88,15 @@ export const theme = {
       link: '#31bbb6',
       head: '#c167e4',
     },
-    // navbar: {
-    //   main: ({ colors }) => colors.primary.main,
-    //   gradient: ({ colors }) => darken(colors.tonalOffset / 2, colors.navbar.main),
-    //   contrastText: 'white'
-    // },
-    // footer: {
-      // main: ({ colors }) => colors.primary.main,
-      // contrastText: 'white'
-    // },
+    navbar: {
+       main: ({ colors }) => colors.primary.main,
+       gradient: ({ colors }) => darken(colors.tonalOffset / 2, colors.navbar.main),
+       contrastText: 'white'
+     },
+    footer: {
+       main: ({ colors }) => colors.primary.main,
+       contrastText: 'white'
+     },
   },
 
   sidebar: {
@@ -111,30 +118,30 @@ export const theme = {
       fontFamily: '"Source Sans Pro", sans-serif',
       fontWeight: '600',
     },
-    // heading1: {
+     heading1: {
     //   fontSize: '1.85714em',
     //   fontWeight: '600',
     //   fontFamily: ({ typography }) => typography.headings.fontFamily,
     //   lineHeight: ({ typography }) => typography.lineHeight,
-    //   color: ({ colors }) => colors.primary.main,
+       color: ({ colors }) => colors.primary.main,
     //   capitalize: true,
-    // },
-    // heading2: {
+     },
+     heading2: {
     //   fontSize: '1.57143em',
     //   fontWeight: '600',
-    //   color: ({ colors }) => colors.text.primary,
+       color: ({ colors }) => colors.text.primary,
     //   fontFamily: ({ typography }) => typography.headings.fontFamily,
     //   lineHeight: ({ typography }) => typography.lineHeight,
     //   capitalize: false,
-    // },
-    // heading3: {
+     },
+     heading3: {
     //   fontSize: '1.27em',
     //   fontWeight: '600',
-    //   color: ({ colors }) => colors.text.primary,
+       color: ({ colors }) => colors.text.primary,
     //   fontFamily: ({ typography }) => typography.headings.fontFamily,
     //   lineHeight: ({ typography }) => typography.lineHeight,
     //   capitalize: false,
-    // },
+     },
     // heading4: {
     // // ...
     // },
