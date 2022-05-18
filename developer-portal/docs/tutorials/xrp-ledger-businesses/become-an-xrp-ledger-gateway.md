@@ -2,7 +2,7 @@
 seo:
   title: Become an XRP Ledger Gateway
 redirectFrom:
-  - /docs/tutorials/xrp-ledger-businesses.html
+  - /docs/tutorials/xrp-ledger-businesses/
 ---
 # Become an XRP Ledger Gateway
 
