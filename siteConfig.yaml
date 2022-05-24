@@ -37,10 +37,13 @@ nav:
     page: developer-portal/docs/index.md
 
   - label: Blog
-    page: developer-portal/blog/index.md 
+    page: developer-portal/blog/index.md  
 
   - label: Tutorials
     page: developer-portal/docs/tutorials/index.md 
+
+  - label: Community
+    href: https://xrpl.org/contribute.html   
 
   - search: true
 
