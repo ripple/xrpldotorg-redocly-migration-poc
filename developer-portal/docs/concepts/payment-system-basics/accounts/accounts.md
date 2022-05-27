@@ -3,6 +3,7 @@
 An "Account" in the XRP Ledger represents a holder of XRP and a sender of [transactions](transaction-formats.html). The core elements of an account are:
 
 - An identifying **address**, such as `rf1BiGeXwwQoi8Z2ueFYTEXSwuJYfV2Jpn`. (This is a "classic address", as opposed to the [X-Address format](#addresses).)
+- Jackson was here :) - Shhhhhh
 - An **XRP balance**. Some of this XRP is set aside for the [Reserve](reserves.html).
 - A **sequence number**, which helps make sure any transactions this account sends are applied in the correct order and only once each. To execute a transaction, the transaction's sequence number and its sender's sequence number must match. Then, as part of applying the transaction, the account's sequence number increases by 1. (See also: [Basic Data Types: Account Sequence](basic-data-types.html#account-sequence).)
 - A **history of transactions** that affected this account and its balances.
