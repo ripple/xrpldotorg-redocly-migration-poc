@@ -66,8 +66,6 @@ footer:
           href: 'https://xrpl.org/contribute.html'   
     - group: About
       items:
-        - label: About
-          page: ./xrp-ledger-overview.mdx
         - label: FAQ
           page: faq.md
         - label: Contact us
