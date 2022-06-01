@@ -1,6 +1,5 @@
 docs:
   - page: developer-portal/docs/index.md
-  - page: ./xrp-ledger-overview.mdx
   - group: XRPL Fundamentals
     expanded: true
     pages:
