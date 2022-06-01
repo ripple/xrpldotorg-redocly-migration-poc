@@ -1,12 +1,36 @@
 docs:
-  - page: developer-portal/index.md
-  - group: Documentation
+  - page: developer-portal/docs/index.md
+  - page: ./xrp-ledger-overview.mdx
+  - group: XRPL Fundamentals
     expanded: true
     pages:
       - label: Introduction to the XRP Ledger 
         page: developer-portal/docs/concepts/introduction/intro-to-consensus.md
       - label: Payment System Basics
         page: developer-portal/docs/concepts/payment-system-basics/accounts/accounts.md
+  - group: Interact with the Ledger
+    expanded: true
+    pages:
+      - label: Create an Account 
+  - group: Payments
+    expanded: true
+    pages:
+      - label: Wallets
+  - group: Tokens
+    expanded: true
+    pages:
+      - label: Fungible
+      - label: Non-fungible   
+  - group: Exchanges
+    expanded: true
+    pages: 
+      - label: 
+  - group: Server Infrastructure
+    expanded: true
+    pages:
+      - label: Servers and Nodes
+      - label: Networks
+      - label: Best Practices
   - group: References
     expanded: true
     pages:
@@ -16,51 +40,3 @@ docs:
         page:  developer-portal/docs/references/rippled-api/admin-rippled-methods/admin-rippled-methods.md
       - label: Public rippled methods
         page:  developer-portal/docs/references/rippled-api/public-rippled-methods/account-methods/account_channels.md
-  - group: Dev Tools
-    expanded: true
-    pages:
-      - label: Developer Tools
-        page: developer-portal/docs/dev-tools/dev-tools.md
-  - group: Tutorials
-    expanded: true
-    pages:
-      - label: XRP Ledger Quickstart
-        page: developer-portal/docs/tutorials/quickstart/xrpl-quickstart.md              
-  - group: Training exercises
-    expanded: true
-    pages:
-      - label: Setup
-        page: developer-portal/setup.md
-      - label: Markdown
-        page: developer-portal/markdown.md
-      - label: Folder structure
-        page: developer-portal/awesome/folders.md
-      - label: Mermaid diagrams
-        page: developer-portal/mermaid.md
-      - label: Page table of contents
-        page: developer-portal/page-table-of-contents.md
-      - separator: This is a separator
-      - label: Sidebar navigation
-        page: developer-portal/sidebar-nav.md
-      - label: Search
-        page: developer-portal/search.md
-      - label: Top nav and footers
-        page: developer-portal/nav-footer.md
-      - label: Logo and favicon
-        page: developer-portal/logo.md
-      - label: Metadata
-        page: developer-portal/metadata.md
-      - label: Colors
-        page: developer-portal/colors.md
-      - label: Typography
-        page: developer-portal/typography.md
-      - label: Analytics
-        page: developer-portal/analytics.md
-      - label: Home page
-        page: developer-portal/home-page.md
-      - label: Adding API reference docs
-        page: developer-portal/oas-definitions.md
-      - label: Adding an API response to an MDX page
-        page: developer-portal/mdx.mdx
-      - label: Creating React components
-        page: developer-portal/custom-component.mdx

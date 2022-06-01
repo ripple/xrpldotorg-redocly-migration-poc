@@ -36,13 +36,11 @@ nav:
   - label: Docs
     page: developer-portal/docs/index.md
 
-  - label: Blog
-    page: developer-portal/blog/index.md  
-
-  - page: ./xrp-ledger-overview.mdx
-
   - label: Tutorials
     page: developer-portal/docs/tutorials/index.md 
+    
+  - label: Dev Tools
+    href: https://xrpl.org/dev-tools.html  
 
   - label: Community
     href: https://xrpl.org/contribute.html   
@@ -60,6 +58,12 @@ footer:
           href: 'https://redoc.ly/privacy-notice/'
         - label: Cookie Notice
           href: 'https://redoc.ly/cookie-notice/'
+    - group: Community
+      items:
+        - label: Blog
+          page: developer-portal/blog/index.md
+        - label: Discord
+          href: 'https://xrpl.org/contribute.html'   
     - group: Support
       items:
         - label: FAQ
