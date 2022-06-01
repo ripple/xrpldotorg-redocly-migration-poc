@@ -64,10 +64,10 @@ footer:
           page: developer-portal/blog/index.md
         - label: Discord
           href: 'https://xrpl.org/contribute.html'   
-    - group: Support
+    - group: About
       items:
         - label: About
-          page: xrp-ledger-overview.mdx
+          page: ./xrp-ledger-overview.mdx
         - label: FAQ
           page: faq.md
         - label: Contact us
