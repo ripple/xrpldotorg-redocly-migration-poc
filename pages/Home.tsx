@@ -8,7 +8,7 @@ import { XRPLCard } from '../components/XRPLCard.tsx';
 
 export default function XRPLHome() {
   return (
-    <div class="overflow-hidden">
+    <div class="overflow-hidden page-home">
       <section class="container-new pb-26-until-sm mt-10 mb-10-sm text-center">
         <div class="w-100">
           <img id="home-hero-graphic" alt="X" />
