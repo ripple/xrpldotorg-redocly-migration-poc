@@ -1,0 +1,7 @@
+node_modules/
+*~
+.DS_Store
+__pycache__
+out/
+package-lock.json
+yarn-error.log
