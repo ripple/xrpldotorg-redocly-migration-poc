@@ -9,11 +9,11 @@ This example shows how to:
 2. Retrieve the accounts from seed values.
 3. Transfer XRP between accounts.
 
-When you create an account, you receive a public/private key pair offline. It does not appear on the ledger until it is funded with XRP. This example shows how to create an account for Testnet, but not how to create an account that you can use on Mainnet.
+When you create an account, you receive a public/private key pair offline. It does not appear on the ledger until it is funded with XRP. This example shows how to create accounts for Testnet, but not how to create an account that you can use on Mainnet.
 
 
 
-![Token Test Harness](img/quickstart2.png)
+[![Token Test Harness](../../img/quickstart2.png)](../../img/quickstart2.png)
 
 
 
@@ -28,7 +28,7 @@ To get started, create a new folder on your local disk and install the JavaScrip
 ```
 
 
-Download and expand the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart/quickstart.zip) archive.
+Download and expand the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart/js/quickstart.zip) archive.
 
 ## Usage
 
@@ -37,30 +37,14 @@ To get test accounts:
 
 
 1. Open `1.get-accounts-send-xrp.html` in a browser
-2. Choose **Testnet** or **Devnet**.
+2. Choose **NFT-Devnet**, **Testnet**, or **Devnet**.
 3. Click **Get New Standby Account**.
 4. Click **Get New Operational Account.**
 5. Copy and paste the **Seeds** field in a persistent location, such as a Notepad, so that you can reuse the accounts after reloading the form.
 
 
 
-![Standby and Operational Accounts](img/quickstart3.png)
-
-
-NOTE: The accounts in the test harness work on _Testnet_ and _Devnet_, but not on _NFT-Devnet_. To create accounts that can mint and trade NFTs:
-
-
-
-1. Visit the [XRP Testnet Faucet](https://xrpl.org/xrp-testnet-faucet.html) page.
-2. Click **Generate NFT-Devnet credentials**.
-3. Copy the account **Secret**.
-4. Paste the secret in a persistent location, such as a notepad, and press return.
-5. Click **Generate NFT-Devnet credentials** to create a second account.
-6. Copy the account **Secret**.
-7. Paste the secret in the persistent location.
-8. Copy both secrets, separated by a return.
-9. Paste them in the **Account** **Seeds** field.
-10. Click **Get Accounts from Seeds**.
+[![Standby and Operational Accounts](../../img/quickstart3.png)](../../img/quickstart3.png)
 
 You can transfer XRP between your new accounts. Each account has its own fields and buttons.
 
@@ -69,29 +53,30 @@ To transfer XRP between accounts:
 
 
 1. Enter the **Amount** of XRP to send.
-2. Click **Send XRP>** to transfer XRP from the standby account to the operational account, or **&lt;Send XRP** to transfer XRP from the operational account to the standby account**.**
+2. Enter the **Destination** account (for example, copy and paste the Operational **Account Field** to the Standby **Destination** field).
+3. Click **Send XRP>** to transfer XRP from the standby account to the operational account, or **&lt;Send XRP** to transfer XRP from the operational account to the standby account.
 
 
 
-![Transferred XRP](img/quickstart4.png)
+[![Transferred XRP](../../img/quickstart4.png)](../../img/quickstart4.png)
 
 
 
 # Code Walkthrough
 
-You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart/quickstart.zip) in the source repository for this website.
+You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart/js/quickstart.zip) in the source repository for this website.
 
 
 
 ## ripplex-1-send-xrp.js
 
-This example can be used with any XRP Ledger network. Currently, there are _Testnet_ and _Devnet,_ with the experimental _NFT-Devnet_ server with support for NFTs. You can update the code to choose different or additional XRP Ledger networks.
+This example can be used with any XRP Ledger network. Currently, there are _Testnet_ and _Devnet,_ with the experimental _NFT-Devnet_ server with support for NFTokens. You can update the code to choose different or additional XRP Ledger networks.
 
 
 ### getNet()
 
 
-```
+```javascript
 // ******************************************************
 // ************* Get the Preferred Network **************
 // ******************************************************   
@@ -103,12 +88,12 @@ This example can be used with any XRP Ledger network. Currently, there are _Test
 This function uses brute force `if` statements to discover the selected network instance and return the URI.
 
 
-```
+```javascript
         let net
           if (document.getElementById("xls").checked) net = "wss://xls20-sandbox.rippletest.net:51233"
-           if (document.getElementById("tn").checked) net = "wss://s.altnet.rippletest.net:51233"
-           if (document.getElementById("dn").checked) net = "wss://s.devnet.rippletest.net:51233"
-           return net
+          if (document.getElementById("tn").checked) net = "wss://s.altnet.rippletest.net:51233"
+          if (document.getElementById("dn").checked) net = "wss://s.devnet.rippletest.net:51233"
+          return net
         } // End of getNet()
 ```
 
@@ -117,7 +102,7 @@ This function uses brute force `if` statements to discover the selected network 
 ### getAccount(type)              
 
 
-```
+```javascript
 // *******************************************************
 // ************* Get Account *****************************
 // *******************************************************
@@ -130,7 +115,7 @@ This function uses brute force `if` statements to discover the selected network 
 Get the selected ledger.
 
 
-```
+```javascript
       let net = getNet()
 ```
 
@@ -138,7 +123,7 @@ Get the selected ledger.
 Instantiate a client.
 
 
-```
+```javascript
       const client = new xrpl.Client(net)
 ```
 
@@ -146,7 +131,7 @@ Instantiate a client.
 Use the _results_ variable to capture progress information.
 
 
-```
+```javascript
         results = 'Connecting to ' + getNet() + '....'
         const walletServer = net
 ```
@@ -155,7 +140,7 @@ Use the _results_ variable to capture progress information.
 Report progress in the appropriate results field.
 
 
-```
+```javascript
         if (type == 'standby') {
           document.getElementById('standbyResultField').value = results
         } else {
@@ -167,7 +152,7 @@ Report progress in the appropriate results field.
 Connect to the server.
 
 
-```
+```javascript
         await client.connect()
 
 
@@ -183,7 +168,7 @@ Connect to the server.
 Create and fund a test account wallet.
 
 
-```
+```javascript
        const my_wallet = (await client.fundWallet(null, { faucetHost: walletServer})).wallet
 ```
 
@@ -191,7 +176,7 @@ Create and fund a test account wallet.
 Get the current XRP balance for the account.
 
 
-```
+```javascript
         const my_balance = (await client.getXrpBalance(my_wallet.address))  
 
 
@@ -201,7 +186,7 @@ Get the current XRP balance for the account.
 If this is a standby account, populate the standby account fields.
 
 
-```
+```javascript
 
 
         if (type == 'standby') {
@@ -219,7 +204,7 @@ If this is a standby account, populate the standby account fields.
 Otherwise, populate the operational account fields.
 
 
-```
+```javascript
         } else {
           document.getElementById('operationalAccountField').value = my_wallet.address
           document.getElementById('operationalPubKeyField').value = my_wallet.publicKey
@@ -233,10 +218,10 @@ Otherwise, populate the operational account fields.
 ```
 
 
-Insert the seed values for both accounts as they are created to the **Seeds** field as a convenience. You can copy the values and store them offline, then paste them into the **Seeds** field to retrieve the accounts with the `getAccountsFromSeeds()` function.
+Insert the seed values for both accounts as they are created to the **Seeds** field as a convenience. You can copy the values and store them offline. When you reload this form or another in this tutorial, copy and paste them into the **Seeds** field to retrieve the accounts with the `getAccountsFromSeeds()` function.
 
 
-```
+```javascript
         document.getElementById('seeds').value = standbySeedField.value + '\n' + operationalSeedField.value
 ```
 
@@ -244,7 +229,7 @@ Insert the seed values for both accounts as they are created to the **Seeds** fi
 Disconnect from the XRP ledger. 
 
 
-```
+```javascript
         client.disconnect()
       } // End of getAccount()
 ```
@@ -254,7 +239,7 @@ Disconnect from the XRP ledger.
 ### Get Accounts from Seeds
 
 
-```
+```javascript
 // *******************************************************
 // ********** Get Accounts from Seeds ******************** 
 // *******************************************************
@@ -266,7 +251,7 @@ Disconnect from the XRP ledger.
 Connect to the selected network.
 
 
-```
+```javascript
         let net = getNet()
         const client = new xrpl.Client(net)
         results = 'Connecting to ' + getNet() + '....'
@@ -279,10 +264,10 @@ Connect to the selected network.
 ```
 
 
-Parse the **seeds** field.
+Parse the **Seeds** field.
 
 
-```
+```javascript
 
 
         var lines = seeds.value.split('\n');
@@ -292,7 +277,7 @@ Parse the **seeds** field.
 Get the `standby_wallet` based on the seed in the first line. Get the `operational_wallet` based on the seed in the second line.
 
 
-```
+```javascript
         const standby_wallet = xrpl.Wallet.fromSeed(lines[0])
         const operational_wallet = xrpl.Wallet.fromSeed(lines[1])
 
@@ -303,7 +288,7 @@ Get the `standby_wallet` based on the seed in the first line. Get the `operation
 Get the current XRP balances for the accounts.
 
 
-```
+```javascript
         const standby_balance = (await client.getXrpBalance(standby_wallet.address))  
         const operational_balance = (await client.getXrpBalance(operational_wallet.address))  
 ```
@@ -312,7 +297,7 @@ Get the current XRP balances for the accounts.
 Populate the fields for the standby and operational accounts.
 
 
-```
+```javascript
         document.getElementById('standbyAccountField').value = standby_wallet.address
         document.getElementById('standbyPubKeyField').value = standby_wallet.publicKey
         document.getElementById('standbyPrivKeyField').value = standby_wallet.privateKey
@@ -335,7 +320,7 @@ Populate the fields for the standby and operational accounts.
 Disconnect from the XRP Ledger.
 
 
-```
+```javascript
        client.disconnect()
 
 
@@ -347,7 +332,7 @@ Disconnect from the XRP Ledger.
 ### Send XRP
 
 
-```
+```javascript
 // *******************************************************
 // ******************** Send XRP *************************
 // *******************************************************
@@ -359,7 +344,7 @@ Disconnect from the XRP Ledger.
 Connect to your selected ledger.
 
 
-```
+```javascript
 
 
         results  = "Connecting to the selected ledger.\n"
@@ -386,17 +371,17 @@ Connect to your selected ledger.
 ```
 
 
-Prepare the transaction. This is a Payment transaction from the standby wallet to the operational wallet. You could add a **Destination** field to send to any account: this hardcoded example is for convenience in this tutorial. 
+Prepare the transaction. This is a Payment transaction from the standby wallet to the operational wallet.
 
 The _Payment_ transaction expects the XRP to be expressed in drops, or 1/millionth of an XRP.  You can use the xrpToDrops utility to convert the send amount for you (which beats having to type an extra 6 zeroes to send 1 XRP).
 
 
-```
+```javascript
         const prepared = await client.autofill({
           "TransactionType": "Payment",
           "Account": standby_wallet.address,
           "Amount": xrpl.xrpToDrops(sendAmount),
-          "Destination": operational_wallet.address
+          "Destination": standbyDestinationField.value
         })
 
 
@@ -406,7 +391,7 @@ The _Payment_ transaction expects the XRP to be expressed in drops, or 1/million
 Sign the prepared transaction.
 
 
-```
+```javascript
         const signed = standby_wallet.sign(prepared)
 
 
@@ -416,7 +401,7 @@ Sign the prepared transaction.
 Submit the transaction and wait for the results.
 
 
-```
+```javascript
         const tx = await client.submitAndWait(signed.tx_blob)
 ```
 
@@ -424,9 +409,7 @@ Submit the transaction and wait for the results.
 Request the balance changes caused by the transaction and report the results.
 
 
-```
-
-
+```javascript
          results  += "\nBalance changes: " + 
             JSON.stringify(xrpl.getBalanceChanges(tx.result.meta), null, 2)
          document.getElementById('standbyResultField').value = results
@@ -448,7 +431,7 @@ Request the balance changes caused by the transaction and report the results.
 For each of the transactions, there is an accompanying reciprocal transaction, with the prefix _oP,_ for the operational account. See the corresponding function for the standby account for code commentary.
 
 
-```
+```javascript
 // **********************************************************************
 // ****** Reciprocal Transactions ****************************************
 // **********************************************************************
@@ -489,7 +472,7 @@ For each of the transactions, there is an accompanying reciprocal transaction, w
           "TransactionType": "Payment",
           "Account": operational_wallet.address,
           "Amount": xrpl.xrpToDrops(operationalAmountField.value),
-          "Destination": standby_wallet.address
+          "Destination": operationalDestinationField.value
         })
 
 
@@ -525,22 +508,28 @@ For each of the transactions, there is an accompanying reciprocal transaction, w
 Create a standard HTML form to send transactions and requests, then display the results.  
 
 
-```
+```html
 <html>
   <head>
     <title>Token Test Harness</title>
-    <script src='https://unpkg.com/xrpl@2.1.1'></script>
+    <script src='https://unpkg.com/xrpl@2.2.3'></script>
     <script src='ripplex1-send-xrp.js'></script>
     <script>
       if (typeof module !== "undefined") {
         const xrpl = require('xrpl')
       }
+
     </script>
   </head>
+  
+<!-- ************************************************************** -->
+<!-- ********************** The Form ****************************** -->
+<!-- ************************************************************** -->
+
   <body>
     <h1>Token Test Harness</h1>
     <form id="theForm">
-      Choose your network:  
+      Choose your ledger instance:  
       <input type="radio" id="xls" name="server"
         value="wss://xls20-sandbox.rippletest.net:51233" checked>
       <label for="xls20">XLS20-NFT</label>
@@ -617,6 +606,15 @@ Create a standard HTML form to send transactions and requests, then display the 
                       </td>
                       <td>
                         <input type="text" id="standbyAmountField" size="40" value="100"></input>
+                        <br>
+                      </td>
+                    </tr>
+                   <tr>
+                      <td align="right">
+                        Destination
+                      </td>
+                      <td>
+                        <input type="text" id="standbyDestinationField" size="40" value="100"></input>
                         <br>
                       </td>
                     </tr>
@@ -706,6 +704,15 @@ Create a standard HTML form to send transactions and requests, then display the 
                               <br>
                             </td>
                           </tr>
+                          <tr>
+                            <td align="right">
+                              Destination
+                            </td>
+                            <td>
+                              <input type="text" id="operationalDestinationField" size="40" value="100"></input>
+                              <br>
+                            </td>
+                          </tr>
                         </table>
                         <p align="right">
                           <textarea id="operationalResultField" cols="80" rows="20" ></textarea>
@@ -725,8 +732,3 @@ Create a standard HTML form to send transactions and requests, then display the 
     </form>
   </body>
 </html>
-```
-
-| Previous                                | Next                                                                          |
-| :---                                    |                                                                          ---: |
-| [XRPL Quickstart](xrpl-quickstart.html) | 2. [Create TrustLine and Send Currency](create-trustline-send-currency.html). |

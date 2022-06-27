@@ -1,66 +1,53 @@
-docs:
-  - page: developer-portal/index.md
-  - group: Documentation
+dcm:
+  - page: dcm/index.md
+  - group: News
+    expanded: false
+    pages:
+      - page: dcm/news/announcements/index.md
+        label: Announcements
+      - group: Release Notes
+        expanded: false
+        page: dcm/news/release-notes/index.md
+        pages:
+          - label: DCM 0.1
+            page: dcm/news/release-notes/dcm-0.1.md
+  - group: Overview
     expanded: true
     pages:
-      - label: Introduction to the XRP Ledger 
-        page: developer-portal/docs/concepts/introduction/intro-to-consensus.md
-      - label: Payment System Basics
-        page: developer-portal/docs/concepts/payment-system-basics/accounts/accounts.md
-  - group: References
+      - label: Payment Systems Overview
+        page: dcm/pso.md
+      - label: DCM Overview
+        page: dcm/use/index.md
+  - group: Use DCM
     expanded: true
     pages:
-      - label: XRP Ledger Protocol Reference
-        page: developer-portal/docs/references/protocol-reference/data-types/basic-data-types.md
-      - label: Admin rippled methods
-        page:  developer-portal/docs/references/rippled-api/admin-rippled-methods/admin-rippled-methods.md
-      - label: Public rippled methods
-        page:  developer-portal/docs/references/rippled-api/public-rippled-methods/account-methods/account_channels.md
-  - group: Dev Tools
+      - label: Chief Admin
+        page: dcm/use/chief-admin.md
+      - label: Chief Cashier
+        page: dcm/use/chief-cashier.md
+      - label: Distribution Officer
+        page: dcm/use/distribution-officer.md
+      - label: Use the Ledger Nano with DCM
+        page: dcm/use/use-ledger-nano.md
+      - label: Appendix - Supported Browsers
+        page: dcm/use/appx-supported-browsers.md
+  - group: Administer DCM
     expanded: true
     pages:
-      - label: Developer Tools
-        page: developer-portal/docs/dev-tools/dev-tools.md
-  - group: Tutorials
+      - label: Introduction to DCM Administration
+        page: dcm/admin/index.md
+      - label: Configuring a New DCM Tenant
+        page: dcm/admin/configure-dcm-tenant.md
+  - group: Integrate with DCM
     expanded: true
     pages:
-      - label: XRP Ledger Quickstart
-        page: developer-portal/docs/tutorials/quickstart/xrpl-quickstart.md              
-  - group: Training exercises
-    expanded: true
+      - label: Introduction to DCM Integration
+        page: dcm/develop/index.md
+
+  - group: DCM reference
+    expanded: false
     pages:
-      - label: Setup
-        page: developer-portal/setup.md
-      - label: Markdown
-        page: developer-portal/markdown.md
-      - label: Folder structure
-        page: developer-portal/awesome/folders.md
-      - label: Mermaid diagrams
-        page: developer-portal/mermaid.md
-      - label: Page table of contents
-        page: developer-portal/page-table-of-contents.md
-      - separator: This is a separator
-      - label: Sidebar navigation
-        page: developer-portal/sidebar-nav.md
-      - label: Search
-        page: developer-portal/search.md
-      - label: Top nav and footers
-        page: developer-portal/nav-footer.md
-      - label: Logo and favicon
-        page: developer-portal/logo.md
-      - label: Metadata
-        page: developer-portal/metadata.md
-      - label: Colors
-        page: developer-portal/colors.md
-      - label: Typography
-        page: developer-portal/typography.md
-      - label: Analytics
-        page: developer-portal/analytics.md
-      - label: Home page
-        page: developer-portal/home-page.md
-      - label: Adding API reference docs
-        page: developer-portal/oas-definitions.md
-      - label: Adding an API response to an MDX page
-        page: developer-portal/mdx.mdx
-      - label: Creating React components
-        page: developer-portal/custom-component.mdx
+      - page: openapi/reference.page.yaml/*
+alternative:
+  - page: developer-portal/sidebar-alternative.md
+    label: Alternative sidebar example

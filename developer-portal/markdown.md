@@ -47,6 +47,8 @@ To do that, you can edit this `markdown.md` file and remove the back ticks aroun
 [My first plain markdown page!](plain.md)
 ```
 
+[My first plain markdown page!](plain.md)
+
 (And save your file.)
 
 You'll notice the terminal will output a message stating that the file changed.

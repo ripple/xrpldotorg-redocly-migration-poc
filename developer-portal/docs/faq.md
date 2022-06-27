@@ -1,7 +1,6 @@
-###### FAQ
-# Your Questions About XRPL, Answered
+# FAQ
 
-<!--#{ Use H4s for questions and H2s for sections. This keeps the sidebar nav from getting too clustered and allows the faq filter to stylize things as an accordion. #}-->
+Answers to common questions about the XRPL.
 
 #### Is XRPL a private blockchain, owned by Ripple?
 
