@@ -1,8 +1,0 @@
-- page: iaReorg/index.md
-- group: Concepts
-  expanded: true
-  pages:
-    - label: IA Reorg
-      page: iaReorg/index.md
-    - label: Read Me
-      page: iaReorg/ReadMe.md
