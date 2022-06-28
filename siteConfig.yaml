@@ -25,30 +25,35 @@ copyCodeSnippet:
 stylesheets:
   - https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap
   - https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,600,700&display=swap
-  - ./assets/css/devportal2022-v4.css
+  - ./static/css/devportal2022-v4.css
+  - ./static/vendor/fontawesome/css/font-awesome.min.css
+  - ./static/css/fixes.css
 
 #analytics:
   # ga:
   # note that GA doesn't work in the development environment
   #  trackingId: UA-45997213-1
-scripts:
- - ./static/js/jquery-3.6.0.min.js
-nav:
 
+postBodyScripts:
+  - ./static/js/xrpl-2.2.0.min.js
+  - ./static/js/jquery-3.6.0.min.js
+
+# Top Menu Navigation ----------------------------------------------------------
+nav:
   - label: Docs
-    page: developer-portal/docs/index.md
+    page: docs/index.md
 
   - label: Blog
-    page: developer-portal/blog/index.md
+    page: blog/index.md
 
   - label: Tutorials
     page: developer-portal/docs/tutorials/index.md
 
-  - page: ./xrp-ledger-overview.mdx
-
+  - page: about/xrp-ledger-overview.mdx
 
   - search: true
 
+# Footer configuration ---------------------------------------------------------
 footer:
   copyrightText: Copyright © Redocly 2019-2021. All right reserved.
   columns:
@@ -63,6 +68,4 @@ footer:
     - group: Support
       items:
         - label: FAQ
-          page: faq.md
-        - label: Contact us
-          page: contact.mdx
+          #page: faq.md
