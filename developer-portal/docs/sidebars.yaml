@@ -1,0 +1,118 @@
+- page: index.md
+- group: Introduction to the XRPL
+  page: concepts/introduction/intro-to-xrpl.md
+  expanded: true
+  pages: 
+    - page: concepts/introduction/what-is-xrp.md
+    - page: concepts/introduction/what-is-xrpl.md
+    - page: concepts/introduction/txn-and-requests.md
+    - page: concepts/introduction/other-topics-placeholder.md
+- group: Tutorials
+  page: tutorials/index.md
+  expanded: false
+  pages: 
+    - group: Quickstart
+      page: tutorials/quickstart/xrpl-quickstart.md
+      expanded: false
+      pages:
+        - page: tutorials/quickstart/create-accounts-send-xrp.md
+        - page: tutorials/quickstart/create-trustline-send-currency.md
+        - page: tutorials/quickstart/mint-and-burn-nftokens.md
+        - page: tutorials/quickstart/transfer-nftokens.md
+        - page: tutorials/quickstart/broker-sale.md
+- group: Understanding the XRPL
+  page: concepts/understanding-xrpl/understanding-xrpl.md
+  expanded: false
+  pages:
+    - group: XRP Ledger Ecosystem
+      page: concepts/understanding-xrpl/xrpl/xrpl-ecosystem.md
+      expanded: false
+      pages:
+        - label: Ledger Structure
+          page: concepts/understanding-xrpl/xrpl/ledger-structure.md
+        - label: Consensus
+          page: concepts/introduction/placeholder.md
+        - label: Validators
+          page: concepts/introduction/placeholder.md
+        - label: rippled Server
+          page: concepts/introduction/placeholder.md
+        - label: Server Modes
+          page: concepts/introduction/placeholder.md
+    - group: Transactions
+      expanded: false
+      pages:
+        - label: Transaction Structure
+          page: concepts/introduction/placeholder.md
+        - label: Transaction Types
+          page: concepts/introduction/placeholder.md
+    - group: Tokens
+      expanded: false
+      pages:
+        - label: Tokens
+          page: concepts/introduction/placeholder.md
+        - group: Token Types
+          expanded: false
+          pages:
+            - label: Fungible Tokens
+              page: concepts/introduction/placeholder.md
+            - label: Non-fungible Tokens
+              page: concepts/introduction/placeholder.md
+
+    - group: Accounts
+      expanded: false
+      pages:
+        - group: Account Structure
+          page: concepts/introduction/placeholder.md
+          expanded: false
+          pages:
+            - label: Addresses
+              page: concepts/introduction/placeholder.md
+            - label: Balances
+              page: concepts/introduction/placeholder.md
+            - label: Sequence
+              page: concepts/introduction/placeholder.md
+            - label: History
+              page: concepts/introduction/placeholder.md
+        - label: Account Types
+          page: concepts/introduction/placeholder.md
+- group: Use Cases
+  expanded: false
+  pages:
+    - label: Payments
+      page: concepts/introduction/placeholder.md
+    - label: Distributed Exchange
+      page: concepts/introduction/placeholder.md
+    - label: Tokenization
+      page: concepts/introduction/placeholder.md
+    - label: Interoperability
+      page: concepts/introduction/placeholder.md
+- group: API Reference
+  expanded: false
+  pages:
+    - label: Developer Tools (broken links)
+      page: dev-tools/dev-tools.md
+    - group: XRP Ledger Protocol Reference
+      expanded: false
+      pages:
+    - group: Client Libraries
+      expanded: false
+      pages:
+        - page: references/client-libraries.md
+        - page: references/data-api.md
+    - group: HTTP / WebSocket APIs
+      pages:
+    - page: references/xrp-ledger-toml.md
+- group: Amendments
+  expanded: false
+  pages:
+    - page: amendments/amendments.md
+    - page: amendments/known-amendments.md
+- group: Contributing
+  expanded: false
+  pages:
+    - label: Contribute Code to the XRPL
+      page: contributing/contribute-code.md
+    - label: Report a Scam
+      page: contributing/report-a-scam.md   
+- page: faq.md
+- page: releases.md
