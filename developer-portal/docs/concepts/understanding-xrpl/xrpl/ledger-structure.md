@@ -2,11 +2,15 @@
 
 The XRP Ledger is a block chain system, linking immutable data blocks in a meaningful sequence. This topic examines the data blocks that make up the XRPL block chain.
 
+The XRP Ledger processes transactions in blocks called *ledger versions*. Each ledger version contains state data, a transaction set, and metadata.
+
+The main job of the XRP Ledger Consensus Protocol is to agree on a set of transactions to apply to the previous ledger, apply them in a well defined order, then confirm that all validators get the same results. When this happens successfully, a ledger version is considered _validated_, and final. From there, the process continues by building the next ledger version.
+
 [![Ledger Version](../../../img/ledger.png)](../../../img/ledger.png)
 
 Each data block in the XRPL chain is a *ledger version*. A ledger version is comprised of the following elements.
 
-The *sequence number* identifies the ledger version position in the chain at the time of its validation.
+The *ledger index* identifies the ledger version position in the chain at the time of its validation. It builds on the version with an index that is one lower, back to the starting point known as the _genesis ledger_. This forms a public history of all transactions and results.
 
 [![Sequence Number](../../../img/ledger1-sequence-number.png)](../../../img/ledger1-sequence-number.png)
 

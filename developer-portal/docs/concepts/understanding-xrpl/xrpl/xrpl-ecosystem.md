@@ -17,7 +17,7 @@ The peer-to-peer network at the heart of the XRP Ledger requires a highly reliab
 
 [![Peer-to-Peer Network](../../../img/ecosystem1-peer-to-peer.png)](../../../img/ecosystem1-peer-to-peer.png)
 
-Every XRPL instance of `rippled` syncs to the same network and has access to all communications across the network. Every `rippled` server on the network keeps a complete copy of the latest state data for the entire XRP Ledger. Each server stores a slice of recent transactions and a record of the changes those transactions made. Every server processes every transaction independently, while verifying that its outcome matches the rest of the network. Servers can be configured to keep more ledger history and to participate in the consensus process as a validator.
+Every XRPL instance of `rippled` syncs to the same network and has access to all communications across the network. Every `rippled` server on the network keeps a complete copy of the latest state data for the entire XRP Ledger. Each server stores a slice of recent transactions and a record of the changes those transactions made. Every server processes every transaction independently, while verifying that its outcome matches the rest of the network. Servers can be configured to keep more ledger history and to participate in the _consensus_ process as a _validator_.
 
 `rippled` APIs allow users to look up data, administer the server, and submit transactions.
 
