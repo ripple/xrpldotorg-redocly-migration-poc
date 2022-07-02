@@ -38,10 +38,9 @@
             - page: concepts/understanding-xrpl/xrpl/consensus-protocol-properties.md
             - page: concepts/understanding-xrpl/xrpl/how-consensus-works.md
             - page: concepts/understanding-xrpl/xrpl/consensus-protections.md
-            - page: concepts/understanding-xrpl/xrpl/consensus-research.md
-                  
-        - group: Validators
-          page: concepts/understanding-xrpl/xrpl/trust-based-validation.md
+            - page: concepts/understanding-xrpl/xrpl/consensus-research.md             
+        - group: Validation
+          page: concepts/understanding-xrpl/xrpl/validation.md
           pages:
             - page: concepts/understanding-xrpl/xrpl/fee-voting.md
             - page: concepts/understanding-xrpl/xrpl/negative-unl.md
@@ -56,12 +55,15 @@
             - page: concepts/understanding-xrpl/xrpl/transaction-queue.md
             - page: concepts/understanding-xrpl/xrpl/invariant-checking.md
     - group: Transactions
+      page: concepts/introduction/placeholder.md
       expanded: false
       pages:
         - label: Transaction Structure
-          page: concepts/introduction/placeholder.md
+          page:  concepts/introduction/placeholder.md
         - label: Transaction Types
           page: concepts/introduction/placeholder.md
+        - page: concepts/understanding-xrpl/xrpl/transaction-malleability.md
+        - page: concepts/understanding-xrpl/xrpl/about-canceling-a-transaction.md
     - group: Tokens
       expanded: false
       pages:
