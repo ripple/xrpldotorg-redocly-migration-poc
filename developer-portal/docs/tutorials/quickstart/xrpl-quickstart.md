@@ -4,7 +4,7 @@ The XRP Ledger (XRPL) is a robust, secure, customizable service. You can create 
 
 This quickstart describes a test harness interface you can build to try out the XRP Ledger. The test harness displays multiple accounts, so that you can transfer tokens from one account to the other and see the results in real time. The image below shows the Token Test Harness at the completion of step 4.
 
-![Quickstart Tutorial Window](img/quickstart1.png)
+[![Quickstart Tutorial Window](../../img/quickstart1.png)](../../img/quickstart1.png)
 
 That is a lot of fields and buttons, all working together to perform some significant practical tasks. But getting _started_ with the XRP Ledger is not that complicated. When you eat the elephant a bite at a time, none of the tasks are difficult to consume.
 
@@ -24,9 +24,11 @@ Much of this is “brute force” code that sacrifices conciseness for readabili
 In this quickstart, you can:
 
 1. [Create Accounts and Send XRP](create-accounts-send-xrp.html)
-2. [Create TrustLine and Send Currency](create-trustline-send-currency.html).
+2. [Create Trust Line and Send Currency](create-trustline-send-currency.html).
 3. [Mint and Burn NFTokens](mint-and-burn-nftokens.html).
 4. [Transfer NFTokens](transfer-nftokens.html).
+
+There is also an expanded lesson demonstrating how to [Broker a NFToken Sale](broker-sale.html).
 
 
 ## Prerequisites
@@ -39,10 +41,4 @@ To get started, create a new folder on your local disk and install the JavaScrip
 ```
 
 
-Download and expand the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart/quickstart.zip) archive.
-
----
-
-| Previous      | Next                                                             |
-| :---          |                                                             ---: |
-|               | 1. [Create Accounts and Send XRP](create-accounts-send-xrp.html) |
+Download and expand the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart/js/quickstart.zip) archive.

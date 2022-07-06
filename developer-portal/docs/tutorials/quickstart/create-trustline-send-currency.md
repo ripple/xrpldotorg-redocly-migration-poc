@@ -12,7 +12,7 @@ This example shows how to:
 5. Display account balances for all currencies.
 
 
-![Test harness with currency transfer](img/quickstart5.png)
+[![Test harness with currency transfer](../../img/quickstart5.png)](../../img/quickstart5.png)
 
 
 You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart/quickstart.zip) archive to try each of the samples in your own browser.
@@ -46,7 +46,7 @@ To create a trustline between accounts:
 
 
 
-![Trustline results](img/quickstart6.png)
+[![Trustline results](../../img/quickstart6.png)](../../img/quickstart6.png)
 
 
 
@@ -61,7 +61,7 @@ To transfer an issued currency token, once you have created a TrustLine:
 
 
 
-![Currency transfer](img/quickstart7.png)
+[![Currency transfer](../../img/quickstart7.png)](../../img/quickstart7.png)
 
 
 
@@ -77,7 +77,7 @@ You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-port
 When transferring fiat currency, the actual transfer of funds is not simultaneous, as it is with XRP. If currency is transferred to a third party for a different currency, there can be a devaluation of the currency that impacts the originating account. To avoid this situation, this up and down valuation of currency, known as _rippling_, is not allowed by default. Currency transferred from one account can only be transferred back to the same account. To enable currency transfer to third parties, you need to set the _rippleDefault_ value to true. The Token Test Harness provides a checkbox to enable or disable rippling.
 
 
-```
+```javascript
 // *******************************************************
 // **************** Configure Account ********************
 // *******************************************************
@@ -87,7 +87,7 @@ When transferring fiat currency, the actual transfer of funds is not simultaneou
 Connect to the ledger
 
 
-```
+```javascript
       async function configureAccount(type, rippleDefault) {
         let net = getNet()
         const client = new xrpl.Client(net)
@@ -102,7 +102,7 @@ Connect to the ledger
 Get the account wallets.
 
 
-```
+```javascript
         if (type=='standby') {
           my_wallet = xrpl.Wallet.fromSeed(standbySeedField.value)
         } else {
@@ -116,7 +116,7 @@ Get the account wallets.
 Prepare the transaction. If the _rippleDefault_ argument is true, set the `asfDefaultRipple` flag. If it is false, clear the `asfDefaultRipple` flag.
 
 
-```
+```javascript
         let settings_tx = {}
         if (rippleDefault) {
           settings_tx = {
@@ -141,7 +141,7 @@ Prepare the transaction. If the _rippleDefault_ argument is true, set the `asfDe
 Autofill the default values for the transaction.
 
 
-```
+```javascript
 
           const cst_prepared = await client.autofill(settings_tx)
 ```
@@ -150,7 +150,7 @@ Autofill the default values for the transaction.
 Sign the transaction.
 
 
-```
+```javascript
           const cst_signed = my_wallet.sign(cst_prepared)
 ```
 
@@ -158,7 +158,7 @@ Sign the transaction.
 Submit the transaction and wait for the result.
 
 
-```
+```javascript
           const cst_result = await client.submitAndWait(cst_signed.tx_blob)
 ```
 
@@ -166,7 +166,7 @@ Submit the transaction and wait for the result.
 Report the result.
 
 
-```
+```javascript
           if (cst_result.result.meta.TransactionResult == "tesSUCCESS") {
           results += '\nAccount setting succeeded.'
           document.getElementById('standbyResultField').value = results
@@ -188,7 +188,7 @@ Report the result.
 A TrustLine enables two accounts to trade a defined currency up to a set limit. This gives the participants assurance that any exchanges are between known entities at agreed upon maximum amounts.
 
 
-```
+```javascript
 // *******************************************************
 // ***************** Create TrustLine ********************
 // *******************************************************
@@ -212,7 +212,7 @@ A TrustLine enables two accounts to trade a defined currency up to a set limit. 
 Get the standby and operational wallets.
 
 
-```
+```javascript
         const standby_wallet = xrpl.Wallet.fromSeed(standbySeedField.value)
         const operational_wallet = xrpl.Wallet.fromSeed(operationalSeedField.value)
 ```
@@ -221,7 +221,7 @@ Get the standby and operational wallets.
 Define the transaction, capturing the currency code and (limit) amount from the form fields.
 
 
-```
+```javascript
         const trustSet_tx = {
           "TransactionType": "TrustSet",
           "Account": operational_wallet.address,
@@ -237,7 +237,7 @@ Define the transaction, capturing the currency code and (limit) amount from the 
 Prepare the transaction by automatically filling the default parameters.
 
 
-```
+```javascript
         const ts_prepared = await client.autofill(trustSet_tx)
 ```
 
@@ -245,7 +245,7 @@ Prepare the transaction by automatically filling the default parameters.
 Sign the transaction.
 
 
-```
+```javascript
         const ts_signed = operational_wallet.sign(ts_prepared)
         results += '\nCreating trust line from operational account to standby account...'
         document.getElementById('standbyResultField').value = results
@@ -255,7 +255,7 @@ Sign the transaction.
 Submit the transaction and wait for the results.
 
 
-```
+```javascript
         const ts_result = await client.submitAndWait(ts_signed.tx_blob)
 ```
 
@@ -263,7 +263,7 @@ Submit the transaction and wait for the results.
 Report the results.
 
 
-```
+```javascript
         if (ts_result.result.meta.TransactionResult == "tesSUCCESS") {
           results += '\nTrustline established between account \n' + operational_wallet.address + ' \n and account\n' + standby_wallet.address + '.'
           document.getElementById('standbyResultField').value = results
@@ -282,7 +282,7 @@ Report the results.
 Once you have created a TrustLine from an account to your own, you can send issued currency tokens to that account, up to the established limit.
 
 
-```
+```javascript
 // *******************************************************
 // *************** Send Issued Currency ******************
 // *******************************************************
@@ -295,7 +295,7 @@ Once you have created a TrustLine from an account to your own, you can send issu
 Connect to the ledger.
 
 
-```
+```javascript
         let net = getNet()
         const client = new xrpl.Client(net)
         results = 'Connecting to ' + getNet() + '....'
@@ -315,7 +315,7 @@ Get the account wallets.
   
 
 
-```
+```javascript
         const standby_wallet = xrpl.Wallet.fromSeed(standbySeedField.value)
         const operational_wallet = xrpl.Wallet.fromSeed(operationalSeedField.value)
         const currency_code = standbyCurrencyField.value
@@ -338,7 +338,7 @@ Get the account wallets.
 Prepare the transaction by automatically filling default values.
 
 
-```
+```javascript
         const pay_prepared = await client.autofill(send_token_tx)
 ```
 
@@ -346,7 +346,7 @@ Prepare the transaction by automatically filling default values.
 Sign the transaction.
 
 
-```
+```javascript
         const pay_signed = standby_wallet.sign(pay_prepared)
         results += 'Sending ${issue_quantity} ${currency_code} to ${operational_wallet.address}...'
         document.getElementById('standbyResultField').value = results
@@ -356,7 +356,7 @@ Sign the transaction.
 Submit the transaction and wait for the results.
 
 
-```
+```javascript
         const pay_result = await client.submitAndWait(pay_signed.tx_blob)
 ```
 
@@ -364,7 +364,7 @@ Submit the transaction and wait for the results.
 Report the results.
 
 
-```
+```javascript
         if (pay_result.result.meta.TransactionResult == "tesSUCCESS") {
           results += 'Transaction succeeded: https://testnet.xrpl.org/transactions/${pay_signed.hash}'
           document.getElementById('standbyResultField').value = results
@@ -389,7 +389,7 @@ Report the results.
 ### Get Balances
 
 
-```
+```javascript
 // *******************************************************
 // ****************** Get Balances ***********************
 // *******************************************************
@@ -400,7 +400,7 @@ Report the results.
 Connect to the ledger.
 
 
-```
+```javascript
         let net = getNet()
         const client = new xrpl.Client(net)
         results = 'Connecting to ' + getNet() + '....'
@@ -414,7 +414,7 @@ Connect to the ledger.
 Get the account wallets.
 
 
-```
+```javascript
         const standby_wallet = xrpl.Wallet.fromSeed(standbySeedField.value)
         const operational_wallet = xrpl.Wallet.fromSeed(operationalSeedField.value)
         results= "\nGetting standby account balances...\n"
@@ -424,7 +424,7 @@ Get the account wallets.
 Define and send the request for the standby account, then wait for the results.
 
 
-```
+```javascript
         const standby_balances = await client.request({
           command: "gateway_balances",
           account: standby_wallet.address,
@@ -437,7 +437,7 @@ Define and send the request for the standby account, then wait for the results.
 Report the results.
 
 
-```
+```javascript
         results += JSON.stringify(standby_balances.result, null, 2)
         document.getElementById('standbyResultField').value = results   
 ```
@@ -446,7 +446,7 @@ Report the results.
 Define and send the request for the operational account, then wait for the results.
 
 
-```
+```javascript
         results= "\nGetting operational account balances...\n"
         const operational_balances = await client.request({
           command: "account_lines",
@@ -459,7 +459,7 @@ Define and send the request for the operational account, then wait for the resul
 Report the results.
 
 
-```
+```javascript
         results += JSON.stringify(operational_balances.result, null, 2)
         document.getElementById('operationalResultField').value = results
 ```
@@ -468,7 +468,7 @@ Report the results.
 Update the form with current XRP balances.
 
 
-```
+```javascript
          document.getElementById('operationalBalanceField').value = 
           (await client.getXrpBalance(operational_wallet.address))
         document.getElementById('standbyBalanceField').value = 
@@ -479,7 +479,7 @@ Update the form with current XRP balances.
 Disconnect from the ledger.
 
 
-```
+```javascript
         client.disconnect()      
       } // End of getBalances()
 ```
@@ -491,7 +491,7 @@ Disconnect from the ledger.
 For each of the transactions, there is an accompanying reciprocal transaction, with the prefix _oP,_ for the operational account. See the corresponding function for the standby account for code commentary. The `getBalances()` request does not have a reciprocal transaction, because it reports balances for both accounts.
 
 
-```
+```javascript
 // *******************************************************
 // ************ Create Operational TrustLine *************
 // *******************************************************
@@ -606,7 +606,7 @@ For each of the transactions, there is an accompanying reciprocal transaction, w
 Update the form to support the new functions.
 
 
-```
+```html
 <html>
   <head>
     <title>Token Test Harness</title>
@@ -857,10 +857,3 @@ Update the form to support the new functions.
   </body>
 </html>
 ```
-
----
-
-
-| Previous      | Next                                                             |
-| :---          |                                                             ---: |
-| 1. [Create Accounts and Send XRP](create-accounts-send-xrp.html) | 3. [Mint and Burn NFTokens](mint-and-burn-nftokens.html) |
