@@ -21,26 +21,31 @@ copyCodeSnippet:
   buttonText: Copy
   tooltipText: Copy the code snippet
   toasterText: Copied!
-  toasterDuration: 1500 
+  toasterDuration: 1500
 stylesheets:
   - https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap
   - https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,600,700&display=swap
+  - ./assets/css/devportal2022-v4.css
+
 #analytics:
   # ga:
   # note that GA doesn't work in the development environment
   #  trackingId: UA-45997213-1
-#scripts:
-#  - ./static/intercom.js
+scripts:
+ - ./static/js/jquery-3.6.0.min.js
 nav:
 
   - label: Docs
     page: developer-portal/docs/index.md
 
   - label: Blog
-    page: developer-portal/blog/index.md 
+    page: developer-portal/blog/index.md
 
   - label: Tutorials
-    page: developer-portal/docs/tutorials/index.md 
+    page: developer-portal/docs/tutorials/index.md
+
+  - page: ./xrp-ledger-overview.mdx
+
 
   - search: true
 

@@ -1,0 +1,18 @@
+- id: public
+  title: Public and Decentralized Structure
+  description: Open source, open to anyone to build on, maintained by the community
+- id: streamlined
+  title: Streamlined <br class='until-sm'/>Development
+  description: Tools and documentation that speed development and reduce time to market
+- id: performance
+  title: High <br class='until-sm'/>Performance
+  description: Capable of settling thousands of transactions in seconds
+- id: low-cost
+  title: Low Cost
+  description: At fractions of a penny per transaction, costs are inexpensive enough to enable a wide variety of use cases
+- id: community
+  title: Vibrant Community
+  description: Developers, validators, users, and businesses make the XRP Ledger better every day
+- id: reliability
+  title: Proven Reliability
+  description: 8+ years of consistent performance over more than 63 million ledgers
