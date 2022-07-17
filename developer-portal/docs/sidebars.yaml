@@ -1,7 +1,7 @@
 - page: index.md
 - group: Introduction to the XRPL
   page: concepts/introduction/intro-to-xrpl.md
-  expanded: true
+  expanded: false
   pages: 
     - page: concepts/introduction/what-is-xrp.md
     - page: concepts/introduction/what-is-xrpl.md
@@ -44,67 +44,69 @@
           pages:
             - page: concepts/understanding-xrpl/xrpl/fee-voting.md
             - page: concepts/understanding-xrpl/xrpl/negative-unl.md
-        - label: rippled Server
-          page: concepts/introduction/placeholder.md
+    - group:
+      page: concepts/understanding-xrpl/server/rippled-server.md
+      expanded: false
+      pages:
         - group: Server Modes
-          page: concepts/introduction/placeholder.md
+          page: concepts/understanding-xrpl/server/server-modes.md
           expanded: false
           pages:
-            - page: concepts/understanding-xrpl/xrpl/parallel-networks.md
-            - page: concepts/understanding-xrpl/xrpl/federated-sidechains.md
-            - page: concepts/understanding-xrpl/xrpl/transaction-queue.md
-            - page: concepts/understanding-xrpl/xrpl/invariant-checking.md
+            - page: concepts/understanding-xrpl/server/parallel-networks.md
+            - page: concepts/understanding-xrpl/server/federated-sidechains.md
+            - page: concepts/understanding-xrpl/server/transaction-queue.md
+            - page: concepts/understanding-xrpl/server/invariant-checking.md
     - group: Transactions
-      page: concepts/introduction/placeholder.md
+      page: concepts/understanding-xrpl/transactions/transactions.md
       expanded: false
       pages:
-        - label: Transaction Structure
-          page:  concepts/introduction/placeholder.md
-        - label: Transaction Types
-          page: concepts/introduction/placeholder.md
-        - page: concepts/understanding-xrpl/xrpl/transaction-malleability.md
-        - page: concepts/understanding-xrpl/xrpl/about-canceling-a-transaction.md
+        - page: concepts/understanding-xrpl/transactions/transaction-structure.md
+        - page: concepts/understanding-xrpl/transactions/transaction-types.md
+        - page: concepts/understanding-xrpl/transactions/transaction-malleability.md
+        - page: concepts/understanding-xrpl/transactions/about-canceling-a-transaction.md
     - group: Tokens
+      page: concepts/understanding-xrpl/tokens/tokens.md
       expanded: false
-      pages:
-        - label: Tokens
-          page: concepts/introduction/placeholder.md
+      pages: 
         - group: Token Types
+          page: concepts/understanding-xrpl/tokens/token-types.md
           expanded: false
           pages:
             - label: Fungible Tokens
-              page: concepts/introduction/placeholder.md
+              page: concepts/understanding-xrpl/tokens/fungible.md
             - label: Non-fungible Tokens
-              page: concepts/introduction/placeholder.md
+              page: concepts/understanding-xrpl/tokens/non-fungible.md
 
     - group: Accounts
+      page: concepts/understanding-xrpl/accounts/accounts.md
       expanded: false
       pages:
         - group: Account Structure
-          page: concepts/introduction/placeholder.md
+          page: concepts/understanding-xrpl/accounts/account-structure.md
           expanded: false
           pages:
             - label: Addresses
-              page: concepts/introduction/placeholder.md
+              page: concepts/understanding-xrpl/accounts/addresses.md
             - label: Balances
-              page: concepts/introduction/placeholder.md
+              page: concepts/understanding-xrpl/accounts/balances.md
             - label: Sequence
-              page: concepts/introduction/placeholder.md
+              page: concepts/understanding-xrpl/accounts/sequence.md
             - label: History
-              page: concepts/introduction/placeholder.md
+              page: concepts/understanding-xrpl/accounts/history.md
         - label: Account Types
-          page: concepts/introduction/placeholder.md
+          page: concepts/understanding-xrpl/accounts/account-types.md
 - group: Use Cases
+  page: use-cases/use-cases.md
   expanded: false
   pages:
     - label: Payments
-      page: concepts/introduction/placeholder.md
+      page: use-cases/payments.md
     - label: Distributed Exchange
-      page: concepts/introduction/placeholder.md
+      page: use-cases/distributed-exchange.md
     - label: Tokenization
-      page: concepts/introduction/placeholder.md
+      page: use-cases/tokenization.md
     - label: Interoperability
-      page: concepts/introduction/placeholder.md
+      page: use-cases/interoperability.md
 - group: API Reference
   expanded: false
   pages:
