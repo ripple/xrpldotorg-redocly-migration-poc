@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { XRPLoader } from './XRPLoader.tsx';
+import XRPLoader from './XRPLoader';
 
 const NETWORK_URLS = {
   'Testnet': 'https://faucet.altnet.rippletest.net/accounts',

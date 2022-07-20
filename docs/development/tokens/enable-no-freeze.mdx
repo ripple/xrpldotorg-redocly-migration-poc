@@ -8,7 +8,7 @@ import { StepWrapper } from "../../../_components/StepWrapper";
 import { GenerateStep } from "../../../_components/GenerateStep";
 import { ConnectStep } from "../../../_components/ConnectStep";
 import { WaitStep } from '../../../_components/WaitStep.tsx';
-import { XRPLoader } from '../../../_components/XRPLoader.tsx';
+import XRPLoader from '../../../_components/XRPLoader';
 const STEPS = [ 'Generate', 'Connect', 'Send AccountSet', 'Wait', 'Confirm Settings'];
 
 <!-- Source for this specific tutorial's interactive bits: -->
@@ -97,8 +97,6 @@ For this tutorial, click the following button to connect:
 <StepWrapper steps={STEPS} stepIdx={1}>
   <ConnectStep />
 </StepWrapper>
-
-<!-- {% include '_snippets/interactive-tutorials/connect-step.md' %} -->
 
 ### 3. Send AccountSet Transaction
 
