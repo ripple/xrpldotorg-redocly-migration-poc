@@ -123,7 +123,7 @@ export default function XRPLHome() {
             <h1 class="mb-10">Community<br class="until-sm"/> Powered Utility</h1>
             <h6 class="eyebrow mb-3">XRPL | XRP Ledger</h6>
           </div>
-          <a href="docs.html" class="btn btn-primary btn-arrow">Start Building</a>
+          <a href="docs" class="btn btn-primary btn-arrow">Start Building</a>
         </div>
       </section>
       <div class="position-relative d-none-sm">
@@ -177,7 +177,7 @@ export default function XRPLHome() {
           <div class="z-index-1 position-relative">
             <h2 class="h4 mb-8-sm mb-10-until-sm">Our Shared Vision for XRPL’s Future</h2>
             <p class="mb-10">Together, we're building the greenest infrastructure to drive blockchain innovation that doesn't sacrifice utility or performance, to bring the developer community's vision to life.</p>
-            <a class="btn btn-primary btn-arrow" href="overview.html">Learn More</a>
+            <a class="btn btn-primary btn-arrow" href="about/xrp-ledger-overview">Learn More</a>
           </div>
         </div>
       </section>
@@ -201,7 +201,7 @@ export default function XRPLHome() {
               <h5 class="eyebrow mb-3">Get Involved</h5>
             </div>
             <p class="mb-10">XRPL.org is a community-driven resource by and for developers who build on the XRP Ledger (XRPL).</p>
-            <a class="btn btn-primary btn-arrow" href="contribute.html">Join the Community</a>
+            <a class="btn btn-primary btn-arrow" href="community">Join the Community</a>
           </div>
         </div>
       </section>

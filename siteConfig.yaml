@@ -9,7 +9,7 @@ linkChecker:
   options:
     CheckExternal: false
 logo:
-  image: ./images/test-logo.png
+  image: ./static/img/XRPLedger_DevPortal-white.svg
   altText: XRP Ledger Developer Portal
 toc:
   enable: true
@@ -47,7 +47,7 @@ nav:
     page: blog/index.md
 
   - label: Tutorials
-    page: developer-portal/docs/tutorials/index.md
+    page: docs/tutorials/index.md
 
   - page: about/xrp-ledger-overview.mdx
 
@@ -55,17 +55,18 @@ nav:
 
 # Footer configuration ---------------------------------------------------------
 footer:
-  copyrightText: Copyright © Redocly 2019-2021. All right reserved.
+  copyrightText: Copyright © 2022 XRP Ledger. Open Source.
   columns:
-    - group: Legal
+    - group: About
       items:
-        - label: Terms of Use
-          href: 'https://redoc.ly/subscription-agreement/'
-        - label: Privacy Notice
-          href: 'https://redoc.ly/privacy-notice/'
-        - label: Cookie Notice
-          href: 'https://redoc.ly/cookie-notice/'
-    - group: Support
+        - page: about/xrp-ledger-overview.mdx
+    - group: Docs
       items:
-        - label: FAQ
-          #page: faq.md
+        - page: docs/index.md
+        - page: docs/concepts/introduction/intro-to-xrpl.md
+          label: Introduction to the XRP Ledger
+    - group: Community
+      items:
+        - page: community/index.mdx
+        - page: community/contribute-code.md
+        - page: community/report-a-scam.md
