@@ -37,27 +37,27 @@ export default function XRPLHome() {
 
   const advfeatures = [
     {
-      "href": "decentralized-exchange.html",
+      "href": "docs/use-cases/decentralized-exchange",
       "title": "Decentralized Exchange",
       "description": "A high-performance decentralized peer-to-peer multi-currency exchange built directly into the blockchain"
     },
     {
-      "href": "cross-currency-payments.html",
+      "href": "docs/use-cases/payments",
       "title": "Cross-Currency Payments",
       "description": "Atomically settle multi-hop payments that cross currency or national boundaries with ease"
     },
     {
-      "href": "payment-channels.html",
+      "href": "docs/use-cases/payments",
       "title": "Payment <br class='until-sm'/>Channels",
       "description": "Batched micropayments with unlimited speed, secured with XRP"
     },
     {
-      "href": "multi-signing.html",
-      "title": "Multi-Signing",
-      "description": "Flexible options for custody and security of on-ledger accounts"
+      "href": "docs/use-cases/interoperability",
+      "title": "Interoperability",
+      "description": "Secure interactions with other chains and legacy payment systems"
     },
     {
-      "href": "tokens.html",
+      "href": "docs/use-cases/tokenization",
       "title": "Tokens",
       "description": "All currencies other than XRP can be represented in the XRP Ledger as tokens, sometimes called \"IOUs\""
     }
@@ -65,29 +65,29 @@ export default function XRPLHome() {
 
   const getstarted = [
     {
-      "href": "get-started.html",
+      "href": "docs/tutorials/quickstart",
       "title": "Quickstart",
       "description": "Access everything you need to get started working with the XRPL"
     },
     {
-      "href": "tutorials.html",
+      "href": "docs/tutorials",
       "title": "Guided Tutorials",
       "description": "Follow step-by-step guides for frequent tasks"
     },
     {
-      "href": "concepts.html",
+      "href": "docs/concepts/intro-to-xrpl",
       "title": "XRPL Fundamentals",
       "description": "Read about the XRP Ledger's foundational concepts"
     },
     {
-      "href": "client-libraries.html",
+      "href": "docs/references/client-libraries",
       "title": "Choose a Language",
       "description": "Find tools, documentation, and sample code in Python, Java, Javascript, or use HTTP APIs"
     },
     {
-      "href": "uses.html",
+      "href": "docs/use-cases",
       "title": "Get Inspired",
-      "description": "See what your peers have built on the XRPL"
+      "description": "Explore use cases already in use on the XRP Ledger"
     }
   ];
 
@@ -101,8 +101,8 @@ export default function XRPLHome() {
     {
       "chip": "In Development",
       "title": "Non-Fungible Tokens",
-      "description": "Lower fees, faster transactions, and custom token functionality make the XRPL ideally suited for building an ecosystem for NFTs. Explore <a href='docs.html#docs-hot-topic'>proposed standards</a> for issuing NFTs.",
-      "href": "docs.html#docs-hot-topic"
+      "description": "Lower fees, faster transactions, and custom token functionality make the XRPL ideally suited for building an ecosystem for NFTs.",
+      "href": "docs/use-cases/tokenization"
     },
     {
       "chip": "In Development",

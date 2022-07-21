@@ -4,17 +4,14 @@ labels:
   - Tokens
 ---
 import { Helmet } from "react-helmet";
-import { StepWrapper } from "../../../_components/StepWrapper";
-import { GenerateStep } from "../../../_components/GenerateStep";
-import { ConnectStep } from "../../../_components/ConnectStep";
-import { WaitStep } from '../../../_components/WaitStep.tsx';
+import { StepWrapper, GenerateStep, ConnectStep, WaitStep } from "../../../_components/InteractiveTutorials";
 import XRPLoader from '../../../_components/XRPLoader';
 const STEPS = [ 'Generate', 'Connect', 'Send AccountSet', 'Wait', 'Confirm Settings'];
 
 <!-- Source for this specific tutorial's interactive bits: -->
 <Helmet>
-  <script src="/static/js/interactive-tutorial.js"></script>
-  <script src="/static/js/tutorials/enable-no-freeze.js"></script>
+  <script src="/js/interactive-tutorial.js"></script>
+  <script src="/js/tutorials/enable-no-freeze.js"></script>
 </Helmet>
 
 # Enable No Freeze

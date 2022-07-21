@@ -595,7 +595,6 @@ async function do_submit(block, submit_opts, wait_step_name) {
   }
 }
 
-debugger;
 $(document).ready(() => {
   disable_followup_steps()
   setup_generate_step()

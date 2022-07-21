@@ -12,7 +12,7 @@
   expanded: false
   pages:
     - group: Quickstart
-      page: tutorials/quickstart/xrpl-quickstart.md
+      page: tutorials/quickstart/index.md
       expanded: false
       pages:
         - page: tutorials/quickstart/create-accounts-send-xrp.md
@@ -96,22 +96,26 @@
         - label: Account Types
           page: concepts/understanding-xrpl/accounts/account-types.md
 - group: Use Cases
-  page: use-cases/use-cases.md
+  page: use-cases/index.md
   expanded: false
   pages:
     - label: Payments
       page: use-cases/payments.md
-    - label: Distributed Exchange
-      page: use-cases/distributed-exchange.md
-    - label: Tokenization
+    - label: Decentralized Exchange
+      page: use-cases/decentralized-exchange.md
+    - group: Tokenization
+      label: Tokenization
       page: use-cases/tokenization.md
+      pages:
+        - page: development/tokens/enable-no-freeze.mdx
+          label: Enable No Freeze (temp location)
     - label: Interoperability
       page: use-cases/interoperability.md
 - group: API Reference
   expanded: false
   pages:
-    - label: Developer Tools (broken links)
-      page: dev-tools/dev-tools.md
+    - label: Developer Tools
+      page: dev-tools/index.md
     - group: XRP Ledger Protocol Reference
       expanded: false
       pages:
@@ -122,12 +126,5 @@
     - group: HTTP / WebSocket APIs
       pages:
     - page: references/xrp-ledger-toml.md
-- group: Contributing
-  expanded: false
-  pages:
-    - label: Contribute Code to the XRPL
-      page: contributing/contribute-code.md
-    - label: Report a Scam
-      page: contributing/report-a-scam.md
 - page: faq.md
 - page: releases.md
