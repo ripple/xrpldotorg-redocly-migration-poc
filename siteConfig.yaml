@@ -11,6 +11,8 @@ linkChecker:
 logo:
   image: ./static/img/XRPLedger_DevPortal-white.svg
   altText: XRP Ledger Developer Portal
+  height: 40px
+  width: 162px
 toc:
   enable: true
 editPage:
@@ -37,20 +39,11 @@ stylesheets:
 postBodyScripts:
   - ./static/js/xrpl-2.2.0.min.js
   - ./static/js/jquery-3.6.0.min.js
+  - ./static/vendor/bootstrap.min.js
 
 # Top Menu Navigation ----------------------------------------------------------
+## NOTE: This is ignored. Our custom top nav uses top-nav.yaml instead.
 nav:
-  - label: Docs
-    page: docs/index.md
-
-  - label: Blog
-    page: blog/index.md
-
-  - label: Tutorials
-    page: docs/tutorials/index.md
-
-  - page: about/xrp-ledger-overview.mdx
-
   - search: true
 
 # Footer configuration ---------------------------------------------------------

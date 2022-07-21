@@ -114,11 +114,14 @@
 - group: API Reference
   expanded: false
   pages:
-    - label: Developer Tools
-      page: dev-tools/index.md
     - group: XRP Ledger Protocol Reference
       expanded: false
       pages:
+        - page: references/protocol-reference/ledger-data/ledger-header.md
+        - page: references/protocol-reference/ledger-data/ledger-data-formats.md
+        - page: references/protocol-reference/transactions/transaction-formats.md
+        - page: references/protocol-reference/transactions/transaction-common-fields.md
+        - page: references/protocol-reference/transactions/transaction-metadata.md
     - group: Client Libraries
       expanded: false
       pages:
@@ -126,5 +129,7 @@
     - group: HTTP / WebSocket APIs
       pages:
     - page: references/xrp-ledger-toml.md
+- label: Developer Tools
+  page: dev-tools/index.md
 - page: faq.md
 - page: releases.md

@@ -15,3 +15,230 @@ table.wait-step th {
   background-color: transparent !important;
   border: 0 !important;
 }
+
+a[title="Source"] {
+  float:right;
+  margin: 0 2rem 2rem 2rem;
+}
+
+/* Top nav dropdowns have different generated IDs compared to the old site */
+.top-nav .dropdown-menu.show#topnav_dd_about {
+  grid-template-columns: 180px 180px 180px;
+}
+.top-nav .dropdown-menu.show .col-for-xrp_ledger {
+  grid-row: 1 / 3;
+  grid-column: 1;
+}
+.top-nav .dropdown-menu.show#topnav_dd_docs {
+  grid-template-columns: 180px 180px 260px;
+  left: -200px;
+}
+.top-nav .dropdown-menu.show .col-for-popular_pages {
+  grid-column: 3;
+  grid-row: 1 / 4;
+  margin: -40px -40px -40px 0;
+  padding: 40px;
+  background-color: #232325;
+}
+.light .top-nav .dropdown-menu.show .col-for-popular_pages {
+  background-color: #E0E0E1;
+}
+.top-nav .dropdown-menu.show #dropdown-hero-for-docs {
+  grid-column: 1 / 3;
+}
+.top-nav #topnav_dd_community {
+  gap: 0;
+}
+#dropdown-hero-for-community {
+  grid-column: 1;
+}
+@media (min-width: 992px) {
+  .top-nav #topnav_dd_community {
+    width: 360px;
+  }
+}
+
+/* Fixes for theme toggle. Some of these might be fixable by using overrides that don't add styles instead. */
+.light article,
+.light .ftEjuw /* some text on XRPL overview page */ {
+  color: #000;
+}
+.dark article {
+  color: #fff;
+}
+
+.light body {
+  color: #000;
+}
+
+.dark aside {
+  background-color: unset;
+  color: #fff !important;
+}
+.light aside {
+  background-color: unset;
+  border-right: 0;
+}
+
+.light aside ul a {
+  color: #000;
+}
+
+/* Using a generated class name like this might not work as expected across builds.
+  Intended to fix links in left sidebar nav. */
+.dark .hEyVFs, .dark .hEyVFs a {
+  color: #fff;
+}
+.light .gUcXED {
+  color: #000;
+}
+
+/* right nav scrollspy coloring */
+.light .jhNtYM:hover, .light .jhNtYM.active,
+.light .UoMdD:hover, .light .UoMdD.active {
+  background-color: #E0E0E1;
+}
+
+/* Search magnifying glass icon */
+.light .gWUFvz {
+  filter: invert(100%);
+}
+
+.light #search {
+  color: #000;
+  background-color: #E0E0E1;
+}
+
+/* Fixes for tables, esp. in light mode. */
+.dark .fKLgSI details > table td,
+.dark .fKLgSI > table td,
+.dark .fKLgSI > div:not(.sc-gCLdxd) table td,
+.dark .fKLgSI > p table td,
+.dark .fKLgSI details > table tr,
+.dark .fKLgSI > table tr,
+.dark .fKLgSI > p table tr,
+.dark .dark .fKLgSI > div:not(.sc-gCLdxd) table tr,
+.dark .fKLgSI details > table tr:nth-child(2n),
+.dark .fKLgSI > table tr:nth-child(2n),
+.dark .fKLgSI > div:not(.sc-gCLdxd) table tr:nth-child(2n),
+.dark .fKLgSI > p table tr:nth-child(2n),
+.light .fKLgSI details > table td,
+.light .fKLgSI > table td,
+.light .fKLgSI > div:not(.sc-gCLdxd) table td,
+.light .fKLgSI > p table td,
+.light .fKLgSI details > table tr,
+.light .fKLgSI > table tr,
+.light .fKLgSI > p table tr,
+.light .light .fKLgSI > div:not(.sc-gCLdxd) table tr,
+.light .fKLgSI details > table tr:nth-child(2n),
+.light .fKLgSI > table tr:nth-child(2n),
+.light .fKLgSI > div:not(.sc-gCLdxd) table tr:nth-child(2n),
+.light .fKLgSI > p table tr:nth-child(2n) {
+  background: none;
+}
+.dark .fKLgSI details > table th,
+.dark .fKLgSI > table th,
+.dark .fKLgSI > div:not(.sc-gCLdxd) table th,
+.dark .fKLgSI > p table th,
+.light .fKLgSI details > table th,
+.light .fKLgSI > table th,
+.light .fKLgSI > div:not(.sc-gCLdxd) table th,
+.light .fKLgSI > p table th {
+  background: none;
+  color: inherit;
+  font-weight: bold;
+  border-width: 0 0 2px 0;
+}
+
+.light .fKLgSI > table tr,
+.dark .fKLgSI > table tr {
+  border-top-width: 0;
+}
+.fKLgSI details > table td,
+.fKLgSI > table td,
+.fKLgSI > div:not(.sc-gCLdxd) table td,
+.fKLgSI > p table td {
+  border-bottom-width: 1px;
+  border-right-width: 0;
+  border-left-width: 0;
+}
+
+/* Fixes for search bar. Experimental. These might not be portable across builds. */
+#top-main-nav .egYDUn {
+  width: 100%;
+  height: auto;
+}
+
+#top-main-nav .eZrDea {
+  max-width: 100%;
+}
+
+@media (min-width: 993px) {
+  .top-nav #topnav-pages {
+    flex-grow: 1 !important;
+  }
+
+  #topnav-pages > span {
+    flex-grow: 1;
+  }
+}
+
+#topnav-pages > span > span {
+  line-height: unset;
+}
+
+/* Alert banner CSS, basically same as original */
+.top-banner {
+	height: 46px;
+	background: url(/img/backgrounds/bg-apex-banner.svg);
+	background-position: center;
+	background-color: #7919FF;
+	background-size: cover;
+	padding: 2px 0;
+	color: #fff;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 24px;
+}
+@media (min-width: 768px) {
+  .top-banner {
+    padding: 5px 8px;
+  }
+}
+.top-banner p {
+	padding-top: 15px;
+	font-size: 12px;
+	line-height: 15px;
+	text-align: center;
+	margin: auto;
+}
+@media (min-width: 768px) {
+  .top-banner p {
+  	padding-top: 10px;
+  	font-size: 16px;
+  	width: initial;
+  	line-height: 20px;
+  }
+}
+.top-banner .btn {
+  margin-top: 4px;
+  margin-left: 8px;
+  font-size: 12px;
+}
+@media (min-width: 768px) {
+  .top-banner .btn {
+    margin-top: 2px;
+    margin-left: 16px;
+    font-size: 16px;
+  }
+}
+.light .top-banner .btn-outline-secondary {
+  color: #E0E0E1;
+  border-color: #E0E0E1;
+}
+html.light .top-banner .btn-outline-secondary:not(:disabled):not(.disabled):hover {
+  color: #111112;
+  background-color: #E0E0E1;
+  border-color: #E0E0E1;
+}

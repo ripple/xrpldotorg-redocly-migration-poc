@@ -1,0 +1,4 @@
+- page: ./index.mdx
+  pages:
+  - page: ./contribute-code.md
+  - page: ./report-a-scam.md
