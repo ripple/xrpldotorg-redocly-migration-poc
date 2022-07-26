@@ -10,9 +10,9 @@ This example shows how to:
 3. Delete (Burn) a NFToken.
 
 
-[![Test harness with mint NFToken fields](/img/quickstart/quickstart8.png)](/img/quickstart/quickstart8.png)
+[![Test harness with mint NFToken fields](../../img/quickstart8.png)](../../img/quickstart8.png)
 
-
+ 
 # Usage
 
 You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart/js/quickstart.zip) archive to try the sample in your own browser.
@@ -32,7 +32,7 @@ You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-port
 
 
 
-[![Get accounts](/img/quickstart/quickstart9.png)](/img/quickstart/quickstart9.png)](/img/quickstart/quickstart9.png)
+[![Get accounts](../../img/quickstart9.png)](../../img/quickstart9.png)
 
 
 
@@ -47,7 +47,7 @@ To mint a non-fungible token object:
 
 
 
-[![Mint NFToken fields](/img/quickstart/quickstart10.png)](/img/quickstart/quickstart10.png)
+[![Mint NFToken fields](../../img/quickstart10.png)](../../img/quickstart10.png)
 
 
 ## Get Tokens
@@ -56,7 +56,7 @@ Click **Get Tokens** to get a list of NFTokens owned by the account.
 
 
 
-[![Get NFTokens](/img/quickstart/quickstart11.png)](/img/quickstart/quickstart11.png)
+[![Get NFTokens](../../img/quickstart11.png)](../../img/quickstart11.png)
 
 
 
@@ -73,14 +73,14 @@ To permanently destroy a NFToken:
 
 
 
-[![Burn NFTokens](/img/quickstart/quickstart12.png)](/img/quickstart/quickstart12.png)
+[![Burn NFTokens](../../img/quickstart12.png)](../../img/quickstart12.png)
 
 
 
 
 # Code Walkthrough
 
-You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart/js/quickstart.zip) archive to examine the code samples.
+You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/js/quickstart.zip) archive to examine the code samples.
 
 ## ripplex3-mint-nfts.js
 
