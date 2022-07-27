@@ -12,7 +12,7 @@
   expanded: false
   pages: 
     - group: Quickstart
-      page: tutorials/quickstart/index.md 
+      page: tutorials/quickstart/index.md
       expanded: false
       pages:
         - page: tutorials/quickstart/create-accounts-send-xrp.md
