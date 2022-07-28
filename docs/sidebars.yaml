@@ -12,7 +12,7 @@
   expanded: false
   pages: 
     - group: Quickstart
-      page: tutorials/quickstart/index.md
+      page: tutorials/quickstart/index.md 
       expanded: false
       pages:
         - page: tutorials/quickstart/create-accounts-send-xrp.md
@@ -105,7 +105,7 @@
       page: concepts/understanding-xrpl/accounts/accounts.md
       expanded: false
       pages:
-        - page: concepts/understanding-xrpl/accounts/account-types.md
+        - page: concepts/understanding-xrpl/accounts/account-types.md 
         - page: concepts/understanding-xrpl/accounts/account-creating.md
         - page: concepts/understanding-xrpl/accounts/reserves.md
         - page: concepts/understanding-xrpl/accounts/cryptographic-keys.md

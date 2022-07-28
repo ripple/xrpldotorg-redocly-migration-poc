@@ -1,6 +1,6 @@
 # Accounts
 
-An "Account" in the XRP Ledger represents a holder of XRP and a sender of [transactions](transaction-formats.html).
+An "Account" in the XRP Ledger represents a holder of XRP and a sender of transactions.
 
 ## Account Structure
 

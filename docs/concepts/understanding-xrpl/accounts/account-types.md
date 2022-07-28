@@ -2,9 +2,9 @@
 
 In the XRP Ledger, financial institutions typically use multiple XRP Ledger accounts to minimize the risk associated with a compromised secret key. The industry standard is to separate roles as follows:
 
-* One **issuing account**, also known as a "cold wallet." This account is the hub of the financial institution's accounting relationships in the ledger, but sends as few transactions as possible.
-* One or more **operational accounts**, also known as "hot wallets." Automated, internet-connected systems use the secret keys to these accounts to conduct day-to-day business like transfers to customers and partners.
-* Optional **standby accounts**, also known as "warm wallets." Trusted human operators use these accounts to transfer money to the operational accounts.
+* One *issuing account*, also known as a "cold wallet." This account is the hub of the financial institution's accounting relationships in the ledger, but sends as few transactions as possible.
+* One or more *operational accounts*, also known as "hot wallets." Automated, internet-connected systems use the secret keys to these accounts to conduct day-to-day business like transfers to customers and partners.
+* Optional *standby accounts*, also known as "warm wallets." Trusted human operators use these accounts to transfer money to the operational accounts.
 
 ## Issuing Account
 
@@ -18,7 +18,7 @@ If a malicious actor learns the secret key behind a institution's issuing accoun
 
 ### Multiple Issuing Accounts
 
-A financial institution can issue more than one type of token in the XRP Ledger from a single issuing account. However, there are some settings that apply equally to all (fungible) tokens issued from an account, including the percentage for [transfer fees](transfer-fees.html) and the [global freeze](freezes.html) status. If the financial institution wants the flexibility to manage settings differently for each type of token, the institution must multiple issuing accounts.
+A financial institution can issue more than one type of token in the XRP Ledger from a single issuing account. However, there are some settings that apply equally to all (fungible) tokens issued from an account, including the percentage for [transfer fees](../tokens/transfer-fees.md) and the [global freeze](../tokens/freezing-tokens.md) status. If the financial institution wants the flexibility to manage settings differently for each type of token, the institution must multiple issuing accounts.
 
 
 ## Operational Accounts
@@ -48,7 +48,9 @@ If a standby account is compromised, the consequences are like an operational ac
 
 When a token issuer follows this separation of roles, funds tend to flow in specific directions, as in the following diagram:
 
-{{ include_svg("img/issued-currency-funds-flow.svg", "Diagram: Funds flow from the issuing account to standby accounts, to operational accounts, to customer and partner accounts, and finally back to the issuing account.")}}
+<!--
+{{ include_svg("../../../img/issued-currency-funds-flow.svg", "Diagram: Funds flow from the issuing account to standby accounts, to operational accounts, to customer and partner accounts, and finally back to the issuing account.")}}
+-->
 
 The issuing account creates tokens by sending payments to standby accounts. These tokens have negative value from the perspective of the issuing account, since they (often) represent obligations. The same tokens have positive value from other perspectives, including from the perspective of a standby account.
 
@@ -60,7 +62,7 @@ As always, token payments must "ripple through" the issuer across trust lines wi
 
 Eventually, someone sends tokens back to the issuer. This destroys those tokens, reducing the issuer's obligations in the XRP Ledger. If the token is a stablecoin, this is the first step of redeeming the tokens for the corresponding off-ledger assets.
 
-
+<!--
 
 ## See Also
 
@@ -75,3 +77,4 @@ Eventually, someone sends tokens back to the issuer. This destroys those tokens,
     - [account_info method][]
     - [SetRegularKey transaction][]
     - [AccountRoot object](accountroot.html)
+-->
