@@ -94,7 +94,7 @@
                 - page: concepts/understanding-xrpl/tokens/non-fungible-token-transfers.md
         - page: concepts/understanding-xrpl/tokens/transfer-fees.md
         - page: concepts/understanding-xrpl/tokens/paths.md
-        - page: concepts/understanding-xrpl/tokens/authorized-trust-lines.md
+        - page: concepts/understanding-xrpl/tokens/authorized-trust-lines.md 
         - page: concepts/understanding-xrpl/tokens/rippling.md
         - group: Freezing Tokens
           page: concepts/understanding-xrpl/tokens/freezing-tokens.md
@@ -107,7 +107,7 @@
       pages:
         - page: concepts/understanding-xrpl/accounts/account-types.md 
         - page: concepts/understanding-xrpl/accounts/account-creating.md
-        - page: concepts/understanding-xrpl/accounts/reserves.md
+        - page: concepts/understanding-xrpl/accounts/reserves.md 
         - page: concepts/understanding-xrpl/accounts/cryptographic-keys.md
         - page: concepts/understanding-xrpl/accounts/deposit-authorization.md
         - page: concepts/understanding-xrpl/accounts/account-deleting.md
@@ -123,7 +123,7 @@
     - label: Tokenization
       page: use-cases/tokenization.md
     - label: Interoperability
-      page: use-cases/interoperability.md
+      page: use-cases/interoperability.md 
 - group: API Reference
   expanded: false
   pages:

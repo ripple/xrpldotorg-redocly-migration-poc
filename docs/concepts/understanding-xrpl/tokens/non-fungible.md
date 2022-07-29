@@ -27,15 +27,15 @@ The XRPL Labs team has created a framework that supports non-fungible tokens (NF
 
 Extensions to the XRP Ledger support two new objects and a new ledger structure.
 
-The [NFToken][] is a native NFT type. It has operations to enumerate, purchase, sell, and hold such tokens. An `NFToken` is a unique, indivisible unit that is not used for payments.
+The `NFToken` is a native NFT type. It has operations to enumerate, purchase, sell, and hold such tokens. An `NFToken` is a unique, indivisible unit that is not used for payments.
 
-The [NFTokenPage object][] contains a set of `NFToken` objects owned by the same account.
+The `NFTokenPage object` contains a set of `NFToken` objects owned by the same account.
 
-You create a new `NFToken` using the [NFTokenMint transaction][].
+You create a new `NFToken` using the `NFTokenMint` transaction.
 
-[NFTokenOffer object][] is a new object that describes an offer to buy or sell a single `NFToken`.
+`NFTokenOffer` object is a new object that describes an offer to buy or sell a single `NFToken`.
 
-You destroy an `NFToken` using the [NFTokenBurn transaction][].
+You destroy an `NFToken` using the `NFTokenBurn` transaction.
 
 
 ## `NFToken` Lifecycle
@@ -45,7 +45,7 @@ You create a NFT using the `NFTokenMint` transaction. The `NFToken` lives on the
 ![The NFT Lifecycle](../../../img/nft-lifecycle.png "NFT Lifecycle Image")
 
 
-
+<!--
 ## Reference
 
 - [NFToken][] data type
@@ -65,3 +65,4 @@ You create a NFT using the `NFTokenMint` transaction. The `NFToken` lives on the
 * `account_nfts`
 * `nft_sell_offers`
 * `nft_buy_offers`
+-->

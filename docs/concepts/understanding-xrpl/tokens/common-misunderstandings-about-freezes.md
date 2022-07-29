@@ -1,12 +1,12 @@
 # Common Misunderstandings about Freezes
 
-It is a common misconception that Ripple or others can freeze XRP, similar to how centralized services like PayPal can suspend your account and prevent you from accessing your funds. In reality, while the XRP Ledger does have a [freeze feature](freezes.html), it can only be used on issued tokens, not on XRP. **No one can freeze XRP.**
+It is a common misconception that Ripple or others can freeze XRP, similar to how centralized services like PayPal can suspend your account and prevent you from accessing your funds. In reality, while the XRP Ledger does have a [freeze feature](freezing-tokens.md), it can only be used on issued tokens, not on XRP. _No one can freeze XRP.__
 
-Tokens in the XRP Ledger are [fundamentally different than XRP](currency-formats.html#comparison). Tokens always exist _in trust lines_, which _can_ be frozen. XRP exists in accounts, which _cannot_ be frozen.
+Tokens in the XRP Ledger are fundamentally different than XRP. Tokens always exist in trust lines, which _can_ be frozen. XRP exists in accounts, which _cannot_ be frozen.
 
 ## Isn't XRP Just Ripple's Token?
 
-No, XRP is different from tokens. XRP is the only native asset on the XRP Ledger and is required to conduct transactions on the XRP Ledger. XRP has no counterparty, meaning that when someone holds XRP, they are not holding a liability, they are holding the actual currency, XRP. Due to this fact, _**<u>XRP CANNOT be frozen by any entity or individual</u>**_.
+No, XRP is different from tokens. XRP is the only native asset on the XRP Ledger and is required to conduct transactions on the XRP Ledger. XRP has no counterparty, meaning that when someone holds XRP, they are not holding a liability, they are holding the actual currency, XRP. Due to this fact, _XRP cannot be frozen by any entity or individual._
 
 ## Can Ripple Freeze My Tokens? Or the XRP Ledger Foundation?
 
@@ -14,7 +14,7 @@ The XRP Ledger is decentralized so that no one party has control over it—not R
 
 The _issuer_ of a token can freeze your trust line for _that token specifically_. They can't freeze the rest of your account, or any tokens from different issuers, and they can't stop you from using the XRP Ledger.
 
-Furthermore, token issuers can voluntarily and permanently _give up_ their ability to freeze tokens. This ["No Freeze"](freezes.html#no-freeze) setting is intended to allow tokens to behave more like physical cash, in that third parties can't stop you from using it.
+Furthermore, token issuers can voluntarily and permanently _give up_ their ability to freeze tokens. This ["No Freeze"](freezing-tokens.md#no-freeze) setting is intended to allow tokens to behave more like physical cash, in that third parties can't stop you from using it.
 
 
 ## But I Heard Ripple Froze Jed McCaleb's XRP?
@@ -23,4 +23,4 @@ This is a misrepresentation of events that actually happened in 2015–2016. Jed
 
 Notably, the "freeze" did not happen on the XRP Ledger and did not involve the XRP Ledger's freeze feature. Like any custodial exchange, Bitstamp has the ability to freeze its users' accounts and stop them from trading or withdrawing funds, especially if those funds are involved in a legal dispute.
 
-In contrast, when trading in the XRP Ledger's [decentralized exchange](decentralized-exchange.html), you custody your own assets so no one can stop you from dealing in XRP.
+In contrast, when trading in the XRP Ledger's decentralized exchange, you custody your own assets so no one can stop you from dealing in XRP.

@@ -47,4 +47,7 @@ Apps and services provide a way for users and devices to connect to the XRP Ledg
 
 One way to build applications that are compatible with not only XRP but also other ways of denominating value is to use the Interledger Protocol with settlement in XRP.
 
-There are many other examples of projects using XRP and adjacent technologies to interact with users. For some examples, see [Businesses](businesses.html), [Exchanges](exchanges.html), and [Wallets](wallets.html).
+There are many other examples of projects using XRP and adjacent technologies to interact with users. 
+
+<!-- For some examples, see [Businesses](businesses.html), [Exchanges](exchanges.html), and [Wallets](wallets.html).
+-->
