@@ -8,12 +8,12 @@ import { Flex, Link, NavBarProps, SearchBox } from '@redocly/developer-portal/ui
 import navbar from '../top-nav.yaml';
 
 export default function CustomNavBar(props: NavBarProps) {
-  const { items, logo, href, altText } = props;
+  const { items, logo, href, altText, pathPrefix } = props;
 
   const navItems = navbar.nav.map((item, index) => {
     if (item.group) {
       return (
-        <NavDropdown key={index} group={item.group} items={item.items} />
+        <NavDropdown key={index} group={item.group} items={item.items} pathPrefix={pathPrefix} />
       );
     } else {
       return (
@@ -39,7 +39,7 @@ export default function CustomNavBar(props: NavBarProps) {
       <TopNavCollapsible>
         <NavItems>
           {navItems}
-          <SearchBox pathPrefix={props.pathPrefix} location={props.location} />
+          <SearchBox pathPrefix={pathPrefix} location={props.location} />
           <ThemeToggle />
         </NavItems>
       </TopNavCollapsible>
@@ -72,14 +72,18 @@ export function TopNavCollapsible(props) {
 }
 
 export function NavDropdown(props) {
-  const {group, items} = props;
+  const {group, items, pathPrefix} = props;
 
   const dropdownGroups = items.map((item, index) => {
     if (item.items) {
       const groupLinks = item.items.map((item2, index2) => {
         const cls2 = item2.external ? "dropdown-item external-link" : "dropdown-item";
+        let item2_href = item2.link;
+        if (item2_href && !item2_href.match(/^https?:/)) {
+          item2_href = pathPrefix + item2_href;
+        }
         return (
-          <a key={index2} className={cls2} href={item2.link}>{item2.label}</a>
+          <a key={index2} className={cls2} href={item2_href}>{item2.label}</a>
         );
       });
 
@@ -95,8 +99,13 @@ export function NavDropdown(props) {
       const hero_id = "dropdown-hero-for-" + slugify(group);
       const img_alt = item.label + " icon";
 
+      let hero_href = item.link;
+      if (hero_href && !hero_href.match(/^https?:/)) {
+        hero_href = pathPrefix + hero_href;
+      }
+
       return (
-        <a key={index} className="dropdown-item dropdown-hero" id={hero_id} href={item.link}>
+        <a key={index} className="dropdown-item dropdown-hero" id={hero_id} href={hero_href}>
           <img id={item.hero} alt={img_alt} />
           <div className="dropdown-hero-text">
             <h4>{item.label}</h4>
@@ -106,8 +115,12 @@ export function NavDropdown(props) {
       )
     } else {
       const cls = item.external ? "dropdown-item ungrouped external-link" : "dropdown-item ungrouped";
+      let item_href = item.link;
+      if (item_href && !item_href.match(/^https?:/)) {
+        item_href = pathPrefix + item_href;
+      }
       return (
-        <a key={index} className={cls} href={item.link}>{item.label}</a>
+        <a key={index} className={cls} href={item_href}>{item.label}</a>
       )
     }
 
