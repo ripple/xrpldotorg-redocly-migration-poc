@@ -68,7 +68,7 @@
         - page: concepts/understanding-xrpl/transactions/multi-signing.md
         - page: concepts/understanding-xrpl/transactions/tickets.md
         - page: concepts/understanding-xrpl/transactions/finality-of-results.md
-        - page: concepts/understanding-xrpl/transactions/invariant-checking.md
+        - page: concepts/understanding-xrpl/transactions/invariant-checking.md 
         - group: Payment Types
           page: concepts/understanding-xrpl/transactions/payments/payment-types.md
           expanded: false

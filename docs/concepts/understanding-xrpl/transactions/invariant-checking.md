@@ -69,20 +69,20 @@ The XRP Ledger checks all the following invariants on each transaction:
 ### Transaction Fee Check
 
 - **Invariant Condition(s):**
-    - The [transaction cost](transaction-cost.html) amount must never be negative, nor larger than the cost specified in the transaction.
+    - The [transaction cost](transaction-cost.md) amount must never be negative, nor larger than the cost specified in the transaction.
 
 
 ### XRP Not Created
 
 - **Invariant Condition(s):**
-    - A transaction must not create XRP and should only destroy the XRP [transaction cost](transaction-cost.html).
+    - A transaction must not create XRP and should only destroy the XRP [transaction cost](transaction-cost.md).
 
 
 ### Account Roots Not Deleted
 
 - **Invariant Condition(s):**
-    - An [account](accounts.html) cannot be deleted from the ledger except by an [AccountDelete transaction][].
-    - A successful AccountDelete transaction always deletes exactly 1 account.
+    - An [account](../accounts/accounts.md) cannot be deleted from the ledger except by an `AccountDelete` transaction.
+    - A successful `AccountDelete` transaction always deletes exactly 1 account.
 
 
 ### XRP Balance Checks
@@ -94,35 +94,41 @@ The XRP Ledger checks all the following invariants on each transaction:
 ### Ledger Entry Types Match
 
 - **Invariant Condition(s):**
-    - Corresponding modified ledger entries should match in type and added entries should be a [valid type](ledger-object-types.html).
+    - Corresponding modified ledger entries should match in type and added entries should be a valid type.
 
+<!-- [valid type](ledger-object-types.html) -->
 
 ### No XRP Trust Lines
 
 - **Invariant Condition(s):**
-    - [Trust lines](trust-lines-and-issuing.html) using XRP are not allowed.
+    - [Trust lines](trust-lines-and-issuing.md) using XRP are not allowed.
 
 
 ### No Bad Offers
 
 - **Invariant Condition(s):**
-    - [Offers](offer.html) should be for non-negative amounts and must not be XRP to XRP.
+    - Offers should be for non-negative amounts and must not be XRP to XRP.
 
+<!-- [Offers](offer.html) -->
 
 ### No Zero Escrow
 
 - **Invariant Condition(s):**
-    - An [escrow](escrow-object.html) entry must hold more than 0 XRP and less than 100 billion XRP.
+    - An escrow entry must hold more than 0 XRP and less than 100 billion XRP.
 
-
+<!-- [escrow](escrow-object.html) -->
+    
 ### Valid New Account Root
 
 - **Invariant Condition(s):**
-    - A new [account root](accountroot.html) must be the consequence of a payment.
-    - A new account root must have the right starting [sequence](basic-data-types.html#account-sequence).
+    - A new account root must be the consequence of a payment.
+    - A new account root must have the right starting sequence.
     - A transaction must not create more than one new [account](accounts.html).
-
-
+    
+<!-- [account root](accountroot.html) -->   
+<!-- [sequence](basic-data-types.html#account-sequence) -->
+    
+<!--
 ## See Also
 
 - **Blog:**
@@ -142,4 +148,4 @@ The XRP Ledger checks all the following invariants on each transaction:
     - [Calculating Balance Changes for a Transaction](https://xrpl.org/blog/2015/calculating-balance-changes-for-a-transaction.html#calculating-balance-changes-for-a-transaction)
 
 
-
+-->

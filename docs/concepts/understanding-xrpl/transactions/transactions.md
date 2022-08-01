@@ -8,7 +8,7 @@ Transactions can do more than transfer currency. In addition to supporting vario
 
 ### Example Unsigned Transaction
 
-Here is an example of an unsigned [Payment transaction][] in JSON:
+Here is an example of an unsigned `Payment` transaction in JSON:
 
 ```json
 {
@@ -45,16 +45,20 @@ Sending a transaction to the XRP Ledger involves several steps:
 
 1. Create an [unsigned transaction in JSON format](#example-unsigned-transaction).
 2. Use one or more signatures to [authorize the transaction](#authorizing-transactions).
-3. Submit a transaction to an XRP Ledger server (usually a [`rippled` instance](xrpl-servers.html)). If the transaction is properly formed, the server provisionally applies the transaction to its current version of the ledger and relays the transaction to other members of the peer-to-peer network.
-4. The [consensus process](consensus.html) determines which provisional transactions get included in the next validated ledger.
+3. Submit a transaction to an XRP Ledger server (usually a [`rippled` instance](../server/server-modes.md)). If the transaction is properly formed, the server provisionally applies the transaction to its current version of the ledger and relays the transaction to other members of the peer-to-peer network.
+4. The [consensus process](../xrpl/consensus.md) determines which provisional transactions get included in the next validated ledger.
 5. The servers apply those transactions to the previous ledger in a canonical order and share their results.
-6. If enough [trusted validators](rippled-server-modes.html#validators) created the exact same ledger, that ledger is declared _validated_ and the [results of the transactions](transaction-results.html) in that ledger are immutable.
+6. If enough [trusted validators](../server/server-modes.md#validators) created the exact same ledger, that ledger is declared _validated_ and the <!-- * --> results of the transactions in that ledger are immutable.
+
+<!-- * [results of the transactions](transaction-results.html) -->
 
 ### Example Executed Transaction Response with Metadata
 
-After a transaction has been executed, the XRP Ledger adds [metadata](transaction-metadata.html) to show the transaction's final outcome and all the changes that the transaction made to the shared state of the XRP Ledger.
+After a transaction has been executed, the XRP Ledger adds <!-- * --> metadata to show the transaction's final outcome and all the changes that the transaction made to the shared state of the XRP Ledger.
 
-You can check a transaction's status using the API, for example using the [tx command](tx.html).
+<!-- * [metadata](transaction-metadata.html) -->
+
+You can check a transaction's status using the API, for example using the `tx` command.
 
 The results of a transaction, including all its metadata, are not final until the transaction appears in a **validated** ledger.
 
@@ -150,17 +154,20 @@ Example response from the `tx` command:
 
 ## Identifying Transactions
 
-Every signed transaction has a unique `"hash"` that identifies it. The server provides the hash in the response when you submit the transaction; you can also look up a transaction in an account's transaction history with the [account_tx command](account_tx.html).
+Every signed transaction has a unique `"hash"` that identifies it. The server provides the hash in the response when you submit the transaction; you can also look up a transaction in an account's transaction history with the `account_tx` command.
 
-The transaction hash can be used as a "proof of payment" since anyone can [look up the transaction by its hash](look-up-transaction-results.html) to verify its final status.
+The transaction hash can be used as a "proof of payment" since anyone can <!-- * --> look up the transaction by its hash to verify its final status.
 
+<!-- *  [look up the transaction by its hash](look-up-transaction-results.html) -->
+
+<!--
 {% include '_snippets/setfee_uniqueness_note.md' %}
 <!--_ -->
 
 
 ## Claimed Cost Justification
 
-Although it might seem unfair to charge a [transaction cost](transaction-cost.html) for a failed transaction, the `tec` class of errors exists for good reasons:
+Although it might seem unfair to charge a [transaction cost](transaction-cost.md) for a failed transaction, the `tec` class of errors exists for good reasons:
 
 * Transactions submitted after the failed one do not have to have their Sequence values renumbered. Incorporating the failed transaction into a ledger uses up the transaction's sequence number, preserving the expected sequence.
 * Distributing the transaction throughout the network increases network load. Enforcing a cost makes it harder for attackers to abuse the network with failed transactions.
@@ -172,20 +179,23 @@ In the decentralized XRP Ledger, a digital signature proves that a transaction i
 
 Transactions are authorized by any of the following signature types:
 
-* A single signature from the master private key that is mathematically associated with the sending address. You can disable or enable the master key pair using an [AccountSet transaction][].
-* A single signature that matches the regular private key associated with the address. You can add, remove, or replace a regular key pair using a [SetRegularKey transaction][].
-* A [multi-signature](multi-signing.html) that matches a list of signers owned by the address. You can add, remove, or replace a list of signers using a [SignerListSet transaction][].
+* A single signature from the master private key that is mathematically associated with the sending address. You can disable or enable the master key pair using an `AccountSet` transaction.
+* A single signature that matches the regular private key associated with the address. You can add, remove, or replace a regular key pair using a `SetRegularKey` transaction.
+* A [multi-signature](multi-signing.md) that matches a list of signers owned by the address. You can add, remove, or replace a list of signers using a `SignerListSet` transaction.
 
 Any signature type can authorize any type of transaction, with the following exceptions:
 
-* Only the master private key can [disable the master public key](accountset.html).
-* Only the master private key can [permanently give up the ability to freeze](freezes.html#no-freeze).
+* Only the master private key can <!-- * -->disable the master public key.
+* Only the master private key can [permanently give up the ability to freeze](../tokens/freezing-tokens.md#no-freeze).
 * You can never remove the last method of signing transactions from an address.
 
-For more information about master and regular key pairs, see [Cryptographic Keys](cryptographic-keys.html).
+<!-- [disable the master public key](accountset.html) -->
+
+For more information about master and regular key pairs, see [Cryptographic Keys](../accounts/cryptographic-keys.md).
 
 <!--{# Add this reference after signatures concept doc is published. For more information about signatures, see [Understanding Signatures](concept-signatures.html). #}-->
 
+<!--
 
 ## See Also
 
@@ -206,4 +216,7 @@ For more information about master and regular key pairs, see [Cryptographic Keys
     - [account_tx method][]
     - [tx method][]
     - [submit method][]
-    - [submit_multisigned method][]
+    - [submit_multisigned method][] 
+    
+-->
+    

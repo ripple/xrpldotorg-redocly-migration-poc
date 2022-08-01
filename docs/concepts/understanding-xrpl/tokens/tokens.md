@@ -6,7 +6,9 @@ All assets other than XRP can be represented in the XRP Ledger as **tokens**. St
 
 Standard tokens are fungible: meaning, all units of that token are interchangeable and indistinguishable. Non-fungible tokens are also possible: see [Non-Fungible Tokens](non-fungible.md) :not_enabled: for details of the XRP Ledger's native support.
 
-Tokens can used for [cross-currency payments](../transactions/payments/cross-currency-payments.md) and can be traded in the [decentralized exchange](../server/decentralized-exchange.md).
+Tokens can used for [cross-currency payments](../transactions/payments/cross-currency-payments.md) and can be traded in the <!-- * -->decentralized exchange.
+
+<!-- * [decentralized exchange](../server/decentralized-exchange.md) -->
 
 The balance on a trust line is negative or positive depending on which side you view it from. The side with the negative balance is called the "issuer" and can control some properties of how those tokens behave. When you send tokens to another account that isn't the issuer, those tokens "ripple" through the issuer and possibly other accounts using the same currency code. This is useful in some cases, but can cause unexpected and undesirable behavior in others. You can use the [No Ripple flag](rippling.md#the-no-ripple-flag) on trust lines to prevent those trust lines from rippling.
 
