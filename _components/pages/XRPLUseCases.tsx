@@ -164,12 +164,11 @@ export default function XRPLUseCases() {
   // {% endblock %}
 
   // {% block bodyclasses %}no-sidebar{% endblock %} TODO:
-  // {% block mainclasses %}landing page-uses landing-builtin-bg{% endblock %}
 
   // {% block breadcrumbs %}{% endblock %} TODO:
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden page-uses landing-builtin-bgr">
       <section className="py-26 text-center">
         <div className="col-lg-5 mx-auto text-center">
           <div className="d-flex flex-column-reverse">
@@ -228,19 +227,14 @@ export default function XRPLUseCases() {
           })}
         </div>
       </section>
+      {/* <script type="application/javascript">
+        {(window.dataLayer = window.dataLayer || [])}
+        {window.dataLayer.push({
+          event: "page_info",
+          page_type: "Splash Page",
+          page_group: "About",
+        })}
+      </script> */}
     </div>
   );
-
-  {
-    /* {% block analytics %}
-    <script type="application/javascript">
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      "event": "page_info",
-      "page_type": "Splash Page",
-      "page_group": "About"
-    })
-    </script>
-{% endblock analytics %} */
-  }
 }
