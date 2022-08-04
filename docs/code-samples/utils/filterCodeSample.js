@@ -1,7 +1,6 @@
 const fs = require("fs");
 const { marked } = require("marked");
 const JSSoup = require("jssoup").default;
-console.log(fs, "FSSSSSSS");
 const csDirs = "_code-samples";
 const skipDirs = ["node_modules", ".git", "__pycache__"];
 
