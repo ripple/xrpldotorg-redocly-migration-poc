@@ -151,21 +151,21 @@ export default function XRPLUseCases() {
     },
   ];
 
-  // {% extends "base.html.jinja" %}
-  // {% block head %} TODO:
+  //   {% extends "base.html.jinja" %}
+  //   {% block head %} TODO:
 
-  //     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  //     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  //     <!--[if lt IE 9]>
-  //       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  //       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  //     <![endif]-->
+  //       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  //       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  //       <!--[if lt IE 9]>
+  //         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  //         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  //       <![endif]-->
 
-  // {% endblock %}
+  //   {% endblock %}
 
-  // {% block bodyclasses %}no-sidebar{% endblock %} TODO:
+  //   {% block bodyclasses %}no-sidebar{% endblock %} TODO:
 
-  // {% block breadcrumbs %}{% endblock %} TODO:
+  //   {% block breadcrumbs %}{% endblock %} TODO:
 
   return (
     <div className="overflow-hidden page-uses landing-builtin-bgr">
@@ -227,7 +227,9 @@ export default function XRPLUseCases() {
           })}
         </div>
       </section>
-      {/* <script type="application/javascript">
+      {/* 
+      TODO: Implement analytics at a later point.
+      <script type="application/javascript">
         {(window.dataLayer = window.dataLayer || [])}
         {window.dataLayer.push({
           event: "page_info",
