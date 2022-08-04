@@ -1,6 +1,6 @@
 // {% extends "base.html.jinja" %}
 import * as React from "react";
-import getCodeSamples from "../docs/code-samples/utils/filterCodeSample";
+import preval from "babel-plugin-preval/macro";
 // {% block bodyclassNamees %}no-sidebar{% endblock %}
 // {% block mainclassNamees %}landing page-community{% endblock %}
 
@@ -14,7 +14,66 @@ interface CodeSample {
 }
 
 export default function CodeSamples() {
-  const codeSamples: Array<CodeSample> = getCodeSamples();
+  // scanner script to go through all code-samples
+  const codeSamples = preval`const fs = require("fs");
+  const { marked } = require("marked");
+  const JSSoup = require("jssoup").default;
+  const path = require('path');
+  const dirPath = path.resolve(__dirname, '../_code-samples');
+  const skipDirs = ["node_modules", ".git", "__pycache__"];
+  
+  function sortFunc(cs1, cs2) {
+    /* Sort code samples alphabetically by title except with "Intro" fields first
+     */
+    if (cs1.title.includes("Intro")) {
+      return -1; }
+    else if (cs1.title.includes("Quickstart")){
+        cs1.title = " " + cs1.title;
+      return -1;
+    } else if (cs1.title < cs2.title) {
+      return -1;
+    } else if (cs1.title > cs2.title) {
+      return 1;
+    }
+    return 0;
+  }
+  
+  function getCodeSamples(dir,codeSamplesArr = []) {
+    // list files in directory and loop through
+    fs.readdirSync(dir).forEach((csFile) => {
+      // builds path of file
+      const fPath = dir + "/" + csFile;
+      if (fs.statSync(fPath).isDirectory() && !skipDirs.includes(csFile)) {
+        const langs = [];
+        const cs = {
+          href: fPath,
+        };
+        // loop through each subfolder
+        fs.readdirSync(fPath).forEach((file) => {
+          const subPath = fPath + "/" + file;
+          if (fs.statSync(subPath).isDirectory()) {
+            const lang = ["websocket", "json-rpc"].includes(file) ? "http" : file;
+            langs.push(lang);
+          }
+          if (file === "README.md") {
+            const data = fs.readFileSync(subPath, "utf-8");
+            const soup = new JSSoup(marked.parse(data));
+            // find first title
+            cs.title = soup.find("h1").text;
+            // find first paragragh
+            cs.description = soup.find("p").text || "";
+          }
+          langs.sort();
+          cs.langs = langs;
+          cs.href = fPath;
+        });
+        codeSamplesArr.push(cs);
+      }
+    });
+    codeSamplesArr.sort(sortFunc);
+    return codeSamplesArr;
+  }
+  module.exports = getCodeSamples(dirPath)`;
   const langIcons = {
     cli: "assets/img/logos/cli.svg",
     go: "assets/img/logos/golang.svg",
@@ -48,7 +107,7 @@ export default function CodeSamples() {
 
       <div className="position-relative d-none-sm">
         <img
-          src="./img/backgrounds/xrpl-overview-orange.svg"
+          src="static/img/backgrounds/xrpl-overview-orange.svg"
           id="xrpl-overview-orange"
         />
       </div>
