@@ -8,7 +8,6 @@ interface CardType {
   description: string;
 }
 
-// TODO: Determine if the use case category info is a subset of CardType
 interface UseCaseCategoryInfo {
   id: string;
   title: string;
@@ -151,22 +150,6 @@ export default function XRPLUseCases() {
     },
   ];
 
-  //   {% extends "base.html.jinja" %}
-  //   {% block head %} TODO:
-
-  //       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  //       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  //       <!--[if lt IE 9]>
-  //         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  //         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  //       <![endif]-->
-
-  //   {% endblock %}
-
-  //   {% block bodyclasses %}no-sidebar{% endblock %} TODO:
-
-  //   {% block breadcrumbs %}{% endblock %} TODO:
-
   return (
     <div className="overflow-hidden page-uses landing-builtin-bgr">
       <section className="py-26 text-center">
@@ -227,16 +210,6 @@ export default function XRPLUseCases() {
           })}
         </div>
       </section>
-      {/* 
-      TODO: Implement analytics at a later point.
-      <script type="application/javascript">
-        {(window.dataLayer = window.dataLayer || [])}
-        {window.dataLayer.push({
-          event: "page_info",
-          page_type: "Splash Page",
-          page_group: "About",
-        })}
-      </script> */}
     </div>
   );
 }
