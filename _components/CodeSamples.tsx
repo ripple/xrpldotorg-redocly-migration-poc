@@ -1,5 +1,5 @@
 // {% extends "base.html.jinja" %}
-import * as React from "react";
+import React, { useState } from "react";
 import preval from "babel-plugin-preval/macro";
 // {% block bodyclassNamees %}no-sidebar{% endblock %}
 // {% block mainclassNamees %}landing page-community{% endblock %}
@@ -14,6 +14,7 @@ interface CodeSample {
 }
 
 export default function CodeSamples() {
+  let [langSelected, setLangSelected] = useState("All");
   // scanner script to go through all code-samples
   const codeSamples = preval`const fs = require("fs");
   const { marked } = require("marked");
@@ -60,11 +61,11 @@ export default function CodeSamples() {
             const soup = new JSSoup(marked.parse(data));
             // find first title
             cs.title = soup.find("h1").text;
-            // find first paragragh
-            cs.description = soup.find("p").text || "";
+            // find first paragragh, replace quotes
+            cs.description = soup.find("p").text.replace("&#39;", "'").replace(/(&quot\;)/g,'"')|| "";
           }
           langs.sort();
-          cs.langs = langs;
+          cs.langs = [...new Set(langs)];
           cs.href = fPath;
         });
         codeSamplesArr.push(cs);
@@ -74,17 +75,21 @@ export default function CodeSamples() {
     return codeSamplesArr;
   }
   module.exports = getCodeSamples(dirPath)`;
+  function handleLangChange(e) {
+    console.log(e.target.value, "herere");
+    setLangSelected(e.target.value);
+  }
   const langIcons = {
-    cli: "assets/img/logos/cli.svg",
-    go: "assets/img/logos/golang.svg",
-    java: "assets/img/logos/java.svg",
-    js: "assets/img/logos/javascript.svg",
-    py: "assets/img/logos/python.svg",
-    http: "assets/img/logos/globe.svg",
+    cli: "/img/logos/cli.svg",
+    go: "/img/logos/golang.svg",
+    java: "/img/logos/java.svg",
+    js: "/img/logos/javascript.svg",
+    py: "/img/logos/python.svg",
+    http: "/img/logos/globe.svg",
   };
   const langText = {
     cli: "CLI",
-    go: "go",
+    go: "Go",
     java: "Java",
     js: "JavaScript",
     py: "Python",
@@ -99,15 +104,12 @@ export default function CodeSamples() {
             <h1 className="mb-0">Start Building with Example Code</h1>
             <h6 className="eyebrow mb-3">Code Samples</h6>
           </div>
-          <a className="mt-12 btn btn-primary btn-arrow" href="#">
-            Submit Code Samples
-          </a>
         </div>
       </section>
 
       <div className="position-relative d-none-sm">
         <img
-          src="static/img/backgrounds/xrpl-overview-orange.svg"
+          src="/img/backgrounds/xrpl-overview-orange.svg"
           id="xrpl-overview-orange"
         />
       </div>
@@ -122,12 +124,18 @@ export default function CodeSamples() {
         <div className="row col-12  card-deck mt-10" id="code-samples-deck">
           <div className="row col-md-12 px-0" id="code_samples_list">
             {codeSamples.map((card: CodeSample) => {
-              return (
+              return card.langs.includes(langSelected) ||
+                langSelected === "All" ? (
                 <a
-                  className="card cardtest col-12 col-lg-5 {% for lang in card.langs %} lang_{{lang}} {% endfor %} "
-                  href={
-                    "{target.github_forkurl}/tree/{target.github_branch}/{card.href}"
+                  className={
+                    "card cardtest col-12 col-lg-5 " +
+                    card.langs
+                      .map((lang: string) => {
+                        return "lang_" + lang;
+                      })
+                      .join(" ")
                   }
+                  href={card.href}
                 >
                   <div className="card-header">
                     {card.langs.map((lang: string) => {
@@ -144,6 +152,8 @@ export default function CodeSamples() {
                   </div>
                   <div className="card-footer">&nbsp;</div>
                 </a>
+              ) : (
+                <></>
               );
             })}
           </div>
@@ -197,10 +207,6 @@ export default function CodeSamples() {
               </p>
             </div>
           </div>
-
-          <a className="mt-12 btn btn-primary btn-arrow" href="#">
-            Submit Code Samples
-          </a>
         </div>
       </section>
       <div className="p-2 mt-30">
@@ -212,7 +218,7 @@ export default function CodeSamples() {
               name="langs"
               id="input_all"
               value="All"
-              checked
+              onChange={handleLangChange}
             />{" "}
             <label htmlFor="input_all">All</label>
           </div>
@@ -222,8 +228,9 @@ export default function CodeSamples() {
                 <input
                   type="radio"
                   name="langs"
-                  id="input_{{lang}}"
-                  value="{{lang}}"
+                  id={"input_" + lang}
+                  value={lang}
+                  onChange={handleLangChange}
                 />
                 <label htmlFor={"input_" + lang}>{langText[lang]}</label>
               </div>
