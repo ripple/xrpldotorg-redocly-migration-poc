@@ -1,6 +1,7 @@
 // {% extends "base.html.jinja" %}
 import React, { useState } from "react";
 import preval from "babel-plugin-preval/macro";
+import { usePathPrefix } from "@redocly/developer-portal/ui";
 // {% block bodyclassNamees %}no-sidebar{% endblock %}
 // {% block mainclassNamees %}landing page-community{% endblock %}
 
@@ -12,8 +13,11 @@ interface CodeSample {
   description: string;
   langs: Array<string>;
 }
+// TODO: need to be updated once repo is migrated
+const githubLink = "https://github.com/amarantha-k/xrpl-org-dev-portal";
 
 export default function CodeSamples() {
+  const prefix = usePathPrefix();
   let [langSelected, setLangSelected] = useState("All");
   // scanner script to go through all code-samples
   const codeSamples = preval`const fs = require("fs");
@@ -47,7 +51,7 @@ export default function CodeSamples() {
       if (fs.statSync(fPath).isDirectory() && !skipDirs.includes(csFile)) {
         const langs = [];
         const cs = {
-          href: fPath,
+          href: csFile,
         };
         // loop through each subfolder
         fs.readdirSync(fPath).forEach((file) => {
@@ -66,7 +70,6 @@ export default function CodeSamples() {
           }
           langs.sort();
           cs.langs = [...new Set(langs)];
-          cs.href = fPath;
         });
         codeSamplesArr.push(cs);
       }
@@ -80,12 +83,12 @@ export default function CodeSamples() {
     setLangSelected(e.target.value);
   }
   const langIcons = {
-    cli: "/img/logos/cli.svg",
-    go: "/img/logos/golang.svg",
-    java: "/img/logos/java.svg",
-    js: "/img/logos/javascript.svg",
-    py: "/img/logos/python.svg",
-    http: "/img/logos/globe.svg",
+    cli: prefix + "/img/logos/cli.svg",
+    go: prefix + "/img/logos/golang.svg",
+    java: prefix + "/img/logos/java.svg",
+    js: prefix + "/img/logos/javascript.svg",
+    py: prefix + "/img/logos/python.svg",
+    http: prefix + "/img/logos/globe.svg",
   };
   const langText = {
     cli: "CLI",
@@ -109,7 +112,7 @@ export default function CodeSamples() {
 
       <div className="position-relative d-none-sm">
         <img
-          src="/img/backgrounds/xrpl-overview-orange.svg"
+          src={prefix + "/img/backgrounds/xrpl-overview-orange.svg"}
           id="xrpl-overview-orange"
         />
       </div>
@@ -135,7 +138,7 @@ export default function CodeSamples() {
                       })
                       .join(" ")
                   }
-                  href={card.href}
+                  href={githubLink + "/_code-samples/" + card.href}
                 >
                   <div className="card-header">
                     {card.langs.map((lang: string) => {
@@ -175,9 +178,8 @@ export default function CodeSamples() {
               <span className="dot"></span>
               <h5 className="pb-4 pt-md-5">Fork and clone</h5>
               <p className="pb-4">
-                Fork the{" "}
-                <a href="{{target.github_forkurl}}">xrpl-dev-portal repo</a>.
-                Using git, clone the fork to your computer.
+                Fork the <a href={githubLink}> xrpl-dev-portal repo</a>. Using
+                git, clone the fork to your computer.
               </p>
             </div>
             <div className=" col-lg-3 pl-4 pl-lg-0 pr-4 contribute  dot contribute_2">
