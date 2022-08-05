@@ -60,7 +60,7 @@ a[title="Source"] {
 
 /* Fixes for theme toggle. Some of these might be fixable by using overrides that don't add styles instead. */
 .light article,
-.light .ftEjuw /* some text on XRPL overview page */ {
+.light .styled-page p {
   color: #000;
 }
 .dark article {
@@ -84,23 +84,68 @@ a[title="Source"] {
   color: #000;
 }
 
-/* Using a generated class name like this might not work as expected across builds.
-  Intended to fix links in left sidebar nav. */
-.dark .hEyVFs, .dark .hEyVFs a {
+/* Fix links in left sidebar nav. */
+.dark .page-tree-nav,
+.dark .page-tree-nav a,
+.dark .page-tree-nav span {
   color: #fff;
 }
-.light .gUcXED {
+.light .page-tree-nav,
+.light .page-tree-nav a,
+.light .page-tree-nav span {
   color: #000;
 }
+.dark .page-tree-nav a:hover,
+.dark .page-tree-nav a:hover span {
+  color: #9A52FF;
+  text-decoration: none;
+}
+.light .page-tree-nav a:hover,
+.light .page-tree-nav a:hover span {
+  color: #7919FF;
+  text-decoration: none;
+}
 
-/* right nav scrollspy coloring */
-.light .jhNtYM:hover, .light .jhNtYM.active,
-.light .UoMdD:hover, .light .UoMdD.active {
+.dark .page-tree-nav > aside {
+  border-right-width: 0;
+}
+
+.page-tree-nav aside div > i {
+  background-image: none;
+  width: 1.75em;
+  height: 1.75em;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  transition: all 0.3s;
+}
+
+.page-tree-nav aside div > i::after {
+  display: inline-block;
+  vertical-align: .34em;
+  content: "";
+  border-top: .4em solid;
+  border-right: .4em solid transparent;
+  border-bottom: 0;
+  border-left: .4em solid transparent;
+}
+
+.dark .page-tree-nav aside div > i::after {
+  border-top-color: #fff;
+}
+.light .page-tree-nav aside div > i::after {
+  border-top-color: #000;
+}
+
+/* right nav scrollspy coloring. ".page-tree-nav + div" is a hack to select
+   the element that contains the center and right columns */
+.light .page-tree-nav + div aside a:hover,
+.light .page-tree-nav + div aside a.active {
   background-color: #E0E0E1;
 }
 
 /* Search magnifying glass icon */
-.light .gWUFvz {
+.light #search + span {
   filter: invert(100%);
 }
 
@@ -110,66 +155,57 @@ a[title="Source"] {
 }
 
 /* Fixes for tables, esp. in light mode. */
-.dark .fKLgSI details > table td,
-.dark .fKLgSI > table td,
-.dark .fKLgSI > div:not(.sc-gCLdxd) table td,
-.dark .fKLgSI > p table td,
-.dark .fKLgSI details > table tr,
-.dark .fKLgSI > table tr,
-.dark .fKLgSI > p table tr,
-.dark .dark .fKLgSI > div:not(.sc-gCLdxd) table tr,
-.dark .fKLgSI details > table tr:nth-child(2n),
-.dark .fKLgSI > table tr:nth-child(2n),
-.dark .fKLgSI > div:not(.sc-gCLdxd) table tr:nth-child(2n),
-.dark .fKLgSI > p table tr:nth-child(2n),
-.light .fKLgSI details > table td,
-.light .fKLgSI > table td,
-.light .fKLgSI > div:not(.sc-gCLdxd) table td,
-.light .fKLgSI > p table td,
-.light .fKLgSI details > table tr,
-.light .fKLgSI > table tr,
-.light .fKLgSI > p table tr,
-.light .light .fKLgSI > div:not(.sc-gCLdxd) table tr,
-.light .fKLgSI details > table tr:nth-child(2n),
-.light .fKLgSI > table tr:nth-child(2n),
-.light .fKLgSI > div:not(.sc-gCLdxd) table tr:nth-child(2n),
-.light .fKLgSI > p table tr:nth-child(2n) {
+.dark .page-tree-nav + div details > table td,
+.dark .page-tree-nav + div article > table td,
+.dark .page-tree-nav + div article > p table td,
+.dark .page-tree-nav + div details > table tr,
+.dark .page-tree-nav + div article > table tr,
+.dark .page-tree-nav + div article > p table tr,
+.dark .page-tree-nav + div details > table tr:nth-child(2n),
+.dark .page-tree-nav + div article > table tr:nth-child(2n),
+.dark .page-tree-nav + div article > p table tr:nth-child(2n),
+.light .page-tree-nav + div details > table td,
+.light .page-tree-nav + div article > table td,
+.light .page-tree-nav + div article > p table td,
+.light .page-tree-nav + div details > table tr,
+.light .page-tree-nav + div article > table tr,
+.light .page-tree-nav + div article > p table tr,
+.light .page-tree-nav + div details > table tr:nth-child(2n),
+.light .page-tree-nav + div article > table tr:nth-child(2n),
+.light .page-tree-nav + div article > p table tr:nth-child(2n) {
   background: none;
 }
-.dark .fKLgSI details > table th,
-.dark .fKLgSI > table th,
-.dark .fKLgSI > div:not(.sc-gCLdxd) table th,
-.dark .fKLgSI > p table th,
-.light .fKLgSI details > table th,
-.light .fKLgSI > table th,
-.light .fKLgSI > div:not(.sc-gCLdxd) table th,
-.light .fKLgSI > p table th {
+.dark .page-tree-nav + div details > table th,
+.dark .page-tree-nav + div article > table th,
+.dark .page-tree-nav + div article > p table th,
+.light .page-tree-nav + div details > table th,
+.light .page-tree-nav + div article > table th,
+.light .page-tree-nav + div article > p table th {
   background: none;
   color: inherit;
   font-weight: bold;
   border-width: 0 0 2px 0;
 }
 
-.light .fKLgSI > table tr,
-.dark .fKLgSI > table tr {
+.light .page-tree-nav + div article > table tr,
+.dark .page-tree-nav + div article > table tr {
   border-top-width: 0;
 }
-.fKLgSI details > table td,
-.fKLgSI > table td,
-.fKLgSI > div:not(.sc-gCLdxd) table td,
-.fKLgSI > p table td {
+.page-tree-nav + div details > table td,
+.page-tree-nav + div article > table td,
+.page-tree-nav + div article > p table td {
   border-bottom-width: 1px;
   border-right-width: 0;
   border-left-width: 0;
 }
 
-/* Fixes for search bar. Experimental. These might not be portable across builds. */
-#top-main-nav .egYDUn {
-  width: 100%;
+/* Fix the height of the thing wrapping the search bar */
+#topnav-pages > span > span {
   height: auto;
+  width: 100%;
 }
 
-#top-main-nav .eZrDea {
+#search {
   max-width: 100%;
 }
 
@@ -185,6 +221,11 @@ a[title="Source"] {
 
 #topnav-pages > span > span {
   line-height: unset;
+}
+
+/* Fix "Last updated" text. ".page-tree-nav + div" is again a proxy for center col */
+.light .page-tree-nav + div time {
+  color: #000;
 }
 
 /* Alert banner CSS, basically same as original */
