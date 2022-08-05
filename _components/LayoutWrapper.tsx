@@ -6,7 +6,7 @@ import navbar from '../top-nav.yaml';
  * top navbar regardless of whether the top nav has an alert banner active.
  */
 export default function LayoutWrapper(props) {
-  const topmargin = navbar.alertbanner.show ? {"margin-top": "126px"} : {"margin-top": "80px"};
+  const topmargin = navbar.alertbanner.show ? {"marginTop": "126px"} : {"marginTop": "80px"};
   return (
     <div style={topmargin}>
       {props.children} {}

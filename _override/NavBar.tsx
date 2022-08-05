@@ -24,6 +24,20 @@ export default function CustomNavBar(props: NavBarProps) {
     }
   });
 
+  React.useEffect(() => {
+    // Turns out jQuery is necessary for firing events on Bootstrap v4
+    // dropdowns. These events set classes so that the search bar and other
+    // submenus collapse on mobile when you expand one submenu.
+    const dds = $("#topnav-pages .dropdown");
+    const top_main_nav = document.querySelector("#top-main-nav");
+    dds.on("show.bs.dropdown", (evt) => {
+      top_main_nav.classList.add("submenu-expanded");
+    });
+    dds.on("hidden.bs.dropdown", (evt) => {
+      top_main_nav.classList.remove("submenu-expanded");
+    });
+  })
+
   return (
     <>
     <AlertBanner show={navbar.alertbanner.show}
@@ -50,8 +64,6 @@ export default function CustomNavBar(props: NavBarProps) {
 
 export function AlertBanner(props) {
   const {show, message, button, link} = props;
-
-  //if (!show) { return null; }
 
   return (
     <div className="top-banner fixed-top">
@@ -143,7 +155,7 @@ export function NavDropdown(props) {
 
 export function NavWrapper(props) {
   return (
-    <nav className="top-nav navbar navbar-expand-lg navbar-dark fixed-top" style={props.belowAlertBanner ? {"margin-top": "46px"}: {}}>
+    <nav className="top-nav navbar navbar-expand-lg navbar-dark fixed-top" style={props.belowAlertBanner ? {"marginTop": "46px"}: {}}>
       {props.children}
     </nav>
   )

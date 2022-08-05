@@ -10,9 +10,10 @@
     "clean": "redocly-portal clean"
   },
   "dependencies": {
-    "@redocly/developer-portal": "1.1.0-beta.101"
+    "@redocly/developer-portal": "1.1.0-beta.101",
+    "jquery": "^3.6.0"
   },
   "devDependencies": {
-    "@types/jquery": "^3.5.14"
+    "@types/jquery": "^3.6.0"
   }
 }

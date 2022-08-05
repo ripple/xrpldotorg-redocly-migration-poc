@@ -21,6 +21,7 @@ a[title="Source"] {
   margin: 0 2rem 2rem 2rem;
 }
 
+
 /* Top nav dropdowns have different generated IDs compared to the old site */
 .top-nav .dropdown-menu.show#topnav_dd_about {
   grid-template-columns: 180px 180px 180px;
@@ -40,9 +41,6 @@ a[title="Source"] {
   padding: 40px;
   background-color: #232325;
 }
-.light .top-nav .dropdown-menu.show .col-for-popular_pages {
-  background-color: #E0E0E1;
-}
 .top-nav .dropdown-menu.show #dropdown-hero-for-docs {
   grid-column: 1 / 3;
 }
@@ -56,6 +54,41 @@ a[title="Source"] {
   .top-nav #topnav_dd_community {
     width: 360px;
   }
+}
+
+@media (max-width: 991.98px) {
+  /* Fix dropdown size with top banner present */
+  .top-nav .dropdown-menu.show {
+    height: calc(100vh - 80px - 52px - 46px);
+  }
+
+  .top-nav .dropdown-menu.show#topnav_dd_docs {
+    display: grid;
+    grid-template-columns: minmax(187px, 1fr) minmax(187px, 1fr);
+    gap: 1px;
+  }
+  .top-nav .dropdown-menu.show#topnav_dd_docs .dropdown-hero {
+    grid-column: 1 / 3;
+    grid-row: 1;
+  }
+  .top-nav .dropdown-menu.show .col-for-popular_pages {
+    grid-column: 1 / 3;
+    grid-row: 4;
+    margin: -1px;
+    padding-top: 33px;
+  }
+
+  /* Fix spacing of community dropdown */
+  #topnav_dd_community.show {
+    padding: 1rem 2rem 4rem 2rem;
+  }
+  #dropdown-hero-for-community {
+    padding-left: 0;
+  }
+}
+
+.light .top-nav .dropdown-menu.show .col-for-popular_pages {
+  background-color: #E0E0E1;
 }
 
 /* Fixes for theme toggle. Some of these might be fixable by using overrides that don't add styles instead. */
@@ -153,6 +186,9 @@ a[title="Source"] {
   color: #000;
   background-color: #E0E0E1;
 }
+.dark #search {
+  background-color: #111112;
+}
 
 /* Fixes for tables, esp. in light mode. */
 .dark .page-tree-nav + div details > table td,
@@ -207,6 +243,19 @@ a[title="Source"] {
 
 #search {
   max-width: 100%;
+}
+
+@media only screen and (max-width: 900px) {
+  /* Fix Redocly style that pushes the search down at this breakpoint */
+  #topnav-pages > span > span {
+    margin: 0;
+  }
+}
+
+@media (max-width: 991.98px) {
+    #search {
+      line-height: 40px;
+    }
 }
 
 @media (min-width: 993px) {
@@ -282,4 +331,46 @@ html.light .top-banner .btn-outline-secondary:not(:disabled):not(.disabled):hove
   color: #111112;
   background-color: #E0E0E1;
   border-color: #E0E0E1;
+}
+
+/* Fix mobile nav issues */
+@media (max-width: 991.98px) {
+  section .top-nav #top-main-nav {
+    position: relative;
+  }
+
+  /* Fix the search inner wrapper */
+  section #topnav-pages > span > span {
+    margin-left: 0;
+  }
+
+  /* Fix the search outer wrapper */
+  section #topnav-pages > span {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 72px;
+    transition: all .2s ease;
+  }
+
+  #search {
+    padding: 1rem 2rem;
+    border-radius: 0;
+  }
+  /* hide search when mobile "dropdown" equivalent expanded */
+  .top-nav #top-main-nav.submenu-expanded #topnav-pages > span {
+    height: 0;
+    overflow: clip;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .light .top-nav .navbar-collapse .nav-item {
+    background-color: #E0E0E1;
+  }
+  .dark .top-nav .navbar-collapse .nav-item {
+    background-color: #111112;
+  }
+
 }
