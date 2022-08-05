@@ -1,6 +1,9 @@
 import * as React from 'react';
+import { usePathPrefix } from '@redocly/developer-portal/ui';
+
 
 export default function XRPLedgerOverview() {
+  const prefix = usePathPrefix()
   const faqs = [
     {
       "question": "Is XRPL a private blockchain, owned by Ripple?",
@@ -17,7 +20,7 @@ export default function XRPLedgerOverview() {
   ];
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden styled-page">
       <div id="video-overlay" />
       <div id="video">
         <div id="videoWrapper">
@@ -26,7 +29,7 @@ export default function XRPLedgerOverview() {
       </div>
       <div className="position-relative">
         <img
-          src="/img/backgrounds/xrpl-overview-purple.svg"
+          src={prefix + "/img/backgrounds/xrpl-overview-purple.svg"}
           className="landing-bg"
           id="xrpl-overview-purple"
         />
@@ -40,7 +43,7 @@ export default function XRPLedgerOverview() {
         </div>
       </section>
       <div className="position-relative d-none-sm">
-        <img src="/img/xrpl-overview-orange.svg" id="xrpl-overview-orange" />
+        <img src={prefix + "/img/xrpl-overview-orange.svg"} id="xrpl-overview-orange" />
       </div>
       <section className="container-new py-26">
         <div className="card-grid card-grid-2xN">
@@ -82,7 +85,7 @@ export default function XRPLedgerOverview() {
             />
             <a href="#" id="playvideo">
               <img
-                src="/img/overview/video_explainer_intro@2x.png"
+                src={prefix + "/img/overview/video_explainer_intro@2x.png"}
                 id="xrpl-overview-video-intro"
                 className="w-100 video-image"
               />
@@ -136,7 +139,7 @@ export default function XRPLedgerOverview() {
       </section>
       <section className="container-new py-26">
         <div className="col-md-6 offset-md-3 p-6-sm p-10-until-sm br-8 cta-card">
-          <img src="/img/backgrounds/cta-xrpl-overview-green.svg" className="cta cta-bottom-right" />
+          <img src={prefix + "/img/backgrounds/cta-xrpl-overview-green.svg"} className="cta cta-bottom-right" />
           <div className="z-index-1 position-relative">
             <h2 className="h4 mb-10-until-sm mb-8-sm">A Greener Blockchain</h2>
             <p className="mb-10">
@@ -202,7 +205,7 @@ export default function XRPLedgerOverview() {
               data-url="https://www.youtube.com/embed/k6VqEkqRTmk?rel=0&showinfo=0&autoplay=1"
             >
               <img
-                src="/img/overview/video_explainer_consensus@2x.png"
+                src={prefix + "/img/overview/video_explainer_consensus@2x.png"}
                 id="xrpl-overview-video-consensus"
                 className="w-100 video-image"
               />
@@ -218,7 +221,7 @@ export default function XRPLedgerOverview() {
               data-url="https://www.youtube.com/embed/JjaVDXPqnbA?rel=0&showinfo=0&autoplay=1"
             >
               <img
-                src="/img/overview/video_explainer_nodes@2x.png"
+                src={prefix + "/img/overview/video_explainer_nodes@2x.png"}
                 id="xrpl-overview-video-nodes"
                 className="w-100 video-image"
               />
@@ -234,7 +237,7 @@ export default function XRPLedgerOverview() {
               data-url="https://www.youtube.com/embed/WsmldDNGQ9s?rel=0&showinfo=0&autoplay=1"
             >
               <img
-                src="/img/overview/video_explainer_sustainability@2x.png"
+                src={prefix + "/img/overview/video_explainer_sustainability@2x.png"}
                 id="xrpl-overview-video-sustainability"
                 className="w-100 video-image"
               />
@@ -256,7 +259,7 @@ export default function XRPLedgerOverview() {
       </section>
       <section className="container-new py-26">
         <div className="col-md-6 offset-md-3 p-6-sm p-10-until-sm br-8 cta-card">
-          <img src="/img/backgrounds/cta-xrpl-overview-orange.svg" className="cta cta-bottom-right" />
+          <img src={prefix + "/img/backgrounds/cta-xrpl-overview-orange.svg"} className="cta cta-bottom-right" />
           <div className="z-index-1 position-relative">
             <h4 className="h4 mb-10-until-sm mb-8-sm">Tomorrow’s Blockchain Starts With You</h4>
             <p className="mb-10">
