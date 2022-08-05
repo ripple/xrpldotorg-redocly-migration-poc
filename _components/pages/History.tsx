@@ -1,11 +1,13 @@
 import * as React from "react";
+import { usePathPrefix } from '@redocly/developer-portal/ui';
 
 export default function History() {
+  const prefix = usePathPrefix()
   return (
     <div className="overflow-hidden landing">
       <div className="position-relative">
         <img
-          src="./img/backgrounds/history-orange.svg"
+          src={prefix + "/img/backgrounds/history-orange.svg"}
           className="landing-bg"
           id="history-orange"
         />
@@ -42,7 +44,7 @@ export default function History() {
       </section>
 
       <div className="position-relative d-none-sm">
-        <img src="./img/backgrounds/history-purple.svg" id="history-purple" />
+        <img src={prefix + "/img/backgrounds/history-purple.svg"} id="history-purple" />
       </div>
 
       <div className="container-new marketing-wrapper">
