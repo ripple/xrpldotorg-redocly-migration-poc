@@ -1,4 +1,5 @@
 import * as React from "react";
+import { usePathPrefix } from '@redocly/developer-portal/ui';
 
 interface CardType {
   link: string;
@@ -15,6 +16,7 @@ interface UseCaseCategoryInfo {
 }
 
 export default function XRPLUseCases() {
+  const prefix = usePathPrefix()
   const cards: Array<CardType> = [
     {
       link: "https://www.bitgo.com/",
@@ -177,7 +179,7 @@ export default function XRPLUseCases() {
       </section>
 
       <div className="position-relative d-none-sm">
-        <img src="./img/backgrounds/use-cases-orange.svg" id="use-cases-orange" />
+        <img src={prefix + "/img/backgrounds/use-cases-orange.svg"} id="use-cases-orange" />
       </div>
 
       <section className="container-new py-26">
