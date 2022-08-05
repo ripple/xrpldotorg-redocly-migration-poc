@@ -12,6 +12,6 @@ The _conceptual_ transaction history of an account also includes transactions th
 - `Offer` objects, representing the account's outstanding currency-exchange orders in the decentralized exchange
 - `PayChannel` objects, representing asynchronous payment channels to and from the account
 - `Escrow` objects, representing held payments to or from the account that are locked by time or a crypto-condition.
-- `SignerList` objects, representing lists of addresses that can authorize transactions for the account by multi-signing.
+- `SignerList` objects, representing lists of addresses that can authorize transactions for the account by multi-signing. 
 
 For more information on each of these objects, see the Ledger Format Reference.

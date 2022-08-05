@@ -123,7 +123,7 @@ The XRP Ledger checks all the following invariants on each transaction:
 - **Invariant Condition(s):**
     - A new account root must be the consequence of a payment.
     - A new account root must have the right starting sequence.
-    - A transaction must not create more than one new [account](accounts.html).
+    - A transaction must not create more than one new [account](../accounts/accounts.md).
     
 <!-- [account root](accountroot.html) -->   
 <!-- [sequence](basic-data-types.html#account-sequence) -->

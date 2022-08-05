@@ -1,8 +1,11 @@
 # Partial Payments
 
-In the default case, the `Amount` field of a [Payment transaction][] in the XRP Ledger specifies the exact amount to deliver, after charging for exchange rates and [transfer fees](transfer-fees.html). The "Partial Payment" flag ([`tfPartialPayment`](payment.html#payment-flags)) allows a payment to succeed by reducing the amount received instead of increasing the amount sent. Partial payments are useful for [returning payments](become-an-xrp-ledger-gateway.html#bouncing-payments) without incurring additional costs to oneself.
+In the default case, the `Amount` field of a `Payment` transaction in the XRP Ledger specifies the exact amount to deliver, after charging for exchange rates and [transfer fees. The "Partial Payment" flag (`tfPartialPayment`) allows a payment to succeed by reducing the amount received instead of increasing the amount sent. Partial payments are useful for returning payments without incurring additional costs to oneself.
 
-The amount of XRP used for the [transaction cost](transaction-cost.html) is always deducted from the sender’s account, regardless of the type of transaction.
+<!-- (`tfPartialPayment`](payment.md#payment-flags)) -->
+<!-- [returning payments](become-an-xrp-ledger-gateway.md#bouncing-payments)  -->
+
+The amount of XRP used for the [transaction cost](../transaction-cost.md) is always deducted from the sender’s account, regardless of the type of transaction.
 
 Partial payments can be used to exploit naive integrations with the XRP Ledger to steal money from exchanges and gateways. The [Partial Payments Exploit](#partial-payments-exploit) section of this document describes how this exploit works and how you can avoid it.
 
@@ -16,9 +19,9 @@ In other words:
 
     Amount + (fees) = (sent amount) ≤ SendMax
 
-In this formula, "fees" refers to [transfer fees](transfer-fees.html) and currency exchange rates. The "sent amount" and the delivered amount (`Amount`) may be denominated in different currencies and converted by consuming Offers in the XRP Ledger's decentralized exchange.
+In this formula, "fees" refers to [transfer fees](../../tokens/transfer-fees.md) and currency exchange rates. The "sent amount" and the delivered amount (`Amount`) may be denominated in different currencies and converted by consuming Offers in the XRP Ledger's decentralized exchange.
 
-**Note:** The `Fee` field of the transaction refers to the XRP [transaction cost](transaction-cost.html), which is destroyed to relay the transaction to the network. The exact transaction cost specified is always debited from the sender and is completely separate from the fee calculations for any type of payment.
+**Note:** The `Fee` field of the transaction refers to the XRP [transaction cost](../transaction-cost.md), which is destroyed to relay the transaction to the network. The exact transaction cost specified is always debited from the sender and is completely separate from the fee calculations for any type of payment.
 
 ### With Partial Payments
 
@@ -34,17 +37,19 @@ In other words:
 
 Partial Payments have the following limitations:
 
-- A partial payment cannot provide the XRP to fund an address; this case returns the [result code][] `telNO_DST_PARTIAL`.
-- Direct XRP-to-XRP payments cannot be partial payments; this case returns the [result code][] `temBAD_SEND_XRP_PARTIAL`.
+- A partial payment cannot provide the XRP to fund an address; this case returns the result code `telNO_DST_PARTIAL`.
+- Direct XRP-to-XRP payments cannot be partial payments; this case returns the result code `temBAD_SEND_XRP_PARTIAL`.
     - However, cross-currency payments that involve XRP as one of the currencies _can_ be partial payments.
 
-[result code]: transaction-results.html
+<!-- [result code]: transaction-results.html -->
 
 ### The `delivered_amount` Field
 
-To help understand how much a partial payment actually delivered, the metadata of a successful Payment transaction includes a `delivered_amount` field. This field describes the amount actually delivered, in the [same format](basic-data-types.html#specifying-currency-amounts) as the `Amount` field.
+To help understand how much a partial payment actually delivered, the metadata of a successful Payment transaction includes a `delivered_amount` field. This field describes the amount actually delivered, in the same format as the `Amount` field.
 
-For non-partial payments, the `delivered_amount` field of the transaction metadata is equal to the `Amount` field of the transaction. When a payment delivers [tokens](tokens.html), the `delivered_amount` may be slightly different than the `Amount` field due to rounding.
+<!--  [same format](basic-data-types.html#specifying-currency-amounts) -->
+
+For non-partial payments, the `delivered_amount` field of the transaction metadata is equal to the `Amount` field of the transaction. When a payment delivers [tokens](../../tokens/tokens.md), the `delivered_amount` might be slightly different than the `Amount` field due to rounding.
 
 The delivered amount is **not available** for transactions that meet **both** of the following criteria:
 
@@ -57,16 +62,19 @@ You can find the `delivered_amount` field in the following places:
 
 | API | Method | Field |
 |-----|--------|-------|
-| [JSON-RPC / WebSocket][] | [account_tx method][] | `result.transactions` array members' `meta.delivered_amount` |
-| [JSON-RPC / WebSocket][] | [tx method][] | `result.meta.delivered_amount` |
-| [JSON-RPC / WebSocket][] | [transaction_entry method][] | `result.metadata.delivered_amount` |
-| [JSON-RPC / WebSocket][] | [ledger method][] (with transactions expanded) | `result.ledger.transactions` array members' `metaData.delivered_amount` [New in: rippled 1.2.1][] |
-| [WebSocket][] | [Transaction subscriptions](subscribe.html#transaction-streams) | Subscription messages' `meta.delivered_amount` [New in: rippled 1.2.1][] |
+| JSON-RPC / WebSocket | `account_tx` method | `result.transactions` array members' `meta.delivered_amount` |
+| JSON-RPC / WebSocket | `tx` method | `result.meta.delivered_amount` |
+| JSON-RPC / WebSocket | `transaction_entry` method | `result.metadata.delivered_amount` |
+| JSON-RPC / WebSocket | `ledger` method (with transactions expanded) | `result.ledger.transactions` array members' `metaData.delivered_amount` New in: rippled 1.2.1 |
+| WebSocket | Transaction subscriptions](subscribe.md#transaction-streams) | Subscription messages' `meta.delivered_amount` New in: rippled 1.2.1 |
 | ripple-lib v1.x | `getTransaction` method | `outcome.deliveredAmount` |
 | ripple-lib v1.x | `getTransactions` method | array members' `outcome.deliveredAmount` |
 
-[WebSocket]: http-websocket-apis.html
-[JSON-RPC / WebSocket]: http-websocket-apis.html
+WebSocket: http-websocket-apis.html
+JSON-RPC / WebSocket: http-websocket-apis.html
+
+
+<!-- [Transaction subscriptions](subscribe.md#transaction-streams) -->
 
 ## Partial Payments Exploit
 
@@ -104,7 +112,7 @@ Using [the `delivered_amount` field](#the-delivered_amount-field) when processin
 - Add additional sanity checks to your business logic for processing withdrawals. Never process a withdrawal if the total balance you hold in the XRP Ledger does not match your expected assets and obligations.
 - Follow "Know Your Customer" guidelines and strictly verify your customers' identities. You may be able to recognize and block malicious users in advance, or pursue legal action against a malicious actor who exploits your system.
 
-
+<!--
 ## See Also
 
 - **Tools:**
@@ -120,4 +128,4 @@ Using [the `delivered_amount` field](#the-delivered_amount-field) when processin
     - [Payment transaction][]
     - [Transaction Metadata](transaction-metadata.html)
     - [account_tx method][]
-    - [tx method][]
+    - [tx method][] -->

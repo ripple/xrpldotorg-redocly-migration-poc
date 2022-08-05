@@ -1,6 +1,6 @@
 # About Canceling a Transaction
 
-An important and intentional feature of the XRP Ledger is that a [transaction](transactions.md)'s outcome is [final](finality-of-results.md) as soon as it has been incorporated in a [ledger version](../xrpl/ledgers.md) that is validated by the [consensus process](../xrpl/consensus/consensus.md).
+An important and intentional feature of the XRP Ledger is that a [transaction](transactions.md)'s outcome is [final](finality-of-results.md) as soon as it has been incorporated in a [ledger version](../xrpl/ledgers.md) that is validated by the [consensus process](../xrpl/consensus.md).
 
 If a transaction has _not_ yet been included in a validated ledger, it might be possible to effectively cancel it by sending another transaction from the same sending address with the same `Sequence` value. If you do not want the replacement transaction to do anything, send an `AccountSet` transaction with no options.
 

@@ -1,21 +1,23 @@
 # Checks
 
-_(Added by the [Checks amendment][].)_
+_(Added by the Checks amendment.)_
 
 The Checks feature in the XRP Ledger allows users to create deferred payments that can be canceled or cashed by the intended recipients. Like personal paper checks, XRP Ledger Checks start with the sender of the funds creating a Check that specifies an amount and a recipient. The recipient cashes the check to pull the funds from the sender's account into the recipient's account. No money moves until the recipient cashes the Check. Because funds are not put on hold when the Check is created, cashing a Check can fail if the sender doesn't have enough funds when the recipient tries to cash it. If there's a failure cashing the check, the check's recipient can retry until the Check expires.
 
 XRP Ledger Checks may have expiration times after which they may no longer be cashed. If the recipient doesn't successfully cash the Check before it expires, the Check can no longer be cashed, but the object remains in the XRP Ledger until someone cancels it. Anyone may cancel the Check after it expires. Only the sender and recipient can cancel the Check before it expires. The Check object is removed from the Ledger when the sender successfully cashes the check or someone cancels it.
 
-Checks have some similarities to [Escrow](escrow.html) and [Payment Channels](use-payment-channels.html), but there are some important differences between those features and Checks:
+Checks have some similarities to [escrow](escrow.md) and [payment channels](payment-channels.md), but there are some important differences between those features and checks:
 
-* You can send [tokens](tokens.html) with Checks. With Payment Channels and Escrow, you can only send XRP.
+* You can send [tokens](../../tokens/tokens.md) with checks. With payment channels and Escrow, you can only send XRP.
 
-* Checks do not lock up or set aside any funds. The XRP involved in Payment Channels and Escrow cannot be spent until it is redeemed with a claim provided by the sender (Payment Channels), or released by an expiration or crypto-condition (Escrow).
+* Checks do not lock up or set aside any funds. The XRP involved in payment channels and escrow cannot be spent until it is redeemed with a claim provided by the sender (payment channels), or released by an expiration or crypto-condition (escrow).
 
-* You can send XRP to yourself through Escrow. You cannot send Checks to yourself.
+* You can send XRP to yourself through escrow. You cannot send checks to yourself.
 
 
-**Note:** The [Checks amendment][] changes the expiration behavior of the [OfferCreate][] transaction. For more information, see [Offer Expiration](offers.html#offer-expiration).
+**Note:** The Checks amendment changes the expiration behavior of the `OfferCreate` transaction. 
+
+<!-- For more information, see [Offer Expiration](offers.html#offer-expiration). -->
 
 
 ## Why Checks?
@@ -27,9 +29,11 @@ XRP Ledger Checks also solve a problem that is unique to the XRP Ledger: they al
 
 ### Use Case: Payment Authorization
 
-**Problem:** To comply with regulations like [BSA, KYC, AML, and CFT](become-an-xrp-ledger-gateway.html#gateway-compliance), financial institutions must provide documentation about the source of funds they receive. Such regulations seek to prevent the illicit transfer of funds by requiring institutions to know the source and destination of all payments processed by the institution. Because of the nature of the XRP Ledger, anyone could potentially send XRP (and, under the right circumstances, tokens) to an institution's account on the XRP Ledger. Dealing with such unwanted payments adds significant cost and time delays to these institutions' compliance departments, including potential fines or penalties. <!-- SPELLING_IGNORE: cft -->
+**Problem:** To comply with regulations like BSA, KYC, AML, and CFT, financial institutions must provide documentation about the source of funds they receive. Such regulations seek to prevent the illicit transfer of funds by requiring institutions to know the source and destination of all payments processed by the institution. Because of the nature of the XRP Ledger, anyone could potentially send XRP (and, under the right circumstances, tokens) to an institution's account on the XRP Ledger. Dealing with such unwanted payments adds significant cost and time delays to these institutions' compliance departments, including potential fines or penalties. <!-- SPELLING_IGNORE: cft -->
 
-**Solution:** Institutions can enable [Deposit Authorization](depositauth.html) on their XRP Ledger accounts by [setting the `asfDepositAuth` flag in an `AccountSet` transaction](accountset.html). This makes the account unable to receive Payment transactions. Accounts with Deposit Authorization enabled can only receive funds through Escrow, Payment Channels, or Checks. Checks are the most straightforward, familiar, and flexible way to transfer funds if Deposit Authorization is enabled.
+<!-- [BSA, KYC, AML, and CFT](become-an-xrp-ledger-gateway.html#gateway-compliance) -->
+
+**Solution:** Institutions can enable deposit authorization on their XRP Ledger accounts by setting the `asfDepositAuth` flag in an `AccountSet` transaction. This makes the account unable to receive Payment transactions. Accounts with Deposit Authorization enabled can only receive funds through Escrow, Payment Channels, or Checks. Checks are the most straightforward, familiar, and flexible way to transfer funds if Deposit Authorization is enabled.
 
 
 ## Usage
@@ -38,16 +42,16 @@ Checks typically have the lifecycle described below.
 
 <!--{# Diagram source: https://docs.google.com/drawings/d/1Ez8OZVB2TLH-b_kSFOAgfYqXlEQt4KaUBW6F3TJAv_Q/edit #}-->
 
-[![Check flow diagram (successful cashing)](img/checks-happy-path.png)](img/checks-happy-path.png)
+[![Check flow diagram (successful cashing)](../../../../img/checks-happy-path.png)](../../../../img/checks-happy-path.png)
 
-**Step 1:** To create a Check, the sender submits a [CheckCreate][] transaction and specifies the recipient (`Destination`), expiration time (`Expiration`), and maximum amount that may be debited from the sender's account (`SendMax`).
+**Step 1:** To create a Check, the sender submits a `CheckCreate` transaction and specifies the recipient (`Destination`), expiration time (`Expiration`), and maximum amount that may be debited from the sender's account (`SendMax`).
 
 
-**Step 2:** After the CheckCreate transaction is processed, a [Check object](check.html) is created on the XRP Ledger. This object contains the properties of the Check as defined by the transaction that created it. The object can only be modified by the sender (by canceling it with a [CheckCancel][] transaction) or recipient (by canceling it or cashing it) before the expiration time passes. After the expiration time, anyone may cancel the Check.
+**Step 2:** After the CheckCreate transaction is processed, a Check object is created on the XRP Ledger. This object contains the properties of the check as defined by the transaction that created it. The object can only be modified by the sender (by canceling it with a `CheckCancel` transaction) or recipient (by canceling it or cashing it) before the expiration time passes. After the expiration time, anyone may cancel the Check.
 
-**Step 3:** To cash the check, the recipient submits a [CheckCash][] transaction. The recipient has two options for cashing the check:
+**Step 3:** To cash the check, the recipient submits a `CheckCash` transaction. The recipient has two options for cashing the check:
 
-* `Amount` — The recipient can use this option to specify an exact amount to cash. This may be useful for cases where the sender has padded the check to cover possible [transfer fees](transfer-fees.html) and the recipient wants to accept the exact amount on an invoice or other contract.
+* `Amount` — The recipient can use this option to specify an exact amount to cash. This may be useful for cases where the sender has padded the check to cover possible [transfer fees](../../tokens/transfer-fees.md) and the recipient wants to accept the exact amount on an invoice or other contract.
 
 * `DeliverMin` — The recipient can use this option to specify the minimum amount they are willing to receive from the Check. If the recipient uses this option, the XRP Ledger attempts to deliver as much as possible and always delivers at least this amount. The transaction fails if the amount that can be credited to the recipient is not at least the requested amount.
 
@@ -61,7 +65,7 @@ In the case of expirations, Checks have the lifecycle described below.
 
 <!--{# Diagram source: https://docs.google.com/drawings/d/11auqa0kVUPonqlc_RaQUfHcSkUI47xneSKpwlLxzSK0/edit #}-->
 
-[![Check flow diagram (expiration)](img/checks-expiration.png)](img/checks-expiration.png)
+[![Check flow diagram (expiration)](../../../../img/checks-expiration.png)](../../../../img/checks-expiration.png)
 
 
 All Checks start the same way, so **Steps 1 and 2** are the same.
@@ -75,11 +79,11 @@ All Checks start the same way, so **Steps 1 and 2** are the same.
 
 ## Availability of Checks
 
-The [Checks amendment][] became enabled on the XRP Ledger Mainnet on 2020-06-18. For more information about how amendments are enabled and voted on, see [Amendment Process](amendments.html#amendment-process).
+The Checks amendment became enabled on the XRP Ledger Mainnet on 2020-06-18. For more information about how amendments are enabled and voted on, see [Amendment Process](../../../../amendments/amendments.md#amendment-process).
 
-To check the status of an amendment on a test network or private network, use the [feature method][].
+To check the status of an amendment on a test network or private network, use the `feature` method.
 
-
+<!--
 ## See Also
 
 For more information about Checks in the XRP Ledger, see:
@@ -101,4 +105,4 @@ For more information about related features, see:
 
 * [Deposit Authorization](depositauth.html)
 * [Escrow](escrow.html)
-* [Payment Channels Tutorial](use-payment-channels.html)
+* [Payment Channels Tutorial](use-payment-channels.html) -->
