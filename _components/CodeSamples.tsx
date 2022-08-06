@@ -118,30 +118,6 @@ export default function CodeSamples() {
         />
       </div>
 
-      {/* <div className="dropdown">
-        <button
-          className="btn btn-secondary dropdown-toggle"
-          type="button"
-          data-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Code Languages
-        </button>
-        <div className="dropdown-menu">
-          {allLangs.map((lang: string) => {
-            return (
-              <a
-                id={"input_" + lang}
-                onSelect={handleLangChange}
-                className="dropdown-item"
-              >
-                {lang}
-              </a>
-            );
-          })}
-        </div>
-      </div> */}
-
       <section className="container-new py-26">
         <div className="d-flex flex-column col-sm-8 p-0">
           <h3 className="h4 h2-sm">
@@ -287,43 +263,4 @@ export default function CodeSamples() {
       <br></br>
     </div>
   );
-}
-
-{
-  /* {% endblock %}
-   */
-}
-
-{
-  /* {% block analytics %}
-    <script type="application/javascript">
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      "event": "page_info",
-      "page_type": "Hub Page",
-      "page_group": "Code Samples"
-    })
-    </script>
-{% endblock analytics %} */
-}
-
-{
-  /* {% block bottom_left_sidebar %} */
-}
-{
-  /* {% set lang_text = {
-      "cli": "CLI",
-      "go": "go",
-      "java": "Java",
-      "js": "JavaScript",
-      "py": "Python",
-      "http": "HTTP",
-    } %} */
-}
-
-{
-  /* 
-// {% block endbody %}
-// <script type="application/javascript" src="{{currentpage.prefix}}assets/js/code-samples.js"></script>
-// {% endblock %} */
 }
