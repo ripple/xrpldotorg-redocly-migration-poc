@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import preval from "babel-plugin-preval/macro";
 import { usePathPrefix } from "@redocly/developer-portal/ui";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
 // {% block bodyclassNamees %}no-sidebar{% endblock %}
 // {% block mainclassNamees %}landing page-community{% endblock %}
 
@@ -78,9 +80,8 @@ export default function CodeSamples() {
     return codeSamplesArr;
   }
   module.exports = getCodeSamples(dirPath)`;
-  function handleLangChange(e) {
-    console.log(e.target.value, "herere");
-    setLangSelected(e.target.value);
+  function handleSelect(e) {
+    setLangSelected(e);
   }
   const langIcons = {
     cli: prefix + "/img/logos/cli.svg",
@@ -117,6 +118,30 @@ export default function CodeSamples() {
         />
       </div>
 
+      {/* <div className="dropdown">
+        <button
+          className="btn btn-secondary dropdown-toggle"
+          type="button"
+          data-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Code Languages
+        </button>
+        <div className="dropdown-menu">
+          {allLangs.map((lang: string) => {
+            return (
+              <a
+                id={"input_" + lang}
+                onSelect={handleLangChange}
+                className="dropdown-item"
+              >
+                {lang}
+              </a>
+            );
+          })}
+        </div>
+      </div> */}
+
       <section className="container-new py-26">
         <div className="d-flex flex-column col-sm-8 p-0">
           <h3 className="h4 h2-sm">
@@ -124,7 +149,24 @@ export default function CodeSamples() {
           </h3>
         </div>
 
-        <div className="row col-12  card-deck mt-10" id="code-samples-deck">
+        <div className="row col-12  card-deck mt-7" id="code-samples-deck">
+          <div className="row ml-3 mb-5">
+            <DropdownButton
+              title="Code Langugages"
+              id="dropdown-menu"
+              onSelect={handleSelect}
+            >
+              <Dropdown.Item eventKey="All">All</Dropdown.Item>
+              {allLangs.map((lang: string) => {
+                return (
+                  <Dropdown.Item eventKey={lang}>
+                    {langText[lang]}
+                  </Dropdown.Item>
+                );
+              })}
+            </DropdownButton>
+          </div>
+
           <div className="row col-md-12 px-0" id="code_samples_list">
             {codeSamples.map((card: CodeSample) => {
               return card.langs.includes(langSelected) ||
@@ -211,35 +253,37 @@ export default function CodeSamples() {
           </div>
         </div>
       </section>
-      <div className="p-2 mt-30">
-        <form>
-          <p>Code Language</p>
-          <div>
-            <input
-              type="radio"
-              name="langs"
-              id="input_all"
-              value="All"
-              onChange={handleLangChange}
-            />{" "}
-            <label htmlFor="input_all">All</label>
-          </div>
-          {allLangs.map((lang: string) => {
-            return (
-              <div className="single_lang">
-                <input
-                  type="radio"
-                  name="langs"
-                  id={"input_" + lang}
-                  value={lang}
-                  onChange={handleLangChange}
-                />
-                <label htmlFor={"input_" + lang}>{langText[lang]}</label>
-              </div>
-            );
-          })}
-        </form>
-      </div>
+      {/* <aside>
+        <div className="p-2 mt-30">
+          <form>
+            <p>Code Language</p>
+            <div>
+              <input
+                type="radio"
+                name="langs"
+                id="input_all"
+                value="All"
+                onChange={handleSelect}
+              />{" "}
+              <label htmlFor="input_all">All</label>
+            </div>
+            {allLangs.map((lang: string) => {
+              return (
+                <div className="single_lang">
+                  <input
+                    type="radio"
+                    name="langs"
+                    id={"input_" + lang}
+                    value={lang}
+                    onChange={handleSelect}
+                  />
+                  <label htmlFor={"input_" + lang}>{langText[lang]}</label>
+                </div>
+              );
+            })}
+          </form>
+        </div>
+      </aside> */}
       <br></br>
     </div>
   );
