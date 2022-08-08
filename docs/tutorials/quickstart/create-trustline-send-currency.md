@@ -12,10 +12,9 @@ This example shows how to:
 5. Display account balances for all currencies.
 
 
-[![Test harness with currency transfer](/img/quickstart/quickstart5.png)](/img/quickstart/quickstart5.png)
+[![Test harness with currency transfer](../../img/quickstart5.png)](../../img/quickstart5.png)
 
-
-You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart/quickstart.zip) archive to try each of the samples in your own browser.
+You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart.zip) archive to try each of the samples in your own browser.
 
 
 ## Usage
@@ -46,7 +45,7 @@ To create a trustline between accounts:
 
 
 
-[![Trustline results](/img/quickstart/quickstart6.png)](/img/quickstart/quickstart6.png)
+[![Trustline results](../../img/quickstart6.png)](../../img/quickstart6.png)
 
 
 
@@ -61,7 +60,7 @@ To transfer an issued currency token, once you have created a TrustLine:
 
 
 
-[![Currency transfer](/img/quickstart/quickstart7.png)](/img/quickstart/quickstart7.png)
+[![Currency transfer](/img/quickstart7.png)](/img/quickstart7.png)
 
 
 
@@ -75,7 +74,7 @@ You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-port
 ### Configure Account
 
 When transferring fiat currency, the actual transfer of funds is not simultaneous, as it is with XRP. If currency is transferred to a third party for a different currency, there can be a devaluation of the currency that impacts the originating account. To avoid this situation, this up and down valuation of currency, known as _rippling_, is not allowed by default. Currency transferred from one account can only be transferred back to the same account. To enable currency transfer to third parties, you need to set the _rippleDefault_ value to true. The Token Test Harness provides a checkbox to enable or disable rippling.
-
+ 
 
 ```javascript
 // *******************************************************

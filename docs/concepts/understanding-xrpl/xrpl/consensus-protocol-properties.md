@@ -10,4 +10,8 @@ The XRP Ledger uses a consensus protocol unlike any digital asset that came befo
 
 These properties are sometimes summarized as the following principles, in order of priority: **Correctness, Agreement, Forward Progress**.
 
-This protocol is still evolving, as is our knowledge of its limits and possible failure cases. For academic research on the protocol itself, see [Consensus Research](consensus-research.html).
+This protocol is still evolving, as is our knowledge of its limits and possible failure cases.
+
+<!--
+For academic research on the protocol itself, see [Consensus Research](consensus-research.html).
+-->

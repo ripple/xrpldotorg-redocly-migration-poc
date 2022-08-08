@@ -13,7 +13,7 @@ When you create an account, you receive a public/private key pair offline. It do
 
 
 
-[![Token Test Harness](/img/quickstart/quickstart2.png)](/img/quickstart/quickstart2.png)
+[![Token Test Harness](../../img/quickstart2.png)](../../img/quickstart2.png)
 
 
 
@@ -44,7 +44,7 @@ To get test accounts:
 
 
 
-[![Standby and Operational Accounts](/img/quickstart/quickstart3.png)](/img/quickstart/quickstart3.png)
+[![Standby and Operational Accounts](../../img/quickstart3.png)](../../img/quickstart3.png)
 
 You can transfer XRP between your new accounts. Each account has its own fields and buttons.
 
@@ -58,7 +58,7 @@ To transfer XRP between accounts:
 
 
 
-[![Transferred XRP](/img/quickstart/quickstart4.png)](/img/quickstart/quickstart4.png)
+[![Transferred XRP](../../img/quickstart4.png)](../../img/quickstart4.png)
 
 
 
