@@ -104,6 +104,10 @@ a[title="Source"] {
   color: #000;
 }
 
+.light .page-uses p{
+  color: #000;
+}
+
 .dark aside {
   background-color: unset;
   color: #fff !important;
