@@ -1,13 +1,8 @@
-// {% extends "base.html.jinja" %}
 import React, { useState } from "react";
 import preval from "babel-plugin-preval/macro";
 import { usePathPrefix } from "@redocly/developer-portal/ui";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
-// {% block bodyclassNamees %}no-sidebar{% endblock %}
-// {% block mainclassNamees %}landing page-community{% endblock %}
-
-// {% block main %}
 
 interface CodeSample {
   href: string;
