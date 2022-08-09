@@ -8,7 +8,7 @@ import navbar from '../top-nav.yaml';
 export default function LayoutWrapper(props) {
   const topmargin = navbar.alertbanner.show ? {"marginTop": "126px"} : {"marginTop": "80px"};
   return (
-    <div style={topmargin}>
+    <div style={topmargin} id="main_content_wrapper">
       {props.children} {}
     </div>
   );
