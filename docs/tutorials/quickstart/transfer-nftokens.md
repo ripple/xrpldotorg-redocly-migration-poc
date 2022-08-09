@@ -15,7 +15,7 @@ This example shows how to:
 
 
 
-[![Quickstart form with NFToken transfer fields](/img/quickstart/quickstart13.png)](/img/quickstart/quickstart13.png)
+[![Quickstart form with NFToken transfer fields](../../img/quickstart13.png)](../../img/quickstart13.png)
 
 You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart/js/quickstart.zip) archive to try each of the samples in your own browser.
 
@@ -38,7 +38,7 @@ You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-port
         2. Click **Get New Operational Account**.
 
 
-[![Form with account information](/img/quickstart/quickstart14.png)](/img/quickstart/quickstart14.png)
+[![Form with account information](../../img/quickstart14.png)](../../img/quickstart14.png)
 
 
 
@@ -57,7 +57,7 @@ The important piece of information in the response is the Token Offer Index, lab
 
 
 
-[![NFToken Sell Offer](/img/quickstart/quickstart15.png)](/img/quickstart/quickstart15.png)
+[![NFToken Sell Offer](../../img/quickstart15.png)](../../img/quickstart15.png)
 
 
 
@@ -74,7 +74,7 @@ To accept an available sell offer:
 
 
 
-[![Accept Sell Offer](/img/quickstart/quickstart16.png)](/img/quickstart/quickstart16.png)
+[![Accept Sell Offer](../../img/quickstart16.png)](../../img/quickstart16.png)
 
 
 
@@ -94,7 +94,7 @@ To create an offer to buy a NFToken:
 
 
 
-[![NFToken Buy Offer](/img/quickstart/quickstart17.png)](/img/quickstart/quickstart17.png)
+[![NFToken Buy Offer](../../img/quickstart17.png)](../../img/quickstart17.png)
 
 
 
@@ -109,7 +109,7 @@ To accept an offer to buy a NFToken:
 
 
 
-[![Accept Buy Offer](/img/quickstart/quickstart18.png)](/img/quickstart/quickstart18.png)
+[![Accept Buy Offer](../../img/quickstart18.png)](../../img/quickstart18.png)
 
 
 
@@ -121,7 +121,7 @@ To list the buy and sell offers associated with a NFToken:
 
 
 
-[![Get offers](/img/quickstart/quickstart19.png)](/img/quickstart/quickstart19.png)
+[![Get offers](../../img/quickstart19.png)](../../img/quickstart19.png)
 
 
 
@@ -136,7 +136,7 @@ To cancel a buy or sell offer that you have created:
 
 
 
-[![Cancel offer](/img/quickstart/quickstart20.png)](/img/quickstart/quickstart20.png)
+[![Cancel offer](../../img/quickstart20.png)](../../img/quickstart20.png)
 
 
 

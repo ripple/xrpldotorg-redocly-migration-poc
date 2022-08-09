@@ -27,7 +27,7 @@ Optional fields are available for all transactions, with additional optional fie
 
 You send the transaction to the ledger as a RESTful command from JavaScript, Python, the command line, or any compatible service. The rippled server proposes the transaction to the ledger. When 80% of the validators approve the transaction, it is recorded as part of the permanent ledger. The ledger returns the results of the transaction.
 
-For more information on Transactions, see [Transactions](concepts/introduction/placeholder.md).
+For more information on Transactions, see [Transactions](../understanding-xrpl/transactions/transactions.md).
 
 ## How Do Requests Work?
 
@@ -91,4 +91,3 @@ The request returns the requested information in a format appropriate for the la
     }
 }
 ```
-For complete descriptions of available requests, see [Requests](concepts/introduction/placeholder.md).

@@ -16,7 +16,7 @@ _Validators_ are servers that actively contribute to the process of deciding eac
 - Behaving maliciously as a result of pressure from outside factors, such as threats from an oppressive government.
 - Accidentally sending confusing or malformed messages due to a bug or outdated software.
 
-In general, consensus can continue without problems as long as only a small percentage (less than about 20%) of trusted validators are misbehaving at a given time. (For the exact percentages and the math behind them, see the latest [Consensus Research](consensus-research.html).)
+In general, consensus can continue without problems as long as only a small percentage (less than about 20%) of trusted validators are misbehaving at a given time. (For the exact percentages and the math behind them, see the latest [Consensus Research](consensus-research.md).)
 
 If more than about 20% of validators are unreachable or not behaving properly, the network fails to reach a consensus. During this time, new transactions can be tentatively processed, but new ledger versions cannot be validated, so those transactions' final outcomes are not certain. In this situation, it would become immediately obvious that the XRP Ledger is unhealthy, prompting intervention from human participants who can decide whether to wait or reconfigure their set of trusted validators.
 
@@ -36,7 +36,7 @@ As with any software system, bugs (or intentionally malicious code) in the imple
 
 ## Sybil Attacks
 
-A _[Sybil attack](https://en.wikipedia.org/wiki/Sybil_attack)_ is an attempt to take control of a network using a large number of fake identities. In the XRP Ledger, a Sybil attack would take the form of running a large number of validators, then convincing others to trust those validators. This sort of attack is theoretically possible, but would be very difficult to do because human intervention is necessary for validators to become trusted.
+A [Sybil attack](https://en.wikipedia.org/wiki/Sybil_attack) is an attempt to take control of a network using a large number of fake identities. In the XRP Ledger, a Sybil attack would take the form of running a large number of validators, then convincing others to trust those validators. This sort of attack is theoretically possible, but would be very difficult to do because human intervention is necessary for validators to become trusted.
 
 No matter how many validating servers a would-be attacker runs, those servers have no say on what the existing participants consider validated unless those participants choose to trust the attacker's validators. Other servers only listen to the validators they are configured to trust, either through a validator list or explicit configuration. (See [validator overlap requirements](#validator-overlap-requirements) for a summary of how the default validator list works.)
 
@@ -56,12 +56,14 @@ By default, XRP Ledger servers are configured to use a validator list site run b
 
 Technically, if you run a server, you can configure your own list site or explicitly choose validators to trust on an individual basis, but Ripple does not recommended doing so. If your chosen set of validators does not have enough overlap with others, your server may diverge from the rest of the network, and you could lose money by taking action based on your server's divergent state.
 
-Research is ongoing to design an improved consensus protocol that allows more heterogeneous validator lists. For more information, see the [Consensus Research](consensus-research.html) page.
+Research is ongoing to design an improved consensus protocol that allows more heterogeneous validator lists. For more information, see the [Consensus Research](consensus-research.md) page.
 
-
+<!--
 ## See Also
 
 - For an **intro-level overview** of consensus, see [Intro to Consensus](intro-to-consensus.html).
 - For a **detailed description** of the consensus protocol, see [Consensus](consensus.html).
 - For an explanation of the **design decisions and background** behind the consensus protocol, see [Consensus Principles and Rules](consensus-principles-and-rules.html).
-- For **academic research** exploring the properties and limitations of the protocol, see [Consensus Research](consensus-research.html).
+- For **academic research** exploring the properties and limitations of the protocol, see [Consensus Research](consensus-research.md).
+
+-->
