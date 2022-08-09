@@ -25,7 +25,7 @@ nav:
       - group: XRP
         items:
           - label: XRP Overview
-            link: /about/xrp/
+            link: /about/xrp-overview
       - group: Sustainability
         items:
           - label: Impact
