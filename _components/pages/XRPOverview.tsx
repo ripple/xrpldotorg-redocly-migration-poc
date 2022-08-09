@@ -1,8 +1,45 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import { usePathPrefix } from "@redocly/developer-portal/ui";
 
 export default function XRPOverview() {
   const prefix = usePathPrefix();
+  let [escrowInfo, setEscrowInfo] = useState({ date: "", amount: "" });
+  {
+    /* <script type="application/javascript">
+          $(document).ready(async() => {
+            let resp = await fetch("https://data.ripple.com/v2/network/xrp_distribution?descending=true&limit=1")
+            if (resp.ok) {
+              let j = await resp.json()
+              const exact_amt = j.rows[0].escrowed
+              const amt_billions = Math.floor(exact_amt / 1e9)
+              const when = new Date(j.rows[0].date)
+              $("#ripple-escrow-as-of").text(when.toLocaleDateString(undefined, {year: 'numeric', month:'short'}))
+              $("#ripple-escrow-amount").text(amt_billions + "B")
+            } else {
+              console.warn("Fetching data about Ripple's XRP escrow from the data API failed.")
+            }
+          })
+          </script> */
+  }
+
+  useEffect(() => {
+    async function getEscrow() {
+      const resp = await fetch(
+        "https://data.ripple.com/v2/network/xrp_distribution?descending=true&limit=1"
+      );
+      const json = await resp.json();
+      const exact_amt = json.rows[0].escrowed;
+      const amtBillions = Math.floor(exact_amt / 1e9) + "B";
+      const date = new Date(json.rows[0].date).toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "short",
+      });
+      setEscrowInfo({ date: date, amount: amtBillions });
+    }
+    getEscrow();
+  }, []);
+
   const links = [
     { hash: "#about-xrp", text: "About XRP" },
     { hash: "#xrp-trading", text: "XRP in Trading" },
@@ -81,8 +118,8 @@ export default function XRPOverview() {
       </section>
 
       <section className="container-new my-20">
-        <div className="card-grid card-grid-1x2">
-          <div className="d-none-sm mt-lg-0">
+        <div className="card-grid card-grid-1x2 pt-1">
+          <div className="d-none-sm mt-lg-0 ">
             <ul className="page-toc no-sideline p-0 sticky-top floating-nav">
               {links.map((link) => {
                 return (
@@ -266,7 +303,7 @@ export default function XRPOverview() {
                   <h3 className="h4">
                     As of{" "}
                     <span className="stat-highlight" id="ripple-escrow-as-of">
-                      December 2017
+                      {escrowInfo.date || "December 2017"}
                     </span>{" "}
                     <br />
                     <span className="d-inline-flex">
@@ -280,28 +317,13 @@ export default function XRPOverview() {
                         className="numbers stat-highlight"
                         id="ripple-escrow-amount"
                       >
-                        55B
+                        {escrowInfo.amount || "55B"}
                       </span>
                     </span>
                     <br />
                     XRP remains in escrow
                   </h3>
                 </div>
-                {/* <script type="application/javascript">
-          $(document).ready(async() => {
-            let resp = await fetch("https://data.ripple.com/v2/network/xrp_distribution?descending=true&limit=1")
-            if (resp.ok) {
-              let j = await resp.json()
-              const exact_amt = j.rows[0].escrowed
-              const amt_billions = Math.floor(exact_amt / 1e9)
-              const when = new Date(j.rows[0].date)
-              $("#ripple-escrow-as-of").text(when.toLocaleDateString(undefined, {year: 'numeric', month:'short'}))
-              $("#ripple-escrow-amount").text(amt_billions + "B")
-            } else {
-              console.warn("Fetching data about Ripple's XRP escrow from the data API failed.")
-            }
-          })
-          </script> */}
               </div>
             </div>
 
