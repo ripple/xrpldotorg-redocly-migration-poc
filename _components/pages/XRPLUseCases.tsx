@@ -153,7 +153,7 @@ export default function XRPLUseCases() {
   ];
 
   return (
-    <div className="overflow-hidden page-uses landing-builtin-bgr">
+    <div className="overflow-hidden page-uses landing-builtin-bgr styled-page">
       <section className="py-26 text-center">
         <div className="col-lg-5 mx-auto text-center">
           <div className="d-flex flex-column-reverse">

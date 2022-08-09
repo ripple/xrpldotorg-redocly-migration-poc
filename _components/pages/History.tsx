@@ -4,7 +4,7 @@ import { usePathPrefix } from '@redocly/developer-portal/ui';
 export default function History() {
   const prefix = usePathPrefix()
   return (
-    <div className="overflow-hidden landing">
+    <div className="overflow-hidden landing styled-page">
       <div className="position-relative">
         <img
           src={prefix + "/img/backgrounds/history-orange.svg"}
