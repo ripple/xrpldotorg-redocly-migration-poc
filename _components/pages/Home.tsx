@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { XRPLCard } from '../XRPLCard.tsx';
+import { usePathPrefix } from '@redocly/developer-portal/ui';
 
 export default function XRPLHome() {
+  const prefix = usePathPrefix()
   const benefits = [
     {
       "id": "public",
@@ -113,7 +115,7 @@ export default function XRPLHome() {
   ];
 
   return (
-    <div class="overflow-hidden page-home">
+    <div class="overflow-hidden page-home styled-page">
       <section class="container-new pb-26-until-sm mt-10 mb-10-sm text-center">
         <div class="w-100">
           <img id="home-hero-graphic" alt="X" />
@@ -127,8 +129,8 @@ export default function XRPLHome() {
         </div>
       </section>
       <div class="position-relative d-none-sm">
-        <img src='/img/backgrounds/home-purple.svg' id="home-purple" />
-        <img src='/img/backgrounds/home-green.svg' id="home-green" />
+        <img src={prefix + "/img/backgrounds/home-purple.svg"} id="home-purple" />
+        <img src={prefix + "/img/backgrounds/home-green.svg"} id="home-green" />
       </div>
       <section class="container-new py-26">
         <div class="col-lg-6 offset-lg-3 pl-0-sm pr-0-sm p-8-sm p-10-until-sm">
@@ -172,8 +174,8 @@ export default function XRPLHome() {
       </section>
       <section class="container-new py-26">
         <div class="col-lg-6 offset-lg-3 p-6-sm p-10-until-sm br-8 cta-card">
-          <img src='/img/backgrounds/cta-home-purple.svg' className="d-none-sm cta cta-top-left" />
-          <img src='/img/backgrounds/cta-home-green.svg' className="cta cta-bottom-right" />
+          <img src={prefix + "/img/backgrounds/cta-home-purple.svg"} className="d-none-sm cta cta-top-left" />
+          <img src={prefix + "/img/backgrounds/cta-home-green.svg"} className="cta cta-bottom-right" />
           <div class="z-index-1 position-relative">
             <h2 class="h4 mb-8-sm mb-10-until-sm">Our Shared Vision for XRPL’s Future</h2>
             <p class="mb-10">Together, we're building the greenest infrastructure to drive blockchain innovation that doesn't sacrifice utility or performance, to bring the developer community's vision to life.</p>
@@ -194,7 +196,7 @@ export default function XRPLHome() {
       </section>
       <section class="container-new py-26">
         <div class="col-md-6 offset-md-3 p-8-sm p-10-until-sm br-8 cta-card">
-          <img src='/img/backgrounds/cta-home-magenta.svg' className="cta cta-bottom-right" />
+          <img src={prefix + "/img/backgrounds/cta-home-magenta.svg"} className="cta cta-bottom-right" />
           <div class="z-index-1 position-relative">
             <div class="d-flex flex-column-reverse">
               <h2 class="h4 mb-8-sm mb-10-until-sm">XRPL.org: by the community, for the community</h2>

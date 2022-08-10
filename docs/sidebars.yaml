@@ -2,7 +2,7 @@
 - group: Introduction to the XRPL
   page: concepts/introduction/intro-to-xrpl.md
   expanded: false
-  pages: 
+  pages:
     - page: concepts/introduction/what-is-xrp.md
     - page: concepts/introduction/what-is-xrpl.md
     - page: concepts/introduction/txn-and-requests.md
@@ -10,9 +10,9 @@
 - group: Tutorials
   page: tutorials/index.md
   expanded: false
-  pages: 
+  pages:
     - group: Quickstart
-      page: tutorials/quickstart/index.md 
+      page: tutorials/quickstart/index.md
       expanded: false
       pages:
         - page: tutorials/quickstart/create-accounts-send-xrp.md
@@ -38,7 +38,7 @@
             - page: concepts/understanding-xrpl/xrpl/consensus-protocol-properties.md
             - page: concepts/understanding-xrpl/xrpl/how-consensus-works.md
             - page: concepts/understanding-xrpl/xrpl/consensus-protections.md
-            - page: concepts/understanding-xrpl/xrpl/consensus-research.md             
+            - page: concepts/understanding-xrpl/xrpl/consensus-research.md
         - group: Validation
           page: concepts/understanding-xrpl/xrpl/validation.md
           pages:
@@ -67,12 +67,12 @@
         - page: concepts/understanding-xrpl/transactions/transaction-cost.md
         - page: concepts/understanding-xrpl/transactions/transaction-malleability.md
         - page: concepts/understanding-xrpl/transactions/about-canceling-a-transaction.md
-        - page: concepts/understanding-xrpl/transactions/multi-signing.md 
+        - page: concepts/understanding-xrpl/transactions/multi-signing.md
         - page: concepts/understanding-xrpl/transactions/tickets.md
         - page: concepts/understanding-xrpl/transactions/finality-of-results.md
-        - page: concepts/understanding-xrpl/transactions/invariant-checking.md 
+        - page: concepts/understanding-xrpl/transactions/invariant-checking.md
         - group: Payment Types
-          page: concepts/understanding-xrpl/transactions/payments/payment-types.md 
+          page: concepts/understanding-xrpl/transactions/payments/payment-types.md
           expanded: false
           pages:
             - page: concepts/understanding-xrpl/transactions/payments/direct-xrp-payments.md
@@ -90,12 +90,12 @@
             - page: concepts/understanding-xrpl/transactions/transaction-results/tel-codes.md
             - page: concepts/understanding-xrpl/transactions/transaction-results/tem-codes.md
             - page: concepts/understanding-xrpl/transactions/transaction-results/ter-codes.md
-            - page: concepts/understanding-xrpl/transactions/transaction-results/tes-success.md 
+            - page: concepts/understanding-xrpl/transactions/transaction-results/tes-success.md
 
     - group: Tokens
       page: concepts/understanding-xrpl/tokens/tokens.md
       expanded: false
-      pages: 
+      pages:
         - group: Token Types
           page: concepts/understanding-xrpl/tokens/token-types.md
           expanded: false
@@ -107,8 +107,8 @@
                 - page: concepts/understanding-xrpl/tokens/non-fungible-token-transfers.md
         - page: concepts/understanding-xrpl/tokens/transfer-fees.md
         - page: concepts/understanding-xrpl/tokens/paths.md
-        - page: concepts/understanding-xrpl/tokens/authorized-trust-lines.md 
-        - page: concepts/understanding-xrpl/tokens/rippling.md 
+        - page: concepts/understanding-xrpl/tokens/authorized-trust-lines.md
+        - page: concepts/understanding-xrpl/tokens/rippling.md
         - group: Freezing Tokens
           page: concepts/understanding-xrpl/tokens/freezing-tokens.md
           expanded: false
@@ -118,9 +118,9 @@
       page: concepts/understanding-xrpl/accounts/accounts.md
       expanded: false
       pages:
-        - page: concepts/understanding-xrpl/accounts/account-types.md 
+        - page: concepts/understanding-xrpl/accounts/account-types.md
         - page: concepts/understanding-xrpl/accounts/account-creating.md
-        - page: concepts/understanding-xrpl/accounts/reserves.md 
+        - page: concepts/understanding-xrpl/accounts/reserves.md
         - page: concepts/understanding-xrpl/accounts/cryptographic-keys.md
         - page: concepts/understanding-xrpl/accounts/deposit-authorization.md
         - page: concepts/understanding-xrpl/accounts/account-deleting.md
@@ -136,15 +136,18 @@
     - label: Tokenization
       page: use-cases/tokenization.md
     - label: Interoperability
-      page: use-cases/interoperability.md 
+      page: use-cases/interoperability.md
 - group: API Reference
   expanded: false
   pages:
-    - label: Developer Tools (broken links)
-      page: dev-tools/index.md
     - group: XRP Ledger Protocol Reference
       expanded: false
       pages:
+        - page: references/protocol-reference/ledger-data/ledger-header.md
+        - page: references/protocol-reference/ledger-data/ledger-data-formats.md
+        - page: references/protocol-reference/transactions/transaction-formats.md
+        - page: references/protocol-reference/transactions/transaction-common-fields.md
+        - page: references/protocol-reference/transactions/transaction-metadata.md
     - group: Client Libraries
       expanded: false
       pages:
@@ -164,6 +167,8 @@
     - label: Contribute Code to the XRPL
       page: contributing/contribute-code.md
     - label: Report a Scam
-      page: contributing/report-a-scam.md   
+      page: contributing/report-a-scam.md
+- label: Developer Tools
+  page: dev-tools/index.md
 - page: faq.md
 - page: releases.md
