@@ -377,101 +377,55 @@ export default function Ambassadors() {
       </section>
 
       <section className="container-new py-26">
-        <Carousel controls={false} indicators={false}  id="carouselSlidesOnly"
-            className="carousel slide col-lg-10 mx-auto px-0">
-            <Carousel.Item className="p-0">
-              <img
-                src={prefix + "/img/ambassadors/quote1-small.svg"}
-                className="h-100 d-lg-none mb-4"
-              />
-              <img
-                src={prefix + "/img/ambassadors/quote1.svg"}
-                className="h-100 d-none d-lg-block"
-              />
-              <div className="p-0 col-lg-7 mx-lg-auto">
-                <p className="p-lg-3 mb-2">
-                  <strong>Titose C.</strong>
-                  <br />
-                  University of Cape Town,
-                  <br />
-                  Spring 2022 XRPL Campus Ambassador
-                </p>
-              </div>
-            </Carousel.Item>
-            <Carousel.Item>
-              <div className="p-0">
-                <div className="mb-4 p-lg-3">
-                  <img
-                    src={prefix + "/img/ambassadors/quote2-small.svg"}
-                    className="h-100 d-lg-none  mb-4"
-                  />
-                  <img
-                    src={prefix + "/img/ambassadors/quote2.svg"}
-                    className="h-100 d-none d-lg-block"
-                  />
-                  <div className="p-0 col-lg-7 mx-lg-auto">
-                    <p className="p-lg-3 mb-2">
-                      <strong>Derrick N.</strong>
-                      <br />
-                      Ryerson University,
-                      <br />
-                      Spring 2022 XRPL Campus Ambassador
-                    </p>
-                  </div>
+        <Carousel
+          controls={false}
+          indicators={false}
+          id="carouselSlidesOnly"
+          className="carousel slide col-lg-10 mx-auto px-0"
+        >
+          <Carousel.Item className="p-0">
+            <img
+              src={prefix + "/img/ambassadors/quote1-small.svg"}
+              className="h-100 d-lg-none mb-4"
+            />
+            <img
+              src={prefix + "/img/ambassadors/quote1.svg"}
+              className="h-100 d-none d-lg-block"
+            />
+            <div className="p-0 col-lg-7 mx-lg-auto">
+              <p className="p-lg-3 mb-2">
+                <strong>Titose C.</strong>
+                <br />
+                University of Cape Town,
+                <br />
+                Spring 2022 XRPL Campus Ambassador
+              </p>
+            </div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <div className="p-0">
+              <div className="mb-4 p-lg-3">
+                <img
+                  src={prefix + "/img/ambassadors/quote2-small.svg"}
+                  className="h-100 d-lg-none  mb-4"
+                />
+                <img
+                  src={prefix + "/img/ambassadors/quote2.svg"}
+                  className="h-100 d-none d-lg-block"
+                />
+                <div className="p-0 col-lg-7 mx-lg-auto">
+                  <p className="p-lg-3 mb-2">
+                    <strong>Derrick N.</strong>
+                    <br />
+                    Ryerson University,
+                    <br />
+                    Spring 2022 XRPL Campus Ambassador
+                  </p>
                 </div>
               </div>
-            </Carousel.Item>
+            </div>
+          </Carousel.Item>
         </Carousel>
-
-        {/* <div className="carousel-inner">
-            <div className="carousel-item active">
-              <div className="p-0">
-                <div className="mb-4 p-lg-3">
-                  <img
-                    src={prefix + "/img/ambassadors/quote1-small.svg"}
-                    className="h-100 d-lg-none mb-4"
-                  />
-                  <img
-                    src={prefix + "/img/ambassadors/quote1.svg"}
-                    className="h-100 d-none d-lg-block"
-                  />
-                  <div className="p-0 col-lg-7 mx-lg-auto">
-                    <p className="p-lg-3 mb-2">
-                      <strong>Titose C.</strong>
-                      <br />
-                      University of Cape Town,
-                      <br />
-                      Spring 2022 XRPL Campus Ambassador
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <div className="p-0">
-                <div className="mb-4 p-lg-3">
-                  <img
-                    src={prefix + "/img/ambassadors/quote2-small.svg"}
-                    className="h-100 d-lg-none  mb-4"
-                  />
-                  <img
-                    src={prefix + "/img/ambassadors/quote2.svg"}
-                    className="h-100 d-none d-lg-block"
-                  />
-                  <div className="p-0 col-lg-7 mx-lg-auto">
-                    <p className="p-lg-3 mb-2">
-                      <strong>Derrick N.</strong>
-                      <br />
-                      Ryerson University,
-                      <br />
-                      Spring 2022 XRPL Campus Ambassador
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
 
         <div className="">
           <img
