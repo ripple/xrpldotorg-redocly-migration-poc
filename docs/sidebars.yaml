@@ -170,5 +170,11 @@
       page: contributing/report-a-scam.md
 - label: Developer Tools
   page: dev-tools/index.md
+- group: Online Tools
+  expanded: false
+  pages:
+    - label: Code Samples
+      page: code-samples/index.mdx
+
 - page: faq.md
 - page: releases.md
