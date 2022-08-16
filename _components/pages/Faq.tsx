@@ -13,9 +13,7 @@ export default function Faq() {
   let soup = new JSSOUP(marked.parse(markDown));
 
   let currentElement = soup.find("h4");
-  const sectionStart = "<section className='py-26'>";
-  const sectionEnd = "</section>";
-  let formatedHtmls = [sectionStart];
+  let formatedHtmls = [];
   const wrapperStart = "<div className='q-wrapper'>";
   const chevronSpan =
     " <span className='chevron'> <span></span><span></span></span>";
@@ -23,15 +21,15 @@ export default function Faq() {
 
   while (currentElement.nextElement) {
     if (currentElement.name === "h4") {
+      // add question wrapper
       formatedHtmls.push(wrapperStart);
-      const titleHTML = `<h4 id=${currentElement.attrs.id}> <a aria-controls='a${questionIndex}' aria-expanded='false' className='expander collapsed' data-target='#a${questionIndex}' data-toggle='collapse' href='#${currentElement.attrs.id}'> ${currentElement.text} ${chevronSpan} </a>`;
+      const titleHTML = `<h4 id=${currentElement.attrs.id}> <a aria-controls='a${questionIndex}' aria-expanded='false' className='expander collapsed' data-target='#a${questionIndex}' data-toggle='collapse' href='#${currentElement.attrs.id}'>${currentElement.text} ${chevronSpan} </a>`;
       formatedHtmls.push(titleHTML);
     } else if (currentElement.name === "p") {
       formatedHtmls.push(
         `<div id='a${questionIndex}' aria-labelledby='a${questionIndex}' className='answer-wrapper collapse'>`
       );
       formatedHtmls.push(currentElement.toString());
-      console.log(currentElement, "HERERE")
       while (currentElement.nextElement.name === "p") {
         currentElement = currentElement.nextElment;
         formatedHtmls.push(currentElement.toString());
@@ -39,18 +37,19 @@ export default function Faq() {
       formatedHtmls.push("</div> </div>");
       questionIndex++;
     } else if (currentElement.name === "h2") {
-      // TODO: add section
-      formatedHtmls.push(sectionEnd);
-
-      formatedHtmls.push(sectionStart);
       formatedHtmls.push(
         `<h2 id='${currentElement.attrs.id}'> ${currentElement.text} <a aria-hidden='true' className='hover_anchor' href='#${currentElement.attrs.id}'/> </h2>`
       );
     }
     currentElement = currentElement.nextElement;
   }
-  formatedHtmls.push(sectionEnd);
-  const formtatedHTMLString = formatedHtmls.join("").replaceAll("<a", " <a").replaceAll("a>", "a> ").replaceAll("a> .", "a>.");
+  // clean up spacing
+  const formtatedHTMLString = formatedHtmls
+    .join("")
+    .replaceAll("<a", " <a")
+    .replaceAll("a>", "a> ")
+    .replaceAll("a> .", "a>.")
+    .replaceAll("</code>", " </code>");
   return (
     <div className="page-faq styled-page">
       <div className="content container-new">

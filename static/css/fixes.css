@@ -328,6 +328,7 @@ a[title="Source"] {
 	background-position: center;
 	background-color: #7919FF;
 	background-size: cover;
+
 	padding: 2px 0;
 	color: #fff;
 	text-align: center;
@@ -493,6 +494,7 @@ html.light .top-banner .btn-outline-secondary:not(:disabled):not(.disabled):hove
 .page-faq {
   background-image: url(../img/backgrounds/faq-bg.svg);
   background-repeat: no-repeat;
+  background-size:contain;
 }
 
 .page-faq h6:first-of-type {
