@@ -190,6 +190,12 @@ a[title="Source"] {
   background-color: #111112;
 }
 
+.light .dropdown-item{
+  background-color:#F5F5F7;
+}
+.light .dropdown-menu{
+  background-color: #F5F5F7;
+}
 /* Fixes for tables, esp. in light mode. */
 .dark .page-tree-nav + div details > table td,
 .dark .page-tree-nav + div article > table td,
