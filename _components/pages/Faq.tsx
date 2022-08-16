@@ -1,7 +1,5 @@
 import React from "react";
 import { marked } from "marked";
-import { useState } from "react";
-import { Markdown, usePathPrefix } from "@redocly/developer-portal/ui";
 import JSSOUP from "jssoup";
 import preval from "babel-plugin-preval/macro";
 import parse from "html-react-parser";
