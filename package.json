@@ -11,7 +11,11 @@
   },
   "dependencies": {
     "@redocly/developer-portal": "1.1.0-beta.101",
+    "babel-plugin-preval": "^5.1.0",
+    "html-react-parser": "^3.0.1",
     "jquery": "^3.6.0",
+    "jssoup": "^0.0.15",
+    "marked": "^4.0.18",
     "react-bootstrap": "^2.5.0"
   },
   "devDependencies": {
