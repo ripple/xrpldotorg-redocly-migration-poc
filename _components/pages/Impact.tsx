@@ -4,7 +4,7 @@ import { usePathPrefix } from "@redocly/developer-portal/ui";
 export default function Impact() {
   const prefix = usePathPrefix();
   return (
-    <div className="landing styled-page">
+    <div className="landing impact styled-page">
       <div className="overflow-hidden">
         <div className="position-relative">
           <img

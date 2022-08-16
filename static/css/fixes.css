@@ -547,3 +547,25 @@ html.light .top-banner .btn-outline-secondary:not(:disabled):not(.disabled):hove
   margin-inline-end: 0px;
   font-weight:normal;
 }
+
+.longform {
+  font-size: 1.5rem;
+  line-height: 32px;
+  color: #F5F5F7;
+  font-weight: 500;}
+
+@media (max-width: 767.98px){
+.longform {
+    font-size: 1.25rem;
+    line-height: 26px;
+}}
+
+.impact h1 {
+  font-size: 3.875rem;
+  line-height: 70px;
+  @media (max-width: 480px) {
+    font-size: 2.625rem;
+    line-height: 48px;
+  }
+}
+
