@@ -712,3 +712,7 @@ html.light .top-banner .btn-outline-secondary:not(:disabled):not(.disabled):hove
 .circled-logo img[src="../img/logos/globe.svg"] {
   filter: invert(100%);
 }
+.page-community h1{
+  font-size: 3.875rem;
+  font-weight:bold;
+}
