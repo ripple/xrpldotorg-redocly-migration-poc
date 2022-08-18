@@ -223,6 +223,9 @@ export default function Events() {
               </a>
             </div>
           </div>
+          <div className="col order-1 order-lg-2 pt-5 pr-2">
+            <div id="event-hero-image"></div>
+          </div>
         </div>
       </section>
 

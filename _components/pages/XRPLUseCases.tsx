@@ -153,12 +153,12 @@ export default function XRPLUseCases() {
   ];
 
   return (
-    <div className="overflow-hidden page-uses landing-builtin-bgr styled-page">
+    <div className="overflow-hidden page-uses landing-builtin-bgr styled-page page-uses">
       <section className="py-26 text-center">
         <div className="col-lg-5 mx-auto text-center">
           <div className="d-flex flex-column-reverse">
             <h1 className="mb-0">Powering Innovative Technology</h1>
-            <h6 className="eyebrow mb-3">XRPL Use Cases</h6>
+            <h6 className="eyebrow m-5">XRPL Use Cases</h6>
           </div>
         </div>
       </section>

@@ -5,6 +5,7 @@ import preval from "babel-plugin-preval/macro";
 import parse from "html-react-parser";
 
 export default function Faq() {
+  // read Markdown File
   const markDown = preval`const fs = require("fs");
     module.exports = fs.readFileSync(require.resolve('../../docs/faq.md'), 'utf8')
     `;
@@ -16,7 +17,7 @@ export default function Faq() {
   const chevronSpan =
     " <span className='chevron'> <span></span><span></span></span>";
   let questionIndex = 0;
-
+  // scan and form HTMLs
   while (currentElement.nextElement) {
     if (currentElement.name === "h4") {
       // add question wrapper

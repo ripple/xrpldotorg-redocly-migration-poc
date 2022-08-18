@@ -354,7 +354,7 @@ export default function Community() {
               <a
                 className="btn btn-primary btn-arrow"
                 target="_blank"
-                href="/events.html"
+                href="/community/events"
               >
                 View All Events
               </a>
