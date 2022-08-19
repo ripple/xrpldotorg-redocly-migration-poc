@@ -755,12 +755,6 @@ h1{
   width: 50px !important;
   height: 50px !important;
 }
-
-.use-cases-img ::after{
-  width: 50px !important;
-  height: 50px !important;
-}
-.benefit-img ::after{
-  width: 50px !important;
-  height: 50px !important;
+.page-uses img{
+  max-width:20%
 }
