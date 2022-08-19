@@ -741,3 +741,20 @@ h1{
   background-repeat: no-repeat;
   background-position: center;
 }
+.btn-arrow::after {
+  width: 32px;
+  height: 27px;
+}
+.button-arrow-out ::after {
+  width: 32px;
+  height: 27px;
+}
+#benefits-list img{
+  width: 50px; 
+  height: 50px; 
+}
+.usecases-img {
+  width: 50px; 
+  height: 50px;
+}
+

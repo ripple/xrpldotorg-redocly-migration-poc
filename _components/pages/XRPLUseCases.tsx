@@ -202,7 +202,7 @@ export default function XRPLUseCases() {
             return (
               <a className="card" href={card.link} target="_blank" id={card.id}>
                 <div className="card-body">
-                  <img className="mw-100 mb-3 biz-logo" alt={card.name ?? card.id} />
+                  <img className="mw-100 mb-3 biz-logo usecases-img" alt={card.name ?? card.id} />
                   <h4 className="card-title h5">{card.title}</h4>
                   <p className="card-text">{card.description}</p>
                 </div>
