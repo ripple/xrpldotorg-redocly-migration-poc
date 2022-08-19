@@ -291,7 +291,7 @@ function BenefitItem(props) {
 
   return (
     <li className="col ls-none">
-      <img id={benefit.id} alt={`${benefit.id} Icon`} />
+      <img id={benefit.id} className="benefit-img" alt={`${benefit.id} Icon`} />
       <h4
         className="mt-3 mb-0 h5"
         dangerouslySetInnerHTML={{ __html: benefit.title }}
