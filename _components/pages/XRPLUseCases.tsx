@@ -169,7 +169,7 @@ export default function XRPLUseCases() {
             const alt = `${use.title} icon`;
             return (
               <li className="col ls-none">
-                <img id={use.id} alt={alt} />
+                <img id={use.id} alt={alt} className="use-cases-img" />
                 <h4 className="mt-3 mb-0 h5">{use.title}</h4>
                 <p className="mt-6-until-sm mt-3 mb-0">{use.description}</p>
               </li>

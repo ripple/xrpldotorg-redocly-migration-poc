@@ -751,16 +751,16 @@ h1{
   width: 32px;
   height: 27px;
 }
-.biz-logo{
+.biz-logo ::after{
   width: 50px !important;
   height: 50px !important;
 }
 
-.use-cases-img{
+.use-cases-img ::after{
   width: 50px !important;
   height: 50px !important;
 }
-.benefit-img{
+.benefit-img ::after{
   width: 50px !important;
   height: 50px !important;
 }
