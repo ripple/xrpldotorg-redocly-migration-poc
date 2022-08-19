@@ -43,7 +43,7 @@ export default function XRPLedgerOverview() {
         </div>
       </section>
       <div className="position-relative d-none-sm">
-        <img src={prefix + "/img/xrpl-overview-orange.svg"} id="xrpl-overview-orange" />
+        <img src={prefix + "/img/backgrounds/xrpl-overview-orange.svg"} id="xrpl-overview-orange" />
       </div>
       <section className="container-new py-26">
         <div className="card-grid card-grid-2xN">

@@ -751,10 +751,13 @@ h1{
   width: 32px;
   height: 27px;
 }
-.biz-logo ::after{
-  width: 50px !important;
-  height: 50px !important;
+.page-uses .use-cases-img{
+  max-width: 20% !important;
 }
-.page-uses img{
+.page-home #benefits-list img{
   max-width:20%
+}
+.page-uses .biz-logo {
+  width:50px;
+  height:30px;
 }
