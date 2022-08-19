@@ -437,12 +437,14 @@ html.light .top-banner .btn-outline-secondary:not(:disabled):not(.disabled):hove
 .btn-arrow-out::after {
   background-position: left 0px bottom 0px;
   content: "\00a0";
-  background-image: url(/img/icons/arrow-up-right-white.svg);
+  background-image: url(../img/icons/arrow-up-right-white.svg);
   background-repeat: no-repeat;
   display: inline-block;
   padding: 4px 8px 4px 12px;
   transition: background-position 0.3s ease-in-out;
   margin-left: 4px;
+  width: 32px;
+  height: 27px;
 }
 
 .btn-arrow-out:hover::after {
@@ -749,12 +751,8 @@ h1{
   width: 32px;
   height: 27px;
 }
-#benefits-list img{
-  width: 50px; 
-  height: 50px; 
-}
-.usecases-img {
-  width: 50px; 
-  height: 50px;
+.biz-logo {
+  width:50px;
+  height:50px; 
 }
 
