@@ -755,9 +755,8 @@ h1{
   max-width: 20% !important;
 }
 .page-home #benefits-list img{
-  max-width:20%
+  max-width:20%;
 }
 .page-uses .biz-logo {
-  width:50px;
-  height:30px;
+  max-width:50% !important;
 }
