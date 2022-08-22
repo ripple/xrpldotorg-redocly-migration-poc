@@ -17,25 +17,26 @@ title: XRP Ledger Documentation
 
 Learn about the XRPL by reviewing, running, and revising sample code for typical XRPL use cases.
 
- - Quickstart Tutorial
+ - [Quickstart Tutorial](tutorials/quickstart/)
  
 ## Understanding the XRPL
 
 Learn more about the features of XRPL.
 
 - [XRP Ledger](concepts/introduction/placeholder)
-- [Transactions](concepts/introduction/placeholder)
-- [Tokens](concepts/introduction/placeholder)
+- [Transactions](concepts/introduction/placeholder) 
+- [Tokens](use-cases/introduction/placeholder)
 - [Accounts](concepts/introduction/placeholder)
 
 ## Use Cases
 
 Click the links below to learn more about XRP Ledger use cases:
 
-- Payments
-- DEX
-- Tokenization
-- Interoperabilty
+- [Payment Channels](use-cases/payment-channels.md)
+- [Cross-currency Payments](use-cases/cross-currency-payments.md)
+- [Decentralized Exchange](use-cases/decentralized-exchange.md)
+- [Tokenization](use-cases/tokenization.md)
+- [Interoperabilty](use-cases/interoperability.md)
 
 ## API Reference
 

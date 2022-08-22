@@ -1,16 +1,17 @@
 # Tokens
 
-All assets other than XRP can be represented in the XRP Ledger as **tokens**. Standard tokens are tracked in relationships called [trust lines](../transactions/trust-lines-and-issuing.md) between accounts. Any account can issue tokens to other recipients who are willing to hold them, but you cannot unilaterally give tokens away to users who don't want them. Tokens can represent any type of value, including "stablecoins" backed by assets that exist outside of the ledger, purely digital tokens created specifically on the XRP Ledger, community credit, and more.
+All assets other than XRP can be represented in the XRP Ledger as **tokens**. Tokens can represent any type of value, including "stablecoins" backed by assets that exist outside of the ledger, purely digital tokens created specifically on the XRP Ledger, community credit, and more.
 
 **Note:** Tokens on the XRP Ledger have also been called "IOUs" (as in [I-owe-you](https://en.wikipedia.org/wiki/IOU)) and "issued currencies" in the past. However, these terms are not preferred because they do not cover the full range of digital assets that XRP Ledger tokens can represent.
 
 Standard tokens are fungible: meaning, all units of that token are interchangeable and indistinguishable. Non-fungible tokens are also possible: see [Non-Fungible Tokens](non-fungible.md) :not_enabled: for details of the XRP Ledger's native support.
 
 Tokens can used for [cross-currency payments](../transactions/payments/cross-currency-payments.md) and can be traded in the <!-- * -->decentralized exchange.
-
 <!-- * [decentralized exchange](../server/decentralized-exchange.md) -->
 
-The balance on a trust line is negative or positive depending on which side you view it from. The side with the negative balance is called the "issuer" and can control some properties of how those tokens behave. When you send tokens to another account that isn't the issuer, those tokens "ripple" through the issuer and possibly other accounts using the same currency code. This is useful in some cases, but can cause unexpected and undesirable behavior in others. You can use the [No Ripple flag](rippling.md#the-no-ripple-flag) on trust lines to prevent those trust lines from rippling.
+Standard tokens are tracked in relationships called [trust lines](../transactions/trust-lines-and-issuing.md) between accounts. Any account can issue tokens to other recipients who are willing to hold them, but you cannot unilaterally give tokens away to users who don't want them.
+
+The balance on a trust line is negative or positive depending on the side from which side you view it. The side with the negative balance is called the "issuer" and can control some properties of how those tokens behave. When you send tokens to another account that is not the issuer, those tokens "ripple" through the issuer and possibly other accounts using the same currency code. This is useful in some cases, but can cause unexpected and undesirable behavior in others. You can use the [No Ripple flag](rippling.md#the-no-ripple-flag) on trust lines to prevent those trust lines from rippling.
 
 ## Token Properties
 

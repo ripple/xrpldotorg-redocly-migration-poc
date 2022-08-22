@@ -20,6 +20,7 @@
         - page: tutorials/quickstart/mint-and-burn-nftokens.md
         - page: tutorials/quickstart/transfer-nftokens.md
         - page: tutorials/quickstart/broker-sale.md
+    - page: tutorials/trade-in-the-decentralized-exchange.md
 - group: Understanding the XRPL
   page: concepts/understanding-xrpl/understanding-xrpl.md
   expanded: false
@@ -70,13 +71,20 @@
         - page: concepts/understanding-xrpl/transactions/multi-signing.md 
         - page: concepts/understanding-xrpl/transactions/tickets.md
         - page: concepts/understanding-xrpl/transactions/finality-of-results.md
-        - page: concepts/understanding-xrpl/transactions/invariant-checking.md 
+        - page: concepts/understanding-xrpl/transactions/invariant-checking.md
+        - group: Decentralized Exchange
+          page: /concepts/understanding-xrpl/transactions/decentralized-exchange/decentralized-exchange.md
+          expanded: false
+          pages:
+            - page: concepts/understanding-xrpl/transactions/decentralized-exchange/autobridging.md
+            - page: concepts/understanding-xrpl/transactions/decentralized-exchange/offers.md
+            - page: concepts/understanding-xrpl/transactions/decentralized-exchange/ticksize.md
         - group: Payment Types
           page: concepts/understanding-xrpl/transactions/payments/payment-types.md 
           expanded: false
           pages:
             - page: concepts/understanding-xrpl/transactions/payments/direct-xrp-payments.md
-            - page: concepts/understanding-xrpl/transactions/payments/cross-currency-payments.md
+            - page: concepts/understanding-xrpl/transactions/payments/cross-currency-payments.md 
             - page: concepts/understanding-xrpl/transactions/payments/checks.md
             - page: concepts/understanding-xrpl/transactions/payments/escrow.md
             - page: concepts/understanding-xrpl/transactions/payments/partial-payments.md
@@ -90,7 +98,7 @@
             - page: concepts/understanding-xrpl/transactions/transaction-results/tel-codes.md
             - page: concepts/understanding-xrpl/transactions/transaction-results/tem-codes.md
             - page: concepts/understanding-xrpl/transactions/transaction-results/ter-codes.md
-            - page: concepts/understanding-xrpl/transactions/transaction-results/tes-success.md 
+            - page: concepts/understanding-xrpl/transactions/transaction-results/tes-success.md
 
     - group: Tokens
       page: concepts/understanding-xrpl/tokens/tokens.md
@@ -126,15 +134,30 @@
         - page: concepts/understanding-xrpl/accounts/account-deleting.md
     - page: concepts/understanding-xrpl/fees.md
 - group: Use Cases
-  page: use-cases/use-cases.md
+  page: use-cases/index.md 
   expanded: false
   pages:
-    - label: Payments
-      page: use-cases/payments.md
-    - label: Decentralized Exchange
+    - label: Payment Channels 
+      page: use-cases/payment-channels.md
+    - label: Cross-currency Payments
+      page: use-cases/cross-currency-payments.md
+    - group: Decentralized Exchange
       page: use-cases/decentralized-exchange.md
-    - label: Tokenization
+      expanded: false
+      pages:
+        - label: Moneychanger
+          page: use-cases/decentralized-exchange/moneychanger.md
+    - group: Tokenization
       page: use-cases/tokenization.md
+      pages:
+        - label: Stablecoin Issuer
+          page: use-cases/tokenization/stablecoin-issuer.md
+        - label: NFToken Marketplace
+          page: use-cases/tokenization/nftoken-marketplace.md
+        - label: Authorized Minter
+          page: use-cases/tokenization/authorized-minter.md 
+        - label: Digital Artist 
+          page: use-cases/tokenization/digital-artist.md
     - label: Interoperability
       page: use-cases/interoperability.md 
 - group: API Reference
