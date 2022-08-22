@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "@redocly/developer-portal": "1.1.0-beta.101",
-    "jquery": "^3.6.0",
     "babel-plugin-preval": "^5.1.0",
     "bootstrap": "^5.2.0",
     "fs": "^0.0.1-security",
+    "html-react-parser": "^3.0.1",
+    "jquery": "^3.6.0",
     "jssoup": "^0.0.15",
+    "lottie-web": "^5.9.6",
     "marked": "^4.0.18",
     "preval.macro": "^5.0.0",
     "react-bootstrap": "^2.5.0"
