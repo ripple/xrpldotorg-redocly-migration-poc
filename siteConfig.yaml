@@ -11,6 +11,8 @@ linkChecker:
 logo:
   image: ./static/img/XRPLedger_DevPortal-white.svg
   altText: XRP Ledger Developer Portal
+  height: 40px
+  width: 162px
 toc:
   enable: true
 editPage:
@@ -37,36 +39,48 @@ stylesheets:
 postBodyScripts:
   - ./static/js/xrpl-2.2.0.min.js
   - ./static/js/jquery-3.6.0.min.js
+  - ./static/vendor/bootstrap.min.js
 
 # Top Menu Navigation ----------------------------------------------------------
+## NOTE: This is ignored. Our custom top nav uses top-nav.yaml instead.
 nav:
-  - label: Docs
-    page: docs/index.md
-
-  - label: Blog
-    page: blog/index.md
-
-  - label: Tutorials
-    page: docs/tutorials/index.md
-
-  - page: about/xrp-ledger-overview.mdx
-
   - search: true
 
 # Footer configuration ---------------------------------------------------------
 footer:
-  copyrightText: Copyright © 2022 XRP Ledger. Open Source.
+  copyrightText: Copyright © 2022 XRP Ledger.
   columns:
     - group: About
       items:
         - page: about/xrp-ledger-overview.mdx
+        - page: about/use-cases.mdx
+        - page: about/history.mdx
+        - label: Ledger Explorer
+          link: https://livenet.xrpl.org/
+        - page: about/xrp-overview.mdx
+        - page: about/impact.mdx
+        - page: about/carbon-calculator.mdx
+        - label: XRPL Foundation
+          link: https://foundation.xrpl.org/
+        - page: about/faq.mdx
     - group: Docs
       items:
         - page: docs/index.md
         - page: docs/concepts/introduction/intro-to-xrpl.md
-          label: Introduction to the XRP Ledger
+        - page: docs/tutorials/index.md
+        - page: docs/references/index.mdx
+        - page: docs/code-samples/index.mdx
+        - page: docs/dev-tools/index.md
     - group: Community
       items:
         - page: community/index.mdx
         - page: community/contribute-code.md
+        - page: community/events.mdx
+        - page: community/ambassadors.mdx
+        - label: XRPL Jobs
+          link: https://jobs.xrpl.org/
+        - label: Dev Blog
+          page: blog/index.md
+        - label: GitHub
+          link: https://github.com/XRPLF/
         - page: community/report-a-scam.md

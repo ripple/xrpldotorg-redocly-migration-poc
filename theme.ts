@@ -99,9 +99,9 @@ export const theme = {
   },
 
   sidebar: {
-    backgroundColor: '#111112',
+    //backgroundColor: '#111112',
     width: '260px',
-    textColor: '#ffffff',
+    //textColor: '#ffffff',
     activeTextColor: '#9A52FF',
     activeBgColor: 'transparent',
   },
