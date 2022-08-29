@@ -760,3 +760,120 @@ h1{
 .page-uses .biz-logo {
   max-width:50% !important;
 }
+#quick-start{
+  background-color:#232325 ;
+  border-radius: 1em;
+}
+.get-started-img{
+  max-width:100%;
+  max-height:100%;
+}
+.get-started-button{
+  max-width:30%
+}
+
+#quick-start-img{
+  max-width:100%
+}
+@media (max-width: 991.98px) {
+  .get-started-button{
+    max-width:100%
+  }
+}
+
+
+.page-docs .langs a:hover {
+  text-decoration: none;
+  background: none !important;
+}
+.page-docs .langs a{
+  color:#E0E0E1
+}
+.page-docs .langs h5{
+  margin-block-start: 0 !important;
+}
+.page-docs  .btn-arrow-purple::after {
+  margin-left: 0.2em;
+  content: url(../img/icons/arrow-right-purple.svg);
+  vertical-align: middle;
+  -webkit-transition: transform 0.3s ease-out;
+  -moz-transition: transform 0.3s ease-out;
+  -ms-transition: transform 0.3s ease-out;
+  -o-transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+}
+.btn-arrow-purple:hover::after {
+  background-position: left 4px bottom 4px;
+}
+
+.page-docs .circled-logo{
+  margin-left:0.1rem;
+}
+.use-cases{
+  border-bottom: 1px solid #757575
+}
+.dev-tools-img{
+  max-width:100%; 
+  max-height: 100%;
+  margin:auto;
+}
+
+#video-overlay {
+  position:fixed;
+  top:0;
+  left:0;
+   z-index:1190;
+  height:100%;
+  width:100%;
+  background:#ffffff;
+  opacity:0.6;
+  display:none;
+}
+
+#video {
+  display: none;
+  position: fixed;
+  top: 10%;
+  left: 15%;
+  width: 70%;
+  z-index: 1200;
+}
+
+#video-container {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  max-width: 982px;
+  padding: 0 20px;
+}
+
+#videoWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: calc(90vh - 100px);
+  width: 80vw;
+}
+
+#videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.light #quick-start{ 
+  background-color:#FCFCFD ;
+  border-radius: 1em;
+}

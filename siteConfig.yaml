@@ -32,9 +32,9 @@ stylesheets:
   - ./static/css/fixes.css
 
 #analytics:
-  # ga:
-  # note that GA doesn't work in the development environment
-  #  trackingId: UA-45997213-1
+# ga:
+# note that GA doesn't work in the development environment
+#  trackingId: UA-45997213-1
 
 postBodyScripts:
   - ./static/js/xrpl-2.2.0.min.js
@@ -65,7 +65,7 @@ footer:
         - page: about/faq.mdx
     - group: Docs
       items:
-        - page: docs/index.md
+        - page: docs/index.mdx
         - page: docs/concepts/introduction/intro-to-xrpl.md
         - page: docs/tutorials/index.md
         - page: docs/references/index.mdx
