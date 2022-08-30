@@ -455,28 +455,28 @@ html.light .top-banner .btn-outline-secondary:not(:disabled):not(.disabled):hove
 
 /* photo banner */
 #container-scroll {
-  height:160px; 
-  position:relative; 
+  height:160px;
+  position:relative;
   overflow:hidden;
   margin-top: 80px;
   margin-bottom: 64px;
 }
 
 .photobanner {
-  position:absolute; 
-  top:0px; 
-  left:0px; 
-  overflow:hidden; 
+  position:absolute;
+  top:0px;
+  left:0px;
+  overflow:hidden;
   white-space: nowrap;
   animation: bannermove 40s linear infinite;
 }
 
 .photobanner-bottom {
-  top:112px; 
+  top:112px;
 }
 
-.photobanner img {    
-  margin: 0 0.5em 
+.photobanner img {
+  margin: 0 0.5em
 }
 
 @keyframes bannermove {
@@ -719,7 +719,7 @@ html.light .top-banner .btn-outline-secondary:not(:disabled):not(.disabled):hove
   font-weight:bold;
 }
 h1{
-  font-size: 3.875rem; 
+  font-size: 3.875rem;
 }
 .light .eyebrow{
   color:#111112
@@ -760,6 +760,7 @@ h1{
 .page-uses .biz-logo {
   max-width:50% !important;
 }
+
 #quick-start{
   background-color:#232325 ;
   border-radius: 1em;
@@ -911,3 +912,58 @@ h1{
     padding-right:2rem;
   }
 }
+
+/* Card decks in mdx contents */
+.autocards a.card p,
+.autocards a.card:hover p {
+  color: white;
+}
+.autocards .card-footer {
+  height: 1rem;
+}
+
+.autocards a.card.external-url::after {
+  /* Hide Redocly external link icon */
+  display:none;
+}
+
+.autocards a.card.external-url .card-title::after {
+  content: "\00a0";
+  background-image: url(../img/icons/arrow-up-right.svg);
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-size: 16px;
+  padding: 0 4px 0 8px;
+  width: 24px;
+  background-position: left 4px top 8px;
+  transition: background-position 100ms ease-in-out;
+}
+.autocards a.card.external-url:hover .card-title::after {
+  background-position: left 8px top 4px;
+}
+
+.autocards .card:nth-child(1) .card-footer {
+  background-image: url(../img/cards/4col-orange.svg);
+}
+.autocards .card:nth-child(2) .card-footer {
+  background-image: url(../img/cards/4col-light-blue.svg);
+}
+.autocards .card:nth-child(3) .card-footer {
+  background-image: url(../img/cards/4col-green-2.svg);
+}
+.autocards .card:nth-child(4) .card-footer {
+  background-image: url(../img/cards/4col-magenta-3.svg);
+}
+.autocards .card:nth-child(5) .card-footer {
+  background-image: url(../img/cards/4col-yellow.svg);
+}
+.autocards .card:nth-child(6) .card-footer {
+  background-image: url(../img/cards/4col-blue-green-2.svg);
+}
+.autocards .card:nth-child(7) .card-footer {
+  background-image: url(../img/cards/4col-purple-blue.svg);
+}
+.autocards .card:nth-child(8) .card-footer {
+  background-image: url(../img/cards/4col-orange-yellow.svg);
+}
+
