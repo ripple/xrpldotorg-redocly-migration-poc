@@ -159,13 +159,14 @@ export default function Community() {
         <div className="row row-cols-2 row-cols-lg-4 card-deck">
           {platforms.map((plat) => {
             return (
-              <a className="card mb-10" href={plat.link} target="_blank">
+              <a className="card mb-10" href={prefixplat.link} target="_blank">
                 <div className="card-body">
                   <div className="circled-logo">
                     <img
                       id={`platform-${plat.id}`}
                       alt="(logo)"
                       className={plat.imgclassNamees || ""}
+                      src="data:,"
                     />
                   </div>
                   <h4 className="card-title h5">{plat.name}</h4>
@@ -201,7 +202,7 @@ export default function Community() {
               {relatedDocs.map((doc) => {
                 return (
                   <div className="text-card">
-                    <a className="btn-arrow" href={doc.href}>
+                    <a className="btn-arrow" href={prefix + doc.href}>
                       {doc.name}
                     </a>
                     <p className="mt-3 mb-0">{doc.description}</p>
@@ -354,7 +355,7 @@ export default function Community() {
               <a
                 className="btn btn-primary btn-arrow"
                 target="_blank"
-                href="/community/events"
+                href={prefix + "/community/events"}
               >
                 View All Events
               </a>
