@@ -804,6 +804,8 @@ h1{
   -ms-transition: transform 0.3s ease-out;
   -o-transition: transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
+  width: 1.5rem; 
+  height:1.5rem;
 }
 .btn-arrow-purple:hover::after {
   background-position: left 4px bottom 4px;

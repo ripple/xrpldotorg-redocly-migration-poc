@@ -374,7 +374,7 @@ export default function Docs() {
         </div>
       </section>
       <Helmet>
-        <script src="/js/video.js"></script>
+        <script src={prefix + "/js/video.js"}></script>
       </Helmet>
     </div>
   );
