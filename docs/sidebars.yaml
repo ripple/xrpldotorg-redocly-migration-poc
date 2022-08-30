@@ -161,13 +161,6 @@
   pages:
     - page: amendments/amendments.md
     - page: amendments/known-amendments.md
-- group: Contributing
-  expanded: false
-  pages:
-    - label: Contribute Code to the XRPL
-      page: contributing/contribute-code.md
-    - label: Report a Scam
-      page: contributing/report-a-scam.md
 - label: Developer Tools
   page: dev-tools/index.md
 - group: Online Tools

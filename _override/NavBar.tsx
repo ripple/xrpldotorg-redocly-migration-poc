@@ -118,7 +118,7 @@ export function NavDropdown(props) {
 
       return (
         <a key={index} className="dropdown-item dropdown-hero" id={hero_id} href={hero_href}>
-          <img id={item.hero} alt={img_alt} />
+          <img id={item.hero} alt={img_alt} src="data:," />
           <div className="dropdown-hero-text">
             <h4>{item.label}</h4>
             <p>{item.description}</p>
@@ -195,7 +195,7 @@ export function LogoBlock(props) {
   const { to, img, altText } = props;
   return (
     <a className="navbar-brand" href={to}>
-      <img className="logo" alt={altText} height="40" />
+      <img className="logo" alt={altText} height="40" src="data:," />
     </a>
   );
 }

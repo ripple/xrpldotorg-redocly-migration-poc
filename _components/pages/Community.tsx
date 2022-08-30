@@ -82,23 +82,23 @@ export default function Community() {
   // hrefs are subject to change
   const relatedDocs = [
     {
-      name: "The rippled Server",
-      href: "/docs/the-rippled-server",
+      name: "XRPL Servers",
+      href: "/docs/infrastructure/xrpl-servers",
       description: "Learn about the core servers that power the XRP Ledger.",
     },
     {
       name: "Join UNL",
-      href: "/docs/run-rippled-as-a-validator",
+      href: "/docs/infrastructure/run-rippled-as-a-validator",
       description: "Have your server vote on the consensus ledger.",
     },
     {
       name: "Install & Configure",
-      href: "/docs/install-rippled",
+      href: "/docs/infrastructure/install-rippled",
       description: "Install and update the rippled server.",
     },
     {
       name: "Troubleshooting",
-      href: "/docs/troubleshoot-the-rippled-server",
+      href: "/docs/infrastructure/troubleshoot-the-rippled-server",
       description:
         "Troubleshoot all kinds of problems with the rippled server.",
     },

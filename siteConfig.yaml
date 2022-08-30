@@ -8,6 +8,7 @@ linkChecker:
   severity: warning
   options:
     CheckExternal: false
+    IgnoreInternalEmptyHash: true
 logo:
   image: ./static/img/XRPLedger_DevPortal-white.svg
   altText: XRP Ledger Developer Portal
@@ -59,7 +60,6 @@ footer:
           link: https://livenet.xrpl.org/
         - page: about/xrp-overview.mdx
         - page: about/impact.mdx
-        - page: about/carbon-calculator.mdx
         - label: XRPL Foundation
           link: https://foundation.xrpl.org/
         - page: about/faq.mdx

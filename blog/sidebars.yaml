@@ -1,14 +1,36 @@
 - page: index.md
-- group: 2022
+- group: "2022"
   expanded: true
   pages:
-    - label: Introducing XRP Ledger 1.9.0
-      page: 2022/rippled-1.9.0.md
-    - label: Introducing Clio Beta
-      page: 2022/introducing-clio.md
-    - label: Announcing NFT-Devnet Reset
-      page: 2022/nft-devnet-reset.md
-    - label: Introducing XRPL 1.8.5
-      page: 2022/rippled-1.8.5.md
-    - label: Introducing XRPL 1.8.4
-      page: 2022/rippled-1.8.4.md
+  - label: Introducing XRP Ledger 1.9.0
+    page: 2022/rippled-1.9.0.md
+  - label: Introducing Clio Beta
+    page: 2022/introducing-clio.md
+  - label: Announcing NFT-Devnet Reset
+    page: 2022/nft-devnet-reset.md
+  - label: Introducing XRPL 1.8.5
+    page: 2022/rippled-1.8.5.md
+  - label: Introducing XRPL 1.8.4
+    page: 2022/rippled-1.8.4.md
+- group: "2021"
+  expanded: false
+  pages:
+    - page: 2021/rippled-1.8.2.md
+    - page: 2021/rippled-1.8.1.md
+    - page: 2021/five-upcoming-amendments.md
+    - page: 2021/introducing-xrpl-js.md
+    - page: 2021/sidechain-engineering-preview.md
+    - page: 2021/reserves-lowered.md
+    - page: 2021/rippled-1.7.3.md
+    - page: 2021/ripple-lib-drops-lodash-browsers.md
+    - page: 2021/xrpl-grants-funding-the-next-phase-of-open-decentralized-innovation.md
+    - page: 2021/rippled-1.7.2.md
+    - page: 2021/introducing-xrpl4j.md
+    - page: 2021/xrpl-node-configurator.md
+    - page: 2021/introducing-xrpl-py-for-pythonistas.md
+    - page: 2021/three-amendments-expected.md
+    - page: 2021/message-routing-optimizations-pt-1-proposal-validation-relaying.md
+- group: "2020"
+  expanded: false
+  pages:
+    - page: 2020/rippled-1.6.0.md
