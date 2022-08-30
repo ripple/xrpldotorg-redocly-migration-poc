@@ -398,12 +398,12 @@ function UseCasesCard({ props }) {
   return (
     <div className="col">
       <img
-        className="use-cases-img img-fluid"
+        className="use-cases-img img-fluid mb-2"
         src={props.img}
         alt={props.title}
         id={props.id}
       ></img>
-      <h5>{props.title} </h5>
+      <h5 className="mt-4">{props.title} </h5>
       <ul className="nav flex-column">
         {props.subItems.map((i) => {
           return <NavLinks props={i} />;
