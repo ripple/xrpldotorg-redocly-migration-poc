@@ -70,7 +70,7 @@ footer:
         - page: docs/tutorials/index.md
         - page: docs/references/index.mdx
         - page: docs/code-samples/index.mdx
-        - page: docs/dev-tools/index.md
+        - page: docs/dev-tools/index.mdx
     - group: Community
       items:
         - page: community/index.mdx
