@@ -771,6 +771,7 @@ h1{
 }
 .get-started-button{
   width:9rem;
+  max-width:100%;
 }
 
 #quick-start-img{
@@ -786,6 +787,7 @@ h1{
 .page-docs .langs a:hover {
   text-decoration: none;
   background: none !important;
+  color:#7919FF;
 }
 .page-docs .langs a{
   color:#E0E0E1
@@ -797,26 +799,23 @@ h1{
   margin-block-start: 0 !important;
 }
 .page-docs  .btn-arrow-purple::after {
+  display:inline-block;
   margin-left: 0.2em;
   content: url(../img/icons/arrow-right-purple.svg);
-  vertical-align: middle;
-  -webkit-transition: transform 0.3s ease-out;
-  -moz-transition: transform 0.3s ease-out;
-  -ms-transition: transform 0.3s ease-out;
-  -o-transition: transform 0.3s ease-out;
-  transition: transform 0.3s ease-out;
+  vertical-align: center;
+  transition: all .2s ease;
   width: 1.5rem; 
   height:1.5rem;
 }
-.btn-arrow-purple:hover::after {
-  background-position: left 4px bottom 4px;
+.page-docs .btn-arrow-purple:hover::after{
+  animation: arrowDance2 1.2s infinite;
 }
 
 .page-docs .circled-logo{
   margin-left:0.1rem;
 }
 .use-cases{
-  border-bottom: 1px solid #757575
+  border-bottom: 1px solid #111112;
 }
 .dev-tools-img{
   max-width:100%; 
@@ -912,6 +911,32 @@ h1{
     padding-right:2rem;
   }
 }
+
+
+.page-docs .nav .nav-link {
+  padding: 1rem 2rem 1rem 0;
+  color: #E0E0E1;
+  border-bottom: 1px solid #232325;
+  position: relative;
+}
+.page-docs .nav .nav-link :hover {
+    color: #9A52FF;
+  }
+.page-docs .nav .nav-link ::after {
+    content: " ";
+    background-image: url(../img/icons/arrow-right-purple.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1rem;
+    position: absolute;
+    right: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: all .2s ease;
+  }
+.page-docs .nav .nav-link :hover::after {
+    animation: arrowDance2 1.2s infinite;
+  }
 
 /* Card decks in mdx contents */
 .autocards a.card p,

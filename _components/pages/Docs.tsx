@@ -338,9 +338,11 @@ export default function Docs() {
         <div className="card-grid card-grid-2xN">
           <div className="col">
             <h4>Browse By Recommended Pages</h4>
-            {recommendedPages.map((r) => (
-              <UnderLindedArrow props={r}></UnderLindedArrow>
-            ))}
+            <ul className="nav flex-column">
+              {recommendedPages.map((r) => (
+                <NavLinks props={r} />
+              ))}
+            </ul>
           </div>
 
           <div className="col">
@@ -402,22 +404,21 @@ function UseCasesCard({ props }) {
         id={props.id}
       ></img>
       <h5>{props.title} </h5>
-      {props.subItems.map((i) => {
-        return <UnderLindedArrow props={i} />;
-      })}
+      <ul className="nav flex-column">
+        {props.subItems.map((i) => {
+          return <NavLinks props={i} />;
+        })}
+      </ul>
     </div>
   );
 }
 
-function UnderLindedArrow({ props }) {
+function NavLinks({ props }) {
   return (
-    <div className="use-cases d-flex">
-      <div className="pt-3">
-        <p>{props.description} </p>
-      </div>
-      <div className="ml-auto pt-3">
-        <a className="btn-arrow-purple" target="_blank" href={props.link}></a>
-      </div>
-    </div>
+    <li className="nav-item">
+      <a href={props.link} className="nav-link">
+        {props.description}
+      </a>
+    </li>
   );
 }
