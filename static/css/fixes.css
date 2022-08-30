@@ -769,7 +769,7 @@ h1{
   max-height:100%;
 }
 .get-started-button{
-  max-width:30%
+  width:9rem;
 }
 
 #quick-start-img{
@@ -788,6 +788,9 @@ h1{
 }
 .page-docs .langs a{
   color:#E0E0E1
+}
+.light .langs a{
+  color: #000;
 }
 .page-docs .langs h5{
   margin-block-start: 0 !important;
@@ -822,7 +825,7 @@ h1{
   position:fixed;
   top:0;
   left:0;
-   z-index:1190;
+  z-index:1190;
   height:100%;
   width:100%;
   background:#ffffff;
@@ -872,8 +875,37 @@ h1{
   width: 100%;
   height: 100%;
 }
-
+.page-docs p{
+  font-family: Work Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+}
 .light #quick-start{ 
   background-color:#FCFCFD ;
   border-radius: 1em;
+}
+.light #quick-start-img{
+  content: url(../img/docs/getstarted-white@2x.png);
+}
+.light #quick-start-img{
+  content: url(../img/docs/getstarted-white@2x.png);
+}
+
+.light #quick-start-img{
+  content: url(../img/docs/getstarted-white@2x.png);
+}
+
+.light #nfts{
+  content: url(../img/docs/nft-white@2x.png);
+}
+.light #build-a-wallet{
+  content: url(../img/docs/wallet-white@2x.png);
+}
+.light #run-an-xrp-ledger-node{
+  content: url(../img/docs/node-white@2x.png);
+}
+
+@media (max-width: 991.98px) {
+  .page-docs section{
+    padding-left:2rem;
+    padding-right:2rem;
+  }
 }

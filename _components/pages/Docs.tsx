@@ -1,6 +1,5 @@
 import React from "react";
 import { usePathPrefix } from "@redocly/developer-portal/ui";
-import FadeInOut from "../FadeInOut";
 import { Helmet } from "react-helmet";
 export default function Docs() {
   const prefix = usePathPrefix();
@@ -46,6 +45,7 @@ export default function Docs() {
   const useCases = [
     {
       title: "Build a Wallet",
+      id: "build-a-wallet",
       img: prefix + "/img/docs/docs-wallet@2x.png",
       subItems: [
         {
@@ -60,6 +60,7 @@ export default function Docs() {
     },
     {
       title: "NFTs",
+      id: "nfts",
       img: prefix + "/img/docs/docs-nft@2x.png",
       subItems: [
         {
@@ -78,6 +79,7 @@ export default function Docs() {
     },
     {
       title: "Run an XRP Ledger Node",
+      id: "run-an-xrp-ledger-node",
       img: prefix + "/img/docs/docs-node@2x.png",
       subItems: [
         {
@@ -158,7 +160,7 @@ export default function Docs() {
   }
   return (
     <div className="landing page-docs landing-builtin-bg overflow-hidden">
-      <div id="#video-overlay"></div>
+      <div id="video-overlay"></div>
       <div id="video">
         <div id="videoWrapper">
           <iframe
@@ -186,14 +188,14 @@ export default function Docs() {
         </div>
         <div className="card-grid card-grid-2xN">
           <div className="col card" id="quick-start">
-            <h5 className="mt-10"> Quickstart to XRP Ledger </h5>
-            <p className="mb-8">
+            <h5 className="mt-7"> Quickstart to XRP Ledger </h5>
+            <p className="mb-8 mt-4">
               An introduction to fundamental aspects of the XRP Ledger.
             </p>
-            <div className="dg-lg-block">
+            <div className="dg-lg-block mb-5">
               <a
                 className="btn btn-primary btn-arrow get-started-button"
-                href="https://www.meetup.com/pro/xrpl-community/"
+                href="https://xrpl.org/xrpl-quickstart.html"
               >
                 Get Started
               </a>
@@ -212,7 +214,7 @@ export default function Docs() {
             </div>
             <a
               className="btn btn-primary btn-arrow-out mt-10"
-              href="https://www.meetup.com/pro/xrpl-community/"
+              href="https://www.youtube.com/playlist?list=PLJQ55Tj1hIVZtJ_JdTvSum2qMTsedWkNi"
             >
               Watch Full Series
             </a>
@@ -309,10 +311,10 @@ export default function Docs() {
           </div>
           <div className="col">
             <div className="d-flex flex-column-reverse w-100">
-              <h4 className="mb-18">Explore, Test, Verify</h4>
-              <h6 className="eyebrow mb-3">Explore Dev Tools</h6>
+              <h4 className="mb-10">Explore, Test, Verify</h4>
+              <h6 className="mb-3">Explore Dev Tools</h6>
             </div>
-            <p>
+            <p className="mb-20">
               Use these web-based tools to assist during all stages of
               development, from getting your first payment to testing your
               implementation for best practices.{" "}
@@ -362,7 +364,7 @@ export default function Docs() {
                 </p>
                 <a
                   className="btn btn-primary btn-arrow-out"
-                  href="https://github.com/XRPLF/xrpl-dev-portal/"
+                  href="https://xrpl.org/xrp-testnet-faucet.html"
                 >
                   Generate Testnet Credentials
                 </a>
@@ -397,6 +399,7 @@ function UseCasesCard({ props }) {
         className="use-cases-img img-fluid"
         src={props.img}
         alt={props.title}
+        id={props.id}
       ></img>
       <h5>{props.title} </h5>
       {props.subItems.map((i) => {
