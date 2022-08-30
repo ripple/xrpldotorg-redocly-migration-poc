@@ -32,9 +32,9 @@ stylesheets:
   - ./static/css/fixes.css
 
 #analytics:
-# ga:
-# note that GA doesn't work in the development environment
-#  trackingId: UA-45997213-1
+  # ga:
+  # note that GA doesn't work in the development environment
+  #  trackingId: UA-45997213-1
 
 postBodyScripts:
   - ./static/js/xrpl-2.2.0.min.js
