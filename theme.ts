@@ -103,7 +103,7 @@ export const theme = {
     width: '260px',
     //textColor: '#ffffff',
     activeTextColor: '#9A52FF',
-    activeBgColor: 'transparent',
+    activeBgColor: '#E0E0E1',
   },
   // tocPanel: {
   //   width: '240px',
@@ -157,8 +157,8 @@ export const theme = {
       fontSize: '13px',
       fontFamily: '"Source Code Pro", sans-serif',
       // fontWeight: ({ typography }) => typography.fontWeightRegular,
-      color: '#e53935',
-      backgroundColor: 'rgba(38, 50, 56, 0.04)',
+      color: '#5BEB9D',
+      backgroundColor: '#E0E0E1',
       wrap: false,
     },
     links: {
@@ -168,9 +168,10 @@ export const theme = {
     },
   },
   rightPanel: {
-    backgroundColor: '#263238',
+    //backgroundColor: '#263238',
     width: '40%',
-    // textColor: '#ffffff',
+    textColor: '#ffffff',
+    activeTextColor: '#7919FF',
   },
   schema: {
     nestedBackground: '#fafafa',
