@@ -169,7 +169,7 @@
     - label: Report a Scam
       page: contributing/report-a-scam.md
 - label: Developer Tools
-  page: dev-tools/index.md
+  page: dev-tools/index.mdx
 - group: Online Tools
   expanded: false
   pages:
