@@ -815,6 +815,13 @@ h1{
 .page-docs h1{
   font-size: 3.875rem;
 }
+@media (max-width: 991.98px) {
+  /* Fix dropdown size with top banner present */
+  .page-docs .langs-cards {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+  }
+}
 
 .page-docs .circled-logo{
   margin-left:0.1rem;
@@ -905,9 +912,12 @@ h1{
 .light #quick-start-img{
   content: url(../img/docs/getstarted-white@2x_v2.png);
 }
-
-
-
+.light .dev-tools-img{
+  content:url(../img/docs/dev-tools-white@2x.png)
+}
+.light .sdk-img{
+  content:url(../img/docs/sdk-white@2x.png);
+}
 .light #nfts{
   content: url(../img/docs/nft-white@2x.png);
 }

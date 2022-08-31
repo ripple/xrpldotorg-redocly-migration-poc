@@ -197,7 +197,7 @@ export default function Docs() {
         </div>
         <div className="card-grid card-grid-2xN">
           <div className="col">
-            <div className="card quick-start">
+            <div className="card video-image">
               <h5 className="mt-7"> Quickstart to XRP Ledger </h5>
               <p className="mb-8 mt-4">
                 An introduction to fundamental aspects of the XRP Ledger.
@@ -238,7 +238,7 @@ export default function Docs() {
           <div className="col">
             <h6>Explore SDKs</h6>
             <h4>Interact with the XRP Ledger in a language of your choice</h4>
-            <div className="card-grid card-grid-2xN mt-10">
+            <div className="card-grid langs-cards card-grid-2xN mt-10">
               <div className="col langs">
                 <a href="https://xrpl.org/get-started-using-javascript.html">
                   <img
@@ -271,7 +271,7 @@ export default function Docs() {
           <div className="col">
             <img
               src={prefix + "/img/docs/docs-sdk@2x.png"}
-              className="img-fluid pt-20"
+              className="img-fluid pt-20 sdk-img"
             ></img>
           </div>
         </div>
