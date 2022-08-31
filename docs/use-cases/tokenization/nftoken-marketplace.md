@@ -1,4 +1,4 @@
-#NFToken Marketplace
+# NFToken Marketplace
 
 _In my NFToken Marketplace, I want to use the XRPL to create a marketplace site where I can arrange transfer of a curated selection of NFTokens to consumers, with the benefit that I can build a brand and earn broker fees based on sales._
 

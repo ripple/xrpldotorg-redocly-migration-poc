@@ -1,4 +1,4 @@
-#Stablecoin Issuer
+# Stablecoin Issuer
 
 _As a Stablecoin Issuer, I want to use the XRPL to issue my own stablecoin, taking advantage of the lower cost per transaction and decade-long stability of the XRPL._
 
