@@ -240,49 +240,31 @@ export default function Docs() {
             <h4>Interact with the XRP Ledger in a language of your choice</h4>
             <div className="card-grid card-grid-2xN mt-10">
               <div className="col langs">
-                <img
-                  src={prefix + "/img/docs/javascript.svg"}
-                  className="circled-logo"
-                ></img>
-                <h5>
-                  <a
-                    className="btn-arrow-purple"
-                    target="_blank"
-                    href="https://github.com/XRPLF/xrpl.js"
-                  >
-                    Javascript
-                  </a>
-                </h5>
+                <a href="https://xrpl.org/get-started-using-javascript.html">
+                  <img
+                    src={prefix + "/img/docs/javascript.svg"}
+                    className="circled-logo"
+                  ></img>
+                  <h5 className="btn-arrow">Javascript</h5>
+                </a>
               </div>
               <div className="col langs">
-                <img
-                  src={prefix + "/img/docs/python.svg"}
-                  className="circled-logo"
-                ></img>
-                <h5>
-                  <a
-                    className="btn-arrow-purple"
-                    target="_blank"
-                    href="https://github.com/XRPLF/xrpl-py"
-                  >
-                    Python
-                  </a>
-                </h5>
+                <a href="https://xrpl.org/get-started-using-python.html">
+                  <img
+                    src={prefix + "/img/docs/python.svg"}
+                    className="circled-logo"
+                  ></img>
+                  <h5 className="btn-arrow">Python</h5>
+                </a>
               </div>
               <div className="col langs">
-                <img
-                  src={prefix + "/img/docs/java.svg"}
-                  className="circled-logo"
-                ></img>
-                <h5>
-                  <a
-                    className="btn-arrow-purple"
-                    target="_blank"
-                    href="https://github.com/XRPLF/xrpl4j"
-                  >
-                    Java
-                  </a>
-                </h5>
+                <a href="https://xrpl.org/get-started-using-java.html">
+                  <img
+                    src={prefix + "/img/docs/java.svg"}
+                    className="circled-logo"
+                  ></img>
+                  <h5 className="btn-arrow">Java</h5>
+                </a>
               </div>
             </div>
           </div>
@@ -395,12 +377,11 @@ export default function Docs() {
 
 function DevToolsCard({ props }) {
   return (
-    <div className="col">
-      <h6>
-        {props.title}
-        <a className="btn-arrow-purple" target="_blank" href={props.link}></a>
-      </h6>
-      <p> {props.description}</p>
+    <div className="col dev-tools-link">
+      <a href={props.link}>
+        <h6 className="btn-arrow">{props.title}</h6>
+        <p> {props.description}</p>
+      </a>
     </div>
   );
 }
