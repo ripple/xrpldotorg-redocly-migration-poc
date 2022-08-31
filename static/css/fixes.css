@@ -783,19 +783,21 @@ h1{
 .page-docs .langs h5:hover {
   text-decoration: none;
   background: transparent !important;
-  color:#9A52FF;
 }
 .page-docs .dev-tools-link h6:hover {
   text-decoration: none;
   background: none !important;
-  color:#9A52FF;
 }
 .page-docs .langs .btn-arrow::after{
   content: url(../img/icons/arrow-right-purple.svg);
   vertical-align: baseline;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 .page-docs .dev-tools-link .btn-arrow::after{
   content: url(../img/icons/arrow-right-purple.svg);
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .page-docs .langs a{
