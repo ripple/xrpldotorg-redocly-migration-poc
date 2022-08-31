@@ -4,5 +4,5 @@ _As an authorized minter, I want to mint tokens for a token issuer at an agreed 
 
 You can act as an authorized minter for token issuers. When you do this, you own the NFToken, but royalties flow to the NFToken issuer. When you make a sale of that NFToken, the proceeds of the initial sale go to you. You can have an agreement with your issuer to pay them some or all of your portion of the initial sale amount.
 
-You can learn to assign an authorized minter by following the steps in the [Assign an Authorized Minter](../../../tutorials/quickstart/authorized-minter.md). 
+You can learn to assign an authorized minter by following the steps in the [Assign an Authorized Minter](../../../tutorials/quickstart/authorize-minter.md). 
 
