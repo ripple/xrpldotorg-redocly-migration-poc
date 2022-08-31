@@ -111,7 +111,7 @@ export default function Docs() {
         "Send sample requests and get responses from the rippled API. ",
     },
     {
-      title: "XRP Explorer",
+      title: "XRP Ledger Explorer",
       link: "https://livenet.xrpl.org",
       description:
         "View validations of new ledger versions in real-time, chart the location of servers in the XRP Ledger.",
@@ -318,7 +318,7 @@ export default function Docs() {
               ))}
             </div>
             <a
-              className="btn btn-primary btn-arrow"
+              className="btn btn-primary btn-arrow mt-4"
               href="https://xrpl.org/dev-tools.html"
             >
               View All tools

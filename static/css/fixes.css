@@ -788,6 +788,11 @@ h1{
   text-decoration: none;
   background: none !important;
 }
+.page-docs .dev-tools-link p:hover {
+  color: #E0E0E1;
+  text-decoration: none;
+  background: none !important;
+}
 .page-docs .langs .btn-arrow::after{
   content: url(../img/icons/arrow-right-purple.svg);
   vertical-align: baseline;
