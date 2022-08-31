@@ -159,7 +159,7 @@ export default function Docs() {
     );
   }
   return (
-    <div className="landing page-docs landing-builtin-bg overflow-hidden">
+    <div className="landing page-docs landing-builtin-bg overflow-hidden styled-page">
       <div id="video-overlay"></div>
       <div id="video">
         <div id="videoWrapper">
@@ -173,6 +173,15 @@ export default function Docs() {
           ></iframe>
         </div>
       </div>
+
+      <div className="position-relative d-none-sm">
+        <img
+          src={prefix + "/img/docs/docs-lines.svg"}
+          className="position-absolute"
+          style={{ top: 0, right: 0, transform: "scaleX(-1)" }}
+        />
+      </div>
+
       <section className="py-26 text-center">
         <div className="col-xl-4 col-lg-6 mx-auto text-center">
           <div className="d-flex flex-column-reverse w-100">
@@ -187,24 +196,26 @@ export default function Docs() {
           <h4>Getting Started with XRP Ledger</h4>
         </div>
         <div className="card-grid card-grid-2xN">
-          <div className="col card" id="quick-start">
-            <h5 className="mt-7"> Quickstart to XRP Ledger </h5>
-            <p className="mb-8 mt-4">
-              An introduction to fundamental aspects of the XRP Ledger.
-            </p>
-            <div className="dg-lg-block mb-5">
-              <a
-                className="btn btn-primary btn-arrow get-started-button"
-                href="https://xrpl.org/xrpl-quickstart.html"
-              >
-                Get Started
-              </a>
+          <div className="col">
+            <div className="card quick-start">
+              <h5 className="mt-7"> Quickstart to XRP Ledger </h5>
+              <p className="mb-8 mt-4">
+                An introduction to fundamental aspects of the XRP Ledger.
+              </p>
+              <div className="dg-lg-block mb-5">
+                <a
+                  className="btn btn-primary btn-arrow get-started-button"
+                  href="https://xrpl.org/xrpl-quickstart.html"
+                >
+                  Get Started
+                </a>
+              </div>
+              <img
+                src={prefix + "/img/docs/docs-quick-start.svg"}
+                alt="quick-start"
+                id="quick-start-img"
+              />
             </div>
-            <img
-              src={prefix + "/img/docs/docs-quick-start.svg"}
-              alt="quick-start"
-              id="quick-start-img"
-            />
           </div>
           <div className="col">
             <div className="card-grid card-grid-2xN">
@@ -398,7 +409,7 @@ function UseCasesCard({ props }) {
   return (
     <div className="col">
       <img
-        className="use-cases-img img-fluid mb-2"
+        className="use-cases-img img-fluid mb-2 shadow"
         src={props.img}
         alt={props.title}
         id={props.id}
