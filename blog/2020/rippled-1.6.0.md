@@ -1,3 +1,6 @@
+---
+title: Introducing XRP Ledger version 1.6.0
+---
 # Introducing XRP Ledger version 1.6.0
 
 **XRP Ledger (`rippled` server) version 1.6.0** has been released. This release introduces several new features including changes to the XRP Ledger's consensus mechanism to make it even more robust in adverse conditions, as well as numerous bug fixes and optimizations. _(This post has been updated with recommendations for upgrading.)_

@@ -154,6 +154,7 @@
         - page: references/client-libraries.md
         - page: references/data-api.md
     - group: HTTP / WebSocket APIs
+      page: references/http-websocket-apis/index.mdx
       pages:
     - page: references/xrp-ledger-toml.md
 - group: Amendments
@@ -161,13 +162,6 @@
   pages:
     - page: amendments/amendments.md
     - page: amendments/known-amendments.md
-- group: Contributing
-  expanded: false
-  pages:
-    - label: Contribute Code to the XRPL
-      page: contributing/contribute-code.md
-    - label: Report a Scam
-      page: contributing/report-a-scam.md
 - label: Developer Tools
   page: dev-tools/index.mdx
 - group: Online Tools
@@ -176,5 +170,4 @@
     - label: Code Samples
       page: code-samples/index.mdx
 
-- page: faq.md
 - page: releases.md

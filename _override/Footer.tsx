@@ -88,7 +88,7 @@ export function AbsoluteBottomFooter(props) {
   return (
     <section className="container-fluid mt-20 absolute-bottom-footer">
       <div className="d-lg-flex row">
-        <Link to={prefix+"/"} className="footer-brand">
+        <Link to="/" className="footer-brand">
           <img src={require("../static/img/XRPLedger_DevPortal-white.svg")} className="logo" height="24" alt="XRP Ledger" />
         </Link>
         <span className="flex-grow-1">&nbsp;</span>

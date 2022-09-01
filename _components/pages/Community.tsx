@@ -82,23 +82,23 @@ export default function Community() {
   // hrefs are subject to change
   const relatedDocs = [
     {
-      name: "The rippled Server",
-      href: "/docs/the-rippled-server",
+      name: "XRPL Servers",
+      href: "/docs/infrastructure/xrpl-servers",
       description: "Learn about the core servers that power the XRP Ledger.",
     },
     {
       name: "Join UNL",
-      href: "/docs/run-rippled-as-a-validator",
+      href: "/docs/infrastructure/run-rippled-as-a-validator",
       description: "Have your server vote on the consensus ledger.",
     },
     {
       name: "Install & Configure",
-      href: "/docs/install-rippled",
+      href: "/docs/infrastructure/install-rippled",
       description: "Install and update the rippled server.",
     },
     {
       name: "Troubleshooting",
-      href: "/docs/troubleshoot-the-rippled-server",
+      href: "/docs/infrastructure/troubleshoot-the-rippled-server",
       description:
         "Troubleshoot all kinds of problems with the rippled server.",
     },
@@ -166,6 +166,7 @@ export default function Community() {
                       id={`platform-${plat.id}`}
                       alt="(logo)"
                       className={plat.imgclassNamees || ""}
+                      src="data:,"
                     />
                   </div>
                   <h4 className="card-title h5">{plat.name}</h4>
@@ -201,7 +202,7 @@ export default function Community() {
               {relatedDocs.map((doc) => {
                 return (
                   <div className="text-card">
-                    <a className="btn-arrow" href={doc.href}>
+                    <a className="btn-arrow" href={prefix + doc.href}>
                       {doc.name}
                     </a>
                     <p className="mt-3 mb-0">{doc.description}</p>
@@ -354,7 +355,7 @@ export default function Community() {
               <a
                 className="btn btn-primary btn-arrow"
                 target="_blank"
-                href="/community/events"
+                href={prefix + "/community/events"}
               >
                 View All Events
               </a>

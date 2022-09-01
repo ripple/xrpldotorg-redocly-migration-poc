@@ -111,7 +111,7 @@ export default function Docs() {
         "Send sample requests and get responses from the rippled API. ",
     },
     {
-      title: "XRP Explorer",
+      title: "XRP Ledger Explorer",
       link: "https://livenet.xrpl.org",
       description:
         "View validations of new ledger versions in real-time, chart the location of servers in the XRP Ledger.",
@@ -159,7 +159,7 @@ export default function Docs() {
     );
   }
   return (
-    <div className="landing page-docs landing-builtin-bg overflow-hidden">
+    <div className="landing page-docs landing-builtin-bg overflow-hidden styled-page">
       <div id="video-overlay"></div>
       <div id="video">
         <div id="videoWrapper">
@@ -173,6 +173,15 @@ export default function Docs() {
           ></iframe>
         </div>
       </div>
+
+      <div className="position-relative d-none-sm">
+        <img
+          src={prefix + "/img/docs/docs-lines.svg"}
+          className="position-absolute"
+          style={{ top: 0, right: 0, transform: "scaleX(-1)" }}
+        />
+      </div>
+
       <section className="py-26 text-center">
         <div className="col-xl-4 col-lg-6 mx-auto text-center">
           <div className="d-flex flex-column-reverse w-100">
@@ -187,24 +196,26 @@ export default function Docs() {
           <h4>Getting Started with XRP Ledger</h4>
         </div>
         <div className="card-grid card-grid-2xN">
-          <div className="col card" id="quick-start">
-            <h5 className="mt-7"> Quickstart to XRP Ledger </h5>
-            <p className="mb-8 mt-4">
-              An introduction to fundamental aspects of the XRP Ledger.
-            </p>
-            <div className="dg-lg-block mb-5">
-              <a
-                className="btn btn-primary btn-arrow get-started-button"
-                href="https://xrpl.org/xrpl-quickstart.html"
-              >
-                Get Started
-              </a>
+          <div className="col">
+            <div className="card video-image">
+              <h5 className="mt-7"> Quickstart to XRP Ledger </h5>
+              <p className="mb-8 mt-4">
+                An introduction to fundamental aspects of the XRP Ledger.
+              </p>
+              <div className="dg-lg-block mb-5">
+                <a
+                  className="btn btn-primary btn-arrow get-started-button"
+                  href="https://xrpl.org/xrpl-quickstart.html"
+                >
+                  Get Started
+                </a>
+              </div>
+              <img
+                src={prefix + "/img/docs/docs-quick-start.svg"}
+                alt="quick-start"
+                id="quick-start-img"
+              />
             </div>
-            <img
-              src={prefix + "/img/docs/docs-quick-start.svg"}
-              alt="quick-start"
-              id="quick-start-img"
-            />
           </div>
           <div className="col">
             <div className="card-grid card-grid-2xN">
@@ -227,58 +238,40 @@ export default function Docs() {
           <div className="col">
             <h6>Explore SDKs</h6>
             <h4>Interact with the XRP Ledger in a language of your choice</h4>
-            <div className="card-grid card-grid-2xN mt-10">
+            <div className="card-grid langs-cards card-grid-2xN mt-10">
               <div className="col langs">
-                <img
-                  src={prefix + "/img/docs/javascript.svg"}
-                  className="circled-logo"
-                ></img>
-                <h5>
-                  <a
-                    className="btn-arrow-purple"
-                    target="_blank"
-                    href="https://github.com/XRPLF/xrpl.js"
-                  >
-                    Javascript
-                  </a>
-                </h5>
+                <a href="https://xrpl.org/get-started-using-javascript.html">
+                  <img
+                    src={prefix + "/img/docs/javascript.svg"}
+                    className="circled-logo"
+                  ></img>
+                  <h5 className="btn-arrow">Javascript</h5>
+                </a>
               </div>
               <div className="col langs">
-                <img
-                  src={prefix + "/img/docs/python.svg"}
-                  className="circled-logo"
-                ></img>
-                <h5>
-                  <a
-                    className="btn-arrow-purple"
-                    target="_blank"
-                    href="https://github.com/XRPLF/xrpl-py"
-                  >
-                    Python
-                  </a>
-                </h5>
+                <a href="https://xrpl.org/get-started-using-python.html">
+                  <img
+                    src={prefix + "/img/docs/python.svg"}
+                    className="circled-logo"
+                  ></img>
+                  <h5 className="btn-arrow">Python</h5>
+                </a>
               </div>
               <div className="col langs">
-                <img
-                  src={prefix + "/img/docs/java.svg"}
-                  className="circled-logo"
-                ></img>
-                <h5>
-                  <a
-                    className="btn-arrow-purple"
-                    target="_blank"
-                    href="https://github.com/XRPLF/xrpl4j"
-                  >
-                    Java
-                  </a>
-                </h5>
+                <a href="https://xrpl.org/get-started-using-java.html">
+                  <img
+                    src={prefix + "/img/docs/java.svg"}
+                    className="circled-logo"
+                  ></img>
+                  <h5 className="btn-arrow">Java</h5>
+                </a>
               </div>
             </div>
           </div>
           <div className="col">
             <img
               src={prefix + "/img/docs/docs-sdk@2x.png"}
-              className="img-fluid pt-20"
+              className="img-fluid pt-20 sdk-img"
             ></img>
           </div>
         </div>
@@ -325,7 +318,7 @@ export default function Docs() {
               ))}
             </div>
             <a
-              className="btn btn-primary btn-arrow"
+              className="btn btn-primary btn-arrow mt-4"
               href="https://xrpl.org/dev-tools.html"
             >
               View All tools
@@ -338,9 +331,11 @@ export default function Docs() {
         <div className="card-grid card-grid-2xN">
           <div className="col">
             <h4>Browse By Recommended Pages</h4>
-            {recommendedPages.map((r) => (
-              <UnderLindedArrow props={r}></UnderLindedArrow>
-            ))}
+            <ul className="nav flex-column">
+              {recommendedPages.map((r) => (
+                <NavLinks props={r} />
+              ))}
+            </ul>
           </div>
 
           <div className="col">
@@ -374,7 +369,7 @@ export default function Docs() {
         </div>
       </section>
       <Helmet>
-        <script src="/js/video.js"></script>
+        <script src={prefix + "/js/video.js"}></script>
       </Helmet>
     </div>
   );
@@ -382,12 +377,11 @@ export default function Docs() {
 
 function DevToolsCard({ props }) {
   return (
-    <div className="col">
-      <h6>
-        {props.title}
-        <a className="btn-arrow-purple" target="_blank" href={props.link}></a>
-      </h6>
-      <p> {props.description}</p>
+    <div className="col dev-tools-link">
+      <a href={props.link}>
+        <h6 className="btn-arrow">{props.title}</h6>
+        <p> {props.description}</p>
+      </a>
     </div>
   );
 }
@@ -396,28 +390,27 @@ function UseCasesCard({ props }) {
   return (
     <div className="col">
       <img
-        className="use-cases-img img-fluid"
+        className="use-cases-img img-fluid mb-2 shadow"
         src={props.img}
         alt={props.title}
         id={props.id}
       ></img>
-      <h5>{props.title} </h5>
-      {props.subItems.map((i) => {
-        return <UnderLindedArrow props={i} />;
-      })}
+      <h5 className="mt-4">{props.title} </h5>
+      <ul className="nav flex-column">
+        {props.subItems.map((i) => {
+          return <NavLinks props={i} />;
+        })}
+      </ul>
     </div>
   );
 }
 
-function UnderLindedArrow({ props }) {
+function NavLinks({ props }) {
   return (
-    <div className="use-cases d-flex">
-      <div className="pt-3">
-        <p>{props.description} </p>
-      </div>
-      <div className="ml-auto pt-3">
-        <a className="btn-arrow-purple" target="_blank" href={props.link}></a>
-      </div>
-    </div>
+    <li className="nav-item">
+      <a href={props.link} className="nav-link">
+        {props.description}
+      </a>
+    </li>
   );
 }
