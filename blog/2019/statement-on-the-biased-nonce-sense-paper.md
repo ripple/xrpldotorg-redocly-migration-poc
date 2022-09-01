@@ -22,4 +22,4 @@ For several years, the widely agreed upon industry recommendation has been to us
 
 - **Q: Do I need to be worried about the security of my XRP Ledger accounts?**
 - **A:** Follow this flowchart:
-    ![If you have an XRP Ledger account, you have signed transactions from that account, you do not know whether your signatures all used deterministic nonces, _and_ you have not changed your key after any signatures that might have used weak nonces, you may be affected. Otherwise, you are not affected with regards to the XRP Ledger. Versions of rippled and ripple-lib from August 2015 and later always use deterministic nonces.](/blog/img/biased-nonce-sense-flowchart.png)
+    ![If you have an XRP Ledger account, you have signed transactions from that account, you do not know whether your signatures all used deterministic nonces, _and_ you have not changed your key after any signatures that might have used weak nonces, you may be affected. Otherwise, you are not affected with regards to the XRP Ledger. Versions of rippled and ripple-lib from August 2015 and later always use deterministic nonces.](../img/biased-nonce-sense-flowchart.png)

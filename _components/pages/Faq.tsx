@@ -7,7 +7,7 @@ import parse from "html-react-parser";
 export default function Faq() {
   // read Markdown File
   const markDown = preval`const fs = require("fs");
-    module.exports = fs.readFileSync(require.resolve('../../docs/faq.md'), 'utf8')
+    module.exports = fs.readFileSync(require.resolve('../../about/_faq.md'), 'utf8')
     `;
   let soup = new JSSOUP(marked.parse(markDown));
 
