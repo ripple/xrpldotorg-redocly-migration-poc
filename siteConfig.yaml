@@ -65,7 +65,7 @@ footer:
         - page: about/faq.mdx
     - group: Docs
       items:
-        - page: docs/index.md
+        - page: docs/index.mdx
         - page: docs/concepts/introduction/intro-to-xrpl.md
         - page: docs/tutorials/index.md
         - page: docs/references/index.mdx

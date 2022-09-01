@@ -1,4 +1,4 @@
-- page: index.md
+- page: index.mdx
 - group: Introduction to the XRPL
   page: concepts/introduction/intro-to-xrpl.md
   expanded: false
