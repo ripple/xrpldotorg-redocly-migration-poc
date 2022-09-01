@@ -71,9 +71,11 @@ nav:
           - label: Send XRP
             href: /tutorials/send-xrp/
           - label: XRP Faucets
-            href: /dev-tools/xrp-faucets/
+            href: /docs/dev-tools/xrp-faucets/
           - label: XRPL Servers
             href: /infrastructure/xrpl-servers/
+      - label: Dev Tools
+        link: /dev-tools/
 
 
   - group: Community
@@ -96,6 +98,3 @@ nav:
         external: true
       - label: Report a Scam
         link: /community/report-a-scam/
-
-  - label: Dev Tools
-    link: /dev-tools/

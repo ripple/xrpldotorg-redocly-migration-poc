@@ -67,7 +67,7 @@ footer:
       items:
         - page: docs/index.md
         - page: docs/concepts/introduction/intro-to-xrpl.md
-        - page: docs/tutorials/index.md
+        - page: docs/tutorials/index.mdx
         - page: docs/references/index.mdx
         - page: docs/code-samples/index.mdx
         - page: docs/dev-tools/index.md
