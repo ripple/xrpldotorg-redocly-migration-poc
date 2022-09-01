@@ -1002,3 +1002,99 @@ h1{
 .autocards .card:nth-child(8) .card-footer {
   background-image: url(../img/cards/4col-orange-yellow.svg);
 }
+
+.page-dev-tools .nav-link {
+  color:#A2A2A4;
+  background-color: #111112;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #454549;
+}
+.page-dev-tools .card img{
+  border-radius: 1rem 1rem 0 0;
+}
+
+@media (max-width: 767.98px) {
+  .page-dev-tools .nav-tabs {
+    display: flex;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+    justify-content: space-between;
+  }
+  .page-dev-tools .nav-item {
+    display: inline-flex;
+    width: auto;
+    list-style: outside none none;
+  }
+  .page-dev-tools .nav-link {
+    display: inline-flex;
+    width: auto;
+    padding: 1em 1em;
+  }
+}
+.page-dev-tools .nav-link.active {
+  border-bottom-color:#9A52FF;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+.page-dev-tools .nav-tabs {
+  border-bottom: 1px solid #454549;
+}
+.page-dev-tools .btn {
+  padding: 0.75rem;
+}
+
+@media (max-width: 767.98px) {
+  .page-dev-tools .btn-arrow-out {
+    display: block;
+    width: 100%;
+  }
+}
+.page-dev-tools .btn-arrow-out{
+  color: #fff!important;
+}
+.page-dev-tools .btn-arrow-out::after {
+  background-position: left 0px bottom 0px;
+  content: "\00a0";
+  background-image: url(../img/icons/arrow-up-right-white.svg);
+  background-repeat: no-repeat;
+  display: inline-block;
+  padding: 4px 8px 4px 12px;
+  transition: background-position 0.3s ease-in-out;
+  margin-left: 4px;
+}
+
+.page-dev-tools .btn-arrow-out:hover::after {
+  background-position: left 4px bottom 4px;
+}
+.light .page-dev-tools .nav-link {
+    background-color:#F5F5F7 ;
+  }
+.light .page-dev-tools .nav-link.active {
+    border-bottom-color: #9A52FF;
+    color: #000000;
+    font-weight: bold;
+  }
+.light .page-dev-tools  .nav-link {
+    color: #000000;
+  }
+.light .page-dev-tools  #trasaction-sender  .card-footer{
+    background-image: url("../img/cards/3-col-light-blue-2.svg") !important;
+  }
+.page-dev-tools .card-text{
+color:#E0E0E1
+}
+.light .page-dev-tools .card-text{
+color:#343437;
+}
+.page-dev-tools h3{
+font-size: 3rem;
+}
+.page-dev-tools h4,h3,p{
+font-family: "Work Sans" !important;
+}
+.page-dev-tools .nav-item{
+margin-bottom:0px!important;
+}
