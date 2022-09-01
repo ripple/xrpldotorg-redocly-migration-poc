@@ -144,7 +144,7 @@ export default function DevTools() {
   }
 
   return (
-    <div className="no-sidebar page-dev-tools">
+    <div className="page-dev-tools">
       <section className="py-20 ">
         <div className="mx-auto text-lg-left">
           <div className="d-flex flex-column-reverse">
