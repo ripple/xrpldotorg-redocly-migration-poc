@@ -75,7 +75,7 @@ nav:
           - label: XRPL Servers
             href: /infrastructure/xrpl-servers/
       - label: Dev Tools
-        link: /dev-tools/
+        link: /docs/dev-tools/
 
 
   - group: Community
