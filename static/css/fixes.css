@@ -781,17 +781,25 @@ h1{
 
 
 .page-docs .langs h5:hover {
-  text-decoration: none;
-  background: transparent !important;
+  color:#9A52FF;
+  text-decoration: none !important;
+  background: none!important;
 }
 .page-docs .dev-tools-link h6:hover {
+  color:#9A52FF;
   text-decoration: none;
-  background: none !important;
+  background: none!important;
 }
 .page-docs .dev-tools-link p:hover {
-  color: #E0E0E1;
-  text-decoration: none;
+  text-decoration: none !important;
   background: none !important;
+}
+.page-docs .dev-tools-link a:hover{
+  color:#9A52FF;
+  text-decoration: none !important;
+}
+.page-docs .langs a:hover{
+  text-decoration: none !important;
 }
 .page-docs .langs .btn-arrow::after{
   content: url(../img/icons/arrow-right-purple.svg);
@@ -916,9 +924,6 @@ h1{
 }
 .light #quick-start-img{
   content: url(../img/docs/getstarted-white@2x_v2.png);
-}
-.light .dev-tools-img{
-  content:url(../img/docs/dev-tools-white@2x.png)
 }
 .light .sdk-img{
   content:url(../img/docs/sdk-white@2x.png);
