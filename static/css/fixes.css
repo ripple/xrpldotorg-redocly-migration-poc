@@ -455,28 +455,28 @@ html.light .top-banner .btn-outline-secondary:not(:disabled):not(.disabled):hove
 
 /* photo banner */
 #container-scroll {
-  height:160px; 
-  position:relative; 
+  height:160px;
+  position:relative;
   overflow:hidden;
   margin-top: 80px;
   margin-bottom: 64px;
 }
 
 .photobanner {
-  position:absolute; 
-  top:0px; 
-  left:0px; 
-  overflow:hidden; 
+  position:absolute;
+  top:0px;
+  left:0px;
+  overflow:hidden;
   white-space: nowrap;
   animation: bannermove 40s linear infinite;
 }
 
 .photobanner-bottom {
-  top:112px; 
+  top:112px;
 }
 
-.photobanner img {    
-  margin: 0 0.5em 
+.photobanner img {
+  margin: 0 0.5em
 }
 
 @keyframes bannermove {
@@ -719,7 +719,7 @@ html.light .top-banner .btn-outline-secondary:not(:disabled):not(.disabled):hove
   font-weight:bold;
 }
 h1{
-  font-size: 3.875rem; 
+  font-size: 3.875rem;
 }
 .light .eyebrow{
   color:#111112
@@ -760,254 +760,3 @@ h1{
 .page-uses .biz-logo {
   max-width:50% !important;
 }
-#quick-start{
-  background-color:#232325 ;
-  border-radius: 1em;
-}
-.get-started-img{
-  max-width:100%;
-  max-height:100%;
-}
-.get-started-button{
-  width:9rem;
-}
-
-#quick-start-img{
-  max-width:100%
-}
-@media (max-width: 991.98px) {
-  .get-started-button{
-    max-width:100%
-  }
-}
-
-
-.page-docs .langs a:hover {
-  text-decoration: none;
-  background: none !important;
-}
-.page-docs .langs a{
-  color:#E0E0E1
-}
-.light .langs a{
-  color: #000;
-}
-.page-docs .langs h5{
-  margin-block-start: 0 !important;
-}
-.page-docs  .btn-arrow-purple::after {
-  margin-left: 0.2em;
-  content: url(../img/icons/arrow-right-purple.svg);
-  vertical-align: middle;
-  -webkit-transition: transform 0.3s ease-out;
-  -moz-transition: transform 0.3s ease-out;
-  -ms-transition: transform 0.3s ease-out;
-  -o-transition: transform 0.3s ease-out;
-  transition: transform 0.3s ease-out;
-}
-.btn-arrow-purple:hover::after {
-  background-position: left 4px bottom 4px;
-}
-
-.page-docs .circled-logo{
-  margin-left:0.1rem;
-}
-.use-cases{
-  border-bottom: 1px solid #757575
-}
-.dev-tools-img{
-  max-width:100%; 
-  max-height: 100%;
-  margin:auto;
-}
-
-#video-overlay {
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:1190;
-  height:100%;
-  width:100%;
-  background:#ffffff;
-  opacity:0.6;
-  display:none;
-}
-
-#video {
-  display: none;
-  position: fixed;
-  top: 10%;
-  left: 15%;
-  width: 70%;
-  z-index: 1200;
-}
-
-#video-container {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  max-width: 982px;
-  padding: 0 20px;
-}
-
-#videoWrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: calc(90vh - 100px);
-  width: 80vw;
-}
-
-#videoWrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-#video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.page-docs p{
-  font-family: Work Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
-}
-.light #quick-start{ 
-  background-color:#FCFCFD ;
-  border-radius: 1em;
-}
-.light #quick-start-img{
-  content: url(../img/docs/getstarted-white@2x.png);
-}
-.light #quick-start-img{
-  content: url(../img/docs/getstarted-white@2x.png);
-}
-
-.light #quick-start-img{
-  content: url(../img/docs/getstarted-white@2x.png);
-}
-
-.light #nfts{
-  content: url(../img/docs/nft-white@2x.png);
-}
-.light #build-a-wallet{
-  content: url(../img/docs/wallet-white@2x.png);
-}
-.light #run-an-xrp-ledger-node{
-  content: url(../img/docs/node-white@2x.png);
-}
-
-@media (max-width: 991.98px) {
-  .page-docs section{
-    padding-left:2rem;
-    padding-right:2rem;
-  }
-}
-
-
-
-/* .page-dev-tools { */
-  /* @each $tool,
-    $card-graphic
-      in (
-        "xrp-explorer": "3-col-orange",
-        "bithomp-explorer": "3-col-light-blue",
-        "xrpscan": "3-col-pink",
-        "token-list": "3-col-pink2",
-        "websocket": "3-col-purple2",
-        "rpc": "3-col-green",
-        "technical-explorer": "3-col-purple-blue",
-        "faucets": "3-col-pink2",
-        "trasaction-sender": "3-col-light-blue2",
-        "domain": "3-col-green-purple",
-        "xrp-ledger": "3-col-dark-blue",
-        "binary-visualizer": "3-col-purple-blue",
-        "token-metadata-lookup": "3-col-pink-purple"
-      )
-  {
-    ##{$tool} {
-      .card-footer {
-        background-image: url("../img/cards/#{$card-graphic}.svg");
-      }
-    }
-  } */
-  .page-dev-tools .nav-link {
-    color: #A2A2A4;
-    background-color: #111112;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom-color: #454549;
-  }
-
-  @media (max-width: 767.98px) {
-    .page-dev-tools .nav-tabs {
-      display: flex;
-      list-style: none;
-      margin-left: 0;
-      padding-left: 0;
-      justify-content: space-between;
-    }
-    .page-dev-tools .nav-item {
-      display: inline-flex;
-      width: auto;
-      list-style: outside none none;
-    }
-    .page-dev-tools .nav-link {
-      display: inline-flex;
-      width: auto;
-      padding: 1em 1em;
-    }
-  }
-  .page-dev-tools .nav-link.active {
-    border-bottom-color: #9A52FF;
-    color:#FFFFFF;
-    font-weight: bold;
-  }
-  .page-dev-tools .nav-tabs {
-    border-bottom: 1px solid #454549;
-  }
-  .page-dev-tools .btn {
-    padding: 0.75rem;
-  }
-
-  @media (max-width: 767.98px) {
-    .page-dev-tools .btn-arrow-out {
-      display: block;
-      width: 100%;
-    } 
-  }
-  .page-dev-tools .btn-arrow-out::after {
-    background-position: left 0px bottom 0px;
-    content: "\00a0";
-    background-image: url(../img/icons/arrow-up-right-white.svg);
-    background-repeat: no-repeat;
-    display: inline-block;
-    padding: 4px 8px 4px 12px;
-    transition: background-position 0.3s ease-in-out;
-    margin-left: 4px;
-  }
-
-  .page-dev-tools .btn-arrow-out:hover::after {
-    background-position: left 4px bottom 4px;
-  }
-  .light .page-dev-tools .nav-link {
-      background-color:#F5F5F7;}
-
-  .light .page-dev-tools .nav-link.active {
-      border-bottom-color: #9A52FF;
-      color: #000000;
-      font-weight: bold;
-    }
-  .light .page-dev-tools .nav-link {
-      color: #000000;
-    }
-  .light .page-dev-tools #trasaction-sender  .card-footer{
-      background-image: url("../img/cards/3-col-light-blue-2.svg");
-    }

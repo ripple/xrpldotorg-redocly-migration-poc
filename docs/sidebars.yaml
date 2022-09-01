@@ -8,7 +8,7 @@
     - page: concepts/introduction/txn-and-requests.md
     - page: concepts/introduction/other-topics-placeholder.md
 - group: Tutorials
-  page: tutorials/index.md
+  page: tutorials/index.mdx
   expanded: false
   pages:
     - group: Quickstart
