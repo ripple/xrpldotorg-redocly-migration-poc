@@ -159,7 +159,7 @@ export default function Community() {
         <div className="row row-cols-2 row-cols-lg-4 card-deck">
           {platforms.map((plat) => {
             return (
-              <a className="card mb-10" href={prefixplat.link} target="_blank">
+              <a className="card mb-10" href={prefix + plat.link} target="_blank">
                 <div className="card-body">
                   <div className="circled-logo">
                     <img
