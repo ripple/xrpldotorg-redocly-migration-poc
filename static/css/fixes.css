@@ -1002,3 +1002,20 @@ h1{
 .autocards .card:nth-child(8) .card-footer {
   background-image: url(../img/cards/4col-orange-yellow.svg);
 }
+
+
+
+.page-ambassadors .connect-links a:hover{
+  text-decoration: none !important;
+}
+.page-ambassadors  .connect-links .btn-arrow:hover{
+  color:#9A52FF;
+  text-decoration: none !important;
+  background-color: transparent !important;
+}
+.page-ambassadors  .connect-links .btn-arrow::after{
+  content: url(../img/icons/arrow-right-purple.svg);
+  vertical-align: baseline;
+  width: 1.5rem;
+  height: 1.5rem;
+}
