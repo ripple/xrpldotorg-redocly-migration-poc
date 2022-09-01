@@ -1002,3 +1002,13 @@ h1{
 .autocards .card:nth-child(8) .card-footer {
   background-image: url(../img/cards/4col-orange-yellow.svg);
 }
+
+.page-xrpl-overview h6{
+  font-size:1rem;
+}
+.page-xrpl-overview .title{
+  font-size: 1.25rem;
+}
+.page-xrpl-overview h1{
+  font-size: 3.875rem;
+}
