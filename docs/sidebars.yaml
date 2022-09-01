@@ -43,26 +43,25 @@
           page: concepts/understanding-xrpl/xrpl/validation.md
           pages:
             - page: concepts/understanding-xrpl/xrpl/fee-voting.md
-            - page: concepts/understanding-xrpl/xrpl/negative-unl.md
+            - page: concepts/understanding-xrpl/xrpl/negative-unl.md 
     - group: XRP Ledger Servers
       page: concepts/understanding-xrpl/server/xrpl-servers.md
       expanded: false
       pages:
-        - group: The `rippled` Server
+        - group: The rippled Server
           page: concepts/understanding-xrpl/server/rippled-server.md
           expanded: false
           pages:
             - page: concepts/understanding-xrpl/server/server-modes.md
             - page: concepts/understanding-xrpl/server/transaction-queue.md
-        - group: `Clio` Server
-          page: concepts/understanding-xrpl/server/clio-server.md
+        - page: concepts/understanding-xrpl/server/clio-server.md
+
     - group: XRP Ledger Networks
       page: concepts/understanding-xrpl/networks/xrpl-networks.md
       expanded: false
       pages:
         - page: concepts/understanding-xrpl/networks/parallel-networks.md
         - page: concepts/understanding-xrpl/networks/federated-sidechains.md
-        
     - group: Transactions
       page: concepts/understanding-xrpl/transactions/transactions.md
       expanded: false
