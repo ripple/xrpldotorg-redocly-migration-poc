@@ -171,7 +171,7 @@
     - page: amendments/amendments.md
     - page: amendments/known-amendments.md
 - label: Developer Tools
-  page: dev-tools/index.md
+  page: dev-tools/index.mdx
 - group: Online Tools
   expanded: false
   pages:
