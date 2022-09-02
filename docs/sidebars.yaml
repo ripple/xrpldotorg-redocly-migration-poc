@@ -199,12 +199,16 @@
           pages:
             - label: JavaScript / TypeScript
               href: https://js.xrpl.org/
+              external: true
             - label: Python
               href: https://xrpl-py.readthedocs.io/
+              external: true
             - label: Java
               href: https://javadoc.io/doc/org.xrpl
+              external: true
             - label: Ruby
               href: https://www.rubydoc.info/gems/xrbp
+              external: true
     - group: Other References
       pages:
         - page: references/other/xrp-ledger-toml.md

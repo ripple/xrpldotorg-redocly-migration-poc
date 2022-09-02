@@ -214,6 +214,25 @@ a[title="Source"] {
   border-top-color: #000;
 }
 
+
+/* external link indicator, probably */
+.page-tree-nav aside a span + div > i::after {
+  border-width: 0;
+	content: "\00a0";
+	background-image: url(../img/icons/arrow-up-right.svg);
+	background-repeat: no-repeat;
+	display: inline-block;
+	background-size: 10px;
+	padding: 0 4px 0 8px;
+	width: 14px;
+	background-position: left 0 bottom 4px;
+	transition: background-position 100ms ease-in-out;
+}
+
+.page-tree-nav aside a:hover span + div > i::after {
+  background-position: left 4px bottom 8px;
+}
+
 /* right nav scrollspy coloring. ".page-tree-nav + div" is a hack to select
    the element that contains the center and right columns */
 .light .page-tree-nav + div aside a:hover,
