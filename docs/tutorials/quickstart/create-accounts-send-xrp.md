@@ -1,9 +1,8 @@
 # 1. Create Accounts and Send XRP
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Q33gFFVGbSY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 This example shows how to:
-
-
 
 1. Create accounts on the Testnet, funded with 10000 test XRP with no actual value. 
 2. Retrieve the accounts from seed values.
@@ -12,10 +11,7 @@ This example shows how to:
 When you create an account, you receive a public/private key pair offline. It does not appear on the ledger until it is funded with XRP. This example shows how to create accounts for Testnet, but not how to create an account that you can use on Mainnet.
 
 
-
 [![Token Test Harness](../../img/quickstart2.png)](../../img/quickstart2.png)
-
-
 
 
 ## Prerequisites

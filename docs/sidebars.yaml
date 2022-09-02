@@ -20,6 +20,7 @@
         - page: tutorials/quickstart/mint-and-burn-nftokens.md
         - page: tutorials/quickstart/transfer-nftokens.md
         - page: tutorials/quickstart/broker-sale.md
+        - page: tutorials/quickstart/authorize-minter.md
 - group: Understanding the XRPL
   page: concepts/understanding-xrpl/understanding-xrpl.md
   expanded: false
@@ -126,15 +127,22 @@
         - page: concepts/understanding-xrpl/accounts/account-deleting.md
     - page: concepts/understanding-xrpl/fees.md
 - group: Use Cases
-  page: use-cases/use-cases.md
+  page: use-cases/index.mdx 
   expanded: false
   pages:
     - label: Payments
       page: use-cases/payments.md
-    - label: Decentralized Exchange
-      page: use-cases/decentralized-exchange.md
-    - label: Tokenization
-      page: use-cases/tokenization.md
+    - group: Decentralized Exchange
+      page: use-cases/decentralized-exchange/index.mdx 
+      pages:
+        - page: use-cases/decentralized-exchange/moneychanger.md 
+    - group: Tokenization
+      page: use-cases/tokenization/index.mdx
+      pages:
+        - page: use-cases/tokenization/stablecoin-issuer.md
+        - page: use-cases/tokenization/nftoken-marketplace.md 
+        - page: use-cases/tokenization/authorized-minter.md
+        - page: use-cases/tokenization/digital-artist.md 
     - label: Interoperability
       page: use-cases/interoperability.md
 - group: API Reference
@@ -163,7 +171,7 @@
     - page: amendments/amendments.md
     - page: amendments/known-amendments.md
 - label: Developer Tools
-  page: dev-tools/index.md
+  page: dev-tools/index.mdx
 - group: Online Tools
   expanded: false
   pages:
