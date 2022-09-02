@@ -463,7 +463,6 @@ export default function XRPOverview() {
                     </li>
                   );
                 })}
-                ;
               </ul>
 
               <p className="fs-3 mt-10 mb-0">
