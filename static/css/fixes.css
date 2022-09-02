@@ -1003,6 +1003,21 @@ h1{
   background-image: url(../img/cards/4col-orange-yellow.svg);
 }
 
+.page-ambassadors .connect-links a:hover{
+  text-decoration: none !important;
+}
+.page-ambassadors  .connect-links .btn-arrow:hover{
+  color:#9A52FF;
+  text-decoration: none !important;
+  background-color: transparent !important;
+}
+.page-ambassadors  .connect-links .btn-arrow::after{
+  content: url(../img/icons/arrow-right-purple.svg);
+  vertical-align: baseline;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 .page-dev-tools .nav-link {
   color:#A2A2A4;
   background-color: #111112;

@@ -124,7 +124,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3">
                     <h6 className="mb-3">Apply</h6>
-                    <p className="">
+                    <p>
                       Submit an application to be considered for the Campus
                       Ambassador program.
                     </p>
@@ -138,7 +138,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3">
                     <h6 className="mb-3">Interview</h6>
-                    <p className="">
+                    <p>
                       Tell the XRPL community-led panel more about yourself and
                       your interest in the program during an interview.
                     </p>
@@ -152,7 +152,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3">
                     <h6 className="mb-3">Join</h6>
-                    <p className="">
+                    <p>
                       Congrats on your new role! Join the global cohort of
                       Ambassadors and meet with community participants during
                       onboarding.
@@ -167,7 +167,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3">
                     <h6 className="mb-3">Learn</h6>
-                    <p className="">
+                    <p>
                       Participate in personalized learning and training sessions
                       for Ambassadors on the XRPL and blockchain technology.
                     </p>
@@ -183,7 +183,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3">
                     <h6 className="mb-3">Interview</h6>
-                    <p className="">
+                    <p>
                       Tell the XRPL community-led panel more about yourself and
                       your interest in the program during an interview.
                     </p>
@@ -246,7 +246,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3">
                     <h6 className="mb-3">Exclusive Opportunities</h6>
-                    <p className="">
+                    <p>
                       Get access and invitations to Ambassador-only events,
                       conferences, and opportunities
                     </p>
@@ -261,7 +261,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3">
                     <h6 className="mb-3">Education</h6>
-                    <p className="">
+                    <p>
                       Tutorials and workshops from leading XRPL and blockchain
                       developers
                     </p>
@@ -275,7 +275,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3">
                     <h6 className="mb-3">Swag</h6>
-                    <p className="">
+                    <p>
                       New XRPL swag for Ambassadors and swag to share with other
                       students
                     </p>
@@ -289,7 +289,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3">
                     <h6 className="mb-3">Mentorship</h6>
-                    <p className="">
+                    <p>
                       Serve as an advocate and receive support from notable
                       members of the community
                     </p>
@@ -334,7 +334,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3">
                     <h6 className="mb-3">Education</h6>
-                    <p className="">
+                    <p>
                       Tutorials and workshops from leading XRPL and blockchain
                       developers
                     </p>
@@ -349,7 +349,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3">
                     <h6 className="mb-3">Mentorship</h6>
-                    <p className="">
+                    <p>
                       Serve as an advocate and receive support from notable
                       members of the community
                     </p>
@@ -427,7 +427,7 @@ export default function Ambassadors() {
           </Carousel.Item>
         </Carousel>
 
-        <div className="">
+        <div>
           <img
             src={prefix + "/img/ambassadors/students-large.png"}
             className="w-100"
@@ -462,7 +462,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3">
                     <h6 className="mb-3">A Leader</h6>
-                    <p className="">
+                    <p>
                       Interested in leading meetups and workshops for your local
                       campus community
                     </p>
@@ -477,7 +477,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3">
                     <h6 className="mb-3">Active</h6>
-                    <p className="">
+                    <p>
                       An active participant in the XRPL community or interested
                       in blockchain and crypto technologies
                     </p>
@@ -492,7 +492,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3">
                     <h6 className="mb-3">Curious</h6>
-                    <p className="">
+                    <p>
                       Eager to learn more about technical blockchain topics and
                       the XRPL
                     </p>
@@ -507,7 +507,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3 pb-lg-0">
                     <h6 className="mb-3">Passionate</h6>
-                    <p className="">
+                    <p>
                       Passionate about increasing XRPL education and awareness
                       through events, content, and classNameroom engagement
                     </p>
@@ -538,7 +538,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3">
                     <h6 className="mb-3">Active</h6>
-                    <p className="">
+                    <p>
                       An active participant in the XRPL community or interested
                       in blockchain and crypto technologies
                     </p>
@@ -552,7 +552,7 @@ export default function Ambassadors() {
                   />
                   <div className="p-lg-3 pt-3 pb-lg-0">
                     <h6 className="mb-3">Passionate</h6>
-                    <p className="">
+                    <p>
                       Passionate about increasing XRPL education and awareness
                       through events, content, and classNameroom engagement
                     </p>
@@ -649,60 +649,38 @@ export default function Ambassadors() {
           <div className="order-2 col-lg-6 px-0 ml-lg-5">
             <div className="row align-items-center m-0">
               <div className="col-12 col-lg-6 p-0 pr-lg-4">
-                <div className="p-lg-3 mb-3 pb-3">
-                  <img
-                    src={prefix + "/img/ambassadors/icon_meetup.svg"}
-                    className="mb-3"
-                  />
-                  <div className="">
-                    <h6 className="mb-3">
-                      <a
-                        className="btn-arrow-out"
-                        href="https://www.meetup.com/pro/xrpl-community/"
-                      >
-                        MeetUp
-                      </a>
-                    </h6>
-                    <p className="">Attend an XRPL Meetup in your local area</p>
-                  </div>
+                <div className="p-lg-3 mb-3 pb-3 connect-links">
+                  <a href="https://www.meetup.com/pro/xrpl-community/">
+                    <img
+                      src={prefix + "/img/ambassadors/icon_meetup.svg"}
+                      className="mb-3"
+                    />
+                    <h6 className="mb-3 btn-arrow">MeetUp</h6>
+                    <p>Attend an XRPL Meetup in your local area</p>
+                  </a>
                 </div>
-                <div className="p-lg-3 mb-3 pb-3">
-                  <img
-                    src={prefix + "/img/ambassadors/icon_devto.svg"}
-                    className="mb-3"
-                  />
-                  <div className="">
-                    <h6 className="mb-3">
-                      <a className="btn-arrow-out" href="https://dev.to/t/xrpl">
-                        Dev.to Blog
-                      </a>
-                    </h6>
-                    <p className="">
-                      Read more about the activity of the XRPL Ambassadors
-                    </p>
-                  </div>
+                <div className="p-lg-3 mb-3 pb-3 connect-links">
+                  <a href="https://dev.to/t/xrpl">
+                    <img
+                      src={prefix + "/img/ambassadors/icon_devto.svg"}
+                      className="mb-3"
+                    />
+                    <h6 className="mb-3 btn-arrow">Dev.to Blog</h6>
+                    <p>Read more about the activity of the XRPL Ambassadors</p>
+                  </a>
                 </div>
               </div>
 
               <div className="col-12 col-lg-6 p-0 pl-lg-4">
-                <div className="p-lg-3 mb-3 pb-3 ">
-                  <img
-                    src={prefix + "/img/ambassadors/icon_discord.svg"}
-                    className="mb-3"
-                  />
-                  <div className="">
-                    <h6 className="mb-3">
-                      <a
-                        className="btn-arrow-out"
-                        href="https://discord.com/invite/427qqMYwHh"
-                      >
-                        Discord
-                      </a>
-                    </h6>
-                    <p className="">
-                      Join the conversation on the XRPL Developer Discord
-                    </p>
-                  </div>
+                <div className="p-lg-3 mb-3 pb-3 connect-links">
+                  <a href="https://discord.com/invite/427qqMYwHh">
+                    <img
+                      src={prefix + "/img/ambassadors/icon_discord.svg"}
+                      className="mb-3"
+                    />
+                    <h6 className="mb-3 btn-arrow">Discord</h6>
+                    <p>Join the conversation on the XRPL Developer Discord</p>
+                  </a>
                 </div>
               </div>
             </div>
