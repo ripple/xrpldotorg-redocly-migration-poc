@@ -10,7 +10,7 @@ Some XRP that was previously reserved is now available for use. Since the base r
 
 It is now possible to fund new accounts by sending a payment of as little as 10 XRP; previously, at least 20 XRP was required.
 
-The [special transaction cost](https://xrpl.org/transaction-cost.html) to [delete an account](accounts.html#deletion-of-accounts) is based on the owner reserve, so deleting an account now requires burning only 2 XRP instead of 5 XRP.
+The [special transaction cost](https://xrpl.org/transaction-cost.html) to [delete an account](https://xrpl.org/accounts.html#deletion-of-accounts) is based on the owner reserve, so deleting an account now requires burning only 2 XRP instead of 5 XRP.
 
 
 ## Action Recommended
