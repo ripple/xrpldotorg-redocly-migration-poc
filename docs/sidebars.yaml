@@ -171,26 +171,46 @@
     - label: Clio server
       href: https://xrpl.org/manage-the-clio-server.html
       external: true  
-- group: API Reference
+- group: References
   expanded: false
+  page: references/index.mdx
   pages:
-    - group: XRP Ledger Protocol Reference
+    - group: XRP Ledger Protocol
       expanded: false
       pages:
-        - page: references/protocol-reference/ledger-data/ledger-header.md
-        - page: references/protocol-reference/ledger-data/ledger-data-formats.md
-        - page: references/protocol-reference/transactions/transaction-formats.md
-        - page: references/protocol-reference/transactions/transaction-common-fields.md
-        - page: references/protocol-reference/transactions/transaction-metadata.md
-    - group: Client Libraries
+        - group: Transactions
+          pages:
+            - page: references/protocol/transactions/transaction-types/index.mdx
+            - page: references/protocol/transactions/transaction-common-fields.md
+            - page: references/protocol/transactions/transaction-results/index.md
+        - group: Ledger Entries
+        - group: Conventions
+    - group: XRP Ledger APIs
       expanded: false
       pages:
-        - page: references/client-libraries.md
-        - page: references/data-api.md
-    - group: HTTP / WebSocket APIs
-      page: references/http-websocket-apis/index.mdx
+        - group: "HTTP / WebSocket"
+          pages:
+            - page: references/apis/api-conventions/request-formatting.md
+            - page: references/apis/api-conventions/response-formatting.md
+            - page: references/apis/api-conventions/error-formatting.md
+            - page: references/apis/public-api-methods/index.md
+            - page: references/apis/admin-api-methods/index.md
+        - group: SDKs
+          pages:
+            - label: JavaScript / TypeScript
+              href: https://js.xrpl.org/
+            - label: Python
+              href: https://xrpl-py.readthedocs.io/
+            - label: Java
+              href: https://javadoc.io/doc/org.xrpl
+            - label: Ruby
+              href: https://www.rubydoc.info/gems/xrbp
+    - group: Other References
       pages:
-    - page: references/xrp-ledger-toml.md
+        - page: references/other/xrp-ledger-toml.md
+        - page: references/apis/peer-port-methods/index.md
+        - page: references/other/commandline-usage.md
+
 - group: Amendments
   expanded: false
   pages:

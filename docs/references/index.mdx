@@ -1,3 +1,61 @@
+import { LinkList, Columns } from "../../_components/LinkList";
+import { XRPLCardDeck, DeckCard } from "../../_components/XRPLCardDeck";
+import { Link } from '@redocly/developer-portal/ui';
+
 # References
 
-Placeholder for references landing
+Use these resources to get the exact formats and details of XRP Ledger software.
+
+## XRP Ledger Protocol
+
+Learn how the XRP Ledger structures data and what it can do, regardless of how you access it.
+
+<Columns cols="1/3">
+<LinkList title="Transactions">
+  <Link to="./protocol/transactions/transaction-types/index.mdx">Transaction Types</Link>
+  <Link to="./protocol/transactions/transaction-common-fields.md">Common Fields</Link>
+  <Link to="./protocol/transactions/transaction-results/index.md">Results</Link>
+</LinkList>
+<LinkList title="Ledger Entries">
+  <Link to="./protocol/ledger-entries/ledger-header.md">Header</Link>
+  <Link to="./protocol/ledger-entries/index.md">Entry Types</Link>
+</LinkList>
+<LinkList title="Conventions">
+  <Link to="./protocol/conventions/basic-data-types.md">Basic Data Types</Link>
+  <Link to="./protocol/conventions/currency-formats.md">Currency Formats</Link>
+  <Link to="./protocol/conventions/nftoken.md">NFToken</Link>
+  <Link to="./protocol/conventions/binary-format.md">Binary Format</Link>
+</LinkList>
+</Columns>
+
+## XRP Ledger APIs
+
+These references define all the ways you can access and query the ledger.
+
+<Columns cols="1/3">
+<LinkList title="HTTP / WebSocket">
+  <Link to="./apis/api-conventions/request-formatting.md">Requests</Link>
+  <Link to="./apis/api-conventions/response-formatting.md">Responses</Link>
+  <Link to="./apis/api-conventions/error-formatting.md">Errors</Link>
+  <Link to="./apis/public-api-methods/index.md">Public API Methods</Link>
+  <Link to="./apis/admin-api-methods/index.md">Admin API Methods</Link>
+</LinkList>
+<LinkList title="SDKs">
+  <Link to="https://js.xrpl.org/" external>JavaScript / TypeScript</Link>
+  <Link to="https://xrpl-py.readthedocs.io/" external>Python</Link>
+  <Link to="https://javadoc.io/doc/org.xrpl" external>Java</Link>
+  <Link to="https://www.rubydoc.info/gems/xrbp" external>Ruby</Link>
+</LinkList>
+</Columns>
+
+## Other References
+
+These miscellaneous references don't fit into the above categories.
+
+<Columns cols="1/3">
+<LinkList>
+  <Link to="./other/xrp-ledger-toml.md">xrp-ledger.toml File</Link>
+  <Link to="./apis/peer-port-methods/index.md">Peer Port Methods</Link>
+  <Link to="./other/commandline-usage.md">Commandline Usage</Link>
+</LinkList>
+</Columns>

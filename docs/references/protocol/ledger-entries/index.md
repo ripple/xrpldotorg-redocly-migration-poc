@@ -1,11 +1,26 @@
 ---
-html: ledger-object-ids.html
-parent: ledger-data-formats.html
-blurb: All objects in a ledger's state tree have a unique ID.
+html: ledger-data-formats.html
+parent: protocol-reference.html
+blurb: Learn about individual data objects that comprise the XRP Ledger's shared state.
 labels:
   - Data Retention
 ---
-# Ledger Object IDs
+# Ledger Data Formats
+
+Each [ledger version](ledgers.html) in the XRP Ledger is made up of three parts:
+
+- **[Ledger Header](ledger-header.html)**: Metadata about this ledger version itself.
+- **[Transaction Set](transaction-formats.html)**: All the transactions that were executed to create this ledger version.
+- **[State Data](ledger-object-types.html)**: The complete record of objects representing accounts, settings, and balances as of this ledger version. (This is also called the "account state".)
+
+## State Data
+
+{% include '_snippets/ledger-objects-intro.md' %}
+
+{% from '_snippets/macros/page-children.md' import page_children with context %}
+{{ page_children(pages|selectattr("html", "eq", "ledger-object-types.html")|first, 1, 1, True) }}
+
+## Ledger Entry IDs
 [[Source]](https://github.com/ripple/rippled/blob/master/src/ripple/protocol/impl/Indexes.cpp)
 <a id="sha512half"></a>
 
@@ -16,15 +31,3 @@ Generally, a ledger object's ID is returned as the `index` field in JSON, at the
 **Tip:** The `index` or `LedgerIndex` field of an object in the ledger is the ledger object ID. This is not the same as a [ledger index][].
 
 {{ include_svg("img/ledger-object-ids.svg", "Diagram: rippled uses SHA-512Half to generate IDs for ledger objects. The space key prevents IDs for different object types from colliding.") }}
-
-
-## See Also
-
-- For more information how the XRP Ledger creates and uses hashes, see [Hashes](basic-data-types.html#hashes).
-- For ledger basics, see [Ledgers](ledgers.html).
-
-
-<!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
