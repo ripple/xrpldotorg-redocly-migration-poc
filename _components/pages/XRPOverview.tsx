@@ -60,24 +60,51 @@ export default function XRPOverview() {
     },
   ];
   const exchanges = [
-    { href: "https://www.bitstamp.net/", id: "exch-bitstamp", alt: "Bitstamp" },
-    { href: "https://www.kraken.com/", id: "exch-kraken", alt: "Kraken" },
-    { href: "https://cex.io/", id: "exch-cex-io", alt: "Cex.io" },
-    { href: "https://www.liquid.com/", id: "exch-liquid", alt: "Liquid" },
-    { href: "https://www.lmax.com/", id: "exch-lmax", alt: "LMAX" },
-    { href: "https://www.bitfinex.com/", id: "exch-bitfinex", alt: "Bitfinex" },
+    {
+      href: "https://www.bitstamp.net/",
+      id: "exch-bitstamp",
+      alt: "Bitstamp",
+      idx: 1,
+    },
+    {
+      href: "https://www.kraken.com/",
+      id: "exch-kraken",
+      alt: "Kraken",
+      idx: 2,
+    },
+    { href: "https://cex.io/", id: "exch-cex-io", alt: "Cex.io", idx: 3 },
+    {
+      href: "https://www.liquid.com/",
+      id: "exch-liquid",
+      alt: "Liquid",
+      idx: 4,
+    },
+    { href: "https://www.lmax.com/", id: "exch-lmax", alt: "LMAX", idx: 5 },
+    {
+      href: "https://www.bitfinex.com/",
+      id: "exch-bitfinex",
+      alt: "Bitfinex",
+      idx: 6,
+    },
     {
       href: "https://www.etoro.com/crypto/exchange/",
       id: "exch-etoro",
       alt: "eToro",
+      idx: 7,
     },
     {
       href: "https://currency.com",
       id: "exch-currency-com",
       alt: "Currency.com",
+      idx: 8,
     },
-    { href: "https://bittrex.com/", id: "exch-bittrex", alt: "Bittrex" },
-    { href: "https://ftx.com/", id: "exch-ftx", alt: "FTX" },
+    {
+      href: "https://bittrex.com/",
+      id: "exch-bittrex",
+      alt: "Bittrex",
+      idx: 9,
+    },
+    { href: "https://ftx.com/", id: "exch-ftx", alt: "FTX", idx: 10 },
   ];
 
   return (
@@ -299,7 +326,7 @@ export default function XRPOverview() {
                         className="numbers stat-highlight"
                         id="ripple-escrow-amount"
                       >
-                        {escrowInfo.amount  || "55B"}
+                        {escrowInfo.amount || "55B"}
                       </span>
                     </span>
                     <br />
@@ -350,7 +377,7 @@ export default function XRPOverview() {
                         target="_blank"
                       >
                         <img
-                          className={"mw-100" +  " " +  wallet.imgclasses || ""}
+                          className={"mw-100" + " " + wallet.imgclasses || ""}
                           id={wallet.id}
                           alt={wallet.alt}
                         />
@@ -423,7 +450,6 @@ export default function XRPOverview() {
                 id="top-exchanges"
               >
                 {exchanges.map((exch) => {
-                  let indx = 1;
                   return (
                     <li className="nav-item">
                       <a
@@ -431,7 +457,7 @@ export default function XRPOverview() {
                         href={exch.href}
                         target="_blank"
                       >
-                        <span className="longform mr-3">{indx}</span>
+                        <span className="longform mr-3">{exch.idx}</span>
                         <img className="mw-100" id={exch.id} alt={exch.alt} />
                       </a>
                     </li>
