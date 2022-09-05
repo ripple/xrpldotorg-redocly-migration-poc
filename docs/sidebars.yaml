@@ -44,18 +44,25 @@
           page: concepts/understanding-xrpl/xrpl/validation.md
           pages:
             - page: concepts/understanding-xrpl/xrpl/fee-voting.md
-            - page: concepts/understanding-xrpl/xrpl/negative-unl.md
-    - group:
-      page: concepts/understanding-xrpl/server/rippled-server.md
+            - page: concepts/understanding-xrpl/xrpl/negative-unl.md 
+    - group: XRP Ledger Servers
+      page: concepts/understanding-xrpl/server/xrpl-servers.md
       expanded: false
       pages:
-        - group: Server Modes
-          page: concepts/understanding-xrpl/server/server-modes.md
+        - group: The rippled Server
+          page: concepts/understanding-xrpl/server/rippled-server.md
           expanded: false
           pages:
-            - page: concepts/understanding-xrpl/server/parallel-networks.md
-            - page: concepts/understanding-xrpl/server/federated-sidechains.md
+            - page: concepts/understanding-xrpl/server/server-modes.md
             - page: concepts/understanding-xrpl/server/transaction-queue.md
+        - page: concepts/understanding-xrpl/server/clio-server.md
+
+    - group: XRP Ledger Networks
+      page: concepts/understanding-xrpl/networks/xrpl-networks.md
+      expanded: false
+      pages:
+        - page: concepts/understanding-xrpl/networks/parallel-networks.md
+        - page: concepts/understanding-xrpl/networks/federated-sidechains.md
     - group: Transactions
       page: concepts/understanding-xrpl/transactions/transactions.md
       expanded: false
@@ -92,7 +99,6 @@
             - page: concepts/understanding-xrpl/transactions/transaction-results/tem-codes.md
             - page: concepts/understanding-xrpl/transactions/transaction-results/ter-codes.md
             - page: concepts/understanding-xrpl/transactions/transaction-results/tes-success.md
-
     - group: Tokens
       page: concepts/understanding-xrpl/tokens/tokens.md
       expanded: false

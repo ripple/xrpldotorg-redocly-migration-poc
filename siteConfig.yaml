@@ -17,7 +17,7 @@ logo:
 toc:
   enable: true
 editPage:
-  baseUrl: https://github.com/amarantha-k/xrpl-org-dev-portal/tree/master/
+  baseUrl: https://github.com/ripple/xrpl-org-dev-portal/tree/master/
   icon: ./images/pencil.svg
 copyCodeSnippet:
   enable: true

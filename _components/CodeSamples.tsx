@@ -11,7 +11,7 @@ interface CodeSample {
   langs: Array<string>;
 }
 // TODO: need to be updated once repo is migrated
-const githubLink = "https://github.com/amarantha-k/xrpl-org-dev-portal";
+const githubLink = "https://github.com/ripple/xrpl-org-dev-portal";
 
 export default function CodeSamples() {
   const prefix = usePathPrefix();

@@ -76,7 +76,7 @@ The only flag that applies globally to all transactions is as follows:
 
 When using the `sign` method (or `submit` method in "sign-and-submit" mode), `rippled` adds a `Flags` field with `tfFullyCanonicalSig` enabled unless the `Flags` field is already present. The `tfFullyCanonicalSig` flag is not automatically enabled if `Flags` is explicitly specified. The flag is not automatically enabled when using the `sign_for` method to add a signature to a multi-signed transaction.
 
-**Note:** The `tfFullyCanonicalSig` flag was used from 2014 until 2020 to protect against [transaction malleability](transaction-malleability.md) while maintaining compatibility with legacy signing software. The RequireFullyCanonicalSig amendment ended compatibility with such legacy software and made the protections the default for all transactions. If you are using a [parallel network](../server/parallel-networks.md) that does not have RequireFullyCanonicalSig enabled, you should always enable the `tfFullyCanonicalSig` flag to protect against transaction malleability.
+**Note:** The `tfFullyCanonicalSig` flag was used from 2014 until 2020 to protect against [transaction malleability](transaction-malleability.md) while maintaining compatibility with legacy signing software. The RequireFullyCanonicalSig amendment ended compatibility with such legacy software and made the protections the default for all transactions. If you are using a [parallel network](../networks/parallel-networks.md) that does not have RequireFullyCanonicalSig enabled, you should always enable the `tfFullyCanonicalSig` flag to protect against transaction malleability.
 
 ### Flag Ranges
 

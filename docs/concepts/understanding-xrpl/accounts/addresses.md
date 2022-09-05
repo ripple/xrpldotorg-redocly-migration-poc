@@ -8,7 +8,7 @@ Accounts in the XRP Ledger are identified by an address in the XRP Ledger's base
 * Case-sensitive
 * Includes a 4-byte checksum so that the probability of generating a valid address from random characters is approximately 1 in 2<sup>32</sup>
 
-> **Note:** The XRP community has proposed an **X**-address format that "packs" a destination tag into the address. These addresses start with an `X` (for the mainnet) or a `T` (for the [testnet](../server/parallel-networks.md)). Exchanges and wallets can use X-addresses to represent all the data a customer needs to know in one value. For more information, see the [X-address format site](https://xrpaddress.info/) and [codec](https://github.com/xrp-community/xrpl-tagged-address-codec).
+> **Note:** The XRP community has proposed an **X**-address format that "packs" a destination tag into the address. These addresses start with an `X` (for the mainnet) or a `T` (for the [testnet](../networks/parallel-networks.md)). Exchanges and wallets can use X-addresses to represent all the data a customer needs to know in one value. For more information, see the [X-address format site](https://xrpaddress.info/) and [codec](https://github.com/xrp-community/xrpl-tagged-address-codec).
 >
 > The XRP Ledger protocol only supports "classic" addresses natively, but many client libraries support X-addresses too.
 
