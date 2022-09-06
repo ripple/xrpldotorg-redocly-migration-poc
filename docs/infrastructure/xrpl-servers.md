@@ -28,12 +28,3 @@ You need to trust the server you use. If you connect to a malicious server, ther
 Additionally, running your own server gives you [admin access](get-started-using-http-websocket-apis.html#admin-access), which allows you to run important admin-only and load-intensive commands. If you use a shared server, you have to worry about other users of the same server competing with you for the server's computing power. Many of the commands in the WebSocket API can put a lot of strain on the server, so the server has the option to scale back its responses when it needs to. If you share a server with others, you may not always get the best results possible.
 
 Finally, if you run a validating server, you can use a stock server as a proxy to the public network while keeping your validating server on a private network only accessible to the outside world through the stock server. This makes it more difficult to compromise the integrity of your validating server.
-
-## Server Features and Topics
-
-<!-- provided by the auto-generated table of children -->
-
-<!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}

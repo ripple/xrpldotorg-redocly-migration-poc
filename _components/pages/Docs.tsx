@@ -203,12 +203,7 @@ export default function Docs() {
                 An introduction to fundamental aspects of the XRP Ledger.
               </p>
               <div className="dg-lg-block mb-5">
-                <a
-                  className="btn btn-primary btn-arrow get-started-button"
-                  href="./tutorials/quickstart/index.md"
-                >
-                  Get Started
-                </a>
+                  <Link className="btn btn-primary btn-arrow get-started-button" to="./tutorials/quickstart/index.md">Get Started</Link>
               </div>
               <img
                 src={prefix + "/img/docs/docs-quick-start.svg"}

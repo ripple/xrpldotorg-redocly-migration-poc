@@ -23,7 +23,3 @@ Additionally, running your own server gives you [admin access](get-started-using
 
 Finally, if you run a validating server, you can use a stock server as a proxy to the public network while keeping your validating server on a private network only accessible to the outside world through the stock server. This makes it more difficult to compromise the integrity of your validating server.
 
-## Server Features and Topics
-
-<!-- provided by the auto-generated table of children -->
-
