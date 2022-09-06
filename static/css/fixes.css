@@ -1129,4 +1129,10 @@ margin-bottom:0px!important;
 .page-xrpl-overview h1{
   font-size: 3.875rem;
 }
-
+code {
+  border: none !important;
+}
+.light code{ 
+  color: #111112!important;
+  background-color: #11111212!important;
+}
