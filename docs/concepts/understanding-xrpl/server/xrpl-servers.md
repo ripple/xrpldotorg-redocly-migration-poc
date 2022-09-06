@@ -27,7 +27,3 @@ Finally, if you run a validating server, you can use a stock server as a proxy t
 
 <!-- provided by the auto-generated table of children -->
 
-<!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
