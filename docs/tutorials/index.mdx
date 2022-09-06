@@ -7,15 +7,59 @@ import { XRPLCardDeck, DeckCard } from "../../_components/XRPLCardDeck";
 
 The XRP Ledger tutorials walk you through the steps to learn and get started with the XRP Ledger and to use the ledger for advanced use cases.
 
+## Beginner Tutorials
+
 <XRPLCardDeck cols="1/3">
   <DeckCard title="Quickstart" to="./quickstart/index.md">
-    Use a JavaScript test harness to send XRP, trade currencies, and mint and trade
-    NFTokens.
+    This quickstart tutorial walks you through a test harness interface to try out the XRP Ledger.
   </DeckCard>
-  <DeckCard title="XRPL.org">
-    This is the second card. Don't put links or regular line breaks in descriptions.
+</XRPLCardDeck>
+
+## Getting Started with SDKs
+
+These tutorials walk you through the basics of building a very simple XRP Ledger-connected application using SDKs.
+
+<XRPLCardDeck cols="1/4">
+  <DeckCard title="Python" to="https://xrpl.org/get-started-using-python.html" external>
+    Using xrpl.py, a pure Python library. 
   </DeckCard>
-  <DeckCard title="Ripple Website" to="https://ripple.com" external>
-    This card is an external link to Ripple's website.
+  <DeckCard title="Java" to="https://xrpl.org/get-started-using-java.html" external>
+    Using xrpl4j, a pure Java library. 
+  </DeckCard>
+  <DeckCard title="JavaScript" to="https://xrpl.org/get-started-using-javascript.html" external>
+    Using the xrpl.js client library. 
+  </DeckCard>
+  <DeckCard title="HTTP & Websocket APIs" to="https://xrpl.org/get-started-using-http-websocket-apis.html" external>
+    Access the XRP Ledger directly through the APIs of its core server.
+  </DeckCard>
+</XRPLCardDeck>
+
+## Tutorials to Manage the XRP Ledger Servers
+
+<XRPLCardDeck cols="1/4">
+  <DeckCard title="Install rippled Server" to="https://xrpl.org/install-rippled.html" external>
+    These tutorials describe the steps to install and update the core XRP Ledger server.
+  </DeckCard>
+  <DeckCard title="Configure rippled Server" to="https://xrpl.org/configure-rippled.html" external>
+    These tutorials describe the steps to customize your <code>rippled</code> server configuration.
+  </DeckCard>
+  <DeckCard title="Run rippled in Standalone Mode" to="https://xrpl.org/use-stand-alone-mode.html" external>
+    These tutorials describe the steps to run <code>rippled</code> in stand-alone mode and test features without a full network.
+  </DeckCard>
+  <DeckCard title="Install Clio Server " to="https://xrpl.org/install-clio-on-ubuntu.html">
+    This tutorial describes the steps to install the Clio server on Ubuntu platform.  
+  </DeckCard>
+</XRPLCardDeck>
+
+## Tutorials for XRP Ledger Usecases
+
+<XRPLCardDeck cols="1/3">
+  <DeckCard title="Build a Desktop Wallet" to="https://xrpl.org/build-a-desktop-wallet-in-python.html" external>
+    This tutorial demonstrates how to build a desktop wallet for the XRP Ledger using the Python programming language and various libraries.
+  </DeckCard>
+  <DeckCard title="How to Use an Escrow as a Smart Contract" to="https://xrpl.org/use-an-escrow-as-a-smart-contract.html" external>
+    This tutorial describes the high-level tasks that you need to complete to use an escrow as a smart contract.
+  </DeckCard>
+  <DeckCard title="How to Open a Payment Channel to Enable an Inter-Exchange Network" to="https://xrpl.org/open-a-payment-channel-to-enable-an-inter-exchange-network.html" external>
   </DeckCard>
 </XRPLCardDeck>
