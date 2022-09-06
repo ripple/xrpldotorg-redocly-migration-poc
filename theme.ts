@@ -155,10 +155,10 @@ export const theme = {
     // },
     code: {
       fontSize: '13px',
-      fontFamily: '"Source Code Pro", sans-serif',
+      fontFamily: "Space Mono",
       // fontWeight: ({ typography }) => typography.fontWeightRegular,
-      color: '#e53935',
-      backgroundColor: 'rgba(38, 50, 56, 0.04)',
+      color: '#5beb9d',
+      backgroundColor: '#5beb9d26',
       wrap: false,
     },
     links: {
