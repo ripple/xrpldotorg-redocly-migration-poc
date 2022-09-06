@@ -136,12 +136,17 @@
   page: use-cases/index.mdx 
   expanded: false
   pages:
-    - label: Payments
-      page: use-cases/payments.md
-    - group: Decentralized Exchange
-      page: use-cases/decentralized-exchange/index.mdx 
+    - group: Payments 
+      page: use-cases/payments/index.mdx
       pages:
-        - page: use-cases/decentralized-exchange/moneychanger.md 
+        - page: use-cases/payments/payment-channels.md
+        - page: use-cases/payments/cross-currency-payments.md
+        - page: use-cases/payments/escrow.md
+    - group: DeFi
+      page: use-cases/defi/index.mdx 
+      pages:
+        - page: use-cases/defi/moneychanger.md 
+        - page: use-cases/defi/decentralized-exchange.md
     - group: Tokenization
       page: use-cases/tokenization/index.mdx
       pages:
@@ -149,8 +154,10 @@
         - page: use-cases/tokenization/nftoken-marketplace.md 
         - page: use-cases/tokenization/authorized-minter.md
         - page: use-cases/tokenization/digital-artist.md 
-    - label: Interoperability
-      page: use-cases/interoperability.md
+    - group: Interoperability 
+      page: use-cases/interoperability/index.mdx
+      pages:
+        - page: use-cases/interoperability/sidechains.md
 - group: API Reference
   expanded: false
   pages:

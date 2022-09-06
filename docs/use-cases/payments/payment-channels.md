@@ -1,3 +1,3 @@
-# Payment Channel Use Cases
+# Payment Channels
 
 Placeholder for payment channels use case.
