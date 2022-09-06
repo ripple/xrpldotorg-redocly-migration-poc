@@ -1129,4 +1129,13 @@ margin-bottom:0px!important;
 .page-xrpl-overview h1{
   font-size: 3.875rem;
 }
-
+code {
+  color: #5beb9d!important;
+  border: none !important;
+  background-color: #5beb9d26!important;
+  font-family: 'Space Mono'!important;
+}
+.light code{ 
+  color: #111112!important;
+  background-color: #11111212!important;
+}
