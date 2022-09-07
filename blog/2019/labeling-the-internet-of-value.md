@@ -153,7 +153,7 @@ The tool is not all-seeing when things go wrong; the browser, by design, does no
 
 A few things the  [`xrp-ledger.toml` Checker](https://xrpl.org/xrp-ledger-toml-checker.html) didn't pick up are no surprise:
 
-- Not all of my own addresses have the `Domain` field set. I could send [AccountSet transactions](../../docs/references/protocol-reference/transactions/transaction-types/accountset) for each of them to configure it, but I rarely use most of those addresses anyway, so I didn't bother.
+- Not all of my own addresses have the `Domain` field set. I could send [AccountSet transactions](../../docs/references/protocol/transactions/transaction-types/accountset) for each of them to configure it, but I rarely use most of those addresses anyway, so I didn't bother.
 - Since the checker only displays well-defined standard fields, my Mastodon contact information doesn't show up in the output. That's fine. Maybe if a client application catches on it can add support for displaying various modes of contact.
 
 In all, the process of setting up an `xrp-ledger.toml` file was more straightforward than I had expected. The syntax is a little more verbose than its predecessor, `ripple.txt`, but it's also great to have an explicit standard, so tools like the checker can pull in a ready-made library and provide an unambiguous reading of the file. It probably would have been more complex if I also had to set up HTTPS for the first time, but fortunately that was a problem I already had solved because it's a good thing to provide regardless.

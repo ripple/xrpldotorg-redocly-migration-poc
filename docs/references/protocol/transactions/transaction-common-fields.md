@@ -1,19 +1,17 @@
 ---
-html: transaction-common-fields.html
-parent: transaction-formats.html
-blurb: These common fields can be provided on any XRP Ledger transaction.
-labels:
-  - Transaction Sending
+redirectFrom:
+  - /transaction-common-fields.html
+description: These common fields can be provided on any XRP Ledger transaction.
 ---
 # Transaction Common Fields
 
-Every transaction has the same set of common fields, plus additional fields based on the [transaction type](transaction-types.html). Field names are case-sensitive. The common fields for all transactions are:
+Every transaction has the same set of common fields, plus additional fields based on the [transaction type](./transaction-types/index.md). Field names are case-sensitive. The common fields for all transactions are:
 
-| Field                | JSON Type        | [Internal Type][] | Description      |
+| Field                | JSON Type        | [Internal Type](../conventions/binary-format.md) | Description      |
 |:---------------------|:-----------------|:------------------|:-----------------|
-| `Account`            | String           | AccountID         | _(Required)_ The unique address of the [account](accounts.html) that initiated the transaction. |
+| `Account`            | String           | AccountID         | _(Required)_ The unique address of the [account](../../../concepts/understanding-xrpl/accounts/accounts.md) that initiated the transaction. |
 | `TransactionType`    | String           | UInt16            | _(Required)_ The type of transaction. Valid types include: `Payment`, `OfferCreate`, `OfferCancel`, `TrustSet`, `AccountSet`, `AccountDelete`, `SetRegularKey`, `SignerListSet`, `EscrowCreate`, `EscrowFinish`, `EscrowCancel`, `PaymentChannelCreate`, `PaymentChannelFund`, `PaymentChannelClaim`, and `DepositPreauth`. |
-| `Fee`                | String           | Amount            | _(Required; [auto-fillable][])_ Integer amount of XRP, in drops, to be destroyed as a cost for distributing this transaction to the network. Some transaction types have different minimum requirements. See [Transaction Cost][] for details. |
+| `Fee`                | String           | Amount            | _(Required; [auto-fillable][])_ Integer amount of XRP, in drops, to be destroyed as a cost for distributing this transaction to the network. Some transaction types have different minimum requirements. See [Transaction Cost](../../../concepts/understanding-xrpl/transactions/transaction-cost.md) for details. |
 | `Sequence`           | Number           | UInt32            | _(Required; [auto-fillable][])_ The [sequence number](basic-data-types.html#account-sequence) of the account sending the transaction. A transaction is only valid if the `Sequence` number is exactly 1 greater than the previous transaction from the same account. The special case `0` means the transaction is using a [Ticket](tickets.html) instead _(Added by the [TicketBatch amendment][].)_. |
 | [`AccountTxnID`](#accounttxnid) | String | Hash256          | _(Optional)_ Hash value identifying another transaction. If provided, this transaction is only valid if the sending account's previously-sent transaction matches the provided hash. |
 | [`Flags`](#flags-field) | Number        | UInt32            | _(Optional)_ Set of bit-flags for this transaction. |
@@ -27,20 +25,20 @@ Every transaction has the same set of common fields, plus additional fields base
 
 [auto-fillable]: #auto-fillable-fields
 
-[Removed in: rippled 0.28.0][]: The `PreviousTxnID` field of transactions was replaced by the [`AccountTxnID`](#accounttxnid) field. This String / Hash256 field is present in some historical transactions. This is unrelated to the field also named `PreviousTxnID` in some [ledger objects](ledger-data-formats.html).
+[Removed in: rippled 0.28.0](https://github.com/XRPLF/rippled/releases/tag/0.28.0): The `PreviousTxnID` field of transactions was replaced by the [`AccountTxnID`](#accounttxnid) field. This String / Hash256 field is present in some historical transactions. This is unrelated to the field also named `PreviousTxnID` in some [ledger objects](ledger-data-formats.html).
 
 
 ## AccountTxnID
 
 <!-- SPELLING_IGNORE: AccountTxnID -->
 
-The `AccountTxnID` field lets you chain your transactions together, so that a current transaction is not valid unless the previous transaction sent from the same account has a specific [transaction hash][identifying hash].
+The `AccountTxnID` field lets you chain your transactions together, so that a current transaction is not valid unless the previous transaction sent from the same account has a specific [transaction hash](../../../concepts/understanding-xrpl/transactions/transactions.md#identifying-transactions).
 
-Unlike the `PreviousTxnID` field, which tracks the last transaction to _modify_ an account (regardless of sender), the `AccountTxnID` tracks the last transaction _sent by_ an account. To use `AccountTxnID`, you must first enable the [`asfAccountTxnID`](accountset.html#accountset-flags) flag, so that the ledger keeps track of the ID for the account's previous transaction. (`PreviousTxnID`, by comparison, is always tracked.)
+Unlike the `PreviousTxnID` field, which tracks the last transaction to _modify_ an account (regardless of sender), the `AccountTxnID` tracks the last transaction _sent by_ an account. To use `AccountTxnID`, you must first enable the [`asfAccountTxnID`](./transaction-types/accountset.md#accountset-flags) flag, so that the ledger keeps track of the ID for the account's previous transaction. (`PreviousTxnID`, by comparison, is always tracked.)
 
 One situation in which this is useful is if you have a primary system for submitting transactions and a passive backup system. If the passive backup system becomes disconnected from the primary, but the primary is not fully dead, and they both begin operating at the same time, you could potentially have serious problems like some transactions sending twice and others not at all. Chaining your transactions together with `AccountTxnID` ensures that, even if both systems are active, only one of them can submit valid transactions at a time.
 
-The `AccountTxnID` field cannot be used on transactions that use [Tickets](tickets.html). Transactions that use `AccountTxnID` cannot be placed in the [transaction queue](transaction-queue.html).
+The `AccountTxnID` field cannot be used on transactions that use [Tickets](../../../concepts/understanding-xrpl/transactions/tickets.md). Transactions that use `AccountTxnID` cannot be placed in the [transaction queue](transaction-queue.html).
 
 
 
@@ -48,15 +46,15 @@ The `AccountTxnID` field cannot be used on transactions that use [Tickets](ticke
 
 Some fields can be automatically filled in before a transaction is signed, either by a `rippled` server or by a [client library](client-libraries.html). Auto-filling values requires an active connection to the XRP Ledger to get the latest state, so it cannot be done offline. The details can vary by library, but auto-filling always provides suitable values for at least the following fields:
 
-* `Fee` - Automatically fill in the [Transaction Cost][] based on the network.
+* `Fee` - Automatically fill in the [Transaction Cost](../../../concepts/understanding-xrpl/transactions/transaction-cost.md) based on the network.
 
-    **Note:** When using `rippled`'s [sign command][], you can limit the maximum possible auto-filled value, using the `fee_mult_max` and `fee_mult_div` parameters.)
+    **Tip:** Most methods of auto-filling and signing provide safety features to raise an error if the auto-filled `Fee` field would be especially large. The details depend on the individual SDK or API being used.
 
 * `Sequence` - Automatically use the next sequence number for the account sending the transaction.
 
 For a production system, we recommend _not_ leaving these fields to be filled by the server. For example, if transaction costs become high due to a temporary spike in network load, you may want to wait for the cost to decrease before sending some transactions, instead of paying the temporarily-high cost.
 
-The [`Paths` field](payment.html#paths) of the [Payment transaction][] type can also be automatically filled in.
+The `Paths` field of the [Payment transaction type](./transaction-types/payment.md) can also be automatically filled in.
 
 
 ## Flags Field
