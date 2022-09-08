@@ -12,11 +12,8 @@ status: not_enabled
 
 The `NFTokenMint` transaction creates a non-fungible token and adds it to the relevant [NFTokenPage object][] of the `NFTokenMinter` as an [NFToken][] object. A required parameter to this transaction is the `Token` field specifying the actual token. This transaction is the only opportunity the `NFTokenMinter` has to specify any token fields that are defined as immutable (for example, the `TokenFlags`).
 
-If the transaction is successful, the newly minted token is owned by the account (the `minter` account) that executed the transaction. If needed, the server creates a new `NFTokenPage` for the account and applies a reserve charge.
-
 
 ## Example {{currentpage.name}} JSON
-
 
 ```json
 {
@@ -38,10 +35,6 @@ If the transaction is successful, the newly minted token is owned by the account
     ]
 }
 ```
-
-
-This transaction assumes that the issuer, `rNCFjv8Ek5oDrNiMJ3pw6eLLFtMjZLJnf2`, has set the `NFTokenMinter` field in its `AccountRoot` to `rvYAfWj5gh67oV6fW32ZzP3Aw4Eubs59B`, thereby authorizing that account to mint tokens on its behalf.
-
 
 {% include '_snippets/tx-fields-intro.md' %}
 
@@ -73,12 +66,12 @@ If you need to specify additional information during minting (for example, detai
 
 ## Issuing on behalf of another account
 
-If you want to issue an NFT for another account there are two things you must do. Given that *Account A* is your account and *Account B* is the account for which you want to mint a NFToken:
+If you want to issue an `NFToken` for another account there are two things you must do. Given that *Account A* is your account and *Account B* is the account for which you want to mint a `NFToken`:
 
-1. Set the `NFTokenMinter` account setting on *Account B* to be *Account A*. (This says that *Account B* trusts *Account A* to create NFTs on their behalf.)
-2. When you mint the NFToken, set the `Issuer` field to Account B.
+1. Set the `NFTokenMinter` account setting on *Account B* to be *Account A*. (This says that *Account B* trusts *Account A* to create `NFToken` objects on their behalf.)
+2. When you mint the `NFToken`, set the `Issuer` field to Account B.
 
-### Example of NFTokenMint with an issuer
+### Example of `NFTokenMint` with an issuer
 ```json
 {
   "TransactionType": "NFTokenMint",
