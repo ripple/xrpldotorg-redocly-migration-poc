@@ -5,13 +5,13 @@ blurb: Ledger structure for recording NFTokens.
 filters:
  - include_code
 labels:
- - Non-fungible Tokens, NFTs
+ - Non-fungible Tokens, NFTokens
 status: not_enabled
 ---
 # NFTokenPage
 {% include '_snippets/nfts-disclaimer.md' %}
 
-The `NFTokenPage` object represents a collection of `NFToken` objects owned by the same account. An account can have multiple `NFTokenPage` ledger objects, which form a doubly-linked list (DLL).
+The `NFTokenPage` object represents a collection of `NFToken` objects owned by the same account. An account can have multiple `NFTokenPage` ledger objects, which form a doubly linked list (DLL).
 
 ## Example {{currentpage.name}} JSON
 
@@ -26,13 +26,12 @@ The `NFTokenPage` object represents a collection of `NFToken` objects owned by t
       "95C8761B22894E328646F7A70035E9DFBECC90EDD83E43B7B973F626D21A0822",
     "PreviousTxnLgrSeq":
       42891441,
-    "Tokens":
+    "NFTokens":
         {
             {
-                "TokenID":
+                "NFTokenID":
                   "000B013A95F14B0044F78A264E41713C64B5F89242540EE208C3098E00000D65",
-                "URI":
-                  "ipfs://bafybeigdyrzt5sfp7udm7hu76uh7y26nf4dfuylqabf3oclgtqy55fbzdi"
+                "URI": "697066733A2F2F62616679626569676479727A74357366703775646D37687537367568377932366E6634646675796C71616266336F636C67747179353566627A6469"
             },
             /* potentially more objects */
        }
@@ -123,7 +122,7 @@ An `NFTokenPage` object can have the following required and optional fields:
    </td>
   </tr>
   <tr>
-   <td><code>NonFungibleTokens</code>
+   <td><code>NFTokens</code>
    </td>
    <td>Yes
    </td>
@@ -138,7 +137,7 @@ An `NFTokenPage` object can have the following required and optional fields:
 
 
 
-### TokenPage ID Format
+### NFTokenPage ID Format
 
 `NFTokenPage` identifiers are constructed so as to specifically allow for the adoption of a more efficient paging structure, ideally suited for `NFTokens`.
 
@@ -146,12 +145,12 @@ The identifier of an `NFTokenPage` is derived by concatenating the 160-bit `Acco
 
 More specifically, and assuming that the function `low96(x)` returns the low 96 bits of a 256-bit value, an NFT with `NFTokenID` `A` can be included in a page with `NFTokenPageID` `B` if and only if `low96(A) >= low96(B)`.
 
-For example, applying the `low96` function to the NFT described before, which had an ID of `000B013A95F14B0044F78A264E41713C64B5F89242540EE208C3098E00000D65` the function `low96` would return `42540EE208C3098E00000D65`.
+For example, applying the `low96` function to the `NFToken` described before, which had an ID of `000B013A95F14B0044F78A264E41713C64B5F89242540EE208C3098E00000D65` the function `low96` would return `42540EE208C3098E00000D65`.
 
 This curious construct exploits the structure of the SHAMap to allow for efficient lookups of individual `NFToken` objects without requiring iteration of the doubly-linked list of `NFTokenPages`.
 
 
-### Searching for an `NFToken` object
+### Searching for  `NFToken` object
 
 To search for a specific `NFToken`, compute the `NFTokenPageID` using the account of the owner and the `NFTokenID` of the token, as described above. Search for a ledger entry where the identifier is less than or equal to that value. If that entry does not exist or is not an `NFTokenPage`, the `NFToken` is not held by the given account.
 
@@ -163,32 +162,32 @@ You add an `NFToken` object by finding the `NFTokenPage` it should be in (using 
 
 ### Removing an `NFToken` object
 
-An `NFToken` can be removed by using the same approach. If the number of `NFTokens` in the page goes below a certain threshold, the server attempts to consolidate the page with a previous or subsequent page to recover the reserve.
+A `NFToken` can be removed using the same approach. If the number of `NFTokens` in the page goes below a certain threshold, the server attempts to consolidate the page with a previous or subsequent page to recover the reserve.
 
 
 ### Reserve for `NFTokenPage` object
 
-Each `NFTokenPage` costs an incremental reserve to the owner account. This specification allows up to 32 `NFToken` entries per page, which means that for accounts that hold multiple NFTs the _effective_ reserve cost per NFT can be as low as _R_/32 where _R_ is the incremental reserve.
+Each `NFTokenPage` costs an incremental reserve to the owner account. This specification allows up to 32 `NFToken` entries per page, which means that for accounts that hold multiple `NFToken`s the _effective_ reserve cost per NFT can be as low as _R_/32 where _R_ is the incremental reserve.
 
 
 ### The reserve in practice
 
-The value of the incremental reserve is, as of this writing, 2 XRP. The table below shows what the _effective_ reserve per token is, if a given page contains 1, 8, 16, 32 and 64 NFTs.
+The value of the incremental reserve is, as of this writing, 2 XRP. The table below shows what the _effective_ reserve per token is, if a given page contains 1, 8, 16, 32 and 64 NFTokens.
 
 
 <table>
   <tr>
    <td><strong>Incremental Reserve</strong>
    </td>
-   <td><strong>1 NFT</strong>
+   <td><strong>1 NFToken</strong>
    </td>
-   <td><strong>8 NFTs</strong>
+   <td><strong>8 NFTokens</strong>
    </td>
-   <td><strong>16 NFTs</strong>
+   <td><strong>16 NFTokens</strong>
    </td>
-   <td><strong>32 NFTs</strong>
+   <td><strong>32 NFTokens</strong>
    </td>
-   <td><strong>64 NFTs</strong>
+   <td><strong>64 NFTokens</strong>
    </td>
   </tr>
   <tr>
