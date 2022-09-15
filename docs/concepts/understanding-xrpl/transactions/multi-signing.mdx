@@ -1,3 +1,5 @@
+import { IconNotEnabled } from "../../../../_components/StatusIcons";
+
 # Multi-Signing
 
 Multi-signing in the XRP Ledger is a method of [authorizing transactions](transactions.md#authorizing-transactions) for the XRP Ledger by using a combination of multiple secret keys. You can have any combination of authorization methods enabled for your address, including multi-signing, a [master key pair](../accounts/cryptographic-keys.md#master-key-pair), and a [regular key pair](../accounts/cryptographic-keys.md#regular-key-pair). (The only requirement is that _at least one_ method must be enabled.)
@@ -15,7 +17,7 @@ Before you can multi-sign, you must create a list of which addresses can sign fo
 
 The `SignerListSet` transaction defines which addresses can authorize transactions from your address. You can include 1 to 8 addresses in a SignerList. The SignerList cannot include the sender's address and there can be no duplicate entries. You can control how many signatures are needed, in which combinations, by using the *SignerWeight* and *SignerQuorum* values of the SignerList.
 
-If the `ExpandedSignerList` amendment :not_enabled: is enabled, you can include 1 to 32 addresses in a SignerList.
+If the `ExpandedSignerList` amendment <IconNotEnabled/> is enabled, you can include 1 to 32 addresses in a SignerList.
 
 ### Signer Weight
 
@@ -27,7 +29,7 @@ The quorum value is the minimum weight total required to authorize a transaction
 
 ### Wallet Locator
 
-If the `ExpandedSignerList` amendment :not_enabled: is enabled, you can also add up to 256 bits of arbitrary data to each signer's entry in the list. This data is not required or used by the network, but can be used by smart contracts or other applications to identify or confirm other data about the signers.
+If the `ExpandedSignerList` amendment <IconNotEnabled/> is enabled, you can also add up to 256 bits of arbitrary data to each signer's entry in the list. This data is not required or used by the network, but can be used by smart contracts or other applications to identify or confirm other data about the signers.
 
 ### Examples Using Signer Weight and Signer Quorum
 

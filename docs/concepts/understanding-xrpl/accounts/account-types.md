@@ -18,7 +18,7 @@ If a malicious actor learns the secret key behind a institution's issuing accoun
 
 ### Multiple Issuing Accounts
 
-A financial institution can issue more than one type of token in the XRP Ledger from a single issuing account. However, there are some settings that apply equally to all (fungible) tokens issued from an account, including the percentage for [transfer fees](../tokens/transfer-fees.md) and the [global freeze](../tokens/freezing-tokens.md) status. If the financial institution wants the flexibility to manage settings differently for each type of token, the institution must multiple issuing accounts.
+A financial institution can issue more than one type of token in the XRP Ledger from a single issuing account. However, there are some settings that apply equally to all (fungible) tokens issued from an account, including the percentage for [transfer fees](../tokens/transfer-fees.mdx) and the [global freeze](../tokens/freezing-tokens.md) status. If the financial institution wants the flexibility to manage settings differently for each type of token, the institution must multiple issuing accounts.
 
 
 ## Operational Accounts

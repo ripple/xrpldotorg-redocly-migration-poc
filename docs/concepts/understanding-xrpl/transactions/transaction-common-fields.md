@@ -12,7 +12,7 @@ Every transaction has the same set of common fields, plus additional fields base
 | [`Flags`](#flags-field) | Number        | UInt32            | _(Optional)_ Set of bit-flags for this transaction. |
 | `LastLedgerSequence` | Number           | UInt32            | _(Optional; strongly recommended)_ Highest ledger index this transaction can appear in. Specifying this field places a strict upper limit on how long the transaction can wait to be validated or rejected. See [Reliable Transaction Submission](reliable-transaction-submission.html) for more details. |
 | [`Memos`](#memos-field) | Array of Objects | Array          | _(Optional)_ Additional arbitrary information used to identify this transaction. |
-| [`Signers`](#signers-field) | Array     | Array             | _(Optional)_ Array of objects that represent a [multi-signature](multi-signing.md) which authorizes this transaction. |
+| [`Signers`](#signers-field) | Array     | Array             | _(Optional)_ Array of objects that represent a [multi-signature](multi-signing.mdx) which authorizes this transaction. |
 | `SourceTag`        | Number             | UInt32            | _(Optional)_ Arbitrary integer used to identify the reason for this payment, or a sender on whose behalf this transaction is made. Conventionally, a refund should specify the initial payment's `SourceTag` as the refund payment's `DestinationTag`. |
 | `SigningPubKey`    | String           | Blob              | _(Automatically added when signing)_ Hex representation of the public key that corresponds to the private key used to sign this transaction. If an empty string, indicates a multi-signature is present in the `Signers` field instead. |
 | `TicketSequence`   | Number           | UInt32            | _(Optional)_ The sequence number of the [ticket](tickets.md) to use in place of a `Sequence` number. If this is provided, `Sequence` must be `0`. Cannot be used with `AccountTxnID`. |
@@ -123,7 +123,7 @@ Example of a transaction with a Memos field:
 
 ## Signers Field
 
-The `Signers` field contains a [multi-signature](multi-signing.md), which has signatures from up to 8 key pairs, that together should authorize the transaction. The `Signers` list is an array of objects, each with one field, `Signer`. The `Signer` field has the following nested fields:
+The `Signers` field contains a [multi-signature](multi-signing.mdx), which has signatures from up to 8 key pairs, that together should authorize the transaction. The `Signers` list is an array of objects, each with one field, `Signer`. The `Signer` field has the following nested fields:
 
 | Field           | Type   | Internal Type | Description                     |
 |:----------------|:-------|:------------------|:--------------------------------|

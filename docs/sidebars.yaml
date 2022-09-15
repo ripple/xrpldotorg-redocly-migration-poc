@@ -20,7 +20,7 @@
         - page: tutorials/quickstart/mint-and-burn-nftokens.md
         - page: tutorials/quickstart/transfer-nftokens.md
         - page: tutorials/quickstart/broker-sale.md
-        - page: tutorials/quickstart/authorize-minter.md     
+        - page: tutorials/quickstart/authorize-minter.md
 - group: Understanding the XRPL
   page: concepts/understanding-xrpl/understanding-xrpl.md
   expanded: false
@@ -44,7 +44,7 @@
           page: concepts/understanding-xrpl/xrpl/validation.md
           pages:
             - page: concepts/understanding-xrpl/xrpl/fee-voting.md
-            - page: concepts/understanding-xrpl/xrpl/negative-unl.md 
+            - page: concepts/understanding-xrpl/xrpl/negative-unl.md
     - group: XRP Ledger Servers
       page: concepts/understanding-xrpl/server/xrpl-servers.md
       expanded: false
@@ -75,7 +75,7 @@
         - page: concepts/understanding-xrpl/transactions/transaction-cost.md
         - page: concepts/understanding-xrpl/transactions/transaction-malleability.md
         - page: concepts/understanding-xrpl/transactions/about-canceling-a-transaction.md
-        - page: concepts/understanding-xrpl/transactions/multi-signing.md
+        - page: concepts/understanding-xrpl/transactions/multi-signing.mdx
         - page: concepts/understanding-xrpl/transactions/tickets.md
         - page: concepts/understanding-xrpl/transactions/finality-of-results.md
         - page: concepts/understanding-xrpl/transactions/invariant-checking.md
@@ -100,7 +100,7 @@
             - page: concepts/understanding-xrpl/transactions/transaction-results/ter-codes.md
             - page: concepts/understanding-xrpl/transactions/transaction-results/tes-success.md
     - group: Tokens
-      page: concepts/understanding-xrpl/tokens/tokens.md
+      page: concepts/understanding-xrpl/tokens/tokens.mdx
       expanded: false
       pages:
         - group: Token Types
@@ -112,7 +112,7 @@
               expanded: false
               pages:
                 - page: concepts/understanding-xrpl/tokens/non-fungible-token-transfers.md
-        - page: concepts/understanding-xrpl/tokens/transfer-fees.md
+        - page: concepts/understanding-xrpl/tokens/transfer-fees.mdx
         - page: concepts/understanding-xrpl/tokens/paths.md
         - page: concepts/understanding-xrpl/tokens/authorized-trust-lines.md
         - page: concepts/understanding-xrpl/tokens/rippling.md
@@ -133,28 +133,28 @@
         - page: concepts/understanding-xrpl/accounts/account-deleting.md
     - page: concepts/understanding-xrpl/fees.md
 - group: Use Cases
-  page: use-cases/index.mdx 
+  page: use-cases/index.mdx
   expanded: false
   pages:
-    - group: Payments 
+    - group: Payments
       page: use-cases/payments/index.mdx
       pages:
         - page: use-cases/payments/payment-channels.md
         - page: use-cases/payments/cross-currency-payments.md
         - page: use-cases/payments/escrow.md
     - group: DeFi
-      page: use-cases/defi/index.mdx 
+      page: use-cases/defi/index.mdx
       pages:
-        - page: use-cases/defi/moneychanger.md 
+        - page: use-cases/defi/moneychanger.md
         - page: use-cases/defi/decentralized-exchange.md
     - group: Tokenization
       page: use-cases/tokenization/index.mdx
       pages:
         - page: use-cases/tokenization/stablecoin-issuer.md
-        - page: use-cases/tokenization/nftoken-marketplace.md 
+        - page: use-cases/tokenization/nftoken-marketplace.md
         - page: use-cases/tokenization/authorized-minter.md
-        - page: use-cases/tokenization/digital-artist.md 
-    - group: Interoperability 
+        - page: use-cases/tokenization/digital-artist.md
+    - group: Interoperability
       page: use-cases/interoperability/index.mdx
       pages:
         - page: use-cases/interoperability/sidechains.md
@@ -167,10 +167,10 @@
   pages:
     - label: rippled Server
       href: https://xrpl.org/manage-the-rippled-server.html
-      external: true 
+      external: true
     - label: Clio server
       href: https://xrpl.org/manage-the-clio-server.html
-      external: true  
+      external: true
 - group: API Reference
   expanded: false
   pages:

@@ -19,7 +19,7 @@ In other words:
 
     Amount + (fees) = (sent amount) ≤ SendMax
 
-In this formula, "fees" refers to [transfer fees](../../tokens/transfer-fees.md) and currency exchange rates. The "sent amount" and the delivered amount (`Amount`) may be denominated in different currencies and converted by consuming Offers in the XRP Ledger's decentralized exchange.
+In this formula, "fees" refers to [transfer fees](../../tokens/transfer-fees.mdx) and currency exchange rates. The "sent amount" and the delivered amount (`Amount`) may be denominated in different currencies and converted by consuming Offers in the XRP Ledger's decentralized exchange.
 
 **Note:** The `Fee` field of the transaction refers to the XRP [transaction cost](../transaction-cost.md), which is destroyed to relay the transaction to the network. The exact transaction cost specified is always debited from the sender and is completely separate from the fee calculations for any type of payment.
 

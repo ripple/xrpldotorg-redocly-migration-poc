@@ -51,7 +51,7 @@ Checks typically have the lifecycle described below.
 
 **Step 3:** To cash the check, the recipient submits a `CheckCash` transaction. The recipient has two options for cashing the check:
 
-* `Amount` — The recipient can use this option to specify an exact amount to cash. This may be useful for cases where the sender has padded the check to cover possible [transfer fees](../../tokens/transfer-fees.md) and the recipient wants to accept the exact amount on an invoice or other contract.
+* `Amount` — The recipient can use this option to specify an exact amount to cash. This may be useful for cases where the sender has padded the check to cover possible [transfer fees](../../tokens/transfer-fees.mdx) and the recipient wants to accept the exact amount on an invoice or other contract.
 
 * `DeliverMin` — The recipient can use this option to specify the minimum amount they are willing to receive from the Check. If the recipient uses this option, the XRP Ledger attempts to deliver as much as possible and always delivers at least this amount. The transaction fails if the amount that can be credited to the recipient is not at least the requested amount.
 

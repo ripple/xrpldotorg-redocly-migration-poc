@@ -19,7 +19,7 @@ Some transactions have different transaction costs:
 |-----------------------|--------------------------|
 | [Reference Transaction](#reference-transaction-cost) (Most transactions) | 10 drops |
 | [Key Reset Transaction](#key-reset-transaction) | 0 |
-| [Multi-signed Transaction](multi-signing.md) | 10 drops × (1 + Number of Signatures Provided) |
+| [Multi-signed Transaction](multi-signing.mdx) | 10 drops × (1 + Number of Signatures Provided) |
 | EscrowFinish Transaction with Fulfillment | 10 drops × (33 + (Fulfillment size in bytes ÷ 16)) |
 | [AccountDelete Transaction](accounts.html#deletion-of-accounts) | 2,000,000 drops |
 
@@ -56,7 +56,7 @@ The `rippled` server has a second mechanism for enforcing the transaction cost, 
 
 For each new ledger version, the server picks a soft limit on the number of transactions to be included in the open ledger, based on the number of transactions in the previous ledger. The open ledger cost is equal to the minimum un-scaled transaction cost until the number of transactions in the open ledger is equal to the soft limit. After that, the open ledger cost increases exponentially for each transaction included in the open ledger. For the next ledger, the server increases the soft limit if the current ledger contained more transactions than the soft limit, and decreases the soft limit if the consensus process takes more than 5 seconds.
 
-The open ledger cost requirement is [proportional to the normal cost of the transaction](#fee-levels), not the absolute transaction cost. Transaction types that have a higher-than-normal requirement, such as [multi-signed transactions](multi-signing.md) must pay more to meet the open ledger cost than transactions which have minimum transaction cost requirements.
+The open ledger cost requirement is [proportional to the normal cost of the transaction](#fee-levels), not the absolute transaction cost. Transaction types that have a higher-than-normal requirement, such as [multi-signed transactions](multi-signing.mdx) must pay more to meet the open ledger cost than transactions which have minimum transaction cost requirements.
 
 See also: [Fee Escalation explanation in `rippled` repository](https://github.com/ripple/rippled/blob/release/src/ripple/app/misc/FeeEscalation.md).
 
@@ -68,7 +68,7 @@ For more information on queued transactions, see [Transaction Queue](../server/t
 
 ## Reference Transaction Cost
 
-The "Reference Transaction" is the cheapest (non-free) transaction, in terms of the necessary [transaction cost](transaction-cost.md) before load scaling. Most transactions have the same cost as the reference transaction. Some transactions, such as [multi-signed transactions](multi-signing.md), require a multiple of this cost instead. When the open ledger cost escalates, the requirement is proportional to the basic cost of the transaction.
+The "Reference Transaction" is the cheapest (non-free) transaction, in terms of the necessary [transaction cost](transaction-cost.md) before load scaling. Most transactions have the same cost as the reference transaction. Some transactions, such as [multi-signed transactions](multi-signing.mdx), require a multiple of this cost instead. When the open ledger cost escalates, the requirement is proportional to the basic cost of the transaction.
 
 ### Fee Levels
 
@@ -77,7 +77,7 @@ _Fee levels_ represent the proportional difference between the minimum cost and 
 | Transaction | Minimum cost in drops | Minimum cost in Fee levels | Double cost in drops | Double cost in fee levels |
 |-------------|-----------------------|----------------------------|----------------------|---------------------------|
 | Reference transaction (most transactions) | 10 | 256 | 20 | 512 |
-| [Multi-signed transaction](multi-signing.md) with 4 signatures | 50 | 256 | 100 | 512 |
+| [Multi-signed transaction](multi-signing.mdx) with 4 signatures | 50 | 256 | 100 | 512 |
 | [Key reset transaction](transaction-cost.md#key-reset-transaction) | 0 | (Effectively infinite) | N/A | (Effectively infinite) |
 | EscrowFinish transaction with 32-byte preimage. | 350 | 256 | 700 | 512 |
 

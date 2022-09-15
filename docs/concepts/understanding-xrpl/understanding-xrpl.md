@@ -10,7 +10,7 @@ Learn more about the inner workings of the XRP Ledger ecosystem.
 
 Learn about the different types of transaction.
 
-## [Tokens](tokens/tokens.md)
+## [Tokens](tokens/tokens.mdx)
 
 Learn about tokens that you can exchange on the XRP Ledger, including fungible and non-fungible tokens.
 

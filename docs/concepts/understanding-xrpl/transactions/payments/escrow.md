@@ -79,7 +79,7 @@ When using `crypto-conditions`, the EscrowFinish transaction must pay a [higher 
 
 If the escrow is purely time-locked with no crypto-condition, the EscrowFinish costs only the standard [transaction cost](../transaction-cost.html) for a reference transaction.
 
-The additional transaction cost required is proportional to the size of the fulfillment. Currently, an EscrowFinish with a fulfillment requires a minimum transaction cost of **330 drops of XRP plus 10 drops per 16 bytes in the size of the fulfillment**. If the transaction is [multi-signed](../multi-signing.md), the cost of multi-signing is added to the cost of the fulfillment.
+The additional transaction cost required is proportional to the size of the fulfillment. Currently, an EscrowFinish with a fulfillment requires a minimum transaction cost of **330 drops of XRP plus 10 drops per 16 bytes in the size of the fulfillment**. If the transaction is [multi-signed](../multi-signing.mdx), the cost of multi-signing is added to the cost of the fulfillment.
 
 <!--
 [drops of XRP](basic-data-types.html#specifying-currency-amounts)

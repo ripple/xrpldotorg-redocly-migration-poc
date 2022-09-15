@@ -13,8 +13,8 @@ These codes indicate that the transaction failed and was not included in a ledge
 | `tefBAD_AUTH`           | The key used to sign this account is not authorized to modify this account. (It could be authorized if the account had the same key set as the [Regular Key](../../accounts/cryptographic-keys.md).) |
 | `tefBAD_AUTH_MASTER`   | The single signature provided to authorize this transaction does not match the master key, but no regular key is associated with this address. |
 | `tefBAD_LEDGER`         | While processing the transaction, the ledger was discovered in an unexpected state. If you can reproduce this error, please [report an issue](https://github.com/ripple/rippled/issues) to get it fixed. |
-| `tefBAD_QUORUM`         | The transaction was [multi-signed](../multi-signing.md), but the total weights of all included signatures did not meet the quorum. |
-| `tefBAD_SIGNATURE`      | The transaction was [multi-signed](../multi-signing.md), but contained a signature for an address not part of a SignerList associated with the sending account. |
+| `tefBAD_QUORUM`         | The transaction was [multi-signed](../multi-signing.mdx), but the total weights of all included signatures did not meet the quorum. |
+| `tefBAD_SIGNATURE`      | The transaction was [multi-signed](../multi-signing.mdx), but contained a signature for an address not part of a SignerList associated with the sending account. |
 | `tefCREATED`             | **DEPRECATED.**                                     |
 | `tefEXCEPTION`           | While processing the transaction, the server entered an unexpected state. This may be caused by unexpected inputs, for example if the binary data for the transaction is grossly malformed. If you can reproduce this error, please [report an issue](https://github.com/ripple/rippled/issues) to get it fixed. |
 | `tefFAILURE`             | Unspecified failure in applying the transaction.    |
@@ -24,7 +24,7 @@ These codes indicate that the transaction failed and was not included in a ledge
 | `tefMAX_LEDGER`         | The transaction included a `LastLedgerSequence`parameter, but the current ledger's sequence number is already higher than the specified value. |
 | `tefNO_AUTH_REQUIRED`  | The `TrustSet` transaction tried to mark a trust line as authorized, but the `lsfRequireAuth` flag is not enabled for the corresponding account, so authorization is not necessary. |
 | `tefNO_TICKET`         | The transaction attempted to use a [Ticket](../tickets.md), but the specified `TicketSequence` number does not exist in the ledger, and cannot be created in the future because it is earlier than the sender's current sequence number. |
-| `tefNOT_MULTI_SIGNING` | The transaction was [multi-signed](../multi-signing.md), but the sending account has no SignerList defined. |
+| `tefNOT_MULTI_SIGNING` | The transaction was [multi-signed](../multi-signing.mdx), but the sending account has no SignerList defined. |
 | `tefPAST_SEQ`           | The sequence number of the transaction is lower than the current sequence number of the account sending the transaction. |
 | `tefTOO_BIG`            | The transaction would affect too many objects in the ledger. For example, this was an `AccountDelete` transaction but the account to be deleted owns over 1000 objects in the ledger. |
 | `tefWRONG_PRIOR`        | The transaction contained an `AccountTxnID` field (or the deprecated `PreviousTxnID` field), but the transaction specified there does not match the account's previous transaction. |

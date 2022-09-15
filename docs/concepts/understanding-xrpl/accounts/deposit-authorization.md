@@ -2,7 +2,7 @@
 
 _(Added by the DepositAuth amendment.)_
 
-Deposit Authorization is an optional [account](accounts.md) setting in the XRP Ledger. If enabled, Deposit Authorization blocks all transfers from strangers, including transfers of XRP and [tokens](../tokens/tokens.md). An account with Deposit Authorization can only receive value in two ways:
+Deposit Authorization is an optional [account](accounts.md) setting in the XRP Ledger. If enabled, Deposit Authorization blocks all transfers from strangers, including transfers of XRP and [tokens](../tokens/tokens.mdx). An account with Deposit Authorization can only receive value in two ways:
 
 - From accounts it has [preauthorized](#preauthorization).
 - By sending a transaction to receive the funds. For example, an account with Deposit Authorization could finish an escrow that was initiated by a stranger.
@@ -57,7 +57,7 @@ The following table summarizes whether a transaction type can deposit money with
 
 ## Enabling or Disabling Deposit Authorization
 
-An account can enable deposit authorization by sending an `AccountSet` transaction with the `SetFlag` field set to the `asfDepositAuth` value (9). The account can disable deposit authorization by sending an `AccountSet` transaction with the `ClearFlag` field set to the `asfDepositAuth` value (9). 
+An account can enable deposit authorization by sending an `AccountSet` transaction with the `SetFlag` field set to the `asfDepositAuth` value (9). The account can disable deposit authorization by sending an `AccountSet` transaction with the `ClearFlag` field set to the `asfDepositAuth` value (9).
 
 <!-- For more information on AccountSet flags, see [AccountSet flags](accountset.html). -->
 
@@ -85,7 +85,7 @@ After the DepositPreauth transaction has been processed, the authorized account 
 - `EscrowFinish`
 - `PaymentChannelClaim`
 
-Preauthorization has no effect on the other ways to send money to an account with DepositAuth enabled. 
+Preauthorization has no effect on the other ways to send money to an account with DepositAuth enabled.
 
 <!--
 See [Precise Semantics](#precise-semantics) for the exact rules.

@@ -181,7 +181,7 @@ Transactions are authorized by any of the following signature types:
 
 * A single signature from the master private key that is mathematically associated with the sending address. You can disable or enable the master key pair using an `AccountSet` transaction.
 * A single signature that matches the regular private key associated with the address. You can add, remove, or replace a regular key pair using a `SetRegularKey` transaction.
-* A [multi-signature](multi-signing.md) that matches a list of signers owned by the address. You can add, remove, or replace a list of signers using a `SignerListSet` transaction.
+* A [multi-signature](multi-signing.mdx) that matches a list of signers owned by the address. You can add, remove, or replace a list of signers using a `SignerListSet` transaction.
 
 Any signature type can authorize any type of transaction, with the following exceptions:
 

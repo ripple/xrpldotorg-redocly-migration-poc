@@ -2,7 +2,7 @@
 
 _(Added by the TicketBatch amendment.)_
 
-A Ticket in the XRP Ledger is a way of setting aside a sequence number for a transaction without sending it right away. Tickets allow transactions to be sent outside of the normal sequence order. One use case for this is to allow for [multi-signed transactions](multi-signing.md) where it may take a while to collect the necessary signatures: while collecting signatures for a transaction that uses a Ticket, you can still send other transactions.
+A Ticket in the XRP Ledger is a way of setting aside a sequence number for a transaction without sending it right away. Tickets allow transactions to be sent outside of the normal sequence order. One use case for this is to allow for [multi-signed transactions](multi-signing.mdx) where it may take a while to collect the necessary signatures: while collecting signatures for a transaction that uses a Ticket, you can still send other transactions.
 
 ## Background
 
@@ -12,7 +12,7 @@ However, there are some situations where sequence numbers are too limiting. For 
 
 - Two or more users share access to an account, each with the ability to send transactions independently. If these users try to send transactions around the same time without coordinating first, they may each try to use the same Sequence number for different transactions, and only one can succeed.
 - You may want to prepare and sign a transaction in advance, then save it in some secure storage so that it can be executed at any future point if certain events occur. However, if you want to continue using your account as normal in the meantime, you don't know what Sequence number the set-aside transaction will need. <!-- STYLE_OVERRIDE: will -->
-- When [multiple people must sign a transaction](multi-signing.md) to make it valid, it can be difficult to plan more than one transaction at a time. If you number the transactions with separate sequence numbers, you can't send the later-numbered transactions until everyone has signed the previous transactions; but if you use the same sequence number for each pending transactions, only one of them can succeed.
+- When [multiple people must sign a transaction](multi-signing.mdx) to make it valid, it can be difficult to plan more than one transaction at a time. If you number the transactions with separate sequence numbers, you can't send the later-numbered transactions until everyone has signed the previous transactions; but if you use the same sequence number for each pending transactions, only one of them can succeed.
 
 Tickets provide a solution to all of these problems by setting aside sequence numbers that can be used later, outside of their usual order, but still no more than once each.
 
