@@ -28,7 +28,7 @@ In this quickstart, you can:
 3. [Mint and Burn NFTokens](mint-and-burn-nftokens.md).
 4. [Transfer NFTokens](transfer-nftokens.md).
 
-There is also an expanded lesson demonstrating how to [Broker a NFToken Sale](broker-sale.md).
+There are also extended lessons demonstrating how to [Broker a NFToken Sale](broker-sale.md), [Assign an Authorized Minter](authorize-minter.md), and [Batch Mint NFTokens](batch-minting.md).
 
 
 ## Prerequisites
