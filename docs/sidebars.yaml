@@ -159,6 +159,19 @@
       page: use-cases/interoperability/index.mdx
       pages:
         - page: use-cases/interoperability/sidechains.md
+        - label: Hooks
+          href: https://xrpl-hooks.readme.io/
+          external: true
+- group: XRPL Infrastructure
+  page: infrastructure/index.mdx
+  expanded: false
+  pages:
+    - label: rippled Server
+      href: https://xrpl.org/manage-the-rippled-server.html
+      external: true 
+    - label: Clio server
+      href: https://xrpl.org/manage-the-clio-server.html
+      external: true  
 - group: API Reference
   expanded: false
   pages:

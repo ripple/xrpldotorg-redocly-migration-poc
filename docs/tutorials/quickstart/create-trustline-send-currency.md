@@ -1,15 +1,18 @@
 
 # 2. Create TrustLine and Send Currency
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EZXJMgRE3BE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 This example shows how to:
 
 
-
-1. Configure accounts to allow transfer of funds to third party accounts.
-2. Set a currency type for transactions.
-3. Create a TrustLine between the standby account and the operational account.
-4. Send issued currency between accounts.
-5. Display account balances for all currencies.
+1. Retrieve accounts based on their seeds.
+2. Configure accounts to allow transfer of funds to third party accounts.
+3. Set a currency type for transactions.
+4. Create a TrustLine between the standby account and the operational account.
+5. Send issued currency between accounts.
+6. Display account balances for all currencies.
 
 
 [![Test harness with currency transfer](../../img/quickstart5.png)](../../img/quickstart5.png)
