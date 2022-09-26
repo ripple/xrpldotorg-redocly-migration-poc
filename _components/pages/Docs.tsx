@@ -205,7 +205,7 @@ export default function Docs() {
               <div className="dg-lg-block mb-5">
                 <a
                   className="btn btn-primary btn-arrow get-started-button"
-                  href="https://xrpl.org/xrpl-quickstart.html"
+                  href="./tutorials/quickstart/"
                 >
                   Get Started
                 </a>
