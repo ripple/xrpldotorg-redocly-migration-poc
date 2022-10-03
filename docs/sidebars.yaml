@@ -68,7 +68,6 @@
       expanded: false
       pages:
         - page: concepts/understanding-xrpl/transactions/transaction-types.md
-        - page: concepts/understanding-xrpl/transactions/transaction-common-fields.md
         - page: concepts/understanding-xrpl/transactions/transaction-metadata.md
         - page: concepts/understanding-xrpl/transactions/source-and-destination-tags.md
         - page: concepts/understanding-xrpl/transactions/trust-lines-and-issuing.md
@@ -185,6 +184,11 @@
             - page: references/protocol/transactions/transaction-results/index.md
         - group: Ledger Entries
         - group: Conventions
+          pages:
+            - page: references/protocol/conventions/basic-data-types.md
+            - page: references/protocol/conventions/currency-formats.md
+            - page: references/protocol/conventions/nftoken.md
+            - page: references/protocol/conventions/binary-format.md
     - group: XRP Ledger APIs
       expanded: false
       pages:

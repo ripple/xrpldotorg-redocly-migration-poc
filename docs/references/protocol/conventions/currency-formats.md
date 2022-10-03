@@ -1,10 +1,10 @@
 ---
 html: currency-formats.html
 parent: basic-data-types.html
-blurb: Precision and range for currency numbers, plus formats of custom currency codes.
-label:
-  - XRP
-  - Tokens
+description: Precision and range for currency numbers, plus formats of custom currency codes.
+labels:
+ - XRP
+ - Tokens
 ---
 # Currency Formats
 
