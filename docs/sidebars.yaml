@@ -21,7 +21,7 @@
         - page: tutorials/quickstart/transfer-nftokens.md
         - page: tutorials/quickstart/broker-sale.md
         - page: tutorials/quickstart/authorize-minter.md
-        - page: tutorials/quickstart/batch-minting.md 
+        - page: tutorials/quickstart/batch-minting.md
 - group: Understanding the XRPL
   page: concepts/understanding-xrpl/understanding-xrpl.md
   expanded: false
@@ -113,6 +113,7 @@
               expanded: false
               pages:
                 - page: concepts/understanding-xrpl/tokens/non-fungible-token-transfers.md
+                - page: concepts/understanding-xrpl/tokens/nftoken-batch-minting.md 
         - page: concepts/understanding-xrpl/tokens/transfer-fees.md
         - page: concepts/understanding-xrpl/tokens/paths.md
         - page: concepts/understanding-xrpl/tokens/authorized-trust-lines.md
