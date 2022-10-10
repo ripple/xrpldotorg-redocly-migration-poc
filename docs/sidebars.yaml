@@ -20,7 +20,8 @@
         - page: tutorials/quickstart/mint-and-burn-nftokens.md
         - page: tutorials/quickstart/transfer-nftokens.md
         - page: tutorials/quickstart/broker-sale.md
-        - page: tutorials/quickstart/authorize-minter.md     
+        - page: tutorials/quickstart/authorize-minter.md
+        - page: tutorials/quickstart/batch-minting.md 
 - group: Understanding the XRPL
   page: concepts/understanding-xrpl/understanding-xrpl.md
   expanded: false
