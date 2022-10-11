@@ -30,6 +30,8 @@ nav:
         items:
           - label: Impact
             link: /about/impact/
+          - label: Carbon Calculator
+            link: /about/carbon-calculator
       - group: About
         items:
           - label: XRPL Foundation
@@ -76,7 +78,6 @@ nav:
             href: /infrastructure/xrpl-servers/
       - label: Dev Tools
         link: /docs/dev-tools/
-
 
   - group: Community
     items:
