@@ -17,6 +17,7 @@
     "html-react-parser": "^3.0.1",
     "jquery": "^3.6.0",
     "jssoup": "^0.0.15",
+    "lottie-web": "^5.9.6",
     "marked": "^4.0.18",
     "preval.macro": "^5.0.0",
     "react-bootstrap": "^2.5.0",
