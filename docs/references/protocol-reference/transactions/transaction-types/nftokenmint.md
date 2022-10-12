@@ -12,17 +12,13 @@ status: not_enabled
 
 The `NFTokenMint` transaction creates a non-fungible token and adds it to the relevant [NFTokenPage object][] of the `NFTokenMinter` as an [NFToken][] object. A required parameter to this transaction is the `Token` field specifying the actual token. This transaction is the only opportunity the `NFTokenMinter` has to specify any token fields that are defined as immutable (for example, the `TokenFlags`).
 
-If the transaction is successful, the newly minted token is owned by the account (the `minter` account) that executed the transaction. If needed, the server creates a new `NFTokenPage` for the account and applies a reserve charge.
-
 
 ## Example {{currentpage.name}} JSON
-
 
 ```json
 {
   "TransactionType": "NFTokenMint",
   "Account": "rvYAfWj5gh67oV6fW32ZzP3Aw4Eubs59B",
-  "Issuer": "rNCFjv8Ek5oDrNiMJ3pw6eLLFtMjZLJnf2",
   "TransferFee": 314,
   "NFTokenTaxon": 0,
   "Flags": 8,
@@ -40,16 +36,12 @@ If the transaction is successful, the newly minted token is owned by the account
 }
 ```
 
-
-This transaction assumes that the issuer, `rNCFjv8Ek5oDrNiMJ3pw6eLLFtMjZLJnf2`, has set the `NFTokenMinter` field in its `AccountRoot` to `rvYAfWj5gh67oV6fW32ZzP3Aw4Eubs59B`, thereby authorizing that account to mint tokens on its behalf.
-
-
 {% include '_snippets/tx-fields-intro.md' %}
 
 | Field         | JSON Type           | [Internal Type][] | Description        |
 |:--------------|:--------------------|:------------------|:-------------------|
 | `NFTokenTaxon` | Number | UInt32 | The taxon associated with the token. The taxon is generally a value chosen by the minter of the token. A given taxon can be used for multiple tokens. Taxon identifiers greater than `0xFFFF'FFFF` are disallowed. |
-| `Issuer` | String | AccountID | _(Optional)_ The issuer of the token, if the sender of the account is issuing it on behalf of another account. This field must be omitted if the account sending the transaction is the issuer of the `NFToken`. If provided, the issuer's [AccountRoot object][] must have the `NFTokenMinter` field set to the sender of this transaction (this transaction's `Account` field). |
+| `Issuer` | String | AccountID | _(Optional)_ The issuer of the token, if the sender of the account is issuing it on behalf of another account. This field must be omitted if the account sending the transaction is the issuer of the `NFToken`. If provided, the issuer's `AccountRoot` object must have the `NFTokenMinter` field set to the sender of this transaction (this transaction's `Account` field). |
 | `TransferFee` | Number | UInt16 | _(Optional)_ The value specifies the fee charged by the issuer for secondary sales of the `NFToken`, if such sales are allowed. Valid values for this field are between 0 and 50000 inclusive, allowing transfer rates of between 0.00% and 50.00% in increments of 0.001. If this field is provided, the transaction MUST have the [`tfTransferable` flag](#nftokenmint-flags) enabled. |
 | `URI` | String | Blob | _(Optional)_ Up to 256 bytes of arbitrary data. In JSON, this should be encoded as a string of hexadecimal. You can use the [`xrpl.convertStringToHex`](https://js.xrpl.org/modules.html#convertStringToHex) utility to convert a URI to its hexadecimal equivalent. This is intended to be a URI that points to the data or metadata associated with the NFT. The contents could decode to an HTTP or HTTPS URL, an IPFS URI, a magnet link, immediate data encoded as an [RFC2379 "data" URL](https://datatracker.ietf.org/doc/html/rfc2397), or even an issuer-specific encoding. The URI is NOT checked for validity. |
 
@@ -75,18 +67,18 @@ If you need to specify additional information during minting (for example, detai
 
 ## Issuing on behalf of another account
 
-If you want to issue an NFT for another account there are two things you must do. Given that *Account A* is your account and *Account B* is the account for which you want to mint a NFToken:
+If you want to issue an `NFToken` for another account there are two things you must do. Given that *Account A* is your account and *Account B* is the account for which you want to mint a `NFToken`:
 
-1. Set the `NFTokenMinter` account setting on *Account B* to be *Account A*. (This says that *Account B* trusts *Account A* to create NFTs on their behalf.)
-2. When you mint the NFToken, set the `Issuer` field to Account B.
+1. Set the `NFTokenMinter` account setting on *Account B* to be *Account A*. (This says that *Account B* trusts *Account A* to create `NFToken` objects on their behalf.)
+2. When you mint the `NFToken`, set the `Issuer` field to Account B.
 
-### Example of NFTokenMint with an issuer
+### Example of `NFTokenMint` with an issuer
 ```json
 {
   "TransactionType": "NFTokenMint",
   "Account": "rvYAfWj5gh67oV6fW32ZzP3Aw4Eubs59B",
   "Issuer": "rNCFjv8Ek5oDrNiMJ3pw6eLLFtMjZLJnf2",
-  "TransferFee": 314,
+  "TransferFee": 25000,
   "NFTokenTaxon": 0,
   "Flags": 8,
   "Fee": "10",
