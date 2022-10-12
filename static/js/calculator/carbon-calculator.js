@@ -1,65 +1,3 @@
-const coCash = require("../co2-cash.json");
-const coCredit = require("../co2-credit.json");
-const coCrypto = require("../co2-credit.json");
-const gasCrypto = require("../gas-crypto.json");
-const gasCash = require("../gas-cash.json");
-const gasCredit = require("../gas-credit.json");
-const lottie = require("lottie-web");
-
-function co2CashAnimation() {
-  lottie.loadAnimation({
-    container: document.getElementById("co2Animation"),
-    renderer: "svg",
-    loop: false,
-    autoplay: true,
-    animationData: coCash,
-  });
-}
-function co2CreditAnimation() {
-  lottie.loadAnimation({
-    container: document.getElementById("co2Animation"),
-    renderer: "svg",
-    loop: false,
-    autoplay: true,
-    animationData: coCredit,
-  });
-}
-function co2CryptoAnimation() {
-  lottie.loadAnimation({
-    container: document.getElementById("co2Animation"),
-    renderer: "svg",
-    loop: false,
-    autoplay: true,
-    animationData: coCrypto,
-  });
-}
-function gasCryptoAnimation() {
-  lottie.loadAnimation({
-    container: document.getElementById("gasAnimation"),
-    renderer: "svg",
-    loop: false,
-    autoplay: true,
-    animationData: gasCrypto,
-  });
-}
-function gasCashAnimation() {
-  lottie.loadAnimation({
-    container: document.getElementById("gasAnimation"),
-    renderer: "svg",
-    loop: false,
-    autoplay: true,
-    animationData: gasCash,
-  });
-}
-function gasCreditAnimation() {
-  lottie.loadAnimation({
-    container: document.getElementById("gasAnimation"),
-    renderer: "svg",
-    loop: false,
-    autoplay: true,
-    animationData: gasCredit,
-  });
-}
 let calculator_data = {
   btc: {
     kWh: 951.58,
@@ -151,7 +89,6 @@ function doCalculations(val) {
         let dot = document.getElementById(data_comp + "-" + data_type + "-dot");
         dot.style.transition = "all .2s ease-in-out";
         dot.style.transform = "scale(" + kWhComp * 100 + ")";
-        dot.style.webkitTransform = "scale(" + kWhComp * 100 + ")";
         dot.style.msTransform = "scale(" + kWhComp * 100 + ")";
       }
     }
