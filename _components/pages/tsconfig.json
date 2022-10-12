@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["ES2021.String"],
-    "jsx": "react",
-    "target": "es5",
+    "jsx": "react"
   },
   "files": ["Faq.tsx"]
 }
