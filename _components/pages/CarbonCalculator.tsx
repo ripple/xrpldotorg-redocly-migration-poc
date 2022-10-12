@@ -13,7 +13,6 @@ import React, { useEffect } from "react";
 import { usePathPrefix } from "@redocly/developer-portal/ui";
 import { Helmet } from "react-helmet";
 
-
 export default function CarbonCalculator() {
   const prefix = usePathPrefix();
   const TRACKING_ID = "UA-45576805-2";
@@ -168,7 +167,7 @@ export default function CarbonCalculator() {
                       type="range"
                       min="20"
                       max="100"
-                      value="60"
+                      defaultValue="60"
                       className="slider w-100"
                       id="myRange"
                       step="20"
