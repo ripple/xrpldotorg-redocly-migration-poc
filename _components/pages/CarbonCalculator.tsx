@@ -15,7 +15,7 @@ import { Helmet } from "react-helmet";
 
 export default function CarbonCalculator() {
   const prefix = usePathPrefix();
-  const TRACKING_ID = "UA-45576805-2";
+  const TRACKING_ID = "";
   ReactGA.initialize(TRACKING_ID);
   const numbers = [
     { num: "20" },
@@ -24,13 +24,6 @@ export default function CarbonCalculator() {
     { num: "80" },
     { num: "100" },
   ];
-
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: "page_info",
-    page_type: "Splash Page",
-    page_group: "About",
-  });
 
   return (
     <>
