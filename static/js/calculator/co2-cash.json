@@ -12,7 +12,7 @@ var coCash = {
       "id": "image_0",
       "w": 65,
       "h": 61,
-      "u": "/img/calculator/co2-cash/",
+      "u": "../img/calculator/co2-cash/",
       "p": "img_0.png",
       "e": 0
     },
@@ -20,7 +20,7 @@ var coCash = {
       "id": "image_1",
       "w": 66,
       "h": 15,
-      "u": "/img/calculator/co2-cash/",
+      "u": "../img/calculator/co2-cash/",
       "p": "img_1.png",
       "e": 0
     },
@@ -28,7 +28,7 @@ var coCash = {
       "id": "image_2",
       "w": 649,
       "h": 270,
-      "u": "/img/calculator/co2-cash/",
+      "u": "../img/calculator/co2-cash/",
       "p": "img_2.png",
       "e": 0
     },
@@ -36,7 +36,7 @@ var coCash = {
       "id": "image_3",
       "w": 649,
       "h": 270,
-      "u": "/img/calculator/co2-cash/",
+      "u": "../img/calculator/co2-cash/",
       "p": "img_3.png",
       "e": 0
     }

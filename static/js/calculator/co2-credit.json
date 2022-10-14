@@ -12,7 +12,7 @@ var coCredit = {
       "id": "image_0",
       "w": 43,
       "h": 14,
-      "u": "/img/calculator/co2-credit/",
+      "u": "../img/calculator/co2-credit/",
       "p": "img_0.png",
       "e": 0
     },
@@ -20,7 +20,7 @@ var coCredit = {
       "id": "image_1",
       "w": 36,
       "h": 23,
-      "u": "/img/calculator/co2-credit/",
+      "u": "../img/calculator/co2-credit/",
       "p": "img_1.png",
       "e": 0
     },
@@ -28,7 +28,7 @@ var coCredit = {
       "id": "image_2",
       "w": 66,
       "h": 15,
-      "u": "/img/calculator/co2-credit/",
+      "u": "../img/calculator/co2-credit/",
       "p": "img_2.png",
       "e": 0
     },
@@ -36,7 +36,7 @@ var coCredit = {
       "id": "image_3",
       "w": 649,
       "h": 270,
-      "u": "/img/calculator/co2-credit/",
+      "u": "../img/calculator/co2-credit/",
       "p": "img_3.png",
       "e": 0
     }

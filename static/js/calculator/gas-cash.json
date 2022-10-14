@@ -12,7 +12,7 @@ var gasCash = {
       "id": "image_0",
       "w": 649,
       "h": 270,
-      "u": "/img/calculator/gas-cash/",
+      "u": "../img/calculator/gas-cash/",
       "p": "img_0.png",
       "e": 0
     },
@@ -20,7 +20,7 @@ var gasCash = {
       "id": "image_1",
       "w": 649,
       "h": 270,
-      "u": "/img/calculator/gas-cash/",
+      "u": "../img/calculator/gas-cash/",
       "p": "img_1.png",
       "e": 0
     }
