@@ -107,5 +107,5 @@ The response follows the [standard format][], with a successful result containin
 * Any of the [universal error types][].
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

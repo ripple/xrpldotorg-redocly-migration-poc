@@ -28,7 +28,12 @@ export default function CustomFooter(props: FooterProps) {
                 <FooterSeparator key={columnItem.label + '_' + columnItemInex}>{columnItem.label}</FooterSeparator>
               ) : (
                 <ColumnListItem key={columnItemInex}>
-                  <Link to={columnItem.link} target={columnItem.target} external={columnItem.external} className="nav-link">
+                  <Link
+                    to={columnItem.link}
+                    target={columnItem.target}
+                    external={columnItem.external}
+                    className="nav-link"
+                  >
                     {columnItem.label}
                   </Link>
                 </ColumnListItem>
@@ -41,10 +46,7 @@ export default function CustomFooter(props: FooterProps) {
   ) : null;
 
   const infoElement =
-    copyrightText || siteVersion ? (
-      <AbsoluteBottomFooter copyrightText={copyrightText}>
-      </AbsoluteBottomFooter>
-    ) : null;
+    copyrightText || siteVersion ? <AbsoluteBottomFooter copyrightText={copyrightText}></AbsoluteBottomFooter> : null;
 
   return (
     <FooterWrapper>
@@ -56,12 +58,12 @@ export default function CustomFooter(props: FooterProps) {
 }
 
 // very important for NavWrapper to be a "footer" HTML tag
-export function FooterWrapper (props) {
+export function FooterWrapper(props) {
   return (
     <footer className="xrpl-footer" {...props}>
       {props.children} {}
     </footer>
-  )
+  );
 }
 
 export function FooterColumns(props) {
@@ -71,25 +73,30 @@ export function FooterColumns(props) {
         {props.children} {}
       </div>
     </section>
-  )
+  );
 }
 
 export function FooterCol(props) {
   return (
-    <div class="col-lg">
+    <div className="col-lg">
       {props.children} {}
     </div>
-  )
+  );
 }
 
 export function AbsoluteBottomFooter(props) {
   const prefix = usePathPrefix();
-  const {copyrightText} = props;
+  const { copyrightText } = props;
   return (
     <section className="container-fluid mt-20 absolute-bottom-footer">
       <div className="d-lg-flex row">
         <Link to="/" className="footer-brand">
-          <img src={require("../static/img/XRPLedger_DevPortal-white.svg")} className="logo" height="24" alt="XRP Ledger" />
+          <img
+            src={require('../static/img/XRPLedger_DevPortal-white.svg')}
+            className="logo"
+            height="24"
+            alt="XRP Ledger"
+          />
         </Link>
         <span className="flex-grow-1">&nbsp;</span>
         <div className="copyright-license">
@@ -98,7 +105,7 @@ export function AbsoluteBottomFooter(props) {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export function ColumnList(props) {
@@ -106,7 +113,7 @@ export function ColumnList(props) {
     <ul className="nav footer-nav flex-column">
       {props.children} {}
     </ul>
-  )
+  );
 }
 
 export function ColumnListItem(props) {
@@ -114,7 +121,7 @@ export function ColumnListItem(props) {
     <li className="nav-item">
       {props.children} {}
     </li>
-  )
+  );
 }
 
 export const FooterSeparator = styled.li`
@@ -129,6 +136,8 @@ export const ColumnTitle = styled.h5``;
 
 export function JumpToTop() {
   return (
-    <a href="#main_content_wrapper" className="jump-to-top btn btn-primary" role="button" title="Jump to top of page"><i class="fa fa-arrow-up"></i></a>
-  )
+    <a href="#main_content_wrapper" className="jump-to-top btn btn-primary" role="button" title="Jump to top of page">
+      <i className="fa fa-arrow-up"></i>
+    </a>
+  );
 }

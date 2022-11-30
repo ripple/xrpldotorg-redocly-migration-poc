@@ -129,6 +129,6 @@ The `rippled` server and its APIs represent time as an unsigned integer. This nu
 Don't convert Ripple Epoch times to UNIX Epoch times in 32-bit variables: this could lead to integer overflows.
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}			
-{% include '_snippets/tx-type-links.md' %}			
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

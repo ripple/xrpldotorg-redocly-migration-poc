@@ -76,4 +76,4 @@ LedgerConsensus:ERR Potential Censorship: Eligible tx E08D6E9754025BA2534A787076
   - [トランザクションの結果](transaction-results.html)
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}

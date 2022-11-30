@@ -42,6 +42,6 @@ Create a unidirectional channel and fund it with XRP. The address sending this t
 | `DestinationTag` | Number    | UInt32            | _(Optional)_ Arbitrary tag to further specify the destination for this payment channel, such as a hosted recipient at the destination address. |
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

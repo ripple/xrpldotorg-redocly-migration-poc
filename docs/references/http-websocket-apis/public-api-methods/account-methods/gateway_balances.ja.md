@@ -226,5 +226,5 @@ labels:
 * `lgrNotFound` - `ledger_hash`または`ledger_index`で指定したレジャーが存在しないか、存在してはいるもののサーバーが保有していません。
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

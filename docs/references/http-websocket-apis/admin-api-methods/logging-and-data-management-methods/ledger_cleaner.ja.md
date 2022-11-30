@@ -76,6 +76,6 @@ _`ledger_cleaner`メソッドは、権限のないユーザーは実行できな
 * `internal`: いずれかのパラメーターが正しく指定されていない場合。（これはバグです。本来のエラーコードは`invalidParams`です。）
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

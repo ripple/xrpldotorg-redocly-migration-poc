@@ -34,6 +34,6 @@ labels:
 | `tefWRONG_PRIOR` | トランザクションに`AccountTxnID`フィールド（または廃止予定の`PreviousTxnID`フィールド）が含まれていますが、このフィールドに指定されているトランザクションはアカウントの前のトランザクションに一致しません。 |
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

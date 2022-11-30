@@ -76,4 +76,4 @@ Here are some scenarios that could cause the detector to issue false positive me
     - [Transaction Results](transaction-results.html)
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}

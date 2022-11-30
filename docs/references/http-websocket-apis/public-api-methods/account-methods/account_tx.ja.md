@@ -597,5 +597,5 @@ rippled -- account_tx r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59 -1 -1 2 5 1 0 1
 * `lgrIdxsInvalid` - 要求で`ledger_index_min`の前にある`ledger_index_max`を指定したか、[ネットワークと同期](troubleshoot-the-rippled-server.html)されていないためにサーバーに検証済みレジャーの範囲が存在しません。
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

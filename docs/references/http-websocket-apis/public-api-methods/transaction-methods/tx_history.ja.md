@@ -900,5 +900,5 @@ rippled tx_history 0
 * `noPermission` - `start`フィールドに指定されている値が10000を超えていますが、サーバーに管理者として接続していません。
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

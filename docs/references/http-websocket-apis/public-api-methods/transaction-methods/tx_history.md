@@ -1452,5 +1452,5 @@ The fields included in each transaction object vary slightly depending on the ty
 * `noPermission` - The `start` field specified was greater than 10000, but you are not connected to the server as an admin.
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

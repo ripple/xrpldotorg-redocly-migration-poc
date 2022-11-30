@@ -445,5 +445,5 @@ Each trust line object has some combination of the following fields:
 * `actMalformed` - If the `marker` field provided is not acceptable.
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

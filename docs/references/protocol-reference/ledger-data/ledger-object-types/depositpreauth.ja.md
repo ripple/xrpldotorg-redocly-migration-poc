@@ -51,6 +51,6 @@ labels:
 * 事前承認されたアカウント（このオブジェクトを作成した[DepositPreauthトランザクション][]の`Authorized`フィールド、つまり事前承認を受けたユーザー）のAccountID。
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}			
-{% include '_snippets/tx-type-links.md' %}			
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

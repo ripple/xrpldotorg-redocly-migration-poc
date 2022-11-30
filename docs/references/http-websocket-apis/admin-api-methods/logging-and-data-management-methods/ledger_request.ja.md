@@ -188,6 +188,6 @@ Connecting to 127.0.0.1:5005
 * `lgrNotFound` - レジャーがまだ利用可能ではない場合。これは、サーバーがレジャーの取得を開始していますが、要求されたレジャーが接続されたどのピアにもない場合には失敗する可能性があることを意味します。（以前はこのエラーにはコード`ledgerNotFound`が使用されていました。）[更新: rippled 0.30.1][新規: rippled 0.30.1]
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

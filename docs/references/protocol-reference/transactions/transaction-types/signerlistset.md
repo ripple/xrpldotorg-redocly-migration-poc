@@ -61,6 +61,6 @@ You cannot remove the last method of signing transactions from an account. If an
 With the [MultiSignReserve amendment][] enabled, creating or replacing a signer list enables the `lsfOneOwnerCount` flag on the [SignerList object](signerlist.html). When this flag is enabled, the XRP Ledger is able to lower the [`OwnerCount`](accountroot.html#accountroot-fields) and [owner reserve](reserves.html#owner-reserves) for the signer list. For more information, see [SignerList Flags](signerlist.html#signerlist-flags).
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

@@ -47,6 +47,6 @@ Checkに相当する資金があるとは保証されないため、送金元に
 - `Amount`または`DeliverMin` がCheckの通貨（およびXRP以外の通貨の場合はイシュアー）に一致しない場合、トランザクションは結果コード`temBAD_CURRENCY`で失敗します。
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

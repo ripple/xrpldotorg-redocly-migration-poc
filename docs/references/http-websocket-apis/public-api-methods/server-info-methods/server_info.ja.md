@@ -335,5 +335,5 @@ rippled server_info
 * いずれかの[汎用エラータイプ][]。
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

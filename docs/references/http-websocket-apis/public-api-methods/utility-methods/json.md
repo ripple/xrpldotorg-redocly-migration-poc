@@ -46,5 +46,5 @@ An example of a successful response:
 The response follows the [standard format][], with whichever fields are appropriate to the type of command made.
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

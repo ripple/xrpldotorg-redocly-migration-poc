@@ -452,5 +452,5 @@ The following fields are deprecated, and may be omitted: `paths_canonical`, and 
 * `srcIsrMalformed` - The `issuer` field of one or more of the currency objects in the request is not valid.
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

@@ -51,6 +51,6 @@ These codes indicate that the transaction was malformed, and cannot succeed acco
 | `temDISABLED`                  | The transaction requires logic that is disabled. Typically this means you are trying to use an [amendment](amendments.html) that is not enabled for the current ledger. |
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

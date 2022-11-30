@@ -27,7 +27,7 @@ An `EnableAmendment` [pseudo-transaction](pseudo-transaction-types.html) marks a
   "Sequence": 0,
   "SigningPubKey": "",
   "TransactionType": "EnableAmendment"
-}  
+}
 ```
 
 
@@ -51,6 +51,6 @@ A `Flags` value of `0` (no flags) or an omitted `Flags` field indicates that the
 | `tfLostMajority` | `0x00020000` | 131072        | Support for this amendment decreased to less than 80% of trusted validators starting with this ledger version. |
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

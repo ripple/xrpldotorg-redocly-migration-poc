@@ -101,5 +101,5 @@ labels:
 * `badMarket` - `books` フィールドに指定されている1つ以上のオーダーブックが存在していません（ある通貨をその通貨自体と交換するオファーなど）。
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

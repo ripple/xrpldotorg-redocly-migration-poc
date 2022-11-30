@@ -219,5 +219,5 @@ Each offer object contains the following fields:
 * `actMalformed` - The `marker` field provided is incorrect.
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

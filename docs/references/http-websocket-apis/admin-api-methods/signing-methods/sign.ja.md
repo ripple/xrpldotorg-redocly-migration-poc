@@ -13,7 +13,7 @@ labels:
 {% include '_snippets/public-signing-note.md' %}
 <!--_ -->
 
-**注意:** 独自の`rippled`サーバーを運用している場合を除き、このコマンドを使用するのではなく、[クライアントライブラリ](client-libraries.html)を実行してください。詳細については[安全な署名の設定](set-up-secure-signing.html)を参照してください。 
+**注意:** 独自の`rippled`サーバーを運用している場合を除き、このコマンドを使用するのではなく、[クライアントライブラリ](client-libraries.html)を実行してください。詳細については[安全な署名の設定](set-up-secure-signing.html)を参照してください。
 
 ## 要求フォーマット
 要求フォーマットの例:
@@ -226,5 +226,5 @@ Connecting to 127.0.0.1:5005
 * `noPath` - トランザクションにパスが含まれておらず、サーバーは、このペイメントの発生経路となるパスを検出できませんでした。
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

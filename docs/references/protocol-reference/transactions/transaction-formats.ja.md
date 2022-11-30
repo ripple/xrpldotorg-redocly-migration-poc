@@ -2,7 +2,7 @@
 html: transaction-formats.html
 parent: protocol-reference.html
 blurb: トランザクションは、XRP Ledgerを変更する唯一の方法です。
-template: pagetype-category.html.jinja
+my-template: pagetype-category.html.jinja
 ---
 # トランザクションのフォーマット
 
@@ -10,6 +10,6 @@ template: pagetype-category.html.jinja
 
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

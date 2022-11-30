@@ -243,5 +243,5 @@ The response follows the [standard format][], with a successful result containin
 * `badSecret` - The secret value supplied was invalidly-formatted.
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

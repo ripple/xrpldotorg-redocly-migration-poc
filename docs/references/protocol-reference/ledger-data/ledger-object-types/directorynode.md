@@ -104,6 +104,6 @@ The lower 64 bits of an Offer Directory's ID represent the `TakerPays` amount di
 * The page number of this object. (Since 0 is the root DirectoryNode, this value is an integer 1 or higher.)
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}			
-{% include '_snippets/tx-type-links.md' %}			
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

@@ -47,6 +47,6 @@ TicketCreateトランザクションは、1つまたは複数の[シーケンス
 | `tecINSUFFICIENT_RESERVE` | 送信側のアカウントには、要求されたすべてのチケットの[所有者準備金](reserves.html)を満たすだけのXRPがありません。 |
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

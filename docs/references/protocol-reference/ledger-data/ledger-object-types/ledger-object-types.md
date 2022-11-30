@@ -1,7 +1,7 @@
 ---
 html: ledger-object-types.html
 parent: ledger-data-formats.html
-template: pagetype-category.html.jinja
+my-template: pagetype-category.html.jinja
 labels:
   - Data Retention
 ---

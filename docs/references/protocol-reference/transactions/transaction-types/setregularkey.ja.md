@@ -41,6 +41,6 @@ labels:
 セキュリティを強化するために[マルチ署名](multi-signing.html)を使用できますが、マルチ署名を使用する場合には[トランザクションコスト][]および[準備金](reserves.html)に追加のXRPが必要となります。
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

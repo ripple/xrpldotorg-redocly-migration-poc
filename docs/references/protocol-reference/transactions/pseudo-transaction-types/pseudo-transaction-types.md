@@ -2,7 +2,7 @@
 html: pseudo-transaction-types.html
 parent: transaction-formats.html
 blurb: Formats of pseudo-transactions that validators sometimes apply to the XRP Ledger.
-template: pagetype-category.html.jinja
+my-template: pagetype-category.html.jinja
 labels:
   - Blockchain
 ---
@@ -33,6 +33,6 @@ Pseudo-transactions use the following common fields as normal:
 | `Flags`           | Number    | UInt32            | _(Optional)_ A set of bit-flags for this transaction. The meaning of specific flags varies based on the transaction type. |
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

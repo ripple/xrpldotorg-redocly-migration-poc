@@ -241,5 +241,5 @@ Each object in the `transactions` array, if present, may contain any or all of t
 * `lgrNotFound` - The ledger specified by the `ledger_hash` or `ledger_index` does not exist, or it does exist but the server does not have it.
 
 [fee levels]: transaction-cost.html#fee-levels
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

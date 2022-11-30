@@ -224,5 +224,5 @@ rippled transaction_entry E08D6E9754025BA2534A78707605E0601F03ACE063687A0CA1BDDA
 * `transactionNotFound` - 要求に指定されているトランザクションが指定のレジャーで見つかりませんでした。（トランザクションが異なるレジャーバージョンにあるか、またはトランザクションがまったく使用できない可能性があります。）
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

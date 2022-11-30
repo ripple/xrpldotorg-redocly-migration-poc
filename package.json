@@ -5,12 +5,10 @@
   "description": "XRP Ledger Developer Portal (Draft Redocly Version)",
   "license": "MIT",
   "scripts": {
-    "start": "redocly-portal develop -p 3000",
-    "build": "redocly-portal build",
-    "clean": "redocly-portal clean"
+    "start": "portal develop --port 4000"
   },
   "dependencies": {
-    "@redocly/developer-portal": "1.1.0-beta.101",
+    "@redocly/portal": "0.2.1",
     "babel-plugin-preval": "^5.1.0",
     "bootstrap": "^5.2.0",
     "fs": "^0.0.1-security",

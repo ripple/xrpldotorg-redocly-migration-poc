@@ -22,6 +22,6 @@ labels:
 **注記:** `full`、`validating`、`proposing`の区別は、グローバルネットワークの他者との同期の状況に基づいていますが、通常サーバーの上記の状態は一般的なオペレーションの中で変動します。
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}			
-{% include '_snippets/tx-type-links.md' %}			
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

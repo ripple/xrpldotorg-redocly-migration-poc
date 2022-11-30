@@ -350,5 +350,5 @@ rippled ripple_path_find '{"source_account":"r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59"
 * `srcIsrMalformed` - 要求の1つ以上の通貨オブジェクトの`issuer`フィールドが有効ではありません。
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

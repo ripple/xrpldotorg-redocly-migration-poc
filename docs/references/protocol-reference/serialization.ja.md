@@ -325,6 +325,6 @@ JSONオブジェクトにこれらのフィールドが含まれている場合�
 もう1つの特殊なケースとして`TransactionType`フィールドがあります。JSONではこのフィールドは便宜上、トランザクションタイプの名前の文字列として表現されますが、バイナリではこのフィールドはUInt16です。[定義ファイル](#定義ファイル)内の`TRANSACTION_TYPES`オブジェクトにより、これらの文字列が特定の数値にマップされます。
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}			
-{% include '_snippets/tx-type-links.md' %}			
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

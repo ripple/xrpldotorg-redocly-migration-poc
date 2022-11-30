@@ -165,6 +165,6 @@ XRPを金額なしで指定する場合は（主に、オーダーブックを�
 Rippleエポック時間を32ビット変数でUNIXエポック時間に変換しないでください。整数のオーバーフローが発生する恐れがあります。
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}			
-{% include '_snippets/tx-type-links.md' %}			
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

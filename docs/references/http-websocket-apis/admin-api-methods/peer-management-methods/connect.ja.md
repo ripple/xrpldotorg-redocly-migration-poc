@@ -104,6 +104,6 @@ Connecting to 127.0.0.1:5005
 * スタンドアロンモードでは接続できません - スタンドアロンモードではネットワーク関連のコマンドが無効にされています。
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

@@ -1,9 +1,9 @@
 import * as React from "react";
 import { XRPLCard } from "../XRPLCard";
-import { usePathPrefix } from "@redocly/developer-portal/ui";
+// import { usePathPrefix } from "@redocly/developer-portal/ui";
 
 export default function XRPLHome() {
-  const prefix = usePathPrefix();
+  const prefix = '';
   const benefits = [
     {
       id: "public",

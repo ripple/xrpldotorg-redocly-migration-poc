@@ -47,6 +47,6 @@ Escrowプロセスが終了または取り消されるまでXRPを隔離しま�
 [fix1571 Amendment][]が有効な場合は、`FinishAfter`、`Condition`のいずれかまたは両方を指定する必要があります。[新規: rippled 1.0.0][]
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

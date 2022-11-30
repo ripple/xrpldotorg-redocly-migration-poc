@@ -156,6 +156,6 @@ For most other entries, the value indicates the number of objects of that type c
 * `invalidParams` - One or more fields are specified incorrectly, or one or more required fields are missing.
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

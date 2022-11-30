@@ -49,6 +49,6 @@ _（[Checks Amendment][]が必要です）_
 - Checkの送金元または送金先のいずれかがレジャーでこれ以上のオブジェクトを所有できない場合、トランザクションは結果コード`tecDIR_FULL`で失敗します。
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

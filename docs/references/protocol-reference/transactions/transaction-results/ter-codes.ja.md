@@ -26,6 +26,6 @@ labels:
 | `terQUEUED`        | トランザクションは負荷スケーリングされた[トランザクションコスト](transaction-cost.html)の要件を満たしているが、オープンレジャーの要件を満たしていなかったため、トランザクションは将来のレジャーのキューに入れられました。 |
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

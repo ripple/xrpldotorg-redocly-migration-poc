@@ -104,6 +104,6 @@ DirectoryNodeのIDを作成するときには、DirectoryNodeが以下のどの�
 * このオブジェクトのページ番号（ルートDirectoryNodeは0であるため、この値は1以上の整数値です。）
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}			
-{% include '_snippets/tx-type-links.md' %}			
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

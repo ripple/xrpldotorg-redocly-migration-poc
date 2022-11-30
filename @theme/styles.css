@@ -1,0 +1,36 @@
+:root body {
+  --navbar-height: 116px;
+  --navbar-text-color: black;
+
+  --search-input-text-color: black;
+  --search-highlight-text-color: #7919ff;
+  --search-input-background-color: #e0e0e1;
+  --search-input-hover-background-color: #e0e0e1;
+}
+
+html.dark body {
+  --navbar-text-color: white !important;
+  --search-input-text-color: white;
+  --search-input-background-color: #222225;
+  --search-input-hover-background-color:  #222225;
+}
+
+#home-hero-graphic {
+  aspect-ratio: 91/50;
+  display: inline-block;
+}
+
+[data-component-name="Search/Search"] {
+  flex: 1;
+}
+
+[data-component-name="Search/Input"] {
+  width: 100%;
+}
+[data-component-name="Layout/PageLayout"] {
+  margin-top: var(--navbar-height);
+}
+
+.dbyGfc h1.md, .dbyGfc h2.md, .dbyGfc h3.md, .dbyGfc h4.md, .dbyGfc h5.md, .dbyGfc h6.md {
+  scroll-margin-top: 136px;
+}

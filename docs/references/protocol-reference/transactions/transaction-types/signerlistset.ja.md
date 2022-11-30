@@ -61,6 +61,6 @@ SignerQuorumを満たせない方法でSignerListを作成することはでき�
 [MultiSignReserve Amendment][]が有効な場合、SignerListを作成または置換すると、SignerListオブジェクトでlsfOneOwnerCountフラグが有効になります。このフラグが有効な場合、MultiSignReserve Amendmentに定められているとおり、XRP LedgerはSignerListの[`OwnerCount`](accountroot.html#accountrootフィールド)と[所有者準備金](reserves.html#所有者準備金)を減らせます。詳細は、[SignerListのフラグ](signerlist.html#signerlistのフラグ)を参照してください。
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

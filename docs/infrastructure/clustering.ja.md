@@ -17,7 +17,7 @@ labels:
 
 クラスターでのサーバーの設定方法に関するチュートリアルについては、[`rippled`サーバーのクラスター化](cluster-rippled-servers.html)を参照してください。
 
-<!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}			
-{% include '_snippets/tx-type-links.md' %}			
-{% include '_snippets/rippled_versions.md' %}
+<!--{# common link defs #} -->
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

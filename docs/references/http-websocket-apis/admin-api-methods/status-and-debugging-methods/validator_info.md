@@ -126,6 +126,6 @@ For more information on validator tokens and key rotation, see the [validator-ke
 - `invalidParams` - The server returns this error with `"error_message" : "not a validator"` if the server is not [configured as a validator](run-rippled-as-a-validator.html).
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

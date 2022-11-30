@@ -147,5 +147,5 @@ Loading: "/etc/rippled.cfg"
 * `srcActNotFound` - 要求の`source_account`フィールドがレジャーのアカウントに対応していません。
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

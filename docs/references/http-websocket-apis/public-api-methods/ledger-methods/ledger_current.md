@@ -107,5 +107,5 @@ A `ledger_hash` field is not provided, because the hash of the current ledger is
 * Any of the [universal error types][].
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

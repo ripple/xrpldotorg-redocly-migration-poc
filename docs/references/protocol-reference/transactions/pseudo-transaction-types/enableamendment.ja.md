@@ -28,6 +28,6 @@ EnableAmendment疑似トランザクションの`Flags`の値は、この疑似�
 | tfLostMajority | 0x00020000 | 131072        | このレジャーバージョン以降、信頼できるバリデータのAmendment支持率が80%未満に減少しました。 |
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

@@ -50,6 +50,6 @@ labels:
 **注記:** この段階で成功の結果が表示されたとしても、トランザクションが完全に成功したことを示すわけではありません。ローカルのサーバーに保持されている暫定バージョンのレジャーに対して、正常に適用されたにすぎません。この段階での失敗の結果も、暫定的なものであり変化する可能性があります。詳細は、[結果のファイナリティー](finality-of-results.html)を参照してください。
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

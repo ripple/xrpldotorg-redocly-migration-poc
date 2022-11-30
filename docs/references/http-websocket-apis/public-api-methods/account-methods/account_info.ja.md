@@ -216,5 +216,5 @@ rippled account_info r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59 true
 * `lgrNotFound` - `ledger_hash`または`ledger_index`で指定したレジャーが存在しないか、存在してはいるもののサーバーが保有していません。
 
 [手数料レベル]: transaction-cost.html#手数料レベル
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

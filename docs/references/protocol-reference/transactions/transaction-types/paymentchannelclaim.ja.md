@@ -67,6 +67,6 @@ PaymentChannelClaimタイプのトランザクションについては、[`Flags
 | `tfClose` | 0x00020000 | 131072 | Channelの閉鎖を要求します。このフラグは、Channelの支払元アドレスと宛先アドレスだけが使用できます。このフラグにより、現在のクレームの処理後にChannelにこれ以上のXRPが割り当てられない場合、または宛先アドレスが使用している場合に、Channelが即時に閉鎖されます。XRPがまだChannelに保有されているときに、支払元アドレスがこのフラグを使用した場合、`SettleDelay`秒の経過後にChannelが閉鎖するようにスケジュールされます。（具体的には、Channelの`Expiration`は、前のレジャーの閉鎖時刻にChannelの`SettleDelay`の時間を加算した時刻に設定されます。ただし、Channelにこの時刻よりも早い`Expiration`時刻がすでに設定されている場合を除きます。）XRPがまだChannelに保有されているときに、宛先アドレスがこのフラグを使用した場合、クレーム処理後に残っているXRPはすべて支払元アドレスに返金されます。 |
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

@@ -587,5 +587,5 @@ Pathfinding要求が実行中の場合、応答は[`path_find create`](#path_fin
 * `noPathRequest` - Pathfinding要求のステータスを確認しようとしましたが、処理中の要求がありませんでした。
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

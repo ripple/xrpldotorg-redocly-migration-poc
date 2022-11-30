@@ -191,5 +191,5 @@ labels:
 * `actMalformed` - 指定されている`marker`フィールドが受け入れられない場合。
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

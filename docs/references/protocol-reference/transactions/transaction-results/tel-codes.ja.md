@@ -28,6 +28,6 @@ labels:
 | `telNO_DST`_`PARTIAL`   | トランザクションは、新しいアカウントに資金を供給するXRPの支払ですが、[tfPartialPaymentフラグ](partial-payments.html)が有効になっていました。これは許可されていません。 |
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

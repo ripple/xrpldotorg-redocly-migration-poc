@@ -49,6 +49,6 @@ labels:
 | `temDISABLED`                  | このトランザクションには、無効化されているロジックが必要です。通常これは、現行レジャー向けに有効化されていない[Amendment](amendments.html)を使用しようとしていることを意味します。 |
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

@@ -41,6 +41,6 @@ For a tutorial on assigning a regular key pair to an account, see [Working with 
 For even greater security, you can use [multi-signing](multi-signing.html), but multi-signing requires additional XRP for the [transaction cost][] and [reserve](reserves.html).
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

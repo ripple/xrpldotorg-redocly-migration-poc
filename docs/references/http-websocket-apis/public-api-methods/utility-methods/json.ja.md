@@ -46,5 +46,5 @@ rippled -q json ledger_closed '{}'
 応答は[標準フォーマット][]に従っており、実行されたコマンドのタイプに対して適切なフィールドが含まれています。
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

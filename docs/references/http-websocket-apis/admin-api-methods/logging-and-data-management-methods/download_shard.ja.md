@@ -121,6 +121,6 @@ _`download_shard`メソッドは、権限のないユーザーは実行できな
 - `invalidParams` - 要求で1つ以上の必須フィールドが省略されていたか、または指定されたフィールドのデータタイプが誤っています。
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

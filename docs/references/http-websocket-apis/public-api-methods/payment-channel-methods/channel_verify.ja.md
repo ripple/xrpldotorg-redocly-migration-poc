@@ -124,5 +124,5 @@ rippled channel_verify aB44YfzW24VDEJQ2UuLPV2PvqcPCSoLnL7y5M1EzhdW4LnK5xMS3 5DB0
 * `channelAmtMalformed` - 要求の`amount`に指定された値が、有効な[XRPの額][XRP、drop単位]ではありませんでした。
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

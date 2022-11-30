@@ -565,5 +565,5 @@ labels:
 | `consensus` | 文字列 | サーバーで実行されている新しいコンセンサスフェーズ。値には、open、establish、acceptedなどがあります。 |
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

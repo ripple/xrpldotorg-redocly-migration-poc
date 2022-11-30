@@ -96,5 +96,5 @@ rippled ledger_current
 * [汎用エラータイプ][]のすべて。
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

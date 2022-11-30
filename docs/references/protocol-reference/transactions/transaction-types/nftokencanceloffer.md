@@ -56,6 +56,6 @@ In addition to errors that can occur for all transactions, {{currentpage.name}} 
 | `tecNO_PERMISSION` | At least one of the IDs in the `NFTokenOffers` field refers to an object that cannot be canceled. For example, the sender of this transaction is not the owner or `Destination` of the offer, or the object was not an `NFTokenOffer` type object. |
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

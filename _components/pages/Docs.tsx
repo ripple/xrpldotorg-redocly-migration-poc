@@ -1,8 +1,8 @@
 import React from "react";
-import { usePathPrefix } from "@redocly/developer-portal/ui";
+// import { usePathPrefix } from "@redocly/developer-portal/ui";
 import { Helmet } from "react-helmet";
 export default function Docs() {
-  const prefix = usePathPrefix();
+  const prefix = '';
   const getStartedVideos = [
     {
       img: prefix + "/img/docs/docs-intro-to-XRP-ledger@2x.png",
@@ -220,7 +220,7 @@ export default function Docs() {
           <div className="col">
             <div className="card-grid card-grid-2xN">
               {getStartedVideos.map((video) => (
-                <VideoCard props={video} />
+                <VideoCard key={video.url} props={video} />
               ))}
             </div>
             <a

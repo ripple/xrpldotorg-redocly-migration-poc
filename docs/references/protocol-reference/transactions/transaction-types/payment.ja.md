@@ -131,6 +131,6 @@ tfLimitQualityフラグが最も有用となるのは、[Partial Payments](parti
 95人民元/15米ドルのオファーと5人民元/2米ドルのオファーがある上の例で、トランザクションに関してtfPartialPaymentとtfLimitQualityの両方が有効になっている場合、状況は異なります。20米ドルの`SendMax`および100人民元の宛先`Amount`を維持する場合も、クオリティの制限は`5`です。ただし、実行しようとするのはPartial Paymentsであるため、宛先に対する送金の全額を一度で送金できない場合、トランザクションを失敗とするのではなく、送金可能な最大限の金額が送金されます。つまり、トランザクションでは、クオリティが約`6.3`である95人民元/15米ドルのオファーは受け入れますが、5人民元/2米ドルのオファーはクオリティが`2.5`であり、クオリティの制限の`5`より低いため、拒否します。最終的に、トランザクションで送金されるのは満額の100人民元ではなく95人民元になりますが、不利な為替レートで資金を浪費することを避けられます。
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

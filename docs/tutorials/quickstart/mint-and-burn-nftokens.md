@@ -1,6 +1,8 @@
 # 3. Mint and Burn NFTokens
 
+{% html %}
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QzOw4HSb43A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{% /html %}
 
 This example shows how to:
 
@@ -12,7 +14,7 @@ This example shows how to:
 
 [![Test harness with mint NFToken fields](../../img/quickstart8.png)](../../img/quickstart8.png)
 
- 
+
 # Usage
 
 You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart/js/quickstart.zip) archive to try the sample in your own browser.
@@ -135,7 +137,7 @@ If you want the NFToken to be transferable to third parties, set the **Flags** f
     "Flags": parseInt(standbyFlagsField.value),
 ```
 
-The Transfer Fee is a value 0 to 50000, used to set a royalty of 0.000% to 50.000% in increments of 0.001. 
+The Transfer Fee is a value 0 to 50000, used to set a royalty of 0.000% to 50.000% in increments of 0.001.
 
 ```javascript
     "TransferFee": parseInt(standbyTransferFeeField.value),
@@ -164,7 +166,7 @@ Request a list of NFTs owned by the account.
 ```javascript
   const nfts = await client.request({
     method: "account_nfts",
-    account: standby_wallet.classicAddress  
+    account: standby_wallet.classicAddress
   })
 ```
 
@@ -175,9 +177,9 @@ Report the results.
 ```javascript
   results += '\n\nTransaction result: '+ tx.result.meta.TransactionResult
   results += '\n\nnfts: ' + JSON.stringify(nfts, null, 2)
-  document.getElementById('standbyBalanceField').value = 
+  document.getElementById('standbyBalanceField').value =
     (await client.getXrpBalance(standby_wallet.address))
-  document.getElementById('operationalBalanceField').value = results    
+  document.getElementById('operationalBalanceField').value = results
 ```
 
 
@@ -224,7 +226,7 @@ Request a list of NFTs owned by the account.
 ```javascript
  const nfts = await client.request({
     method: "account_nfts",
-    account: standby_wallet.classicAddress  
+    account: standby_wallet.classicAddress
   })
 ```
 
@@ -300,7 +302,7 @@ Request a list of NFTokens owned by the client.
 ```javascript
     const nfts = await client.request({
       method: "account_nfts",
-      account: standby_wallet.classicAddress  
+      account: standby_wallet.classicAddress
     })
 ```
 
@@ -313,7 +315,7 @@ Report the results.
     results += '\nBalance changes: ' +
       JSON.stringify(xrpl.getBalanceChanges(tx.result.meta), null, 2)
     document.getElementById('standbyResultField').value = results
-    document.getElementById('standbyBalanceField').value = 
+    document.getElementById('standbyBalanceField').value =
       (await client.getXrpBalance(standby_wallet.address))
     results += '\nNFTs: \n' + JSON.stringify(nfts,null,2)
     document.getElementById('standbyResultField').value = results
@@ -331,7 +333,7 @@ Report the results.
 // *******************************************************
 // ************** Operational Mint Token *****************
 // *******************************************************
-      
+
 async function oPmintToken() {
   results = 'Connecting to ' + getNet() + '....'
   document.getElementById('operationalResultField').value = results
@@ -342,7 +344,7 @@ async function oPmintToken() {
   results += '\nConnected. Minting NFToken.'
   document.getElementById('operationalResultField').value = results
 
-  // Note that you must convert the token URL to a hexadecimal 
+  // Note that you must convert the token URL to a hexadecimal
   // value for this transaction.
   // ------------------------------------------------------------------------
   const transactionBlob = {
@@ -353,28 +355,28 @@ async function oPmintToken() {
     "TransferFee": parseInt(operationalTransferFeeField.value),
     "NFTokenTaxon": 0 //Required, but if you have no use for it, set to zero.
   }
-      
-  // ----------------------------------------------------- Submit signed blob 
+
+  // ----------------------------------------------------- Submit signed blob
   const tx = await client.submitAndWait(transactionBlob, { wallet: operational_wallet} )
   const nfts = await client.request({
     method: "account_nfts",
-    account: operational_wallet.classicAddress  
+    account: operational_wallet.classicAddress
   })
-        
+
   // ------------------------------------------------------- Report results
   results += '\n\nTransaction result: '+ tx.result.meta.TransactionResult
   results += '\n\nnfts: ' + JSON.stringify(nfts, null, 2)
-  document.getElementById('operationalBalanceField').value = 
+  document.getElementById('operationalBalanceField').value =
     (await client.getXrpBalance(operational_wallet.address))
-  document.getElementById('operationalResultField').value = results    
+  document.getElementById('operationalResultField').value = results
 
   client.disconnect()
 } //End of oPmintToken
-      
+
 // *******************************************************
 // ************** Operational Get Tokens *****************
 // *******************************************************
-      
+
       async function oPgetTokens() {
         const operational_wallet = xrpl.Wallet.fromSeed(operationalSeedField.value)
           let net = getNet()
@@ -386,17 +388,17 @@ async function oPmintToken() {
           document.getElementById('operationalResultField').value = results
         const nfts = await client.request({
           method: "account_nfts",
-          account: operational_wallet.classicAddress  
+          account: operational_wallet.classicAddress
         })
         results += '\nNFTs:\n ' + JSON.stringify(nfts,null,2)
           document.getElementById('operationalResultField').value = results
         client.disconnect()
       } //End of oPgetTokens
-      
+
 // *******************************************************
 // ************* Operational Burn Token ******************
 // *******************************************************
-      
+
 async function oPburnToken() {
   const operational_wallet = xrpl.Wallet.fromSeed(operationalSeedField.value)
   let net = getNet()
@@ -406,27 +408,27 @@ async function oPburnToken() {
   await client.connect()
   results += '\nConnected. Burning NFToken...'
    document.getElementById('operationalResultField').value = results
-      
+
   // ------------------------------------------------------- Prepare transaction
   const transactionBlob = {
     "TransactionType": "NFTokenBurn",
     "Account": operational_wallet.classicAddress,
     "NFTokenID": operationalTokenIdField.value
   }
-      
+
   //-------------------------------------------------------- Submit signed blob
   const tx = await client.submitAndWait(transactionBlob,{wallet: operational_wallet})
   const nfts = await client.request({
     method: "account_nfts",
-    account: operational_wallet.classicAddress  
+    account: operational_wallet.classicAddress
   })
   results += '\nTransaction result: '+ tx.result.meta.TransactionResult
   results += '\nBalance changes: ' +
     JSON.stringify(xrpl.getBalanceChanges(tx.result.meta), null, 2)
   document.getElementById('operationalResultField').value = results
-  document.getElementById('operationalBalanceField').value = 
+  document.getElementById('operationalBalanceField').value =
     (await client.getXrpBalance(operational_wallet.address))
-  document.getElementById('operationalBalanceField').value = 
+  document.getElementById('operationalBalanceField').value =
     (await client.getXrpBalance(operational_wallet.address))
   results += '\nNFTs: \n' + JSON.stringify(nfts,null,2)
   document.getElementById('operationalResultField').value = results
@@ -456,7 +458,7 @@ Bold text in the following indicates changes to the form that support the new fu
       }
     </script>
   </head>
-  
+
 <!-- ************************************************************** -->
 <!-- ********************** The Form ****************************** -->
 <!-- ************************************************************** -->
@@ -464,7 +466,7 @@ Bold text in the following indicates changes to the form that support the new fu
   <body>
     <h1>Token Test Harness</h1>
     <form id="theForm">
-      Choose your ledger instance:  
+      Choose your ledger instance:
       <input type="radio" id="xls" name="server"
         value="wss://xls20-sandbox.rippletest.net:51233" checked>
       <label for="xls20">XLS20-NFT</label>

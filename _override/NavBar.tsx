@@ -68,7 +68,7 @@ export function AlertBanner(props) {
   return (
     <div className="top-banner fixed-top">
       <div className="d-flex justify-content-center">
-        <span><p class="mb-0">{message}</p></span>
+        <span><p className="mb-0">{message}</p></span>
         <span><a href={link} target="_blank" className="btn btn-outline-secondary">{button}</a></span>
       </div>
     </div>
@@ -103,7 +103,7 @@ export function NavDropdown(props) {
 
       return (
         <div key={index} className={clnm}>
-          <h5 class="dropdown-item">{item.group}</h5>
+          <h5 className="dropdown-item">{item.group}</h5>
           {groupLinks}
         </div>
       )

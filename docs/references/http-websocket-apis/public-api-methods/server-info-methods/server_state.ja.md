@@ -301,6 +301,6 @@ rippled server_state
 <!-- TODO: add fee levels and transaction cost to rippled-api-links.md. multiple files are including them one-off, as below -->
 [手数料レベル]: transaction-cost.html#手数料レベル
 [トランザクションコスト]: transaction-cost.html
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}
 {% include '_snippets/tx-type-links.md' %}

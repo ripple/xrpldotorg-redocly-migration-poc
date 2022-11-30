@@ -101,5 +101,5 @@ The response follows the [standard format][], with a successful result containin
 * `badMarket` - One or more desired order books in the `books` field does not exist; for example, offers to exchange a currency for itself.
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

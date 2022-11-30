@@ -258,5 +258,5 @@ The response follows the [standard format][], with a successful result containin
 * `internal` - An internal error occurred. This includes the case where a signature is not valid for the transaction JSON provided.
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

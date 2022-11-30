@@ -201,6 +201,6 @@ Connecting to 127.0.0.1:5005
 * `badSeed` - 要求には、空の文字列やXRP Ledgerアドレスに似た文字列などの許可されないシード値が（`passphrase`、`seed`、または`seed_hex`フィールド内に）指定されています。
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

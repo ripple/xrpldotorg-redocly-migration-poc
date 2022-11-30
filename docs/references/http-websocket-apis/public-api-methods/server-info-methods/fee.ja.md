@@ -169,5 +169,5 @@ Connecting to 127.0.0.1:5005
 
 <!-- TODO: fee levels link to rippled-api-links.md - it is being used one off in a couple of files -->
 [手数料レベル]: transaction-cost.html#手数料レベル
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

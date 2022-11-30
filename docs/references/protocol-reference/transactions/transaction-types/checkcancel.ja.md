@@ -36,6 +36,6 @@ _（[Checks Amendment][]が必要です）_
 - Checkが有効期限切れではなく、CheckCancelトランザクションの送信者がCheckの送金元または送金先ではない場合、トランザクションは結果コード`tecNO_PERMISSION`で失敗します。
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

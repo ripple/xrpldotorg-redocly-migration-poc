@@ -114,6 +114,6 @@ Connecting to 127.0.0.1:5005
 * `badSeed` - 要求に無効なシード値が指定されていました。この場合は通常、シード値が異なるフォーマットの有効文字列（アカウントアドレス、検証の公開鍵など）である可能性があります。
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

@@ -1,6 +1,8 @@
 # 4. Transfer NFTokens
 
+{% html %}
 <iframe width="560" height="315" src="https://www.youtube.com/embed/zm2od5-D0Po" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{% /html %}
 
 This example shows how to:
 
@@ -171,7 +173,7 @@ async function createSellOffer() {
   document.getElementById('standbyResultField').value = results
 ```
 
-Compute the Expiration Date, if present. The expiration date represents the number of seconds after the Ripple Epoch that the offer should expire. Start with the current date, add the number of days till expiration, then set the expirationDate variable to the converted date in Ripple time. 
+Compute the Expiration Date, if present. The expiration date represents the number of seconds after the Ripple Epoch that the offer should expire. Start with the current date, add the number of days till expiration, then set the expirationDate variable to the converted date in Ripple time.
 
 ```javascript
   //------------------------------------- Prepare Expiration Date
@@ -202,7 +204,7 @@ If the Expiration Date is present, append it to the transaction.
   if (expirationDate != null) {
     transactionBlob.Expiration = expirationDate
   }
-  
+
 ```
 
 If the Destination field is not empty, append it to the transaction. When the destination is set, only the destination account can purchase the NFToken.
@@ -264,9 +266,9 @@ Report the results of the transaction.
 
 
 ```javascript
-  results += '\n\nTransaction result:\n' + 
+  results += '\n\nTransaction result:\n' +
     JSON.stringify(tx.result.meta.TransactionResult, null, 2)
-  results += '\n\nBalance changes:\n' + 
+  results += '\n\nBalance changes:\n' +
     JSON.stringify(xrpl.getBalanceChanges(tx.result.meta), null, 2)
 ```
 
@@ -275,9 +277,9 @@ Get the current XRP balances for the operational and standby accounts.
 
 
 ```javascript
-  document.getElementById('operationalBalanceField').value = 
+  document.getElementById('operationalBalanceField').value =
     (await client.getXrpBalance(operational_wallet.address))
-  document.getElementById('standbyBalanceField').value = 
+  document.getElementById('standbyBalanceField').value =
     (await client.getXrpBalance(standby_wallet.address))
   document.getElementById('standbyResultField').value = results
 ```
@@ -404,7 +406,7 @@ Report the results of the transaction.
 ```javascript
   results += "\n\nTransaction result:\n" +
     JSON.stringify(tx.result.meta.TransactionResult, null, 2)
-  results += "\n\nBalance changes:\n" + 
+  results += "\n\nBalance changes:\n" +
     JSON.stringify(xrpl.getBalanceChanges(tx.result.meta), null, 2)
   document.getElementById('standbyResultField').value = results
 ```
@@ -428,7 +430,7 @@ Disconnect from the ledger.
 // ******************** Cancel Offer *********************
 // *******************************************************
 
-async function cancelOffer() {    
+async function cancelOffer() {
 ```
 
 
@@ -515,7 +517,7 @@ Report the transaction results.
 ```javascript
   results += "\nTransaction result:\n" +
     JSON.stringify(tx.result.meta.TransactionResult, null, 2)
-  results += "\nBalance changes:\n" + 
+  results += "\nBalance changes:\n" +
     JSON.stringify(xrpl.getBalanceChanges(tx.result.meta), null, 2)
   document.getElementById('standbyResultField').value = results
 ```
@@ -648,7 +650,7 @@ Submit the transaction and wait for the results.
 
 
 ```javascript
-  const tx = await client.submitAndWait(transactionBlob,{wallet: standby_wallet}) 
+  const tx = await client.submitAndWait(transactionBlob,{wallet: standby_wallet})
 ```
 
 
@@ -666,9 +668,9 @@ Get the balances for both accounts.
 
 
 ```javascript
-  document.getElementById('standbyBalanceField').value = 
+  document.getElementById('standbyBalanceField').value =
     (await client.getXrpBalance(standby_wallet.address))
-  document.getElementById('operationalBalanceField').value = 
+  document.getElementById('operationalBalanceField').value =
     (await client.getXrpBalance(operational_wallet.address))
 ```
 
@@ -740,7 +742,7 @@ Submit the transaction and wait for the results.
 
 
 ```javascript
-  const tx = await client.submitAndWait(transactionBlob,{wallet: standby_wallet}) 
+  const tx = await client.submitAndWait(transactionBlob,{wallet: standby_wallet})
 ```
 
 
@@ -750,7 +752,7 @@ Request the current list of NFTs for the standby account.
 ```javascript
   const nfts = await client.request({
     method: "account_nfts",
-    account: standby_wallet.classicAddress  
+    account: standby_wallet.classicAddress
   })
   results += JSON.stringify(nfts,null,2)
   document.getElementById('standbyResultField').value = results
@@ -761,7 +763,7 @@ Report the transaction result.
 
 
 ```javascript
-  results += "\n\nTransaction result:\n" + 
+  results += "\n\nTransaction result:\n" +
     JSON.stringify(tx.result.meta.TransactionResult, null, 2)
   results += "\nBalance changes:\n" +
     JSON.stringify(xrpl.getBalanceChanges(tx.result.meta), null, 2)
@@ -772,9 +774,9 @@ Request the XRP balance for both accounts.
 
 
 ```javascript
-  document.getElementById('operationalBalanceField').value = 
+  document.getElementById('operationalBalanceField').value =
     (await client.getXrpBalance(operational_wallet.address))
-  document.getElementById('standbyBalanceField').value = 
+  document.getElementById('standbyBalanceField').value =
     (await client.getXrpBalance(standby_wallet.address))
   document.getElementById('standbyResultField').value = results
 ```
@@ -845,7 +847,7 @@ async function oPcreateSellOffer() {
   try {
     nftSellOffers = await client.request({
       method: "nft_sell_offers",
-      nft_id: operationalTokenIdField.value  
+      nft_id: operationalTokenIdField.value
     })
   } catch (err) {
     nftSellOffers = "No sell offers."
@@ -863,13 +865,13 @@ async function oPcreateSellOffer() {
   results += JSON.stringify(nftBuyOffers,null,2)
 
   // Check transaction results -------------------------------------------------
-  results += '\n\nTransaction result:\n' + 
+  results += '\n\nTransaction result:\n' +
     JSON.stringify(tx.result.meta.TransactionResult, null, 2)
-  results += '\n\nBalance changes:\n' + 
+  results += '\n\nBalance changes:\n' +
     JSON.stringify(xrpl.getBalanceChanges(tx.result.meta), null, 2)
-  document.getElementById('operationalBalanceField').value = 
+  document.getElementById('operationalBalanceField').value =
     (await client.getXrpBalance(operational_wallet.address))
-  document.getElementById('standbyBalanceField').value = 
+  document.getElementById('standbyBalanceField').value =
     (await client.getXrpBalance(standby_wallet.address))
   document.getElementById('operationalResultField').value = results
 
@@ -922,7 +924,7 @@ async function oPcreateBuyOffer() {
   try {
     nftSellOffers = await client.request({
       method: "nft_sell_offers",
-      nft_id: operationalTokenIdField.value  
+      nft_id: operationalTokenIdField.value
     })
   } catch (err) {
     nftSellOffers = "No sell offers."
@@ -943,7 +945,7 @@ async function oPcreateBuyOffer() {
   // Check transaction results -------------------------------------------------
   results += "\n\nTransaction result:\n" +
     JSON.stringify(tx.result.meta.TransactionResult, null, 2)
-  results += "\n\nBalance changes:\n" + 
+  results += "\n\nBalance changes:\n" +
     JSON.stringify(xrpl.getBalanceChanges(tx.result.meta), null, 2)
   document.getElementById('operationalResultField').value = results
 
@@ -1002,7 +1004,7 @@ async function oPcancelOffer() {
 
   results += "\nTransaction result:\n" +
     JSON.stringify(tx.result.meta.TransactionResult, null, 2)
-  results += "\nBalance changes:\n" + 
+  results += "\nBalance changes:\n" +
     JSON.stringify(xrpl.getBalanceChanges(tx.result.meta), null, 2)
   document.getElementById('operationalResultField').value = results
 
@@ -1045,7 +1047,7 @@ async function oPgetOffers() {
   } catch (err) {
     nftBuyOffers =  'No buy offers.'
   }
-  results += JSON.stringify(nftBuyOffers,null,2)  
+  results += JSON.stringify(nftBuyOffers,null,2)
   document.getElementById('operationalResultField').value = results
 
   client.disconnect()
@@ -1073,24 +1075,24 @@ async function oPacceptSellOffer() {
     "NFTokenSellOffer": operationalTokenOfferIndexField.value,
   }
   // Submit transaction --------------------------------------------------------
-  const tx = await client.submitAndWait(transactionBlob,{wallet: operational_wallet}) 
+  const tx = await client.submitAndWait(transactionBlob,{wallet: operational_wallet})
   const nfts = await client.request({
     method: "account_nfts",
     account: operational_wallet.classicAddress })
 
   // Check transaction results -------------------------------------------------
 
-  document.getElementById('standbyBalanceField').value = 
+  document.getElementById('standbyBalanceField').value =
     (await client.getXrpBalance(standby_wallet.address))
-  document.getElementById('operationalBalanceField').value = 
+  document.getElementById('operationalBalanceField').value =
     (await client.getXrpBalance(operational_wallet.address))
 
   results += 'Transaction result:\n'
   results +=  JSON.stringify(tx.result.meta.TransactionResult, null, 2)
   results += '\nBalance changes:'
   results +=  JSON.stringify(xrpl.getBalanceChanges(tx.result.meta), null, 2)
-  results += JSON.stringify(nfts,null,2)   
-  document.getElementById('operationalResultField').value = results    
+  results += JSON.stringify(nfts,null,2)
+  document.getElementById('operationalResultField').value = results
   client.disconnect()
 }// End of acceptSellOffer()
 
@@ -1117,7 +1119,7 @@ async function oPacceptBuyOffer() {
     "NFTokenBuyOffer": operationalTokenOfferIndexField.value
   }
   // Submit transaction --------------------------------------------------------
-  const tx = await client.submitAndWait(transactionBlob,{wallet: operational_wallet}) 
+  const tx = await client.submitAndWait(transactionBlob,{wallet: operational_wallet})
   const nfts = await client.request({
     method: "account_nfts",
     account: operational_wallet.classicAddress })
@@ -1125,13 +1127,13 @@ async function oPacceptBuyOffer() {
   document.getElementById('operationalResultField').value = results
 
   // Check transaction results -------------------------------------------------
-  results += "\n\nTransaction result:\n" + 
+  results += "\n\nTransaction result:\n" +
     JSON.stringify(tx.result.meta.TransactionResult, null, 2)
   results += "\nBalance changes:\n" +
     JSON.stringify(xrpl.getBalanceChanges(tx.result.meta), null, 2)
-  document.getElementById('operationalBalanceField').value = 
+  document.getElementById('operationalBalanceField').value =
     (await client.getXrpBalance(operational_wallet.address))
-  document.getElementById('operationalBalanceField').value = 
+  document.getElementById('operationalBalanceField').value =
     (await client.getXrpBalance(standby_wallet.address))
   document.getElementById('operationalResultField').value = results
   client.disconnect()
@@ -1163,10 +1165,10 @@ Update the form with fields and buttons to support the new functions.
       if (typeof module !== "undefined") {
         const xrpl = require('xrpl')
       }
-     
+
     </script>
   </head>
-  
+
 <!-- ************************************************************** -->
 <!-- ********************** The Form ****************************** -->
 <!-- ************************************************************** -->
@@ -1174,7 +1176,7 @@ Update the form with fields and buttons to support the new functions.
   <body>
     <h1>Token Test Harness</h1>
     <form id="theForm">
-      Choose your ledger instance:  
+      Choose your ledger instance:
       <input type="radio" id="xls" name="server"
         value="wss://xls20-sandbox.rippletest.net:51233" checked>
       <label for="xls20">XLS20-NFT</label>

@@ -124,5 +124,5 @@ The response follows the [standard format][], with a successful result containin
 * `channelAmtMalformed` - The value specified in the `amount` field was not a valid [XRP amount][XRP, in drops].
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

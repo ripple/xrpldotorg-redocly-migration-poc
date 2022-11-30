@@ -258,5 +258,5 @@ rippled submit_multisigned '{
 * `internal` - 内部エラーが発生しました。これには、指定されているトランザクションJSONに対して署名が無効な場合も含まれます。
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

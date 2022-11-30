@@ -147,5 +147,5 @@ The response follows the [standard format][], with a successful result containin
 * `srcActNotFound` - The `source_account` field of the request does not correspond to an account in the ledger.
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

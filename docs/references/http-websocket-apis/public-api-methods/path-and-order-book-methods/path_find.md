@@ -587,5 +587,5 @@ If there was no outstanding pathfinding request, an error is returned instead.
 * `noPathRequest` - You tried to check the status of a pathfinding request when there is not an open one.
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}

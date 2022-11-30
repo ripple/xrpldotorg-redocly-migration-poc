@@ -131,6 +131,6 @@ rippled channel_authorize s█████████████████�
 * `channelMalformed` - 要求の`channel_id`が有効なChannel IDではありません。Channel IDは256ビット（64文字）の16進文字列です。
 
 
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled_versions.md" /%}
 {% include '_snippets/rippled-api-links.md' %}
 {% include '_snippets/tx-type-links.md' %}

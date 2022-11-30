@@ -359,6 +359,6 @@ Another special case is the `TransactionType` field. In JSON, this field is conv
 
 <!-- SPELLING_IGNORE: pathset, stobject, starray, ledgerentry, vector256, accountids, uint -->
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}			
-{% include '_snippets/tx-type-links.md' %}			
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

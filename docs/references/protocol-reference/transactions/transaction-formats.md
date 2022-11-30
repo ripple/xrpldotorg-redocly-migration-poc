@@ -2,7 +2,7 @@
 html: transaction-formats.html
 parent: protocol-reference.html
 blurb: Definitions for all the protocol's transaction types and their results.
-template: pagetype-category.html.jinja
+my-template: pagetype-category.html.jinja
 ---
 # Transaction Reference
 
@@ -10,6 +10,6 @@ A _Transaction_ is the only way to cause changes in the XRP Ledger. Transactions
 
 
 <!--{# common link defs #}-->
-{% include '_snippets/rippled-api-links.md' %}
-{% include '_snippets/tx-type-links.md' %}
-{% include '_snippets/rippled_versions.md' %}
+{% partial file="/_snippets/_rippled-api-links.md" /%}
+{% partial file="/_snippets/_tx-type-links.md" /%}
+{% partial file="/_snippets/_rippled_versions.md" /%}

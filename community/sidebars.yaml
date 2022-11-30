@@ -1,4 +1,4 @@
 - page: ./index.mdx
-  pages:
+  items:
   - page: ./contribute-code.md
   - page: ./report-a-scam.md

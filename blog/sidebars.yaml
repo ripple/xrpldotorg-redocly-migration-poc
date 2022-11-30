@@ -2,7 +2,7 @@
 
 - group: "2022"
   expanded: true
-  pages:
+  items:
   - label: Introducing XRP Ledger 1.9.0
     page: 2022/rippled-1.9.0.md
   - label: Introducing Clio Beta
@@ -16,7 +16,7 @@
 
 - group: "2021"
   expanded: false
-  pages:
+  items:
     - page: 2021/rippled-1.8.2.md
     - page: 2021/rippled-1.8.1.md
     - page: 2021/five-upcoming-amendments.md
@@ -35,7 +35,7 @@
 
 - group: "2020"
   expanded: false
-  pages:
+  items:
     - page: 2020/rippled-1.6.0.md
     - page: 2020/moving-devnet-to-vl.md
     - page: 2020/requirefullycanonicalsig-fixqualityupperbound-flowcross-enabled.md
@@ -57,7 +57,7 @@
 
 - group: "2019"
   expanded: false
-  pages:
+  items:
     - page: 2019/rippled-1.4.0.md
     - page: 2019/xrpl-devnet-launch.md
     - page: 2019/fixmasterkeyasregularkey-enabled.md
@@ -86,7 +86,7 @@
 
 - group: "2018"
   expanded: false
-  pages:
+  items:
     - page: 2018/rippled-1.1.2.md
     - page: 2018/introducing-history-sharding.md
     - page: 2018/data-api-validations-changes.md
@@ -107,7 +107,7 @@
 
 - group: "2017"
   expanded: false
-  pages:
+  items:
     - page: 2017/explanation-of-ripples-xrp-escrow.md
     - page: 2017/rippled-0.80.2.md
     - page: 2017/rippled-0.80.0.md
@@ -138,7 +138,7 @@
 
 - group: "2016"
   expanded: false
-  pages:
+  items:
     - page: 2016/rippled-0.40.0.md
     - page: 2016/flow-available.md
     - page: 2016/flow-reminder.md
@@ -162,7 +162,7 @@
 
 - group: "2015"
   expanded: false
-  pages:
+  items:
     - page: 2015/correction-to-ripple-white-paper.md
     - page: 2015/validator-registry.md
     - page: 2015/introducing-the-data-api.md
@@ -173,7 +173,7 @@
 
 - group: "2014"
   expanded: false
-  pages:
+  items:
     - page: 2014/turn-your-exchange-into-a-ripple-gateway.md
     - page: 2014/why-the-stellar-forking-issue-does-not-affect-ripple.md
     - page: 2014/release-notes-3-december-2014.md
