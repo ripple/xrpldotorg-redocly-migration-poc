@@ -12,7 +12,6 @@
     "babel-plugin-preval": "^5.1.0",
     "bootstrap": "^5.2.0",
     "fs": "^0.0.1-security",
-    "html-react-parser": "^3.0.1",
     "jquery": "^3.6.0",
     "jssoup": "^0.0.15",
     "lottie-web": "^5.9.6",
@@ -21,6 +20,7 @@
     "react-bootstrap": "^2.5.0"
   },
   "devDependencies": {
-    "@types/jquery": "^3.5.14"
+    "@types/jquery": "^3.5.14",
+    "react": "^17.0.0"
   }
 }
