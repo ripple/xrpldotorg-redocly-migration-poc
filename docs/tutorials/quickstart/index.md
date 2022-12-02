@@ -1,11 +1,11 @@
 # XRPL Quickstart
 
-The XRP Ledger (XRPL) is a robust, secure, customizable service. You can create your own interface to try out the capabilities and support your specific business needs.
+The XRP Ledger (XRPL) is a robust, secure, customizable service. You can create your own interface to try out the capabilities and support your specific business.
 
 This quickstart describes a test harness interface you can build to try out the XRP Ledger. The test harness displays multiple accounts, so that you can transfer tokens from one account to the other and see the results in real time. The image below shows the Token Test Harness at the completion of step 4.
 
 [![Quickstart Tutorial Window](../../img/quickstart1.png)](../../img/quickstart1.png)
- 
+
 That is a lot of fields and buttons, all working together to perform some significant practical tasks. But getting _started_ with the XRP Ledger is not that complicated. When you eat the elephant a bite at a time, none of the tasks are difficult to consume.
 
 Typically, the example functions for interacting with the XRP Ledger involve four steps.

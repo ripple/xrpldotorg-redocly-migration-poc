@@ -274,7 +274,7 @@ export class ThemeToggle extends React.Component {
               id="css-toggle-btn"
               onClick={this.user_choose_theme}
             />
-            <label className="custom-control-label" for="css-toggle-btn">
+            <label className="custom-control-label" htmlFor="css-toggle-btn">
               <span className="d-lg-none">Light/Dark Theme</span>
             </label>
           </div>
