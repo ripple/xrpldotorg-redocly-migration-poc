@@ -2,7 +2,7 @@ theme:
   seo:
     title: XRP Ledger Developer Portal
     description: The best API documentation generator ever.
-    siteUrl: https://xrpl-docs.redoc.ly/developer-portal/
+    siteUrl: https://xrpl-org-v2.redoc.dev/developer-portal/
     keywords: XRP Ledger developer portal, api reference docs
     lang: en-US
   logo:
