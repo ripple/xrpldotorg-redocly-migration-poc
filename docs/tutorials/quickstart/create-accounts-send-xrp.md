@@ -1,10 +1,12 @@
 # 1. Create Accounts and Send XRP
 
+{% html %}
 <iframe width="560" height="315" src="https://www.youtube.com/embed/G9GUS3PFXAg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{% /html %}
 
 This example shows how to:
 
-1. Create accounts on the Testnet, funded with 10000 test XRP with no actual value. 
+1. Create accounts on the Testnet, funded with 10000 test XRP with no actual value.
 2. Retrieve the accounts from seed values.
 3. Transfer XRP between accounts.
 
@@ -75,7 +77,7 @@ This example can be used with any XRP Ledger network. Currently, there are _Test
 ```javascript
 // ******************************************************
 // ************* Get the Preferred Network **************
-// ******************************************************   
+// ******************************************************
 
     function getNet() {
 ```
@@ -95,7 +97,7 @@ This function uses brute force `if` statements to discover the selected network 
 
 
 
-### getAccount(type)              
+### getAccount(type)
 
 
 ```javascript
@@ -173,7 +175,7 @@ Get the current XRP balance for the account.
 
 
 ```javascript
-        const my_balance = (await client.getXrpBalance(my_wallet.address))  
+        const my_balance = (await client.getXrpBalance(my_wallet.address))
 
 
 ```
@@ -189,7 +191,7 @@ If this is a standby account, populate the standby account fields.
           document.getElementById('standbyAccountField').value = my_wallet.address
           document.getElementById('standbyPubKeyField').value = my_wallet.publicKey
           document.getElementById('standbyPrivKeyField').value = my_wallet.privateKey
-          document.getElementById('standbyBalanceField').value = 
+          document.getElementById('standbyBalanceField').value =
               (await client.getXrpBalance(my_wallet.address))
           document.getElementById('standbySeedField').value = my_wallet.seed
           results += '\nStandby account created.'
@@ -206,7 +208,7 @@ Otherwise, populate the operational account fields.
           document.getElementById('operationalPubKeyField').value = my_wallet.publicKey
           document.getElementById('operationalPrivKeyField').value = my_wallet.privateKey
           document.getElementById('operationalSeedField').value = my_wallet.seed
-          document.getElementById('operationalBalanceField').value = 
+          document.getElementById('operationalBalanceField').value =
               (await client.getXrpBalance(my_wallet.address))
           results += '\nOperational account created.'
           document.getElementById('operationalResultField').value = results
@@ -222,7 +224,7 @@ Insert the seed values for both accounts as they are created to the **Seeds** fi
 ```
 
 
-Disconnect from the XRP ledger. 
+Disconnect from the XRP ledger.
 
 
 ```javascript
@@ -237,7 +239,7 @@ Disconnect from the XRP ledger.
 
 ```javascript
 // *******************************************************
-// ********** Get Accounts from Seeds ******************** 
+// ********** Get Accounts from Seeds ********************
 // *******************************************************
 
       async function getAccountsFromSeeds() {
@@ -285,8 +287,8 @@ Get the current XRP balances for the accounts.
 
 
 ```javascript
-        const standby_balance = (await client.getXrpBalance(standby_wallet.address))  
-        const operational_balance = (await client.getXrpBalance(operational_wallet.address))  
+        const standby_balance = (await client.getXrpBalance(standby_wallet.address))
+        const operational_balance = (await client.getXrpBalance(operational_wallet.address))
 ```
 
 
@@ -298,7 +300,7 @@ Populate the fields for the standby and operational accounts.
         document.getElementById('standbyPubKeyField').value = standby_wallet.publicKey
         document.getElementById('standbyPrivKeyField').value = standby_wallet.privateKey
         document.getElementById('standbySeedField').value = standby_wallet.seed
-        document.getElementById('standbyBalanceField').value = 
+        document.getElementById('standbyBalanceField').value =
           (await client.getXrpBalance(standby_wallet.address))
 
 
@@ -306,7 +308,7 @@ Populate the fields for the standby and operational accounts.
         document.getElementById('operationalPubKeyField').value = operational_wallet.publicKey
         document.getElementById('operationalPrivKeyField').value = operational_wallet.privateKey
         document.getElementById('operationalSeedField').value = operational_wallet.seed
-        document.getElementById('operationalBalanceField').value = 
+        document.getElementById('operationalBalanceField').value =
           (await client.getXrpBalance(operational_wallet.address))
 
 
@@ -406,14 +408,14 @@ Request the balance changes caused by the transaction and report the results.
 
 
 ```javascript
-         results  += "\nBalance changes: " + 
+         results  += "\nBalance changes: " +
             JSON.stringify(xrpl.getBalanceChanges(tx.result.meta), null, 2)
          document.getElementById('standbyResultField').value = results
 
-        document.getElementById('standbyBalanceField').value = 
+        document.getElementById('standbyBalanceField').value =
           (await client.getXrpBalance(standby_wallet.address))
-        document.getElementById('operationalBalanceField').value = 
-          (await client.getXrpBalance(operational_wallet.address))                 
+        document.getElementById('operationalBalanceField').value =
+          (await client.getXrpBalance(operational_wallet.address))
         client.disconnect()
 
 
@@ -480,15 +482,15 @@ For each of the transactions, there is an accompanying reciprocal transaction, w
         const tx = await client.submitAndWait(signed.tx_blob)
 
 
-         results  += "\nBalance changes: " + 
+         results  += "\nBalance changes: " +
             JSON.stringify(xrpl.getBalanceChanges(tx.result.meta), null, 2)
          document.getElementById('operationalResultField').value = results
 
 
-        document.getElementById('standbyBalanceField').value = 
+        document.getElementById('standbyBalanceField').value =
           (await client.getXrpBalance(standby_wallet.address))
-        document.getElementById('operationalBalanceField').value = 
-          (await client.getXrpBalance(operational_wallet.address))                 
+        document.getElementById('operationalBalanceField').value =
+          (await client.getXrpBalance(operational_wallet.address))
 
 
         client.disconnect()
@@ -501,7 +503,7 @@ For each of the transactions, there is an accompanying reciprocal transaction, w
 
 ## 1.get-accounts-send-xrp.html
 
-Create a standard HTML form to send transactions and requests, then display the results.  
+Create a standard HTML form to send transactions and requests, then display the results.
 
 
 ```html
@@ -517,7 +519,7 @@ Create a standard HTML form to send transactions and requests, then display the 
 
     </script>
   </head>
-  
+
 <!-- ************************************************************** -->
 <!-- ********************** The Form ****************************** -->
 <!-- ************************************************************** -->
@@ -525,7 +527,7 @@ Create a standard HTML form to send transactions and requests, then display the 
   <body>
     <h1>Token Test Harness</h1>
     <form id="theForm">
-      Choose your ledger instance:  
+      Choose your ledger instance:
       <input type="radio" id="xls" name="server"
         value="wss://xls20-sandbox.rippletest.net:51233" checked>
       <label for="xls20">XLS20-NFT</label>

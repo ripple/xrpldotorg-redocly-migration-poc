@@ -28,7 +28,9 @@ Additionally, the custody of funds always stays with the customer, meaning wheth
 
 Wallet Protect is built into GateHub and it’s easy for users to [sign-up](https://signin.gatehub.net/signup?utm_source=ripplex&utm_medium=affiliate&utm_campaign=wallet_protect). A special 25% discount has been extended for readers of this blog. For the month of March, $10,000 of theft cover can be purchased for $2.25 per month or upgraded to $100,000 of theft cover for $18 per month.
 
+{% html %}
 <figure class="kg-card kg-embed-card"><iframe src="https://player.vimeo.com/video/522005166?app_id=122963" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></figure>
+{% /html %}
 
 ## What’s Next for GateHub
 

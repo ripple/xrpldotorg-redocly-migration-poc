@@ -281,7 +281,7 @@ export default function Docs() {
         <h4 className="pb-4">Use Cases</h4>
         <div className="card-grid card-grid-3xN">
           {useCases.map((u) => (
-            <UseCasesCard props={u} />
+            <UseCasesCard key={u.id} props={u} />
           ))}
         </div>
       </section>

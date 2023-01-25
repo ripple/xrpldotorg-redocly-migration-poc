@@ -1,8 +1,9 @@
 
 # 2. Create TrustLine and Send Currency
 
+{% html %}
 <iframe width="560" height="315" src="https://www.youtube.com/embed/EZXJMgRE3BE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+{% /html %}
 
 This example shows how to:
 
@@ -77,7 +78,7 @@ You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-port
 ### Configure Account
 
 When transferring fiat currency, the actual transfer of funds is not simultaneous, as it is with XRP. If currency is transferred to a third party for a different currency, there can be a devaluation of the currency that impacts the originating account. To avoid this situation, this up and down valuation of currency, known as _rippling_, is not allowed by default. Currency transferred from one account can only be transferred back to the same account. To enable currency transfer to third parties, you need to set the _rippleDefault_ value to true. The Token Test Harness provides a checkbox to enable or disable rippling.
- 
+
 
 ```javascript
 // *******************************************************
@@ -125,15 +126,15 @@ Prepare the transaction. If the _rippleDefault_ argument is true, set the `asfDe
           "TransactionType": "AccountSet",
           "Account": my_wallet.address,
           "SetFlag": xrpl.AccountSetAsfFlags.asfDefaultRipple
-          } 
-          results += '\n Set Default Ripple flag.' 
+          }
+          results += '\n Set Default Ripple flag.'
         } else {
           settings_tx = {
           "TransactionType": "AccountSet",
           "Account": my_wallet.address,
           "ClearFlag": xrpl.AccountSetAsfFlags.asfDefaultRipple
           }
-          results += '\n Clear Default Ripple flag.' 
+          results += '\n Clear Default Ripple flag.'
         }
           results += '\nSending account setting.'
           document.getElementById('standbyResultField').value = results
@@ -271,7 +272,7 @@ Report the results.
           document.getElementById('standbyResultField').value = results
         } else {
           results += '\nTrustLine failed. See JavaScript console for details.'
-          document.getElementById('standbyResultField').value = results     
+          document.getElementById('standbyResultField').value = results
           throw 'Error sending transaction: ${ts_result.result.meta.TransactionResult}'
         }
       } //End of createTrustline()
@@ -314,7 +315,7 @@ Connect to the ledger.
 
 Get the account wallets.
 
-  
+
 
 
 ```javascript
@@ -375,9 +376,9 @@ Report the results.
           document.getElementById('standbyResultField').value = results
           throw 'Error sending transaction: ${pay_result.result.meta.TransactionResult}'
         }
-        document.getElementById('standbyBalanceField').value = 
+        document.getElementById('standbyBalanceField').value =
               (await client.getXrpBalance(standby_wallet.address))
-        document.getElementById('operationalBalanceField').value = 
+        document.getElementById('operationalBalanceField').value =
               (await client.getXrpBalance(operational_wallet.address))
         client.disconnect()
         getBalances()
@@ -441,7 +442,7 @@ Report the results.
 
 ```javascript
         results += JSON.stringify(standby_balances.result, null, 2)
-        document.getElementById('standbyResultField').value = results   
+        document.getElementById('standbyResultField').value = results
 ```
 
 
@@ -471,9 +472,9 @@ Update the form with current XRP balances.
 
 
 ```javascript
-         document.getElementById('operationalBalanceField').value = 
+         document.getElementById('operationalBalanceField').value =
           (await client.getXrpBalance(operational_wallet.address))
-        document.getElementById('standbyBalanceField').value = 
+        document.getElementById('standbyBalanceField').value =
           (await client.getXrpBalance(standby_wallet.address))
 ```
 
@@ -482,7 +483,7 @@ Disconnect from the ledger.
 
 
 ```javascript
-        client.disconnect()      
+        client.disconnect()
       } // End of getBalances()
 ```
 
@@ -534,7 +535,7 @@ For each of the transactions, there is an accompanying reciprocal transaction, w
           document.getElementById('operationalResultField').value = results
         } else {
           results += '\nTrustLine failed. See JavaScript console for details.'
-          document.getElementById('operationalResultField').value = results     
+          document.getElementById('operationalResultField').value = results
           throw 'Error sending transaction: ${ts_result.result.meta.TransactionResult}'
         }
       } //End of oPcreateTrustline
@@ -590,9 +591,9 @@ For each of the transactions, there is an accompanying reciprocal transaction, w
           document.getElementById('operationalResultField').value = results
           throw 'Error sending transaction: ${pay_result.result.meta.TransactionResult}'
         }
-        document.getElementById('standbyBalanceField').value = 
+        document.getElementById('standbyBalanceField').value =
               (await client.getXrpBalance(standby_wallet.address))
-        document.getElementById('operationalBalanceField').value = 
+        document.getElementById('operationalBalanceField').value =
               (await client.getXrpBalance(operational_wallet.address))
         client.disconnect()
         getBalances()
@@ -630,7 +631,7 @@ Update the form to support the new functions.
   <body>
     <h1>Token Test Harness</h1>
     <form id="theForm">
-      Choose your ledger instance:  
+      Choose your ledger instance:
       <input type="radio" id="xls" name="server"
         value="wss://xls20-sandbox.rippletest.net:51233" checked>
       <label for="xls20">XLS20-NFT</label>

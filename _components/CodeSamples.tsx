@@ -23,7 +23,7 @@ export default function CodeSamples() {
   const path = require('path');
   const dirPath = path.resolve(__dirname, '../_code-samples');
   const skipDirs = ["node_modules", ".git", "__pycache__"];
-  
+
   function sortFunc(cs1, cs2) {
     /* Sort code samples alphabetically by title except with "Intro" fields first
      */
@@ -39,7 +39,7 @@ export default function CodeSamples() {
     }
     return 0;
   }
-  
+
   function getCodeSamples(dir,codeSamplesArr = []) {
     // list files in directory and loop through
     fs.readdirSync(dir).forEach((csFile) => {
