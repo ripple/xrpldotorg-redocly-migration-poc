@@ -6,34 +6,35 @@ theme:
     keywords: XRP Ledger developer portal, api reference docs
     lang: en-US
   logo:
-    image: /img/XRPLedger_DevPortal-white.svg
+    image: ./static/img/XRPLedger_DevPortal-white.svg
     altText: XRP Ledger Developer Portal
-  markdown:
-    editPage:
-      baseUrl: https://github.com/ripple/xrpl-org-dev-portal/tree/master/
-      # icon: ./images/pencil.svg
-    copyCodeSnippet:
+  codeSnippet:
+    copy:
       enable: true
       buttonText: Copy
       tooltipText: Copy the code snippet
       toasterText: Copied!
       toasterDuration: 1500
+  markdown:
+    editPage:
+      baseUrl: https://github.com/ripple/xrpl-org-dev-portal/tree/master/
+      # icon: ./images/pencil.svg
   links:
     - href: https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap
       rel: stylesheet
     - href: https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,600,700&display=swap
       rel: stylesheet
-    - href: /css/devportal2022-v4.css
+    - href: ./static/css/devportal2022-v4.css
       rel: stylesheet
-    - href: /vendor/fontawesome/css/font-awesome.min.css
+    - href: ./static/vendor/fontawesome/css/font-awesome.min.css
       rel: stylesheet
-    - href: /css/fixes.css
+    - href: ./static/css/fixes.css
       rel: stylesheet
   scripts:
     head:
-      - src: /js/xrpl-2.2.0.min.js
-      - src: /js/jquery-3.6.0.min.js
-      - src: /vendor/bootstrap.min.js
+      - src: ./static/js/xrpl-2.2.0.min.js
+      - src: ./static/js/jquery-3.6.0.min.js
+      - src: ./static/vendor/bootstrap.min.js
 
   ## NOTE: This is ignored. Our custom top nav uses top-nav.yaml instead.
   navbar: {}

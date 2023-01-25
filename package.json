@@ -8,16 +8,14 @@
     "start": "portal develop --port 4000"
   },
   "dependencies": {
-    "@redocly/portal": "0.2.2",
-    "babel-plugin-preval": "^5.1.0",
+    "@redocly/portal": "0.8.1",
     "bootstrap": "^5.2.0",
-    "fs": "^0.0.1-security",
     "jquery": "^3.6.0",
     "jssoup": "^0.0.15",
     "lottie-web": "^5.9.6",
     "marked": "^4.0.18",
     "preval.macro": "^5.0.0",
-    "react-bootstrap": "^2.5.0"
+    "react-bootstrap": "~2.5.0"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.14",
