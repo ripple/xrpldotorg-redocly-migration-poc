@@ -1,0 +1,37 @@
+---
+title: Configure Peering
+---
+import { XRPLCardDeck, DeckCard } from "../../../../_components/XRPLCardDeck";
+
+# Configure Peering
+
+The XRP Ledger's peer-to-peer protocol automatically manages peer connections in most cases. In some cases, you may want to manually adjust which peers your server connects to, to maximize your server's availability and connectivity with the rest of the network.
+
+If you run multiple servers in the same datacenter, you may want to cluster them to improve efficiency. You can use reserved peer slots for servers you don't run but want to stay connected to, such as important hubs in the topology of the peer-to-peer network. For other peers, the server can automatically find peers and manage its connections, although you may occasionally want to intervene to block a peer that's behaving undesirably.
+
+<XRPLCardDeck cols="2/3">
+  <DeckCard title="Cluster rippled Servers" to="cluster-rippled-servers.md">
+    Set up a group of servers that share work for higher efficiency.
+  </DeckCard>
+  <DeckCard title="Configure a Private Server" to="configure-a-private-server.md">
+    Set up a server to connect only to specific, trusted peers.
+  </DeckCard>
+  <DeckCard title="Configure the Peer Crawler" to="configure-the-peer-crawler.md">
+    Configure how much information your rippled server reports publicly about its status and peers.
+  </DeckCard>
+  <DeckCard title="Enable Link Compression" to="enable-link-compression.md">
+    Save bandwidth by compressing peer-to-peer communications.
+  </DeckCard>
+  <DeckCard title="Forward Ports for Peering" to="forward-ports-for-peering.md">
+    Configure your firewall to allow incoming peers to your rippled server.
+  </DeckCard>
+  <DeckCard title="Manually Connect to a Specific Peer" to="manually-connect-to-a-specific-peer.md">
+    Connect your rippled server to a specific peer.
+  </DeckCard>
+  <DeckCard title="Set Maximum Number of Peers" to="set-max-number-of-peers.md">
+    Set the maximum number of peers your rippled server connects to.
+  </DeckCard>
+  <DeckCard title="Use a Peer Reservation" to="use-a-peer-reservation.md">
+    Set up a more reliable connection to a specific peer using a peer reservation.
+  </DeckCard>
+</XRPLCardDeck>

@@ -166,12 +166,71 @@
   page: infrastructure/index.mdx
   expanded: false
   pages:
-    - label: rippled Server
-      href: https://xrpl.org/manage-the-rippled-server.html
-      external: true 
-    - label: Clio server
-      href: https://xrpl.org/manage-the-clio-server.html
-      external: true  
+    - group: rippled Server
+      pages:
+      - group: Install rippled
+        page: infrastructure/rippled/installation/index.mdx
+        pages:
+          - page: infrastructure/rippled/installation/system-requirements.md
+          - page: infrastructure/rippled/installation/install-rippled-on-centos-rhel-with-yum.md
+          - page: infrastructure/rippled/installation/install-rippled-on-ubuntu.md
+          - page: infrastructure/rippled/installation/update-rippled-automatically-on-linux.md
+          - page: infrastructure/rippled/installation/update-rippled-manually-on-centos-rhel.md
+          - page: infrastructure/rippled/installation/update-rippled-manually-on-ubuntu.md
+          - page: infrastructure/rippled/installation/build-run-rippled-ubuntu.md
+          - page: infrastructure/rippled/installation/build-run-rippled-macos.md
+          - page: infrastructure/rippled/installation/build-run-rippled-in-reporting-mode.md
+          - page: infrastructure/rippled/installation/capacity-planning.md
+          # - page: infrastructure/rippled/installation/rippled-1-3-migration-instructions.md
+      - group: Configure rippled
+        page: infrastructure/rippled/configuration/index.mdx
+        expanded: false
+        pages:
+          - page: infrastructure/rippled/configuration/run-rippled-as-a-validator.md
+          - page: infrastructure/rippled/configuration/run-rippled-as-a-stock-server.md
+          - page: infrastructure/rippled/configuration/test-amendments.md
+          - page: infrastructure/rippled/configuration/configure-amendment-voting.md
+          - page: infrastructure/rippled/configuration/configure-statsd.md
+          - page: infrastructure/rippled/configuration/connect-your-rippled-to-the-xrp-test-net.md
+          - page: infrastructure/rippled/configuration/configure-online-deletion.md
+          - page: infrastructure/rippled/configuration/configure-advisory-deletion.md
+          - page: infrastructure/rippled/configuration/configure-history-sharding.md
+          - page: infrastructure/rippled/configuration/configure-full-history.md
+          - page: infrastructure/rippled/configuration/configure-grpc.md
+          - page: infrastructure/rippled/configuration/enable-public-signing.md
+      - group: Configure Peering
+        page: infrastructure/rippled/configure-peering/index.mdx
+        expanded: false
+        pages:
+          - page: infrastructure/rippled/configure-peering/cluster-rippled-servers.md
+          - page: infrastructure/rippled/configure-peering/configure-a-private-server.md
+          - page: infrastructure/rippled/configure-peering/configure-the-peer-crawler.md
+          - page: infrastructure/rippled/configure-peering/enable-link-compression.md
+          - page: infrastructure/rippled/configure-peering/forward-ports-for-peering.md
+          - page: infrastructure/rippled/configure-peering/manually-connect-to-a-specific-peer.md
+          - page: infrastructure/rippled/configure-peering/set-max-number-of-peers.md
+          - page: infrastructure/rippled/configure-peering/use-a-peer-reservation.md
+      - group: Test rippled Functionality in Stand-Alone Mode
+        page: infrastructure/rippled/stand-alone-mode/index.mdx
+        expanded: false
+        pages:
+          - page: infrastructure/rippled/stand-alone-mode/start-a-new-genesis-ledger-in-stand-alone-mode.md 
+          - page: infrastructure/rippled/stand-alone-mode/load-a-saved-ledger-in-stand-alone-mode.md
+          - page: infrastructure/rippled/stand-alone-mode/advance-the-ledger-in-stand-alone-mode.md
+      - group: Troubleshooting
+        page: infrastructure/rippled/troubleshooting/index.mdx
+        expanded: false
+        pages:
+          - page: infrastructure/rippled/troubleshooting/diagnosing-problems.md
+          - page: infrastructure/rippled/troubleshooting/health-check-interventions.md
+          - page: infrastructure/rippled/troubleshooting/understanding-log-messages.md
+          - page: infrastructure/rippled/troubleshooting/server-doesnt-sync.md
+          - page: infrastructure/rippled/troubleshooting/server-is-amendment-blocked.md
+          - page: infrastructure/rippled/troubleshooting/server-wont-start.md
+          - page: infrastructure/rippled/troubleshooting/fix-sqlite-tx-db-page-size-issue.md
+    - group: Clio Server
+      pages:
+        - page: infrastructure/clio/install-clio-on-ubuntu.md
 - group: API Reference
   expanded: false
   pages:

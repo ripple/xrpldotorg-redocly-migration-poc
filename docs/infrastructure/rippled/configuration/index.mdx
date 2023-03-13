@@ -1,0 +1,57 @@
+---
+title: Configure rippled
+---
+import { XRPLCardDeck, DeckCard } from "../../../../_components/XRPLCardDeck";
+
+# Configure rippled
+
+### Customize your `rippled` server configuration
+
+<XRPLCardDeck cols="2/3">
+  <DeckCard title="Run rippled as a Validator" to="run-rippled-as-a-validator.md">
+    Have your server vote on the consensus ledger.
+  </DeckCard>
+  <DeckCard title="Run rippled as a Stock Server" to="run-rippled-as-a-stock-server.md">
+    A multipurpose configuration for anyone integrating XRP.
+  </DeckCard>
+  <DeckCard title="Configure Amendment Voting" to="configure-amendment-voting.md">
+    Set your server's votes on protocol amendments.
+  </DeckCard>
+  <DeckCard title="Configure StatsD" to="configure-statsd.md">
+    Monitor your rippled server with StatsD metrics.
+  </DeckCard>
+  <DeckCard title="Configure gRPC" to="configure-grpc.md">
+    Enable and configure the gRPC API. 
+  </DeckCard>
+  <DeckCard title="Enable Public Signing" to="enable-public-signing.md">
+    Allow others to use your server to sign transactions. (Not recommended)
+  </DeckCard>
+</XRPLCardDeck>
+
+### Maintain historical ledger data
+
+<XRPLCardDeck cols="2/3">
+  <DeckCard title="Configure Online Deletion" to="configure-online-deletion.md">
+    Configure how far back your server should store transaction history.
+  </DeckCard>
+  <DeckCard title="Configure Advisory Deletion" to="configure-advisory-deletion.md">
+    Use advisory deletion to delete older ledger history on a schedule rather than as new history becomes available.
+  </DeckCard>
+  <DeckCard title="Configure History Sharding" to="configure-history-sharding.md">
+    Set up a server to contribute to preserving shards of historical XRP Ledger data.
+  </DeckCard>
+  <DeckCard title="Configure Full History" to="configure-full-history.md">
+    Full history servers provide a record of every transaction ever to occur in the XRP Ledger, although they are expensive to run.
+  </DeckCard>
+</XRPLCardDeck>
+
+### Try out new `rippled` features
+
+<XRPLCardDeck cols="2/3">
+  <DeckCard title="Test Amendments" to="test-amendments.md">
+    You can test proposed amendments before they're enabled on the network.
+  </DeckCard>
+  <DeckCard title="Connect Your rippled to a Parallel Network" to="connect-your-rippled-to-the-xrp-test-net.md">
+    Connect your rippled server to the test net to try out new features or test functionality with fake money.
+  </DeckCard>
+</XRPLCardDeck>

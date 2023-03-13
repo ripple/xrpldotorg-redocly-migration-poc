@@ -1,0 +1,32 @@
+---
+title: Troubleshooting 
+---
+import { XRPLCardDeck, DeckCard } from "../../../../_components/XRPLCardDeck";
+
+# Troubleshooting
+
+Troubleshoot all kinds of problems with the rippled server.
+
+<XRPLCardDeck cols="2/3">
+  <DeckCard title="Diagnosing Problems with rippled" to="diagnosing-problems.md">
+    Collect information to identify the cause of problems.
+  </DeckCard>
+  <DeckCard title="Health Check Interventions" to="health-check-interventions.md">
+    Use the rippled server's health check as part of automated infrastructure monitoring.
+  </DeckCard>
+  <DeckCard title="Understanding Log Messages" to="understanding-log-messages.md">
+    Interpret and respond to warning and error messages in the debug log.
+  </DeckCard>
+  <DeckCard title="rippled Server Doesn't Sync" to="server-doesnt-sync.md">
+    Troubleshoot problems that make a rippled server unable to sync with the rest of the XRP Ledger.
+  </DeckCard>
+  <DeckCard title="rippled Server is Admendment Blocked" to="server-is-amendment-blocked.md">
+    Troubleshoot a server that can't implement amendment changes.
+  </DeckCard>
+  <DeckCard title="rippled Server Won't Start" to="server-wont-start.md">
+    A collection of problems that would cause a rippled server not to start, and how to fix them.
+  </DeckCard>
+  <DeckCard title="Fix SQLite Transaction Database Page Size Issue" to="fix-sqlite-tx-db-page-size-issue.md">
+    Fix a problem with the SQLite page size on full-history servers started on rippled version 0.40.0 or earlier.
+  </DeckCard>
+</XRPLCardDeck>
