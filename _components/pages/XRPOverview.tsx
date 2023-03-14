@@ -184,7 +184,7 @@ export default function XRPOverview() {
                     </tr>
                     <tr>
                       <td>Low-Cost</td>
-                      <td>0.000012/tx</td>
+                      <td>0.000010/tx</td>
                       <td>$0.50/tx</td>
                     </tr>
                     <tr>
