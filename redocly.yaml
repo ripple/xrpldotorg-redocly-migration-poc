@@ -8,13 +8,6 @@ theme:
   logo:
     image: ./static/img/XRPLedger_DevPortal-white.svg
     altText: XRP Ledger Developer Portal
-  codeSnippet:
-    copy:
-      enable: true
-      buttonText: Copy
-      tooltipText: Copy the code snippet
-      toasterText: Copied!
-      toasterDuration: 1500
   markdown:
     editPage:
       baseUrl: https://github.com/ripple/xrpl-org-dev-portal/tree/master/

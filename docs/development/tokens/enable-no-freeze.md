@@ -2,17 +2,12 @@
 description: Permanently give up your account's ability to freeze tokens it issues.
 labels:
   - Tokens
+steps: [ 'Generate', 'Connect', 'Send AccountSet', 'Wait', 'Confirm Settings' ]
 ---
-import { Helmet } from "react-helmet";
-import { StepWrapper, GenerateStep, ConnectStep, WaitStep } from "../../../_components/InteractiveTutorials";
-import XRPLoader from '../../../_components/XRPLoader';
-const STEPS = [ 'Generate', 'Connect', 'Send AccountSet', 'Wait', 'Confirm Settings'];
 
 <!-- Source for this specific tutorial's interactive bits: -->
-<Helmet>
-  <script src="/js/interactive-tutorial.js"></script>
-  <script src="/js/tutorials/enable-no-freeze.js"></script>
-</Helmet>
+<script src="/js/interactive-tutorial.js"></script>
+<script src="/js/tutorials/enable-no-freeze.js"></script>
 
 # Enable No Freeze
 
@@ -47,20 +42,20 @@ of having separate ["cold" and "hot" addresses](issuing-and-operational-addresse
 **master keys** to the _cold address_, which is the **issuer** of the token. Only the issuer's No Freeze
 setting has any effect on a token.
 
-:::warning Caution
+{% admonition type="warning" name="Caution" %}
 
 You cannot use a [regular key pair](cryptographic-keys.html) or [multi-signing](multi-signing.html)
 to enable the No Freeze setting.
 
-:::
+{% /admonition %}
 
 For this tutorial, you can get credentials from the following interface:
 
-<StepWrapper steps={STEPS} stepIdx={0}>
-  <GenerateStep />
-</StepWrapper>
+{% interactive-step-wrapper stepIdx=0 steps=$frontmatter.steps %}
+  {% generate-step /%}
+{% /interactive-step-wrapper %}
 
-<embed src="/_snippets/_generate-step_caution.md" />
+{% partial file="/_snippets/_generate-step_caution.md" /%}
 
 When you're [building production-ready software](production-readiness.html), you should use an existing account,
 and manage your keys using a [secure signing configuration](set-up-secure-signing.html).
@@ -77,7 +72,7 @@ public XRP Ledger Testnet server a supported [client library](client-libraries.h
 // Wrap code in an async function so we can use await
 async function main() {
   // Define the network client
-  const client = new xrpl.Client("wss://s.altnet.rippletest.net:51233");
+  const client = new xrpl.Client('wss://s.altnet.rippletest.net:51233');
   await client.connect();
 
   // ... custom code goes here
@@ -91,9 +86,9 @@ main();
 
 For this tutorial, click the following button to connect:
 
-<StepWrapper steps={STEPS} stepIdx={1}>
-  <ConnectStep />
-</StepWrapper>
+{% interactive-step-wrapper stepIdx=1 steps=$frontmatter.steps %}
+  {% connect-step /%}
+{% /interactive-step-wrapper %}
 
 ### 3. Send AccountSet Transaction
 
@@ -107,7 +102,7 @@ For example:
 ```js JavaScript
 // Submit an AccountSet transaction
 const accountSetTx = {
-  TransactionType: "AccountSet",
+  TransactionType: 'AccountSet',
   Account: wallet.address,
   // Set the NoFreeze flag for this account
   SetFlag: xrpl.AccountSetAsfFlags.asfNoFreeze,
@@ -116,7 +111,7 @@ const accountSetTx = {
 // Best practice for JS users - validate checks if a transaction is well-formed
 xrpl.validate(accountSetTx);
 
-console.log("Sign and submit the transaction:", accountSetTx);
+console.log('Sign and submit the transaction:', accountSetTx);
 await client.submitAndWait(accountSetTx, { wallet: wallet });
 // Done
 ```
@@ -138,17 +133,9 @@ await client.submitAndWait(accountSetTx, { wallet: wallet });
 }
 ```
 
-<StepWrapper steps={STEPS} stepIdx={2}>
-  <button
-    id="send-accountset"
-    className="btn btn-primary previous-steps-required"
-    data-wait-step-name="Wait"
-  >
-    Send AccountSet
-  </button>
-  <XRPLoader />
-  <div className="output-area" />
-</StepWrapper>
+{% interactive-step-wrapper stepIdx=2 steps=$frontmatter.steps %}
+{% send-accountnet-step /%}
+{% /interactive-step-wrapper %}
 
 ### 4. Wait for Validation
 
@@ -158,9 +145,9 @@ connectivity delays a transaction from being relayed throughout the network, a t
 to be confirmed. (For information on how to set an expiration for transactions, see
 [Reliable Transaction Submission](reliable-transaction-submission.html).)
 
-<StepWrapper steps={STEPS} stepIdx={3}>
-  <WaitStep />
-</StepWrapper>
+{% interactive-step-wrapper stepIdx=3 steps=$frontmatter.steps %}
+  {% wait-step /%}
+{% /interactive-step-wrapper %}
 
 ### 5. Confirm Account Settings
 
@@ -171,17 +158,14 @@ flag is enabled. You can do this by calling the [account_info method][] and chec
 ```js JavaScript
 // Request account info
 const response = await client.request({
-  command: "account_info",
+  command: 'account_info',
   account: my_address,
 });
 const settings = response.result;
 const lsfNoFreeze = xrpl.LedgerEntry.AccountRootFlags.lsfNoFreeze;
 
-console.log("Got settings for address", my_address);
-console.log(
-  "No Freeze enabled?",
-  (settings.account_data.Flags & lsfNoFreeze) === lsfNoFreeze
-);
+console.log('Got settings for address', my_address);
+console.log('No Freeze enabled?', (settings.account_data.Flags & lsfNoFreeze) === lsfNoFreeze);
 await client.disconnect();
 ```
 
@@ -226,17 +210,9 @@ Response:
 }
 ```
 
-<StepWrapper steps={STEPS} stepIdx={4}>
-  <button
-    id="confirm-settings"
-    className="btn btn-primary previous-steps-required"
-    data-wait-step-name="Wait"
-  >
-    Confirm Settings
-  </button>
-  <XRPLoader />
-  <div className="output-area" />
-</StepWrapper>
+{% interactive-step-wrapper stepIdx=4 steps=$frontmatter.steps %}
+{% confirm-settings-step /%}
+{% /interactive-step-wrapper %}
 
 ## See Also
 

@@ -1,9 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { usePathPrefix } from "@redocly/developer-portal/ui";
 
 export default function XRPOverview() {
-  const prefix = usePathPrefix();
   let [escrowInfo, setEscrowInfo] = useState({ date: "", amount: "" });
 
   useEffect(() => {
@@ -111,7 +109,7 @@ export default function XRPOverview() {
     <div className="landing  styled-page">
       <div className="position-relative">
         <img
-          src={prefix + "/img/backgrounds/xrp-overview-blue.svg"}
+          src={"/img/backgrounds/xrp-overview-blue.svg"}
           className="landing-bg"
           id="xrp-overview-blue"
         />
@@ -215,7 +213,7 @@ export default function XRPOverview() {
                 <div>
                   <img
                     className="mw-100 mb-2 invertible-img"
-                    src={prefix + "/img/icons/briefcase.svg"}
+                    src={"/img/icons/briefcase.svg"}
                   />
                   <h6 className="fs-4-5">Financial Institutions</h6>
                   <p className="">
@@ -226,7 +224,7 @@ export default function XRPOverview() {
                 <div>
                   <img
                     className="mw-100 mb-2 invertible-img"
-                    src={prefix + "/img/icons/user.svg"}
+                    src={"/img/icons/user.svg"}
                   />
                   <h6 className="fs-4-5">Individual Consumers</h6>
                   <p>Use XRP to move different currencies around the world. </p>
@@ -234,7 +232,7 @@ export default function XRPOverview() {
               </div>
               <div className="mt-10 p-10 br-8 cta-card position-relative">
                 <img
-                  src={prefix + "/img/backgrounds/cta-xrp-overview-magenta.svg"}
+                  src={"/img/backgrounds/cta-xrp-overview-magenta.svg"}
                   className="cta cta-bottom-right"
                 />
                 <div className="z-index-1 position-relative">
@@ -305,7 +303,7 @@ export default function XRPOverview() {
               </p>
               <div className="mt-10 p-10 br-8 cta-card position-relative">
                 <img
-                  src={prefix + "/img/backgrounds/cta-xrp-overview-green-2.svg"}
+                  src={"/img/backgrounds/cta-xrp-overview-green-2.svg"}
                   className="landing-bg cta cta-bottom-right"
                 />
                 <div className="z-index-1 position-relative">
@@ -319,7 +317,7 @@ export default function XRPOverview() {
                       <img
                         id="xrp-mark-overview"
                         className="mw-100 invertible-img mr-2"
-                        src={prefix + "/img/logos/xrp-mark.svg"}
+                        src={"/img/logos/xrp-mark.svg"}
                         alt="XRP Logo Mark"
                       />{" "}
                       <span

@@ -6,18 +6,18 @@ const NETWORKS = {
   Testnet: {
     websocket: 'wss://s.altnet.rippletest.net:51233',
     faucet: 'https://faucet.altnet.rippletest.net/accounts',
-    explorer: 'https://testnet.xrpl.org'
+    explorer: 'https://testnet.xrpl.org',
   },
   Devnet: {
     websocket: 'wss://s.devnet.rippletest.net:51233',
     faucet: 'https://faucet.devnet.rippletest.net/accounts',
-    explorer: 'https://devnet.xrpl.org'
+    explorer: 'https://devnet.xrpl.org',
   },
   Mainnet: {
     websocket: 'wss://xrplcluster.com',
     faucet: null,
-    explorer: 'https://livenet.xrpl.org'
-  }
+    explorer: 'https://livenet.xrpl.org',
+  },
 };
 
 export function ConnectStep({ useNetwork = 'Testnet' }) {
@@ -34,9 +34,9 @@ export function ConnectStep({ useNetwork = 'Testnet' }) {
       </div>
     </>
   );
-};
+}
 
-export function GenerateStep({useNetwork = 'Testnet'}) {
+export function GenerateStep({ useNetwork = 'Testnet' }) {
   const faucetUrl = NETWORKS[useNetwork].faucet;
   return (
     <>
@@ -44,6 +44,30 @@ export function GenerateStep({useNetwork = 'Testnet'}) {
         Get {useNetwork} credentials
       </button>
       <XRPLoader message="Generating Keys..." />
+      <div className="output-area" />
+    </>
+  );
+}
+
+export function ConfirmSettingsStep() {
+  return (
+    <>
+      <button id="confirm-settings" className="btn btn-primary previous-steps-required" data-wait-step-name="Wait">
+        Confirm Settings
+      </button>
+      <XRPLoader />
+      <div className="output-area" />
+    </>
+  );
+}
+
+export function SendAccountNetStep() {
+  return (
+    <>
+      <button id="send-accountset" className="btn btn-primary previous-steps-required" data-wait-step-name="Wait">
+        Send AccountSet
+      </button>
+      <XRPLoader />
       <div className="output-area" />
     </>
   );

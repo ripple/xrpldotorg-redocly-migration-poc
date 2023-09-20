@@ -1,64 +1,10 @@
-.landing-table th, .landing-table tr {
-
-  border-bottom: 2px solid #757575 !important;
-  border-top: none !important;
-  border-left: none !important;
-  border-right: none !important;
-  background-color: transparent !important;
-}
-.landing-table td {
-  border-left: none !important;
-  border-right: none !important;
-  width: 33.33% !important;
-  padding: 16px 40px 16px 0 !important;
-}
-.landing-table td:nth-child(1) {
-  border-left: none !important;
-  border-right: none !important;
-  font-weight: normal !important;
-}
-.landing-table tr:last-child {
-  border-left: none !important;
-  border-right: none !important;
-  border-bottom: none !important;
-}
-.landing-table tbody td {
-  border-left: none !important;
-  border-right: none !important;
-  border-bottom: none !important;
-  color: #EEEEEE !important;
-}
-
-
-.light .landing-table tbody td {
-  color: #000  !important;
-}
-
-table.wait-step tr {
-  color: white;
-  background-color: transparent !important;
-  border-bottom: 1px solid white;
-}
-
-table.wait-step td {
-  color: white;
-  background-color: transparent !important;
-  border: 0 !important;
-}
-
-table.wait-step th {
-  color: white !important;
-  background-color: transparent !important;
-  border: 0 !important;
-}
-
-
-
-
-
 a[title="Source"] {
   float:right;
   margin: 0 2rem 2rem 2rem;
+}
+
+html.light pre code {
+  color: var(--code-block-text-color);
 }
 
 
