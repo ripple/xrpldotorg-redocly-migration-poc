@@ -8,7 +8,7 @@
     "start": "portal develop --port 4000"
   },
   "dependencies": {
-    "@redocly/portal": "0.8.1",
+    "@redocly/portal": "0.40.1",
     "bootstrap": "^5.2.0",
     "jquery": "^3.6.0",
     "jssoup": "^0.0.15",

@@ -1,4 +1,5 @@
-:root body {
+:root {
+  --bg-base: #F5F5F7;
   --font-size-base: 1rem;
   --navbar-height: 116px;
   --navbar-text-color: black;
@@ -10,9 +11,15 @@
   --search-highlight-text-color: #7919ff;
   --search-input-background-color: #e0e0e1;
   --search-input-hover-background-color: #e0e0e1;
+  --sidebar-item-active-color: #7919FF;
+  --sidebar-item-active-background-color: transparent;
+  --sidebar-item-hover-background-color: transparent;
 }
 
-html.dark body {
+:root.dark {
+  --sidebar-item-active-color:  #9A52FF;
+
+  --bg-base: #111112;
   --navbar-text-color: white !important;
   --search-input-text-color: white;
   --search-input-background-color: #222225;
@@ -29,20 +36,26 @@ html.dark body {
 
 [data-component-name='Search/Search'] {
   flex: 1;
+  margin-left: 3.5rem;
+  margin-right: 0.5rem
 }
 
-[data-component-name='Search/Input'] {
+[data-component-name='Search/SearchTrigger'] > span {
   width: 100%;
 }
 [data-component-name='Layout/PageLayout'] {
   margin-top: var(--navbar-height);
 }
 
-.dbyGfc h1.md,
-.dbyGfc h2.md,
-.dbyGfc h3.md,
-.dbyGfc h4.md,
-.dbyGfc h5.md,
-.dbyGfc h6.md {
+h1.md,
+h2.md,
+h3.md,
+h4.md,
+h5.md,
+h6.md {
   scroll-margin-top: 136px;
+}
+
+.navbar-nav {
+  align-items: center;
 }

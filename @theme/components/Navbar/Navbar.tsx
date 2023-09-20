@@ -1,15 +1,18 @@
 import * as React from 'react';
+import styled from 'styled-components';
 
-import slugify from '../../_components/slugify';
+import slugify from '../../../_components/slugify';
 
 import { Link } from '@portal/Link';
-import { ColorModeSwitcher } from '@theme/ColorModeSwitcher/ColorModeSwitcher';
+import { ColorModeSwitcher } from '@theme/components/ColorModeSwitcher/ColorModeSwitcher';
+import { Search } from '@theme/components/Search/Search';
 
 // @ts-ignore
-import * as navbar from '../../top-nav.yaml';
+import navbar from '../../../top-nav.yaml';
 
 export function Navbar(props) {
-  const { logo, href, altText, search } = props;
+
+  const { logo, href, altText } = props;
   const pathPrefix = '';
 
   const navItems = navbar.nav.map((item, index) => {
@@ -56,14 +59,18 @@ export function Navbar(props) {
         <TopNavCollapsible>
           <NavItems>
             {navItems}
-            {search}
-            <ColorModeSwitcher />
+            <Search />
+            <StyledColorModeSwitcher />
           </NavItems>
         </TopNavCollapsible>
       </NavWrapper>
     </>
   );
 }
+
+const StyledColorModeSwitcher = styled(ColorModeSwitcher)`
+  padding: 10px;
+`;
 
 export function AlertBanner(props) {
   const { show, message, button, link } = props;
