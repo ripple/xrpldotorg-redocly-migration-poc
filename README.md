@@ -1,4 +1,6 @@
-# Redocly API developer portal
+# Sandbox Repository to Evaluate Redocly for the XRPL Developer Portal
+
+NOTE: The PoC is complete and the toolchain migration for the XRPL Developer Portal will be available on https://github.com/XRPLF/xrpl-dev-portal/tree/redocly-migration.
 
 ## Prerequisites
 
